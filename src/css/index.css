@@ -1,6 +1,10 @@
 /* Importing all CSS files */
-@import url('./Header.css');
-
+@import url('./global/Global.css');
+@import url('./common/button/Button.css');
+@import url('./common/Navbar.css');
+@import url('./containers/home/Home.css');
+@import url('./components/CoursesComponent/CoursesComponent.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;0,600;0,700;1,600&display=swap');
 /* Defaults */
 * {
   padding: 0;
@@ -9,6 +13,30 @@
 }
 
 /* Primary Variables */
+
 :root {
   --primary: 'green';
+  --background-color: #2b2926;
+  --white: #fdfcfc;
+  --btn-hover-navbar: #6ec2b1;
+  --need-a-teacher-section-bg: linear-gradient(
+    126.81deg,
+    #6bdac3 17.04%,
+    #00ccc1 45.46%,
+    #048dd8 67.42%,
+    #408ecc 86.03%
+  );
+  --need-a-teacher-reg-btn: #6ec2b1;
+  --btn-filter-bg: #3f3e3c;
+  --card-content-bg: linear-gradient(
+    359.54deg,
+    rgba(0, 0, 0, 0.79) 0.38%,
+    rgba(86, 86, 86, 0.33) 58%,
+    rgba(255, 255, 255, 0) 99.59%
+  );
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: 'Poppins', sans-serif;
 }

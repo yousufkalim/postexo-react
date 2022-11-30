@@ -7,9 +7,11 @@ import Home from '../containers/Home';
 
 function Index() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </div>
   );
 }
 export default Index;

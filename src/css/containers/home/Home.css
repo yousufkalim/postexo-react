@@ -1,0 +1,36 @@
+.section-need-a-teacher {
+  background: var(--need-a-teacher-section-bg);
+  margin-top: 2%;
+  border-radius: 10px;
+  padding: 2% 2%;
+}
+.section-need-a-teacher-courses {
+  margin-top: 5%;
+}
+.need-a-teacher-container-one > * {
+  margin: 1% 0%;
+}
+.need-a-teacher-span {
+  font-weight: 600;
+}
+.btn-need-a-teacher {
+  border: 1.5px solid var(--white);
+  padding: 8px 40px;
+  margin-top: 15px;
+  background: var(--white);
+  color: var(--need-a-teacher-reg-btn);
+  font-size: 0.59em;
+}
+.btn-need-a-teacher > img {
+  margin-right: 3px;
+  width: 10px;
+}
+.filter-courses-icon {
+  width: 15px;
+  margin-left: 5px;
+}
+.btn-filter {
+  width: 7em;
+  background: var(--btn-filter-bg);
+  padding: 8px 40px;
+}

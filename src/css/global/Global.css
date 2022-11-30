@@ -1,0 +1,64 @@
+.d-flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.jcc {
+  justify-content: center;
+}
+.aic {
+  align-items: center;
+}
+.aib {
+  align-items: baseline;
+}
+.space-between {
+  justify-content: space-between;
+}
+.space-around {
+  justify-content: space-around;
+}
+.bg-transparent {
+  background: transparent;
+}
+
+.white-font {
+  color: var(--white);
+}
+.font-weight-600 {
+  font-weight: 600;
+}
+.w-19 {
+  width: 19%;
+}
+.w-40 {
+  width: 40%;
+}
+.w-80 {
+  width: 80%;
+}
+.w-90 {
+  width: 90%;
+}
+.w-95 {
+  width: 95%;
+}
+.w-100 {
+  width: 100%;
+}
+.m-auto {
+  margin: auto;
+}
+.pointer {
+  cursor: pointer;
+}
+.b-radius-1000 {
+  border-radius: 1000px;
+}
+.z-index {
+  z-index: 9;
+}

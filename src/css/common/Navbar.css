@@ -1,0 +1,19 @@
+.navbar-btn-container {
+  width: 220px;
+}
+.navbar-spacing {
+  padding: 0.8% 0%;
+}
+.navbar-btn {
+  border: 1.5px solid var(--white);
+  padding: 10px 19px;
+  background: transparent;
+}
+.navbar-btn:hover {
+  background: var(--btn-hover-navbar);
+  border: 1.5px solid var(--btn-hover-navbar);
+}
+.navbar-btn > img {
+  margin-right: 7px;
+  width: 14px;
+}
