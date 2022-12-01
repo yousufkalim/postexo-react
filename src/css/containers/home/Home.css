@@ -1,14 +1,25 @@
+.MuiAvatar-colorDefault {
+  border: 1px solid !important;
+  background-color: #2b2926 !important;
+  display: flex !important;
+  flex-direction: row-reverse !important;
+}
+.css-1ytufz-MuiAvatarGroup-root .MuiAvatar-root {
+  border: none !important;
+}
 .section-need-a-teacher {
   background: var(--need-a-teacher-section-bg);
-  margin-top: 2%;
+  margin-top: 11%;
   border-radius: 10px;
-  padding: 2% 2%;
 }
 .section-need-a-teacher-courses {
   margin-top: 5%;
 }
 .need-a-teacher-container-one > * {
   margin: 1% 0%;
+}
+.need-a-teacher-container-one {
+  padding: 3%;
 }
 .need-a-teacher-span {
   font-weight: 600;
@@ -33,4 +44,39 @@
   width: 7em;
   background: var(--btn-filter-bg);
   padding: 8px 40px;
+}
+
+.students-circle {
+  background-color: #33312e;
+  border-radius: 7px;
+  box-shadow: 0px 7.0568px 35.284px rgba(0, 0, 0, 0.06);
+  padding: 0.5% 1% 0.1% 1%;
+  font-size: 7px;
+  line-height: 15px;
+  margin-bottom: 10px;
+  color: #f0f9f7;
+}
+@media screen and (max-width: 1230px) {
+  .courses-div {
+    justify-content: space-between;
+  }
+}
+@media screen and (max-width: 912px) {
+  .courses-div {
+    justify-content: space-evenly;
+  }
+  .teacher {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 540px) {
+  .teacher {
+    display: none;
+  }
+  .need-a-teacher-container-one {
+    width: 100%;
+  }
+  .btn-filter {
+    margin-top: 5%;
+  }
 }

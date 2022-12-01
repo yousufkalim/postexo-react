@@ -55,7 +55,7 @@ function CoursesComponent() {
             <div className="video-icon-container d-flex jcc">
               <Image src={PLAYVIDEOICONSVG} alt="video-icon" />
             </div>
-            <div className="course-card-image-content d-flex flex-col common-font-size">
+            <div className="course-card-image-content d-flex flex-col common-font-size card-text">
               <div>
                 <Image className="like-icon" src={LIKEICONSVG} />
                 <Small text="3.5k Likes" />
