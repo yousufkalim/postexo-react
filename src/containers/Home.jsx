@@ -1,9 +1,5 @@
 import React from 'react';
 import Navbar from '../common/Navbar';
-import H1 from '../common/H1';
-import Span from '../common/Span';
-import Button from '../common/Button';
-import Image from '../common/Image';
 import NEEDATEACHERREGBTNSVG from '../assets/NEEDATEACHERREGBTN.svg';
 import FILTERICONSVG from '../assets/FILTERICONSVG.svg';
 import CoursesComponent from '../components/Courses/CoursesComponent';
@@ -16,23 +12,22 @@ function Home() {
       <section className="section-need-a-teacher white-font">
         <div className="d-flex w-95 m-auto space-between">
           <div className="w-40 need-a-teacher-container-one">
-            <H1 text="Hello ! Need a teacher ?" />
-            <Span
-              className="need-a-teacher-span common-font-size"
-              text="Salespro Direct takes less than 5 minutes to setup, allows you to work 10x as fast, and will increase sales from Day 1"
-            />
-            <Button
-              className="btn-need-a-teacher b-radius-1000 d-flex aib jcc"
-              text="Register"
-              src={NEEDATEACHERREGBTNSVG}
-            />
+            <h1>Hello ! Need a teacher ?</h1>
+            <span className="need-a-teacher-span common-font-size">
+              Salespro Direct takes less than 5 minutes to setup, allows you to work 10x as fast,
+              and will increase sales from Day 1
+            </span>
+            <button type="button" className="btn-need-a-teacher b-radius-1000 d-flex aib jcc">
+              <img src={NEEDATEACHERREGBTNSVG} alt="NEEDATEACHERREGBTNSVG" />
+              Register
+            </button>
           </div>
           <div className="w-40">
-            <H1 text="Hello ! Need a teacher ?" />
-            <Span
-              className="need-a-teacher-span"
-              text="Salespro Direct takes less than 5 minutes to setup, allows you to work 10x as fast, and will increase sales from Day 1"
-            />
+            <h1>Hello ! Need a teacher ?</h1>
+            <span className="need-a-teacher-span">
+              Salespro Direct takes less than 5 minutes to setup, allows you to work 10x as fast,
+              and will increase sales from Day 1
+            </span>
           </div>
         </div>
       </section>
@@ -41,8 +36,8 @@ function Home() {
           <h4>Courses</h4>
           {/* <H1 text="Courses" /> */}
           <div className="btn-filter d-flex jcc aic b-radius-1000 pointer">
-            <Span className="need-a-teacher-span" text="Filter" />
-            <Image className="filter-courses-icon" src={FILTERICONSVG} />
+            <span className="need-a-teacher-span">Filter</span>
+            <img className="filter-courses-icon" src={FILTERICONSVG} alt="FILTERICONSVG" />
           </div>
         </div>
       </section>
