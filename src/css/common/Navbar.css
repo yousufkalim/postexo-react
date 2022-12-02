@@ -1,5 +1,13 @@
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8% 0%;
+  align-items: center;
+}
 .navbar-btn-container {
   width: 220px;
+  display: flex;
+  justify-content: space-between;
 }
 .navbar-spacing {
   padding: 0.8% 0%;
@@ -8,6 +16,8 @@
   border: 1.5px solid var(--white);
   padding: 10px 19px;
   background: transparent;
+  color: white;
+  border-radius: 1000px;
 }
 .navbar-btn:hover {
   background: var(--btn-hover-navbar);

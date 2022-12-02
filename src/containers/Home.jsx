@@ -1,51 +1,110 @@
 import React from 'react';
+// import Avatar from '@mui/material/Avatar';
+// import AvatarGroup from '@mui/material/AvatarGroup';
+import { Avatar } from 'antd';
 import Navbar from '../common/Navbar';
 import NEEDATEACHERREGBTNSVG from '../assets/NEEDATEACHERREGBTN.svg';
 import FILTERICONSVG from '../assets/FILTERICONSVG.svg';
 import CoursesComponent from '../components/Courses/CoursesComponent';
+import Teacher from '../assets/home/Teacher.svg';
+import Pic1 from '../assets/home/Ellipse1.svg';
+import Pic2 from '../assets/home/Ellipse2.svg';
+import Pic3 from '../assets/home/Ellipse3.svg';
 
 // eslint-disable-next-line no-shadow
 function Home() {
   return (
-    <header className="w-90 m-auto">
-      <Navbar />
-      <section className="section-need-a-teacher white-font">
-        <div className="d-flex w-95 m-auto space-between">
-          <div className="w-40 need-a-teacher-container-one">
-            <h1>Hello ! Need a teacher ?</h1>
-            <span className="need-a-teacher-span common-font-size">
-              Salespro Direct takes less than 5 minutes to setup, allows you to work 10x as fast,
-              and will increase sales from Day 1
-            </span>
-            <button type="button" className="btn-need-a-teacher b-radius-1000 d-flex aib jcc">
-              <img src={NEEDATEACHERREGBTNSVG} alt="NEEDATEACHERREGBTNSVG" />
-              Register
-            </button>
-          </div>
-          <div className="w-40">
+    <header className="mainHeader">
+      <Navbar btn />
+      <section className="section-need-a-teacher">
+        <div className="sectionAndTeacher">
+          <div className="need-a-teacher-container-one">
             <h1>Hello ! Need a teacher ?</h1>
             <span className="need-a-teacher-span">
               Salespro Direct takes less than 5 minutes to setup, allows you to work 10x as fast,
               and will increase sales from Day 1
             </span>
+            <button type="button" className="btn-need-a-teacher">
+              <div className="regbtnImgDiv">
+                <img
+                  src={NEEDATEACHERREGBTNSVG}
+                  alt="NEEDATEACHERREGBTNSVG"
+                  className="regbtnImg"
+                  style={{ width: '100%' }}
+                />
+              </div>
+              Register
+            </button>
+          </div>
+
+          <div className="teacher">
+            <img src={Teacher} alt="teacher" className="teacher-img" />
+          </div>
+        </div>
+        <div className="postExo">
+          <div className="students-circle">
+            <p>Postexo Students</p>
+            <div>
+              <Avatar.Group maxCount={3} maxStyle={{ backgroundColor: '#2B2926' }}>
+                <Avatar
+                  style={{
+                    border: 'none',
+                  }}
+                  alt="Remy Sharp"
+                  src={Pic1}
+                />
+                <Avatar
+                  style={{
+                    border: 'none',
+                  }}
+                  alt="Travis Howard"
+                  src={Pic2}
+                />
+                <Avatar
+                  style={{
+                    border: 'none',
+                  }}
+                  alt="Cindy Baker"
+                  src={Pic3}
+                />
+                <Avatar
+                  style={{
+                    border: 'none',
+                  }}
+                  alt="Cindy Baker"
+                  src={Pic3}
+                />
+                <Avatar
+                  style={{
+                    border: 'none',
+                  }}
+                  alt="Cindy Baker"
+                  src={Pic3}
+                />
+                <Avatar
+                  style={{
+                    border: 'none',
+                  }}
+                  alt="Cindy Baker"
+                  src={Pic3}
+                />
+              </Avatar.Group>
+            </div>
           </div>
         </div>
       </section>
-      <section className="section-need-a-teacher-courses bg-transparent white-font">
-        <div className="d-flex space-between aic">
+      <section className="section-need-a-teacher-courses">
+        <div className="courses-div">
           <h4>Courses</h4>
           {/* <H1 text="Courses" /> */}
-          <div className="btn-filter d-flex jcc aic b-radius-1000 pointer">
-            <span className="need-a-teacher-span">Filter</span>
+          <div className="btn-filter">
+            <span className="filter">Filter</span>
             <img className="filter-courses-icon" src={FILTERICONSVG} alt="FILTERICONSVG" />
           </div>
         </div>
       </section>
-      <section
-        style={{ marginTop: '2%' }}
-        className="section-need-a-teacher-courses bg-transparent white-font"
-      >
-        <div className="d-flex m-auto aic flex-wrap">
+      <section style={{ marginTop: '2%' }} className="section-need-a-teacher-courses">
+        <div className="courseComp-div">
           <CoursesComponent />
         </div>
       </section>

@@ -16,6 +16,9 @@
 .aib {
   align-items: baseline;
 }
+.aie {
+  align-items: flex-end;
+}
 .space-between {
   justify-content: space-between;
 }
@@ -47,6 +50,9 @@
 .w-95 {
   width: 95%;
 }
+.w-98 {
+  width: 98%;
+}
 .w-100 {
   width: 100%;
 }
@@ -56,9 +62,18 @@
 .pointer {
   cursor: pointer;
 }
+.border-1px {
+  border: 1px solid;
+}
 .b-radius-1000 {
   border-radius: 1000px;
 }
 .z-index {
   z-index: 9;
+}
+.position-abs {
+  position: absolute;
+}
+.position-rel {
+  position: relative;
 }
