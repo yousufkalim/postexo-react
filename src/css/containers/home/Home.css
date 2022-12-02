@@ -1,51 +1,102 @@
-.MuiAvatar-colorDefault {
-  border: 1px solid !important;
-  background-color: #2b2926 !important;
-  display: flex !important;
-  flex-direction: row-reverse !important;
-}
-.css-1ytufz-MuiAvatarGroup-root .MuiAvatar-root {
-  border: none !important;
+.mainHeader {
+  background: #2b2926;
+  padding: 0 5% 10% 5%;
 }
 .section-need-a-teacher {
-  background: var(--need-a-teacher-section-bg);
-  margin-top: 11%;
+  background: #33312e;
+  margin-top: 10%;
   border-radius: 10px;
+  color: white;
+}
+.sectionAndTeacher {
+  display: flex;
+  width: 95%;
+  margin: auto;
+  justify-content: space-between;
 }
 .section-need-a-teacher-courses {
   margin-top: 5%;
+  background: transparent;
+  color: white;
+}
+.courses-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.courseComp-div {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .need-a-teacher-container-one > * {
   margin: 1% 0%;
 }
 .need-a-teacher-container-one {
   padding: 3%;
+  width: 40%;
 }
 .need-a-teacher-span {
+  font-weight: 500;
+  font-size: 0.8em;
+}
+.filter {
   font-weight: 600;
+  font-size: 14px;
 }
 .btn-need-a-teacher {
-  border: 1.5px solid var(--white);
+  border: none;
   padding: 8px 40px;
   margin-top: 15px;
-  background: var(--white);
-  color: var(--need-a-teacher-reg-btn);
+  background: #6ec2b1;
+  color: #fdfcfc;
   font-size: 0.59em;
+  border-radius: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
-.btn-need-a-teacher > img {
-  margin-right: 3px;
-  width: 10px;
+.teacher {
+  display: flex;
+  width: 40%;
+  position: relative;
+  align-items: flex-end;
+}
+.teacher-img {
+  width: 100%;
+  position: absolute;
+}
+.postExo {
+  display: flex;
+  flex-direction: column;
+  width: 98%;
+  justify-content: center;
+  align-items: flex-end;
 }
 .filter-courses-icon {
   width: 15px;
   margin-left: 5px;
 }
+.regbtnImgDiv {
+  width: 16%;
+  margin-right: 5px;
+  display: flex;
+}
+.regbtnImg {
+  width: 100%;
+}
 .btn-filter {
   width: 7em;
   background: var(--btn-filter-bg);
   padding: 8px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1000px;
+  cursor: pointer;
 }
-
 .students-circle {
   background-color: #33312e;
   border-radius: 7px;
@@ -55,14 +106,21 @@
   line-height: 15px;
   margin-bottom: 10px;
   color: #f0f9f7;
+  position: absolute;
+}
+.students-circle > P {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 15px;
 }
 @media screen and (max-width: 1230px) {
-  .courses-div {
+  .courseComp-div {
     justify-content: space-between;
   }
 }
-@media screen and (max-width: 912px) {
-  .courses-div {
+@media screen and (max-width: 910px) {
+  .courseComp-div {
     justify-content: space-evenly;
   }
   .teacher {
