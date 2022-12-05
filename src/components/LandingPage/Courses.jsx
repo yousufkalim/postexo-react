@@ -7,7 +7,7 @@ function Courses() {
     <div className="course">
       <section className="section-need-a-teacher-courses">
         <div className="courses-div">
-          <h4>Courses</h4>
+          <h4 className="courses_h4">Courses</h4>
           {/* <H1 text="Courses" /> */}
           <div className="btn-filter">
             <span className="filter">Filter</span>

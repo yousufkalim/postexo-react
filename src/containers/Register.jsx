@@ -8,7 +8,6 @@ function Register() {
   return (
     <div className="form_container">
       <img src={FormBg} alt="" className="formRightImg" />
-
       <RegisterNavbar />
       <SignUp />
     </div>

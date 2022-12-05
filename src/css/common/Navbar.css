@@ -7,6 +7,9 @@
   /* width: 90%;
   margin: auto; */
 }
+a {
+  text-decoration: none;
+}
 .navbar-btn-container {
   width: 220px;
   display: flex;
@@ -21,6 +24,14 @@
   background: transparent;
   color: white;
   border-radius: 1000px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
 }
 .navbar-btn:hover {
   background: var(--btn-hover-navbar);

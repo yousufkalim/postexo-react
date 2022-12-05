@@ -12,7 +12,7 @@ function HomeSection() {
       <section className="section-need-a-teacher">
         <div className="sectionAndTeacher">
           <div className="need-a-teacher-container-one">
-            <h1>Hello ! Need a teacher ?</h1>
+            <h1 className="Need_teacher_title">Hello ! Need a teacher ?</h1>
             <span className="need-a-teacher-span">
               Salespro Direct takes less than 5 minutes to setup, allows you to work 10x as fast,
               and will increase sales from Day 1

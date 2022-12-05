@@ -14,7 +14,9 @@ function Navbar() {
         </Link>
       </div>
       <div className="navbar-btn-container">
-        <Button className="navbar-btn" text="Login" src={LOGINSVG} />
+        <Link to="/login">
+          <Button className="navbar-btn" text="Login" src={LOGINSVG} />
+        </Link>
         <Link to="/register">
           <Button className="navbar-btn" text="Register" src={REGISTERSVG} />
         </Link>

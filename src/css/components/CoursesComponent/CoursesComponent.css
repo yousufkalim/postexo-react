@@ -71,7 +71,20 @@
   font-size: 0.8em;
 }
 .card-image-content {
-  font-weight: 600;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #fdfcfc;
+}
+.card-image-content2 {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: #fdfcfc;
 }
 .card-image-content-hover {
   font-weight: 500;
@@ -88,7 +101,7 @@
   justify-content: flex-end;
 }
 .like-icon {
-  width: 12px;
+  width: 16px;
   margin-right: 5px;
 }
 .pills-spacing {
@@ -108,11 +121,14 @@
 }
 .position-pill {
   background: var(--need-a-teacher-section-bg);
-  font-size: 0.6em;
   padding: 5px 15px;
-  font-size: 0.6em;
   border-radius: 1000px;
   font-weight: 600;
   display: flex;
   align-items: center;
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-size: 14px;
+  line-height: 21px;
 }
