@@ -2,11 +2,20 @@
   background: #2b2926;
   padding: 0 5% 10% 5%;
 }
+.homeSection {
+  background: #2b2926;
+  padding-top: 10%;
+}
+.course {
+  background: #2b2926;
+}
 .section-need-a-teacher {
   background: #33312e;
-  margin-top: 10%;
   border-radius: 10px;
   color: white;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .sectionAndTeacher {
   display: flex;
@@ -15,10 +24,22 @@
   justify-content: space-between;
 }
 .section-need-a-teacher-courses {
-  margin-top: 5%;
+  padding-top: 5%;
   background: transparent;
   color: white;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
+.section-need-a-teacher-courses2 {
+  padding-bottom: 10%;
+  background: transparent;
+  color: white;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .courses-div {
   display: flex;
   justify-content: space-between;

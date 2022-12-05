@@ -1,23 +1,24 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from './Button';
-
 import LOGOSVG from '../assets/LOGO.svg';
 import LOGINSVG from '../assets/LOGIN.svg';
 import REGISTERSVG from '../assets/REGISTER.svg';
 
-function Navbar(props) {
-  const { btn } = props;
+function Navbar() {
   return (
     <nav className="nav-container">
       <div>
-        <img className="navbar-logo-svg" src={LOGOSVG} alt="postexologo" />
+        <Link to="/">
+          <img className="navbar-logo-svg" src={LOGOSVG} alt="postexologo" />
+        </Link>
       </div>
-      {btn && (
-        <div className="navbar-btn-container">
-          <Button className="navbar-btn" text="Login" src={LOGINSVG} />
+      <div className="navbar-btn-container">
+        <Button className="navbar-btn" text="Login" src={LOGINSVG} />
+        <Link to="/register">
           <Button className="navbar-btn" text="Register" src={REGISTERSVG} />
-        </div>
-      )}
+        </Link>
+      </div>
     </nav>
   );
 }

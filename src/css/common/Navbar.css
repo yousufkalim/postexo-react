@@ -1,8 +1,11 @@
 .nav-container {
   display: flex;
   justify-content: space-between;
-  padding: 0.8% 0%;
+  padding: 0.8% 5%;
   align-items: center;
+  background-color: #2b2926;
+  /* width: 90%;
+  margin: auto; */
 }
 .navbar-btn-container {
   width: 220px;
