@@ -31,6 +31,20 @@
   display: block;
   display: flex;
 }
+.card-img-parent-container:hover .position-pill {
+  background: #fdfcfc;
+}
+.card-img-parent-container:hover .position-pill > p {
+  background: linear-gradient(
+    126.81deg,
+    #6bdac3 17.04%,
+    #00ccc1 45.46%,
+    #048dd8 67.42%,
+    #408ecc 86.03%
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
 .image-container_row {
   position: relative;
   height: 260px;

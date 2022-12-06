@@ -1,5 +1,7 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { Avatar } from 'antd';
+import { Modal } from '@mui/material';
+import Box from '@mui/material/Box';
 import COURSECARDSVG from '../../assets/COURSECARDSVG.svg';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
 import COURSECARDSVGTWO from '../../assets/COURSECARDSVGTWO.svg';
@@ -7,6 +9,7 @@ import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
 import Pic4 from '../../assets/Pic1.svg';
 import Pic5 from '../../assets/Pic2.svg';
+import Player from '../Player/Player';
 
 function CoursesComponent() {
   const cardsArray = [
@@ -35,10 +38,36 @@ function CoursesComponent() {
       alt: 'course-card-image-4',
     },
   ];
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '50%',
+    border: 'none',
+    boxShadow: 24,
+  };
   return (
     <>
+      {open && (
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Player />
+          </Box>
+        </Modal>
+      )}
       {cardsArray.map((_) => (
         <div
+          key={_.id}
           className={
             window.location.pathname === '/homegrid' ? 'image-container2' : 'image-container'
           }
@@ -47,19 +76,23 @@ function CoursesComponent() {
           <div className="card-img-parent-container">
             <div className="d-flex space-between">
               <span className="time-pill" />
-              <span className="position-pill">UX Design</span>
+              <span className="position-pill">
+                <p>UX Design</p>
+              </span>
             </div>
             <div className="video-icon-container">
-              <img src={PLAYVIDEOICONSVG} alt="video-icon" />
+              {/* eslint-disable-next-line */}
+              <img src={PLAYVIDEOICONSVG} alt="video-icon" onClick={handleOpen} />
             </div>
             <div className="Avatarcontent">
               <div className="card-image-content-hover">
-                <large>How to Create a Useful & Excellent Optimized Section </large>
+                <small>How to Create a Useful & Excellent Optimized Section </small>
               </div>
               <div className="avatarRatings">
                 <Avatar.Group
                   maxCount={3}
                   maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
+                  maxPopoverTrigger="click"
                 >
                   <Avatar
                     style={{
