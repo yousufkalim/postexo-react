@@ -8,6 +8,8 @@
 @import url('./components/CoursesComponent/InputField.css');
 @import url('./containers/Register.css');
 @import url('./screen//Form.css');
+@import url('./HomeGrid/Navbar2.css');
+@import url('./HomeGrid//Categories.css');
 /* Defaults */
 * {
   padding: 0;

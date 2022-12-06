@@ -118,28 +118,9 @@
   align-items: center;
   color: #8c8c8c;
 }
-/* .input_checked */
-
-/* .input_checked:checked {
-  color: red !important;
-  background-color: red !important;
-} */
-
-/* input[type='checkbox'].checkbox-filter {
-  border: 1px solid #000000;
-  padding: 0.6em;
-  -webkit-appearance: none;
-}
-input[type='checkbox'].checkbox-filter:checked {
-  background-size: 20px 20px;
-  background: red;
-}
-input[type='checkbox'].checkbox-filter:focus {
-  outline-color: transparent;
-} */
 
 .checkmark {
-  padding-left: 5px;
+  display: flex;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;

@@ -38,7 +38,11 @@ function CoursesComponent() {
   return (
     <>
       {cardsArray.map((_) => (
-        <div className="image-container">
+        <div
+          className={
+            window.location.pathname === '/homegrid' ? 'image-container2' : 'image-container'
+          }
+        >
           <img className="course-card-image" src={_?.img} alt={_?.alt} />
           <div className="card-img-parent-container">
             <div className="d-flex space-between">

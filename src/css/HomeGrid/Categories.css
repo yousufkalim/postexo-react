@@ -1,0 +1,197 @@
+.Categories {
+  width: 90%;
+  margin: auto;
+}
+.Categories_center {
+  display: flex;
+  color: #fdfcfc;
+}
+.Categories_column {
+  width: 20%;
+  margin-left: 10px;
+}
+.Categories_column2 {
+  width: 75%;
+  margin-left: auto;
+}
+.CategoriesLeft_title {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  color: #fdfcfc;
+}
+.border_line {
+  width: 84px;
+  height: 0px;
+  border: 2px solid #6ec2b1;
+  margin: 3% 0 5% 0;
+}
+.Categories_favourit_fields,
+.filter_div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.filter_div {
+  margin-top: 10%;
+}
+.MyFav_list {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fdfcfc;
+}
+.create_playlist {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fdfcfc;
+}
+.favourites_counts {
+  width: 30px;
+  height: 30px;
+  background: rgba(110, 194, 177, 0.1);
+  border-radius: 50%;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: #6ec2b1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.filter_title {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  color: #fdfcfc;
+}
+.clear_btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  width: 79px;
+  height: 35px;
+  background: rgba(110, 194, 177, 0.1);
+  border-radius: 10000px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: #6ec2b1;
+  border: none;
+}
+.classes_p,
+.duraiton_p,
+.language_P {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #fdfcfc;
+  border-bottom: 1px solid gray;
+  padding: 5px 0;
+}
+.checked_option {
+  margin: 10px 0;
+}
+.levelLabel {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #fdfcfc;
+  padding-left: 5px;
+}
+/* CategoriesRight  */
+
+.Salespro_center {
+  background-image: url('../../assets/SalesproBg.svg');
+  width: 100%;
+  height: 183px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 2% 0;
+}
+.Sales_content {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+  padding: 20px 0;
+}
+.Salespro_title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 45px;
+  color: #fdfcfc;
+}
+.Salespro_p {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #fdfcfc;
+}
+/* Top Courses  */
+.TopCourses {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2% 0 0 0;
+}
+.TopCourses_title {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 45px;
+  color: #fdfcfc;
+}
+.sortBy_div {
+  display: flex;
+  align-items: center;
+}
+.sortby_main_div {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10000px;
+}
+.sortby_select {
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: #fdfcfc;
+  border: none;
+}
+.gridImage {
+  margin: 0 20px;
+}
+.topCoursesAll {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

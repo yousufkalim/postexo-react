@@ -1,0 +1,65 @@
+.navBar_2 {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 1% auto;
+}
+.input_search_div {
+  margin-right: 20px;
+  position: relative;
+}
+.searchIcon {
+  position: absolute;
+  right: 20px;
+  top: 35%;
+}
+.navBar_2_container {
+  display: flex;
+  align-items: center;
+}
+.nav_search_bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px 10px 30px;
+  gap: 30px;
+  width: 398px;
+  height: 54px;
+  background: rgba(240, 249, 247, 0.3);
+  border-radius: 100000px;
+  border: none;
+  color: #fdfcfc;
+}
+.nav_search_bar::placeholder {
+  color: #fdfcfc;
+}
+.nav_profile {
+  display: flex;
+  align-items: center;
+}
+.profile_DP {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+.Profile_name {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #fdfcfc;
+}
+.Profile_mail {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  color: #fdfcfc;
+}

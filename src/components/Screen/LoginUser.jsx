@@ -50,11 +50,11 @@ function LoginUser() {
                 <p className="forgot_password">Forgot Password ?</p>
               </div>
 
-              <div className="input_feild" style={{ display: 'flex' }}>
+              <div className="input_feild" style={{ display: 'flex', alignItems: 'center' }}>
                 {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                 <label className="checkmark" htmlFor="e">
                   <Checkbox defaultChecked color="secondary" id="e" />
-                  Stay Login
+                  &nbsp;Stay Login
                 </label>
               </div>
 
