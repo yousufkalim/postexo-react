@@ -2,11 +2,20 @@
   background: #2b2926;
   padding: 0 5% 10% 5%;
 }
+.homeSection {
+  background: #2b2926;
+  padding-top: 10%;
+}
+.course {
+  background: #2b2926;
+}
 .section-need-a-teacher {
   background: #33312e;
-  margin-top: 10%;
   border-radius: 10px;
   color: white;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .sectionAndTeacher {
   display: flex;
@@ -15,20 +24,48 @@
   justify-content: space-between;
 }
 .section-need-a-teacher-courses {
-  margin-top: 5%;
+  padding-top: 5%;
   background: transparent;
   color: white;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
+.section-need-a-teacher-courses2 {
+  padding-bottom: 10%;
+  background: transparent;
+  color: white;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .courses-div {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.courses_h4 {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 45px;
+  color: #fdfcfc;
 }
 .courseComp-div {
   display: flex;
   margin: auto;
   align-items: center;
   flex-wrap: wrap;
+}
+.Need_teacher_title {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 45px;
+  color: #fdfcfc;
 }
 .need-a-teacher-container-one > * {
   margin: 1% 0%;
@@ -38,12 +75,23 @@
   width: 40%;
 }
 .need-a-teacher-span {
+  font-family: 'Poppins';
+  font-style: normal;
   font-weight: 500;
-  font-size: 0.8em;
+  font-size: 16px;
+  line-height: 24px;
+  color: #fdfcfc;
 }
 .filter {
+  font-family: 'Poppins';
+  font-style: normal;
   font-weight: 600;
   font-size: 14px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #fdfcfc;
 }
 .btn-need-a-teacher {
   border: none;
@@ -51,12 +99,15 @@
   margin-top: 15px;
   background: #6ec2b1;
   color: #fdfcfc;
-  font-size: 0.59em;
   border-radius: 1000px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
 }
 .teacher {
   display: flex;

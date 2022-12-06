@@ -1,12 +1,16 @@
 import React from 'react';
-import Navbar from '../common/Navbar';
+import RegisterNavbar from '../components/Screen/RegisterNavbar';
 // import InputField from '../common/InputField';
+import SignUp from '../components/Screen/SignUp';
+import FormBg from '../assets/FormBg.svg';
 
 function Register() {
   return (
-    <header className="main-Reg">
-      <Navbar />
-    </header>
+    <div className="form_container">
+      <img src={FormBg} alt="" className="formRightImg" />
+      <RegisterNavbar />
+      <SignUp />
+    </div>
   );
 }
 

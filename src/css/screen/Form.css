@@ -1,0 +1,234 @@
+.form_main {
+  background: #2b2926;
+  width: 100%;
+}
+.form_center {
+  display: flex;
+  align-items: center;
+}
+.form_col {
+  width: 50%;
+}
+.form_col2 {
+  width: 50%;
+}
+.formLeftImg {
+  width: 95%;
+  display: block;
+  margin: auto;
+}
+.formRightImg {
+  position: absolute;
+  display: block;
+  /* width: 34%; */
+  top: -5px;
+  right: 0;
+  height: 100%;
+}
+
+.formTitle {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 54px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  display: block;
+  margin-bottom: 5px;
+}
+.form_right_div {
+  background-color: #33312e;
+  position: relative;
+  width: 70%;
+  z-index: 9;
+  color: white;
+  box-shadow: -15px 0px 30px rgba(110, 194, 177, 0.1), 0px 15px 30px rgba(17, 162, 131, 0.05);
+  border-radius: 30px;
+  padding: 7% 7%;
+}
+.formP {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  color: #919b9b;
+  text-align: center;
+  display: block;
+  margin-bottom: 10%;
+}
+.input_feild {
+  margin: 5% 0;
+}
+.input_label {
+  display: block !important;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  color: #fdfcfc;
+  position: relative;
+}
+.hidePassword {
+  position: absolute;
+  right: 20px;
+  top: 60%;
+  cursor: pointer;
+}
+.forgot_password {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  color: #6ec2b1;
+  display: block;
+  padding-top: 2%;
+}
+.form_input {
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px 32px;
+  width: 100%;
+  height: 56px;
+  background: #2b2926;
+  border-radius: 20px;
+  border: none;
+  color: #fff;
+}
+.form_input::placeholder {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #8c8c8c;
+}
+
+.checkmark {
+  display: flex;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #fdfcfc;
+}
+.MuiCheckbox-colorSecondary {
+  padding: 0 !important;
+  color: #fff !important;
+}
+
+.css-1sg8fd1-MuiButtonBase-root-MuiCheckbox-root.Mui-checked {
+  color: #6ec2b1 !important;
+  padding: 0 !important;
+}
+.form_btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 32px;
+  gap: 5px;
+  width: 100%;
+  height: 56px;
+  background: #6ec2b1;
+  border-radius: 20px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #fdfcfc;
+  margin: 8% 0;
+  border: none;
+}
+.form_span {
+  color: #6ec2b1;
+}
+.form_account_p {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #fdfcfc;
+}
+@media screen and (min-width: 1200px) and (max-width: 1680px) {
+  .formRightImg {
+    height: 86%;
+  }
+}
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+  .formRightImg {
+    height: 65%;
+  }
+  .form_right_div {
+    width: 82%;
+  }
+  .form_input {
+    padding: 10px 18px;
+    height: 40px;
+  }
+  .form_btn {
+    height: 40px;
+    font-size: 14px;
+  }
+  .formTitle {
+    font-size: 25px;
+  }
+  .formP {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .formRightImg {
+    display: none;
+  }
+  .form_center {
+    flex-direction: column;
+  }
+  .form_col,
+  .form_col2 {
+    width: 80%;
+    margin: auto;
+  }
+  .form_right_div {
+    width: 100%;
+  }
+  .formTitle {
+    font-size: 25px;
+    line-height: 45px;
+  }
+  .formP {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .form_input {
+    padding: 12px 18px;
+    height: 40px;
+  }
+  .form_btn {
+    height: 40px;
+    font-size: 14px;
+  }
+  .nav-container {
+    padding: 5% 5%;
+  }
+}

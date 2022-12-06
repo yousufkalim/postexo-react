@@ -38,11 +38,15 @@ function CoursesComponent() {
   return (
     <>
       {cardsArray.map((_) => (
-        <div className="image-container">
+        <div
+          className={
+            window.location.pathname === '/homegrid' ? 'image-container2' : 'image-container'
+          }
+        >
           <img className="course-card-image" src={_?.img} alt={_?.alt} />
           <div className="card-img-parent-container">
             <div className="d-flex space-between">
-              <span className="time-pill">20:31</span>
+              <span className="time-pill" />
               <span className="position-pill">UX Design</span>
             </div>
             <div className="video-icon-container">
@@ -114,7 +118,7 @@ function CoursesComponent() {
                 <small className="card-image-content">3.5k Likes </small>
               </div>
               <div>
-                <small className="card-image-content">
+                <small className="card-image-content2">
                   How to Create a Useful & Excellent Optimized Section{' '}
                 </small>
               </div>
