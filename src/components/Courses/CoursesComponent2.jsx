@@ -51,7 +51,7 @@ function CoursesComponent2() {
             </div>
             <div className="Avatarcontent">
               <div className="card-image-content-hover">
-                <large>How to Create a Useful & Excellent Optimized Section </large>
+                <small>How to Create a Useful & Excellent Optimized Section </small>
               </div>
             </div>
             <div className="card_courses_contant">
