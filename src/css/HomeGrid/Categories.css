@@ -189,6 +189,10 @@
 }
 .gridImage {
   margin: 0 20px;
+  cursor: pointer;
+}
+.ViewImage {
+  cursor: pointer;
 }
 .topCoursesAll {
   display: flex;

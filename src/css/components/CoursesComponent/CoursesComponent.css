@@ -12,8 +12,7 @@
 .card-img-parent-container2 {
   padding: 2%;
 }
-.card-img-parent-container:hover,
-.card-img-parent-container2:hover {
+.card-img-parent-container:hover {
   background: linear-gradient(0deg, rgba(110, 194, 177, 0.5), rgba(110, 194, 177, 0.5)),
     linear-gradient(
       359.54deg,
@@ -22,12 +21,10 @@
       rgba(255, 255, 255, 0) 99.59%
     );
 }
-.card-img-parent-container:hover .course-card-image-content,
-.card-img-parent-container2:hover .course-card-image-content {
+.card-img-parent-container:hover .course-card-image-content {
   display: none;
 }
-.card-img-parent-container:hover .Avatarcontent,
-.card-img-parent-container2:hover .Avatarcontent {
+.card-img-parent-container:hover .Avatarcontent {
   display: block;
   display: flex;
 }
@@ -43,6 +40,19 @@
   cursor: pointer;
   margin-top: 3%;
 }
+.cours_time {
+  position: absolute;
+  background: #2b2926;
+  border-radius: 10000px;
+  padding: 5px 10px;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  font-weight: 500;
+  font-size: 14px;
+  color: #fdfcfc;
+}
+
 .image-container,
 .image-container2 {
   position: relative;
@@ -56,18 +66,7 @@
   cursor: pointer;
   margin-top: 3%;
 }
-.image-container3 {
-  position: relative;
-  height: 260px;
-  width: 100%;
-  min-width: 265px;
-  border-radius: 20px;
-  color: #fdfcfc;
-  margin: 0% 0.5%;
-  display: flex;
-  cursor: pointer;
-  margin-top: 3%;
-}
+
 .image-container2 {
   height: 283px;
   width: 32%;
@@ -102,10 +101,18 @@
   width: 50px;
   height: 50px;
 }
+.card_courses_contant {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
 .course-card-image-content {
   display: flex;
   flex-direction: column;
   font-size: 0.8em;
+}
+.avatar_groups {
+  flex-direction: row-reverse !important;
 }
 .card-image-content {
   font-family: 'Poppins';
@@ -133,10 +140,18 @@
   align-items: center;
 }
 .avatarRatings2 {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: row-reverse;
+  flex-direction: row-reverse; */
+}
+.course_likes,
+.rating_stars {
+  display: flex;
+  align-items: center;
+}
+.rating_stars {
+  padding-left: 10px;
 }
 .starRatings {
   display: flex;
@@ -174,4 +189,23 @@
   font-style: normal;
   font-size: 14px;
   line-height: 21px;
+}
+.hambgr {
+  visibility: hidden;
+}
+@media screen and (max-width: 800px) {
+  .hambgr {
+    font-size: 2rem !important;
+    visibility: visible;
+  }
+  /* .CategoriesLeft {
+    display: none;
+  } */
+  .Categories_column {
+    width: 5% !important;
+    margin-left: 0px !important;
+  }
+  .Categories_column2 {
+    width: 95% !important;
+  }
 }
