@@ -10,6 +10,8 @@
 @import url('./screen//Form.css');
 @import url('./HomeGrid/Navbar2.css');
 @import url('./HomeGrid//Categories.css');
+@import url('./components/VideoScreen.css');
+@import url('./containers/VideoScreen/VideoScreen.css');
 /* Defaults */
 * {
   padding: 0;

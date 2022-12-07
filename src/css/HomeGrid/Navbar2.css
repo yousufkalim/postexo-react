@@ -4,6 +4,10 @@
   width: 90%;
   margin: 1% auto;
 }
+.logo {
+  display: flex;
+  align-items: center;
+}
 .input_search_div {
   margin-right: 20px;
   position: relative;

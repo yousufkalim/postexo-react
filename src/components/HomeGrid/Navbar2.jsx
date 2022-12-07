@@ -7,7 +7,7 @@ import SearchIcon from '../../assets/SearchIcon.svg';
 function Navbar2() {
   return (
     <nav className="navBar_2" style={{ backgrounColor: 'red' }}>
-      <div>
+      <div className="logo">
         <Link to="/">
           <img className="navbar-logo-svg" src={LOGOSVG} alt="postexologo" />
         </Link>

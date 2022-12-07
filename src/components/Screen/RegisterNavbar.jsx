@@ -5,7 +5,7 @@ import LOGOSVG from '../../assets/LOGO.svg';
 function RegisterNavbar() {
   return (
     <nav className="nav-container">
-      <div>
+      <div className="logo">
         <Link to="/">
           <img className="navbar-logo-svg" src={LOGOSVG} alt="postexologo" />
         </Link>
