@@ -54,12 +54,7 @@ function CoursesComponent() {
   return (
     <>
       {open && (
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
+        <Modal open={open} onClose={handleClose}>
           <Box sx={style}>
             <Player />
           </Box>
@@ -72,6 +67,7 @@ function CoursesComponent() {
             window.location.pathname === '/homegrid' ? 'image-container2' : 'image-container'
           }
         >
+          <p className="cours_time">20:31</p>
           <img className="course-card-image" src={_?.img} alt={_?.alt} />
           <div className="card-img-parent-container">
             <div className="d-flex space-between">

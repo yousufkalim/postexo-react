@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import Plyr from 'plyr-react';
+import Popup from '../Dialog/Popup';
 
 const PlyrProps = {
   type: 'video',
@@ -29,7 +30,32 @@ const markerProps = {
 };
 
 function Player() {
-  return <Plyr source={PlyrProps} options={markerProps} />;
+  const [open, setOpen] = React.useState(true);
+
+  const videoRef = useRef();
+
+  const handleClick = () => {
+    console.log('Clicked ');
+    setOpen(true);
+  };
+
+  useEffect(() => {
+    const isPaused = videoRef?.current?.plyr?.media?.paused;
+    console.log('VIDEO ', videoRef);
+    console.log('VIDEO ', isPaused);
+    // if (!isPaused) {
+    //   setTimeout(() => {
+    //     setOpen(true);
+    //   }, 5000);
+    // }
+  }, [videoRef?.current?.plyr?.elements?.progress]);
+
+  return (
+    <>
+      <Popup open={open} setOpen={setOpen} />
+      <Plyr ref={videoRef} source={PlyrProps} options={markerProps} onClick={handleClick} />
+    </>
+  );
 }
 
 export default Player;

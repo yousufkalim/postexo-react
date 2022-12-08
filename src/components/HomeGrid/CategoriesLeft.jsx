@@ -50,38 +50,38 @@ function CategoriesLeft() {
           <div className="checked_option">
             <Checkbox style={{ color: 'white', padding: '0' }} />
             <label htmlFor="Level" className="levelLabel">
-              Level 3
+              Very short
             </label>
           </div>
           <div className="checked_option">
             <Checkbox style={{ color: 'white', padding: '0' }} />
             <label htmlFor="Level" className="levelLabel">
-              Level 3
+              short
             </label>
           </div>
           <div className="checked_option">
             <Checkbox style={{ color: 'white', padding: '0' }} />
             <label htmlFor="Level" className="levelLabel">
-              Level 3
+              long
             </label>
           </div>
           <p className="language_P">Language</p>
           <div className="checked_option">
             <Checkbox style={{ color: 'white', padding: '0' }} />
             <label htmlFor="Level" className="levelLabel">
-              Level 3
+              Urdu
             </label>
           </div>
           <div className="checked_option">
             <Checkbox style={{ color: 'white', padding: '0' }} />
             <label htmlFor="Level" className="levelLabel">
-              Level 3
+              English
             </label>
           </div>
           <div className="checked_option">
             <Checkbox style={{ color: 'white', padding: '0' }} />
             <label htmlFor="Level" className="levelLabel">
-              Level 3
+              French
             </label>
           </div>
         </div>

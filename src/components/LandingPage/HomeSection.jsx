@@ -1,5 +1,6 @@
 import React from 'react';
 import { Avatar } from 'antd';
+import { Link } from 'react-router-dom';
 import NEEDATEACHERREGBTNSVG from '../../assets/NEEDATEACHERREGBTN.svg';
 import Teacher from '../../assets/home/Teacher.svg';
 import Pic1 from '../../assets/home/Ellipse1.svg';
@@ -17,17 +18,19 @@ function HomeSection() {
               Salespro Direct takes less than 5 minutes to setup, allows you to work 10x as fast,
               and will increase sales from Day 1
             </span>
-            <button type="button" className="btn-need-a-teacher">
-              <div className="regbtnImgDiv">
-                <img
-                  src={NEEDATEACHERREGBTNSVG}
-                  alt="NEEDATEACHERREGBTNSVG"
-                  className="regbtnImg"
-                  style={{ width: '100%' }}
-                />
-              </div>
-              Register
-            </button>
+            <Link to="/register">
+              <button type="button" className="btn-need-a-teacher">
+                <div className="regbtnImgDiv">
+                  <img
+                    src={NEEDATEACHERREGBTNSVG}
+                    alt="NEEDATEACHERREGBTNSVG"
+                    className="regbtnImg"
+                    style={{ width: '100%' }}
+                  />
+                </div>
+                Register
+              </button>
+            </Link>
           </div>
 
           <div className="teacher">

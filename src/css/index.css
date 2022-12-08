@@ -11,6 +11,9 @@
 @import url('./HomeGrid//Categories.css');
 @import url('./components/VideoScreen.css');
 @import url('./containers/VideoScreen/VideoScreen.css');
+@import url('./HomeGrid/ResponsiveHomeGrid.css');
+@import url('./containers//home//ResponsiveHome.css');
+@import url('./components//CoursesComponent//Popup.css');
 /* Defaults */
 * {
   padding: 0;
