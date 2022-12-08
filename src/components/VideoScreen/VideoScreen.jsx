@@ -34,19 +34,19 @@ function VideoScreen() {
               3.5k
             </div>
             <div className="thumbDown-div">
-              <img src={ThumbsDown} alt="" />
+              <img src={ThumbsDown} alt="dislike" className="dislike" />
             </div>
           </div>
           <div className="playlist-opt">
             <div className="playlist-div">
               <h4>Add To Playlist</h4>
               <div>
-                <img src={Save} alt="save to playlist" />
+                <img src={Save} alt="save to playlist" className="save-playlist" />
               </div>
             </div>
             <div className="options-box">
               <div className="options-div">
-                <img src={Options} alt="" />
+                <img src={Options} alt="options" className="options" />
               </div>
             </div>
           </div>
@@ -60,7 +60,6 @@ function VideoScreen() {
             more="Show more"
             less="Show less"
             expanded={false}
-            // width={800}
             truncatedEndingComponent=" "
             className="content-css"
             anchorClass="show-more-less-clickable"

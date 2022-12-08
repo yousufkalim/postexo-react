@@ -56,6 +56,7 @@ function CoursesComponent2() {
                 <Avatar.Group
                   maxCount={3}
                   maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
+                  maxPopoverTrigger="click"
                 >
                   <Avatar
                     style={{

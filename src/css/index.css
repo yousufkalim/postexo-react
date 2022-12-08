@@ -5,7 +5,6 @@
 @import url('./containers/home/Home.css');
 @import url('./components/CoursesComponent/CoursesComponent.css');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;0,600;0,700;1,600&display=swap');
-@import url('./components/CoursesComponent/InputField.css');
 @import url('./containers/Register.css');
 @import url('./screen//Form.css');
 @import url('./HomeGrid/Navbar2.css');

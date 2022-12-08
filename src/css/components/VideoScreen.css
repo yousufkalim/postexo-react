@@ -37,11 +37,17 @@
   display: flex;
   align-items: center;
 }
+.dislike {
+  cursor: pointer;
+}
 .playlist-div {
   display: flex;
   align-items: center;
   color: #f0f9f7;
-  gap: 5px;
+  gap: 7px;
+}
+.save-playlist {
+  cursor: pointer;
 }
 .options-box {
   background: rgba(253, 252, 252, 0.1);
@@ -50,6 +56,9 @@
   align-items: center;
   width: 20%;
   justify-content: center;
+}
+.options {
+  cursor: pointer;
 }
 .time-desc-box {
   border-radius: 20px;
