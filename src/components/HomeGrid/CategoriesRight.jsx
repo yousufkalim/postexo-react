@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import Salespro from './Salespro';
 import GridIcon from '../../assets/GridIcon.svg';
 import ViewIcon from '../../assets/ViewIcon.svg';
+import WhiteGrid from '../../assets/WhiteGrid.svg';
+import BlueList from '../../assets/BlueList.svg';
 import CoursesComponent from '../Courses/CoursesComponent';
 import CoursesComponent2 from '../Courses/CoursesComponent2';
 
 function CategoriesRight() {
   const [showCours, setShowCoours] = useState(false);
-  const [showCours2, setShowCoours2] = useState(false);
+  const [showCours2, setShowCoours2] = useState(true);
 
   const CourseEvent = () => {
     setShowCoours(true);
@@ -39,7 +41,7 @@ function CategoriesRight() {
             </div>
             {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
             <img
-              src={GridIcon}
+              src={!showCours ? WhiteGrid : GridIcon}
               alt=""
               className="gridImage"
               onClick={() => CourseEvent()}
@@ -47,7 +49,7 @@ function CategoriesRight() {
             />
             {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
             <img
-              src={ViewIcon}
+              src={showCours ? ViewIcon : BlueList}
               alt=""
               className="ViewImage"
               onClick={() => Course2Event()}
@@ -80,7 +82,7 @@ function CategoriesRight() {
           </div>
           {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
           <img
-            src={GridIcon}
+            src={!showCours2 ? WhiteGrid : GridIcon}
             alt=""
             className="gridImage"
             onClick={() => CourseEvent2()}
@@ -88,7 +90,7 @@ function CategoriesRight() {
           />
           {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
           <img
-            src={ViewIcon}
+            src={showCours2 ? ViewIcon : BlueList}
             alt=""
             className="ViewImage"
             onClick={() => Course2Event2()}

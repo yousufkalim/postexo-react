@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// eslint-disable-next-line import/no-named-as-default
 import Navbar2 from '../components/HomeGrid/Navbar2';
 import Categories from '../components/HomeGrid/Categories';
 

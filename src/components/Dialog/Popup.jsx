@@ -5,7 +5,7 @@ import CheckCircle from '../../assets/CheckCircle.svg';
 import PopupArrow from '../../assets/PopupArrow.svg';
 
 function Popup({ open, setOpen }) {
-  //   const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
   //   const handleClickOpen = () => {
   //     setOpen(true);
   //   };

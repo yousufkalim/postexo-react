@@ -1,0 +1,26 @@
+.adjustScreen {
+  display: flex;
+  width: 90%;
+  margin: auto;
+}
+.component-set {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.component-2 {
+  display: none;
+}
+@media screen and (max-width: 1200px) {
+  .adjustScreen {
+    flex-direction: column;
+  }
+  .component-set {
+    display: none;
+  }
+  .component-2 {
+    display: block;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

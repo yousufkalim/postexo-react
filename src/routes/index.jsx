@@ -7,6 +7,7 @@ import Home from '../containers/Home';
 import Register from '../containers/Register';
 import Login from '../containers/Login';
 import HomeGrid from '../containers/HomeGrid';
+import VideoScreen from '../containers/VideoScreen';
 
 function Index() {
   return (
@@ -16,6 +17,7 @@ function Index() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/homegrid" element={<HomeGrid />} />
+        <Route path="/video" element={<VideoScreen />} />
       </Routes>
     </div>
   );
