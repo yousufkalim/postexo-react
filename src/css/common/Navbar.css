@@ -12,7 +12,6 @@ a {
 }
 
 .navbar-btn-container {
-  width: 220px;
   display: flex;
   justify-content: space-between;
 }

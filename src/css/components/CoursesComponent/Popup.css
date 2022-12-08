@@ -1,0 +1,82 @@
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+  background: none !important;
+}
+.popup_container {
+  background: #33312e;
+  border-radius: 15px;
+  color: #fdfcfc;
+  padding: 50px;
+}
+.popup_title_p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+}
+.popup_title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 35px;
+  margin: 5px 0;
+}
+.popup_heading {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  margin: 5% 0;
+}
+.monthly_title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 54px;
+  line-height: 66px;
+}
+.monthly_p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 22px;
+  margin-left: 12px;
+}
+.credit_card {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  margin: 5% 0;
+}
+.have_access {
+  display: flex;
+  margin: 3% 0;
+}
+.have_access_p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  margin-left: 10px;
+  margin-top: 12px;
+}
+.popupBtn {
+  font-family: 'Poppins';
+  font-style: normal;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 17px 32px;
+  background: #fdfcfc;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10%;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #6ec2b1;
+  border: none;
+}
+.popupArrow {
+  margin-left: 10px;
+}
