@@ -39,6 +39,7 @@ function CoursesComponent2() {
     <>
       {cardsArray.map((_) => (
         <div className="image-container_row">
+          <p className="cours_time">20:31</p>
           <img className="course-card-image" src={_?.img} alt={_?.alt} />
           <div className="card-img-parent-container2">
             <div className="d-flex space-between">
@@ -52,10 +53,33 @@ function CoursesComponent2() {
               <div className="card-image-content-hover">
                 <small>How to Create a Useful & Excellent Optimized Section </small>
               </div>
+            </div>
+            <div className="card_courses_contant">
+              <div className="course-card-image-content">
+                <div className="course_likes">
+                  <img className="like-icon" src={LIKEICONSVG} alt="like-icon" />
+                  <small className="card-image-content">3.5k Likes </small>
+                  <div className="rating_stars">
+                    <img src={Star} alt="star" />
+                    <div>
+                      <small>&nbsp;3.9 Rating</small>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <small className="card-image-content2">
+                    How to Create a Useful & Excellent Optimized Section
+                  </small>
+                </div>
+                <div>
+                  <small className="card-image-content">7:30 PM Thursday 21, Apr 2022 </small>
+                </div>
+              </div>
               <div className="avatarRatings2">
                 <Avatar.Group
                   maxCount={3}
                   maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
+                  className="avatar_groups"
                 >
                   <Avatar
                     style={{
@@ -100,26 +124,6 @@ function CoursesComponent2() {
                     src={Pic5}
                   />
                 </Avatar.Group>
-                <div className="starRatings">
-                  <img src={Star} alt="star" />
-                  <div>
-                    <small>3.9 Rating</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="course-card-image-content">
-              <div>
-                <img className="like-icon" src={LIKEICONSVG} alt="like-icon" />
-                <small className="card-image-content">3.5k Likes </small>
-              </div>
-              <div>
-                <small className="card-image-content2">
-                  How to Create a Useful & Excellent Optimized Section{' '}
-                </small>
-              </div>
-              <div>
-                <small className="card-image-content">7:30 PM Thursday 21, Apr 2022 </small>
               </div>
             </div>
           </div>
