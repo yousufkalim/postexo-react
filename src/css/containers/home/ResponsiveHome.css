@@ -1,0 +1,62 @@
+@media screen and (max-width: 1367px) {
+  .image-container {
+    width: 32%;
+  }
+}
+
+@media screen and (max-width: 1091px) {
+  .image-container {
+    width: 46%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+}
+
+@media screen and (max-width: 576px) {
+  .image-container {
+    width: 90%;
+  }
+  .navbar-btn {
+    padding: 3px 10px;
+    font-size: 10px;
+  }
+  .Need_teacher_title {
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .need-a-teacher-span {
+    font-size: 14px;
+  }
+  .btn-need-a-teacher {
+    padding: 6px 20px;
+    font-size: 12px;
+  }
+  .courses_h4 {
+    font-size: 20px;
+  }
+  .btn-filter {
+    margin-top: 5%;
+    width: inherit;
+    padding: 6px 22px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+}
+
+/* 
+@media screen and (max-width: 1367px) {
+}
+
+@media screen and (max-width: 1091px) {
+}
+
+@media screen and (max-width: 800px) {
+}
+
+@media screen and (max-width: 576px) {
+}
+
+@media screen and (max-width: 400px) {
+} */

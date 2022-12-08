@@ -3,10 +3,10 @@
 import React from 'react';
 import Checkbox from '@mui/material/Checkbox';
 
-function CategoriesLeft({ showMenu }) {
+function CategoriesLeft() {
   return (
     <div>
-      <div className="CategoriesLeft" style={{ display: showMenu ? 'none' : 'block' }}>
+      <div className="CategoriesLeft">
         <p className="CategoriesLeft_title">Categories</p>
         <div className="border_line" />
         <div className="Categories_favourit_fields">

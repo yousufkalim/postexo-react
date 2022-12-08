@@ -7,8 +7,8 @@
   color: #fdfcfc;
 }
 .Categories_column {
-  width: 20%;
-  margin-left: 10px;
+  width: 25%;
+  padding: 0 2%;
 }
 .Categories_column2 {
   width: 75%;
@@ -127,6 +127,7 @@
   background-repeat: no-repeat;
   background-position: center;
   padding: 2% 0;
+  border-radius: 30px;
 }
 .Sales_content {
   width: 70%;
@@ -198,4 +199,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+.hambgr {
+  display: none !important;
+}
+.closeIcon {
+  display: none !important;
 }

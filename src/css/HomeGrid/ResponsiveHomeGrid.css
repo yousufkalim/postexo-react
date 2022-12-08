@@ -1,0 +1,184 @@
+@media screen and (max-width: 1367px) {
+  .image-container2 {
+    min-width: 48%;
+  }
+}
+
+@media screen and (max-width: 1091px) {
+  .Categories_column2 {
+    width: 70%;
+  }
+  .Categories_column {
+    width: 30%;
+  }
+  .nav_search_bar {
+    width: 296px;
+    height: 40px;
+  }
+  .Profile_name {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .CategoriesLeft_title {
+    font-size: 20px;
+  }
+  .MyFav_list {
+    font-size: 16px;
+  }
+  .filter_title {
+    font-size: 20px;
+  }
+  .create_playlist {
+    font-size: 16px;
+  }
+  .Salespro_title {
+    font-size: 25px;
+    line-height: 35px;
+  }
+  .Salespro_p {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .Salespro_center {
+    height: 150px;
+  }
+  .card-image-content2 {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .image-container2 {
+    min-width: 48%;
+  }
+  .TopCourses_title {
+    font-size: 22px;
+    line-height: 45px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .hambgr {
+    position: absolute;
+    left: 4.5%;
+    font-size: 2rem !important;
+    display: block !important;
+    color: #fff;
+    cursor: pointer;
+  }
+  .closeIcon {
+    position: absolute;
+    right: 3%;
+    font-size: 2rem !important;
+    display: block !important;
+    color: #fff;
+    cursor: pointer;
+    z-index: 11;
+  }
+  .Categories_column {
+    position: absolute;
+
+    left: -100%;
+  }
+  .Categories_columnActive {
+    width: 50%;
+    position: absolute;
+    background: #2b2926;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 100%;
+    padding: 2% 3%;
+  }
+  .Categories_column2 {
+    width: 100% !important;
+  }
+  .navBar_2 {
+    width: 80%;
+    margin: 1% auto;
+  }
+  .searchIcon {
+    top: 28%;
+  }
+  .Profile_name {
+    font-size: 12px;
+  }
+  .navbar-logo-svg {
+    width: 90px;
+  }
+  .navbar-logo-svg2 {
+    width: 90px;
+    margin-left: 5px;
+  }
+  .nav_search_bar {
+    width: 232px;
+    height: 35px;
+  }
+}
+
+@media screen and (max-width: 676px) {
+  .input_search_div {
+    display: none;
+  }
+  .navBar_2 {
+    width: 90%;
+    margin: 1% auto;
+  }
+  .profile_DP {
+    width: 35px !important;
+    height: 35px !important;
+    margin-right: 4px;
+  }
+  .Profile_name {
+    font-size: 12px;
+    line-height: 12px;
+  }
+  .navbar-logo-svg2 {
+    margin-left: 38%;
+  }
+  .Salespro_title {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .Salespro_p {
+    font-size: 10px;
+    line-height: 13px;
+  }
+  .Sales_content {
+    width: 75%;
+  }
+  .image-container2 {
+    min-width: 100%;
+  }
+  .Salespro_center {
+    height: 105px;
+  }
+  .TopCourses_title {
+    font-size: 15px;
+  }
+  .sortby_main_div {
+    padding: 6px 12px;
+  }
+  .gridImage {
+    margin: 0 10px;
+  }
+  .card-image-content2 {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .position-pill {
+    font-size: 12px;
+  }
+  .image-container_row {
+    height: 184px;
+  }
+  .card-image-content {
+    font-size: 12px;
+  }
+  :where(.css-dev-only-do-not-override-17gkgmp).ant-avatar {
+    width: 25px !important;
+    height: 25px !important;
+  }
+  .Categories_columnActive {
+    position: fixed;
+    width: 100%;
+  }
+}

@@ -1,6 +1,7 @@
 .navBar_2 {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 90%;
   margin: 1% auto;
 }
