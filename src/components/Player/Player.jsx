@@ -1,59 +1,39 @@
-import React, { useRef, useEffect } from 'react';
-import Plyr from 'plyr-react';
+/* eslint-disable no-unneeded-ternary */
+import React, { useEffect, useRef, useState } from 'react';
+import ReactPlayer from 'react-player';
 import Popup from '../Dialog/Popup';
 
-const PlyrProps = {
-  type: 'video',
-  sources: [
-    {
-      src: 'yWtFb9LJs3o',
-      provider: 'youtube',
-    },
-  ],
-};
-
-const markerProps = {
-  enabled: true,
-  markers: {
-    enabled: true,
-    points: [
-      {
-        time: 30, // marker point time
-        label: 'first marker', // marker point hover display tip
-      },
-      {
-        time: 75,
-        label: 'second marker', // or you can custom marker hover tip by innerHTML
-      },
-    ],
-  },
-};
-
 function Player() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(false);
+  const [play, setPlay] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const videoRef = useRef();
 
-  const handleClick = () => {
-    console.log('Clicked ');
-    setOpen(true);
-  };
-
   useEffect(() => {
-    const isPaused = videoRef?.current?.plyr?.media?.paused;
-    console.log('VIDEO ', videoRef);
-    console.log('VIDEO ', isPaused);
-    // if (!isPaused) {
-    //   setTimeout(() => {
-    //     setOpen(true);
-    //   }, 5000);
-    // }
-  }, [videoRef?.current?.plyr?.elements?.progress]);
+    if (play) {
+      setTimeout(() => {
+        setOpen(true);
+        setShowPopup(true);
+      }, 5000);
+    }
+  }, [play]);
 
   return (
     <>
       <Popup open={open} setOpen={setOpen} />
-      <Plyr ref={videoRef} source={PlyrProps} options={markerProps} onClick={handleClick} />
+
+      <ReactPlayer
+        onPlay={() => {
+          if (!showPopup) {
+            setPlay(true);
+          }
+        }}
+        ref={videoRef}
+        controls="true"
+        playing={!showPopup}
+        url="https://www.dailymotion.com/video/x85k8ga"
+      />
     </>
   );
 }
