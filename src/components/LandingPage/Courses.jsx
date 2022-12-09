@@ -15,7 +15,7 @@ function Courses() {
           </div>
         </div>
       </section>
-      <section style={{ marginTop: '2%' }} className="section-need-a-teacher-courses2">
+      <section className="section-need-a-teacher-courses2">
         <div className="courseComp-div">
           <CoursesComponent />
         </div>

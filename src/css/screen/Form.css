@@ -191,6 +191,38 @@ input:-webkit-autofill:focus {
   .formRightImg {
     height: 86%;
   }
+  .formTitle {
+    font-size: 30px;
+    line-height: 45px;
+  }
+  .formP {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 8%;
+  }
+  .input_label {
+    font-size: 12px;
+    line-height: 20px;
+  }
+  .form_input {
+    height: 45px;
+    margin-top: 1%;
+  }
+  .form_btn {
+    height: 45px;
+  }
+  .form_right_div {
+    padding: 4% 7%;
+  }
+  .input_feild {
+    margin: 4% 0;
+  }
+  .form_col {
+    padding-top: 7%;
+  }
+  .formLeftImg {
+    width: 83%;
+  }
 }
 @media screen and (min-width: 800px) and (max-width: 1200px) {
   .formRightImg {
@@ -241,6 +273,10 @@ input:-webkit-autofill:focus {
   .form_input {
     padding: 12px 18px;
     height: 40px;
+    font-size: 14px;
+  }
+  .form_input::placeholder {
+    font-size: 14px;
   }
   .form_btn {
     height: 40px;
@@ -248,5 +284,13 @@ input:-webkit-autofill:focus {
   }
   .nav-container {
     padding: 5% 5%;
+  }
+  .forgot_password,
+  .input_label {
+    font-size: 12px;
+  }
+  .checkmark,
+  .form_account_p {
+    font-size: 14px;
   }
 }

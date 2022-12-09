@@ -11,6 +11,9 @@
 .component-2 {
   display: none;
 }
+.css-1yd5w2y {
+  width: unset !important;
+}
 @media screen and (max-width: 1200px) {
   .adjustScreen {
     flex-direction: column;

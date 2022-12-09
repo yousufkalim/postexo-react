@@ -4,7 +4,7 @@
 }
 .homeSection {
   background: #2b2926;
-  padding-top: 10%;
+  padding-top: 8%;
 }
 .course {
   background: #2b2926;
@@ -71,7 +71,7 @@
   margin: 1% 0%;
 }
 .need-a-teacher-container-one {
-  padding: 3%;
+  padding: 4% 3%;
   width: 40%;
 }
 .need-a-teacher-span {
@@ -95,7 +95,7 @@
 }
 .btn-need-a-teacher {
   border: none;
-  padding: 8px 40px;
+  padding: 8px 50px;
   margin-top: 15px;
   background: #6ec2b1;
   color: #fdfcfc;
@@ -111,7 +111,8 @@
 }
 .teacher {
   display: flex;
-  width: 40%;
+  width: 50%;
+  margin-right: 10px;
   position: relative;
   align-items: flex-end;
 }
@@ -184,5 +185,8 @@
   }
   .need-a-teacher-container-one {
     width: 100%;
+  }
+  .navBar_2 {
+    margin: 2% auto;
   }
 }

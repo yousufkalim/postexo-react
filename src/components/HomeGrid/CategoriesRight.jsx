@@ -33,10 +33,18 @@ function CategoriesRight() {
           <div className="sortBy_div">
             <div className="sortby_main_div">
               <select className="sortby_select" id="Sort" name="Sort">
-                <option value="volvo">Sort by</option>
-                <option value="saab">Sort by</option>
-                <option value="mercedes">Sort by</option>
-                <option value="audi">Sort by</option>
+                <option className="selectr_option" value="volvo">
+                  Sort by
+                </option>
+                <option className="selectr_option" value="saab">
+                  Sort by
+                </option>
+                <option className="selectr_option" value="mercedes">
+                  Sort by
+                </option>
+                <option className="selectr_option" value="audi">
+                  Sort by
+                </option>
               </select>
             </div>
             {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
