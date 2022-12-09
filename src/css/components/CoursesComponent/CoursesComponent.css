@@ -10,7 +10,7 @@
   justify-content: space-between;
 }
 .card-img-parent-container2 {
-  padding: 2%;
+  padding: 1%;
 }
 .card-img-parent-container:hover {
   background: linear-gradient(0deg, rgba(110, 194, 177, 0.5), rgba(110, 194, 177, 0.5)),
@@ -44,7 +44,7 @@
 }
 .image-container_row {
   position: relative;
-  height: 260px;
+  height: 330px;
   width: 100%;
   min-width: 265px;
   border-radius: 20px;
