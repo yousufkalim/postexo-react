@@ -47,7 +47,9 @@ function LoginUser() {
                     />
                   </div>
                 </label>
-                <p className="forgot_password">Forgot Password ?</p>
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <p className="forgot_password">Forgot Password ?</p>
+                </div>
               </div>
 
               <div className="input_feild" style={{ display: 'flex', alignItems: 'center' }}>
@@ -63,11 +65,12 @@ function LoginUser() {
                   Login
                   <img src={LoginIcon} alt="" className="register_icon" />
                 </button>
-                <Link to="/register">
-                  <p className="form_account_p">
-                    Don’t have an account? <span className="form_span">Register</span>
-                  </p>
-                </Link>
+                <p className="form_account_p">
+                  Don’t have an account?
+                  <Link to="/register">
+                    <span className="form_span"> Register</span>
+                  </Link>
+                </p>
               </div>
             </div>
           </div>

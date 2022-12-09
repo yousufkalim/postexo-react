@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
+import Plyr from 'plyr-react';
 import Popup from '../Dialog/Popup';
-import PlyrVideo from './PlayerHook';
 
 const PlyrProps = {
   type: 'video',
@@ -30,7 +30,7 @@ const markerProps = {
 };
 
 function Player() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const videoRef = useRef();
 
@@ -48,12 +48,12 @@ function Player() {
     //     setOpen(true);
     //   }, 5000);
     // }
-  }, [videoRef?.current?.plyr?.media?.paused]);
+  }, [videoRef?.current?.plyr?.elements?.progress]);
 
   return (
     <>
       <Popup open={open} setOpen={setOpen} />
-      <PlyrVideo ref={videoRef} source={PlyrProps} options={markerProps} onClick={handleClick} />
+      <Plyr ref={videoRef} source={PlyrProps} options={markerProps} onClick={handleClick} />
     </>
   );
 }

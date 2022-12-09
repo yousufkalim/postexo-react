@@ -5,6 +5,10 @@
   width: 90%;
   margin: 1% auto;
 }
+.logo {
+  display: flex;
+  align-items: center;
+}
 .input_search_div {
   margin-right: 20px;
   position: relative;
@@ -34,6 +38,9 @@
 }
 .nav_search_bar::placeholder {
   color: #fdfcfc;
+}
+.nav_search_bar:focus {
+  outline: 2px solid #6ec2b1;
 }
 .nav_profile {
   display: flex;

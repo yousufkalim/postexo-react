@@ -58,11 +58,12 @@ function SignUp() {
                   Register
                   <img src={RegisterIcon} alt="" className="register_icon" />
                 </button>
-                <Link to="/login">
-                  <p className="form_account_p">
-                    You have an account? <span className="form_span">Login</span>
-                  </p>
-                </Link>
+                <p className="form_account_p">
+                  You have an account?
+                  <Link to="/login">
+                    <span className="form_span"> Login</span>
+                  </Link>
+                </p>
               </div>
             </div>
           </div>

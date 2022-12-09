@@ -41,7 +41,11 @@ function HomeSection() {
           <div className="students-circle">
             <p>Postexo Students</p>
             <div>
-              <Avatar.Group maxCount={3} maxStyle={{ backgroundColor: '#2B2926' }}>
+              <Avatar.Group
+                maxCount={3}
+                maxStyle={{ backgroundColor: '#2B2926' }}
+                maxPopoverTrigger="click"
+              >
                 <Avatar
                   style={{
                     border: 'none',

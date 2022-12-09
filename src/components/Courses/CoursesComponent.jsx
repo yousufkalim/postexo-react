@@ -54,12 +54,7 @@ function CoursesComponent() {
   return (
     <>
       {open && (
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
+        <Modal open={open} onClose={handleClose}>
           <Box sx={style}>
             <Player />
           </Box>
