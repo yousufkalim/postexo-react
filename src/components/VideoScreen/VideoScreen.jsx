@@ -1,6 +1,6 @@
 import React from 'react';
-import Avatar from '@mui/material/Avatar';
 import ShowMoreText from 'react-show-more-text';
+import Avatar from '@mui/material/Avatar';
 import Player from '../Player/Player';
 import ThumbsUp from '../../assets/ThumbsUp.svg';
 import ThumbsDown from '../../assets/ThumbsDown.svg';
