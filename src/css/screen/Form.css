@@ -173,6 +173,29 @@
   .formRightImg {
     height: 86%;
   }
+  .formTitle {
+    font-size: 30px;
+    line-height: 45px;
+  }
+  .formP {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 8%;
+  }
+  .input_label {
+    font-size: 12px;
+    line-height: 20px;
+  }
+  .form_input {
+    height: 45px;
+    margin-top: 1%;
+  }
+  .form_btn {
+    height: 45px;
+  }
+  .form_right_div {
+    padding: 4% 7%;
+  }
 }
 @media screen and (min-width: 800px) and (max-width: 1200px) {
   .formRightImg {
