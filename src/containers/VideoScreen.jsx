@@ -1,5 +1,5 @@
 import React from 'react';
-import CoursesComponent from '../components/Courses/CoursesComponent';
+import MoreVideos from '../components/Courses/MoreVideos';
 import CoursesComponent2 from '../components/Courses/CoursesComponent2';
 import Navbar2 from '../components/HomeGrid/Navbar2';
 import Screen from '../components/VideoScreen/VideoScreen';
@@ -11,7 +11,8 @@ function VideoScreen() {
       <div className="adjustScreen">
         <Screen />
         <div className="component-set">
-          <CoursesComponent />
+          {/* <CoursesComponent /> */}
+          <MoreVideos />
         </div>
         <div className="component-2">
           <CoursesComponent2 />

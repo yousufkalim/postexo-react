@@ -1,0 +1,169 @@
+@media screen and (max-width: 1640px) {
+}
+@media screen and (max-width: 1200px) {
+  .image_container_videos {
+    height: 216px;
+  }
+  .video_player {
+    height: 430px;
+  }
+  .card_image_content_video {
+    font-size: 14px;
+    line-height: 19px;
+  }
+  .card-image-content-video {
+    font-size: 13px;
+    line-height: 16px;
+  }
+  .title {
+    font-size: 16px;
+    line-height: 16px;
+  }
+  .component-2 {
+    display: none;
+  }
+  .videoScreen_container {
+    width: 68%;
+  }
+  .component-set {
+    width: 28%;
+  }
+  .nav_profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .adjustScreen {
+    flex-direction: column;
+  }
+  .videoScreen_container {
+    width: 100%;
+  }
+  .component-set {
+    width: 50%;
+  }
+  .video_player {
+    height: 291px;
+  }
+
+  .playlist_p {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .social {
+    flex-wrap: inherit !important;
+  }
+  .Profile_mail {
+    font-size: 10px;
+  }
+  .Profile_names {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .like-box {
+    padding: 0 10px;
+    gap: 6px;
+    display: flex;
+    align-items: center;
+  }
+  .likes_img {
+    width: 12px;
+  }
+  .dislike {
+    width: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .likes_views {
+    font-size: 10px;
+  }
+  .playlist-div {
+    margin-right: 10px;
+  }
+  .like-dislike-div {
+    padding: 0 8px;
+  }
+  .options-div {
+    padding: 0 0px;
+  }
+  .title {
+    font-size: 16px;
+    text-align: left;
+    line-height: 18px;
+  }
+  .time-date {
+    font-size: 12px;
+    line-height: 20px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .video_player {
+    height: 220px;
+  }
+
+  .playlist_p {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .social {
+    flex-wrap: inherit !important;
+    flex-direction: column;
+  }
+  .Profile_mail {
+    font-size: 10px;
+  }
+  .Profile_names {
+    font-size: 12px;
+    line-height: 10px;
+  }
+  .like-box {
+    padding: 0 10px;
+    gap: 6px;
+    display: flex;
+    align-items: center;
+  }
+  .likes_img {
+    width: 12px;
+  }
+  .dislike {
+    width: 15px;
+    margin-left: 10px;
+    margin-right: 0px;
+  }
+  .likes_views {
+    font-size: 10px;
+  }
+  .playlist-div {
+    margin-right: 5px;
+  }
+  .like-dislike-div {
+    padding: 0 8px;
+  }
+  .options-div {
+    padding: 0 0px;
+  }
+  .title {
+    font-size: 14px;
+    text-align: left;
+    line-height: 20px;
+  }
+  .time-date {
+    font-size: 12px;
+  }
+  .description {
+    font-size: 16px;
+  }
+  .content-css {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .time-para {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .component-set {
+    width: 100%;
+  }
+}

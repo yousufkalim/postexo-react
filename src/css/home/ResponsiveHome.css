@@ -1,3 +1,14 @@
+@media screen and (min-width: 1600px) {
+  .teacher-img {
+    width: 84%;
+  }
+  .formLeftImg {
+    width: 83%;
+    display: block;
+    margin-top: 5%;
+  }
+}
+
 @media screen and (max-width: 1367px) {
   .image-container {
     width: 32%;

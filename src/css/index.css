@@ -1,19 +1,19 @@
+@import url('https:/fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;0,600;0,700;1,600&display=swap');
 /* Importing all CSS files */
 @import url('./global/Global.css');
-@import url('./common/button/Button.css');
-@import url('./common/Navbar.css');
-@import url('./containers/home/Home.css');
-@import url('./components/CoursesComponent/CoursesComponent.css');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;0,600;0,700;1,600&display=swap');
-@import url('./containers/Register.css');
-@import url('./screen//Form.css');
+@import url('./common/Button.css');
+@import url('./home//Navbar.css');
+@import url('./home/Home.css');
+@import url('./CoursesComponent/CoursesComponent.css');
+@import url('./screen/Register.css');
+@import url('./screen/Form.css');
 @import url('./HomeGrid/Navbar2.css');
-@import url('./HomeGrid//Categories.css');
-@import url('./components/VideoScreen.css');
-@import url('./containers/VideoScreen/VideoScreen.css');
+@import url('./HomeGrid/Categories.css');
+@import url('./VideoScreen/VideoScreen.css');
 @import url('./HomeGrid/ResponsiveHomeGrid.css');
-@import url('./containers//home//ResponsiveHome.css');
-@import url('./components//CoursesComponent//Popup.css');
+@import url('./home//ResponsiveHome.css');
+@import url('./common/Popup.css');
+@import url('./VideoScreen/ResponsiveVideoScreen.css');
 /* Defaults */
 * {
   padding: 0;

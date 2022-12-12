@@ -1,3 +1,8 @@
+@media screen and (min-width: 1667px) {
+  .Sales_content {
+    width: 40%;
+  }
+}
 @media screen and (max-width: 1567px) {
   .Categories_column2 {
     width: 72%;
