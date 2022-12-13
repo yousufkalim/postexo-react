@@ -95,8 +95,8 @@
 }
 
 .image-container2 {
-  height: 283px;
-  width: 32%;
+  height: 330px;
+  width: 31.5%;
 }
 .course-card-image {
   position: absolute;
@@ -165,12 +165,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.avatarRatings2 {
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row-reverse; */
 }
 .course_likes,
 .rating_stars {

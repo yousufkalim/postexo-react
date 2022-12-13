@@ -7,11 +7,17 @@
     display: block;
     margin-top: 5%;
   }
+  .btn-need-a-teacher {
+    padding: 8px 60px;
+  }
 }
 
 @media screen and (max-width: 1367px) {
   .image-container {
     width: 32%;
+  }
+  .btn-need-a-teacher {
+    padding: 8px 50px;
   }
 }
 
