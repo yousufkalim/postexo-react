@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // Files
 import Index from './routes/index';
 import './css/index.css';
-import 'plyr-react/plyr.css';
+// import 'plyr-react/plyr.css';
 
 // Component
 function App() {

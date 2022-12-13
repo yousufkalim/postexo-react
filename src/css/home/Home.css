@@ -69,6 +69,7 @@
 }
 .need-a-teacher-container-one > * {
   margin: 1% 0%;
+  display: inline-block;
 }
 .need-a-teacher-container-one {
   padding: 4% 3%;

@@ -6,8 +6,8 @@ function Salespro() {
       <div className="Sales_content">
         <p className="Salespro_title">Hello Younus Akram</p>
         <p className="Salespro_p">
-          Salespro Direct takes less than 5 minutes to setup, allows you to work 10x as fast, and
-          will increase sales from Day 1
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+          been the industry standard dummy text ever since the 1500s,
         </p>
       </div>
     </div>

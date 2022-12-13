@@ -1,7 +1,5 @@
-import { React, useState } from 'react';
+import React from 'react';
 import { Avatar } from 'antd';
-import { Modal } from '@mui/material';
-import Box from '@mui/material/Box';
 import COURSECARDSVG from '../../assets/COURSECARDSVG.svg';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
 import COURSECARDSVGTWO from '../../assets/COURSECARDSVGTWO.svg';
@@ -9,9 +7,8 @@ import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
 import Pic4 from '../../assets/Pic1.svg';
 import Pic5 from '../../assets/Pic2.svg';
-import Player from '../Player/Player';
 
-function MoreVideos() {
+function MoreVideos({ setCurrentVideo }) {
   const cardsArray = [
     {
       id: '1',
@@ -39,29 +36,15 @@ function MoreVideos() {
     },
   ];
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '50%',
-    border: 'none',
-    boxShadow: 24,
-  };
   return (
     <>
-      {open && (
-        <Modal open={open} onClose={handleClose}>
-          <Box sx={style}>
-            <Player />
-          </Box>
-        </Modal>
-      )}
       {cardsArray.map((_) => (
-        <div key={_.id} className="image_container_videos">
+        <div
+          role="presentation"
+          onClick={() => setCurrentVideo(_)}
+          key={_.id}
+          className="image_container_videos"
+        >
           <p className="cours_time">20:31</p>
           <img className="course-card-image" src={_?.img} alt={_?.alt} />
           <div className="card-img-parent-container">
@@ -73,7 +56,7 @@ function MoreVideos() {
             </div>
             <div className="video-icon-container">
               {/* eslint-disable-next-line */}
-              <img src={PLAYVIDEOICONSVG} alt="video-icon" onClick={handleOpen} />
+              <img src={PLAYVIDEOICONSVG} alt="video-icon" />
             </div>
             <div className="Avatarcontent">
               <div className="card-image-content-hover">
