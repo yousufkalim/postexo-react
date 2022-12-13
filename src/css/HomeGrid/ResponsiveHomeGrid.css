@@ -1,3 +1,8 @@
+@media screen and (min-width: 1667px) {
+  .Sales_content {
+    width: 40%;
+  }
+}
 @media screen and (max-width: 1567px) {
   .Categories_column2 {
     width: 72%;
@@ -7,6 +12,13 @@
   }
   .nav_search_bar {
     height: 45px;
+  }
+  .Salespro_center {
+    height: 143px;
+    padding: 0% 0;
+  }
+  .TopCourses {
+    padding: 4% 0 2% 0;
   }
 }
 
@@ -100,6 +112,7 @@
     z-index: 10;
     height: 100%;
     padding: 2% 3%;
+    overflow: scroll;
   }
   .Categories_column2 {
     width: 100% !important;

@@ -1,6 +1,6 @@
 .Categories {
   width: 90%;
-  margin: auto;
+  margin: 3% auto;
 }
 .Categories_center {
   display: flex;
@@ -28,7 +28,7 @@
 .border_line {
   width: 84px;
   height: 0px;
-  border: 2px solid #6ec2b1;
+  border-bottom: 2px solid #6ec2b1;
   margin: 3% 0 5% 0;
 }
 .Categories_favourit_fields,
@@ -106,7 +106,7 @@
   padding: 5px 0;
 }
 .checked_option {
-  margin: 10px 0;
+  margin: 9px 0;
 }
 .levelLabel {
   font-family: 'Poppins';

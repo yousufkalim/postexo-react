@@ -21,7 +21,7 @@ function VideoScreen() {
         <div className="nav_profile">
           <Avatar src="" className="profile_DP" />
           <div className="profile_details">
-            <p className="Profile_name">Younus Akram</p>
+            <p className="Profile_names">Younus Akram</p>
             <p className="Profile_mail">Postexo@gmail.com</p>
           </div>
         </div>
@@ -29,9 +29,9 @@ function VideoScreen() {
           <div className="like-dislike-div">
             <div className="like-box">
               <div>
-                <img src={ThumbsUp} alt="likes" />
+                <img src={ThumbsUp} alt="likes" className="likes_img" />
               </div>
-              3.5k
+              <p className="likes_views">3.5k</p>
             </div>
             <div className="thumbDown-div">
               <img src={ThumbsDown} alt="dislike" className="dislike" />
@@ -39,7 +39,7 @@ function VideoScreen() {
           </div>
           <div className="playlist-opt">
             <div className="playlist-div">
-              <h4>Add To Playlist</h4>
+              <p className="playlist_p">Add To Playlist</p>
               <div>
                 <img src={Save} alt="save to playlist" className="save-playlist" />
               </div>
