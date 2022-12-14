@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
 import { Avatar } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import COURSECARDSVG from '../../assets/COURSECARDSVG.svg';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
 import COURSECARDSVGTWO from '../../assets/COURSECARDSVGTWO.svg';
@@ -9,6 +11,11 @@ import Pic4 from '../../assets/Pic1.svg';
 import Pic5 from '../../assets/Pic2.svg';
 
 function CoursesComponent2() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/video');
+  };
   const cardsArray = [
     {
       id: '1',
@@ -47,7 +54,12 @@ function CoursesComponent2() {
               <span className="position-pill">UX Design</span>
             </div>
             <div className="video-icon-container">
-              <img src={PLAYVIDEOICONSVG} alt="video-icon" />
+              <img
+                src={PLAYVIDEOICONSVG}
+                alt="video-icon"
+                onClick={handleClick}
+                onKeyDown={handleClick}
+              />
             </div>
             <div className="Avatarcontent">
               <div className="card-image-content-hover">

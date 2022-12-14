@@ -121,8 +121,18 @@
   background: none !important;
 }
 .homePlayer {
-  width: 1000px;
-  height: 550px;
+  width: 70vw;
+  height: 39vw;
+  overflow: hidden;
+}
+@media screen and (max-width: 1667px) {
+  .main_popup {
+    padding: 25px;
+  }
+  .popup_container,
+  .popup_container2 {
+    padding: 30px;
+  }
 }
 @media screen and (max-width: 1267px) {
   .main_popup {

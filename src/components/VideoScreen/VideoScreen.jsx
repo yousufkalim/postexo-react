@@ -1,7 +1,7 @@
 import React from 'react';
 import ShowMoreText from 'react-show-more-text';
 import Avatar from '@mui/material/Avatar';
-import Player from '../Player/Player';
+import VideoPlayer from '../Player/VideoPlayer';
 import ThumbsUp from '../../assets/ThumbsUp.svg';
 import ThumbsDown from '../../assets/ThumbsDown.svg';
 import Save from '../../assets/Save.svg';
@@ -11,7 +11,7 @@ function VideoScreen() {
   return (
     <div className="videoScreen_container">
       <div className="video_player">
-        <Player />
+        <VideoPlayer />
       </div>
       <div className="video_title">
         <p className="time-date">7:30 PM Thursday 21, Apr 2022</p>

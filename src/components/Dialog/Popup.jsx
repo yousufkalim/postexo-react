@@ -1,15 +1,10 @@
 import React from 'react';
-// import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
+import { Link } from 'react-router-dom';
 import CheckCircle from '../../assets/CheckCircle.svg';
 import PopupArrow from '../../assets/PopupArrow.svg';
 
 function Popup({ open, setOpen }) {
-  // const [open, setOpen] = React.useState(false);
-  //   const handleClickOpen = () => {
-  //     setOpen(true);
-  //   };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -41,10 +36,12 @@ function Popup({ open, setOpen }) {
                 have access to all the videos of the 18th/month platform
               </p>
             </div>
-            <button type="button" className="popupBtn">
-              Register
-              <img src={PopupArrow} alt="" className="popupArrow" />
-            </button>
+            <Link to="/register">
+              <button type="button" className="popupBtn">
+                Register
+                <img src={PopupArrow} alt="" className="popupArrow" />
+              </button>
+            </Link>
           </div>
           <div className="popup_container2">
             <p className="popup_title_p">1 year commitment:</p>
@@ -69,10 +66,12 @@ function Popup({ open, setOpen }) {
                 have access to all the videos of the 18th/month platform
               </p>
             </div>
-            <button type="button" className="popupBtn">
-              Register
-              <img src={PopupArrow} alt="" className="popupArrow" />
-            </button>
+            <Link to="/register">
+              <button type="button" className="popupBtn">
+                Register
+                <img src={PopupArrow} alt="" className="popupArrow" />
+              </button>
+            </Link>
           </div>
         </div>
       </Dialog>
