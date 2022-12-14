@@ -1,11 +1,47 @@
 .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
   background: none !important;
 }
-.popup_container {
+.main_popup {
+  background: #2b2926;
+  border-radius: 30px;
+  display: flex;
+  padding: 50px;
+  height: 100%;
+  /* overflow-y: auto; */
+  /* overflow-y: hidden; */
+}
+.popDialog {
+  background: none !important;
+}
+.css-2rbg70-MuiPaper-root-MuiDialog-paper {
+  overflow-y: hidden !important;
+}
+
+.main_popup::-webkit-scrollbar {
+  background-color: transparent;
+  width: 1px !important;
+}
+
+.main_popup::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 3px;
+}
+
+.popup {
+  background: #33312e;
+  width: 5px !important;
+  height: 0;
+}
+.popup_container,
+.popup_container2 {
   background: #33312e;
   border-radius: 15px;
   color: #fdfcfc;
   padding: 50px;
+  margin: 0 20px;
+}
+.popup_container2 {
+  background: #6ec2b1;
 }
 .popup_title_p {
   font-style: normal;
@@ -79,4 +115,58 @@
 }
 .popupArrow {
   margin-left: 10px;
+}
+.css-2rbg70-MuiPaper-root-MuiDialog-paper,
+.css-1fu2e3p-MuiPaper-root-MuiDialog-paper {
+  background: none !important;
+}
+.homePlayer {
+  width: 1000px;
+  height: 550px;
+}
+@media screen and (max-width: 1267px) {
+  .main_popup {
+    flex-direction: column;
+    padding: 30px;
+  }
+  .popup_container,
+  .popup_container2 {
+    margin: 0 0 7% 0;
+  }
+}
+@media screen and (max-width: 667px) {
+  .popup_container,
+  .popup_container2 {
+    padding: 15px;
+  }
+  .popup_title_p {
+    font-size: 14px;
+    line-height: 10px;
+  }
+  .popup_title {
+    font-size: 20px;
+  }
+  .popup_heading {
+    font-size: 13px;
+    line-height: 19px;
+  }
+  .monthly_title {
+    font-size: 25px;
+    line-height: 30px;
+  }
+  .credit_card {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .have_access_p {
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .popupBtn {
+    padding: 10px 32px;
+    font-size: 14px;
+  }
+  .monthly_p {
+    font-size: 16px;
+  }
 }

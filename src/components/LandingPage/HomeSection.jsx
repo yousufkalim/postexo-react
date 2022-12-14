@@ -15,8 +15,8 @@ function HomeSection() {
           <div className="need-a-teacher-container-one">
             <h1 className="Need_teacher_title">Hello ! Need a teacher ?</h1>
             <span className="need-a-teacher-span">
-              Salespro Direct takes less than 5 minutes to setup, allows you to work 10x as fast,
-              and will increase sales from Day 1
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+              has been the industry standard dummy text ever since the 1500s,
             </span>
             <Link to="/register">
               <button type="button" className="btn-need-a-teacher">

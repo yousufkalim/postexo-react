@@ -17,6 +17,7 @@
   position: absolute;
   right: 20px;
   top: 35%;
+  cursor: pointer;
 }
 .navBar_2_container {
   display: flex;

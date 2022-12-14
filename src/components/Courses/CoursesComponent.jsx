@@ -1,7 +1,8 @@
 import { React, useState } from 'react';
 import { Avatar } from 'antd';
-import { Modal } from '@mui/material';
-import Box from '@mui/material/Box';
+import Dialog from '@mui/material/Dialog';
+// import { Modal } from '@mui/material';
+// import Box from '@mui/material/Box';
 import COURSECARDSVG from '../../assets/COURSECARDSVG.svg';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
 import COURSECARDSVGTWO from '../../assets/COURSECARDSVGTWO.svg';
@@ -42,23 +43,25 @@ function CoursesComponent() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '50%',
-    border: 'none',
-    boxShadow: 24,
-  };
+  // const style = {
+  //   position: 'absolute',
+  //   top: '50%',
+  //   left: '50%',
+  //   transform: 'translate(-50%, -50%)',
+  //   width: '100%',
+  //   border: 'none',
+  //   boxShadow: 24,
+  // };
   return (
     <>
       {open && (
-        <Modal open={open} onClose={handleClose}>
-          <Box sx={style}>
+        <Dialog maxWidth="xl" open={open} onClose={handleClose}>
+          {/* <Box sx={style}> */}
+          <div className="homePlayer">
             <Player />
-          </Box>
-        </Modal>
+          </div>
+          {/* </Box> */}
+        </Dialog>
       )}
       {cardsArray.map((_) => (
         <div

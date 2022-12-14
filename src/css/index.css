@@ -48,6 +48,9 @@
 
 body {
   background-color: var(--background-color);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif !important;
   background-color: #2b2926;
+}
+.css-uhb5lp {
+  background: none !important;
 }

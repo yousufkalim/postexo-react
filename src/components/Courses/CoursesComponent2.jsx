@@ -39,7 +39,7 @@ function CoursesComponent2() {
     <>
       {cardsArray.map((_) => (
         <div className="image-container_row">
-          <p className="cours_time">20:31</p>
+          <p className="cours_time">20:32</p>
           <img className="course-card-image" src={_?.img} alt={_?.alt} />
           <div className="card-img-parent-container2">
             <div className="d-flex space-between">

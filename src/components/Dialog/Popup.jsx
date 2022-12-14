@@ -15,9 +15,9 @@ function Popup({ open, setOpen }) {
   };
 
   return (
-    <div>
-      <div className="popup">
-        <Dialog open={open} onClose={handleClose}>
+    <div className="popup">
+      <Dialog maxWidth="lg" open={open} onClose={handleClose} className="popDialog">
+        <div className="main_popup">
           <div className="popup_container">
             <p className="popup_title_p">For individuals</p>
             <p className="popup_title">Annual</p>
@@ -46,8 +46,36 @@ function Popup({ open, setOpen }) {
               <img src={PopupArrow} alt="" className="popupArrow" />
             </button>
           </div>
-        </Dialog>
-      </div>
+          <div className="popup_container2">
+            <p className="popup_title_p">1 year commitment:</p>
+            <p className="popup_title">Enterprise</p>
+            <p className="popup_heading">
+              Lorem ipsum dolor sit amet doloroli sitiol conse ctetur adipiscing elit.
+            </p>
+            <div className="monthly">
+              <span className="monthly_title">$199+</span>
+              <span className="monthly_p">/monthly</span>
+            </div>
+            <p className="credit_card">credit card payment system only</p>
+            <div className="have_access">
+              <img src={CheckCircle} alt="" className="popupCheck" />
+              <p className="have_access_p">
+                have access to videos associated with their grade level 6th/month
+              </p>
+            </div>
+            <div className="have_access">
+              <img src={CheckCircle} alt="" className="popupCheck" />
+              <p className="have_access_p">
+                have access to all the videos of the 18th/month platform
+              </p>
+            </div>
+            <button type="button" className="popupBtn">
+              Register
+              <img src={PopupArrow} alt="" className="popupArrow" />
+            </button>
+          </div>
+        </div>
+      </Dialog>
     </div>
   );
 }
