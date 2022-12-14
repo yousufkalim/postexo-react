@@ -27,9 +27,6 @@
   }
 }
 
-@media screen and (max-width: 800px) {
-}
-
 @media screen and (max-width: 576px) {
   .image-container {
     width: 90%;
@@ -58,22 +55,3 @@
     padding: 6px 22px;
   }
 }
-
-@media screen and (max-width: 400px) {
-}
-
-/* 
-@media screen and (max-width: 1367px) {
-}
-
-@media screen and (max-width: 1091px) {
-}
-
-@media screen and (max-width: 800px) {
-}
-
-@media screen and (max-width: 576px) {
-}
-
-@media screen and (max-width: 400px) {
-} */
