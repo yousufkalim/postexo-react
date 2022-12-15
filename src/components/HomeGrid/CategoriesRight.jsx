@@ -5,7 +5,7 @@ import ViewIcon from '../../assets/ViewIcon.svg';
 import WhiteGrid from '../../assets/WhiteGrid.svg';
 import BlueList from '../../assets/BlueList.svg';
 import CoursesComponent from '../Courses/CoursesComponent';
-import CoursesComponent2 from '../Courses/CoursesComponent2';
+import CoursesComponent2 from '../Courses/CoursesComponentFullWidth';
 
 function CategoriesRight() {
   const [showCours, setShowCoours] = useState(true);

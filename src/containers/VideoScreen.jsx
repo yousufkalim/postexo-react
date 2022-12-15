@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import MoreVideos from '../components/Courses/MoreVideos';
-import CoursesComponent2 from '../components/Courses/CoursesComponent2';
+import CoursesComponent2 from '../components/Courses/CoursesComponentFullWidth';
 import Navbar2 from '../components/HomeGrid/Navbar2';
 import Screen from '../components/VideoScreen/VideoScreen';
 
