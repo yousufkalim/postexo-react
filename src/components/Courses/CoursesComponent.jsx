@@ -57,7 +57,7 @@ function CoursesComponent() {
           key={_.id}
           className={window.location.pathname === '/home' ? 'image-container2' : 'image-container'}
         >
-          <p className="cours_time">20:31</p>
+          {window.location.pathname === '/' ? null : <p className="cours_time">20:31</p>}
           <img className="course-card-image" src={_?.img} alt={_?.alt} />
           <div className="card-img-parent-container">
             <div className="d-flex space-between">

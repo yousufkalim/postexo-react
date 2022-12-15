@@ -8,7 +8,7 @@ import CoursesComponent from '../Courses/CoursesComponent';
 import CoursesComponent2 from '../Courses/CoursesComponent2';
 
 function CategoriesRight() {
-  const [showCours, setShowCoours] = useState(false);
+  const [showCours, setShowCoours] = useState(true);
   const [showCours2, setShowCoours2] = useState(true);
 
   const CourseEvent = () => {
