@@ -10,11 +10,13 @@ import HomeGrid from '../containers/HomeGrid';
 import VideoScreen from '../containers/VideoScreen';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
+import PageNotFound from '../containers/PageNotFound';
 
 function Index() {
   return (
     <div>
       <Routes>
+        <Route path="*" element={<PageNotFound />} />
         <Route
           path="/"
           element={
