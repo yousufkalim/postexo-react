@@ -1,16 +1,24 @@
+/* eslint-disable no-console */
+/* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
 import FormLaftImg from '../../assets/FormLaftImg.svg';
 import ShowP from '../../assets/ShowP.svg';
 import HideIcon from '../../assets/HideIcon.svg';
 import LoginIcon from '../../assets/LoginIcon.png';
 import ForgotPassword from './ForgotPassword';
+import API from '../../api/index';
 
 function LoginUser() {
+  const navigate = useNavigate();
   const [passwordShown, setPasswordShown] = useState(false);
   const [open, setOpen] = useState(false);
+  const [formState, setFormState] = useState({
+    email: '',
+    password: '',
+  });
 
   const ForgotPasswordEvent = () => {
     setOpen(true);
@@ -18,6 +26,32 @@ function LoginUser() {
 
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((formState) => ({
+      ...formState,
+      [name]: value,
+    }));
+  };
+
+  const handleLoggin = async () => {
+    try {
+      await API('post', '/auth/login', {
+        email: formState.email,
+        password: formState.password,
+      }).then((res) => {
+        console.log('user login');
+        if (res?.data?.user) {
+          localStorage.setItem('userData', JSON.stringify(res?.data?.user));
+          localStorage.setItem('token', res?.data?.token);
+          navigate('/');
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -41,6 +75,9 @@ function LoginUser() {
                       type="text"
                       className="form_input"
                       placeholder="Enter your email"
+                      name="email"
+                      value={formState.email}
+                      onChange={handleChange}
                     />
                   </label>
                 </div>
@@ -52,6 +89,9 @@ function LoginUser() {
                       type={passwordShown ? 'text' : 'password'}
                       className="form_input"
                       placeholder="Enter your password"
+                      name="password"
+                      value={formState.password}
+                      onChange={handleChange}
                     />
                     <div role="presentation" onClick={togglePassword} onKeyUp={togglePassword}>
                       <img
@@ -81,7 +121,7 @@ function LoginUser() {
                 </div>
 
                 <div className="input_feild">
-                  <button type="button" className="form_btn">
+                  <button type="button" className="form_btn" onClick={handleLoggin}>
                     Login
                     <img src={LoginIcon} alt="" className="register_icon" />
                   </button>
