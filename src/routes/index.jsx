@@ -16,7 +16,8 @@ function Index() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/homegrid" element={<HomeGrid />} />
+        <Route path="/home" element={<HomeGrid />} />
+        <Route path="/home/:id" element={<VideoScreen />} />
         <Route path="/video" element={<VideoScreen />} />
       </Routes>
     </div>

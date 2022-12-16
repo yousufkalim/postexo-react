@@ -5,10 +5,10 @@ import ViewIcon from '../../assets/ViewIcon.svg';
 import WhiteGrid from '../../assets/WhiteGrid.svg';
 import BlueList from '../../assets/BlueList.svg';
 import CoursesComponent from '../Courses/CoursesComponent';
-import CoursesComponent2 from '../Courses/CoursesComponent2';
+import CoursesComponent2 from '../Courses/CoursesComponentFullWidth';
 
 function CategoriesRight() {
-  const [showCours, setShowCoours] = useState(false);
+  const [showCours, setShowCoours] = useState(true);
   const [showCours2, setShowCoours2] = useState(true);
 
   const CourseEvent = () => {
@@ -82,10 +82,18 @@ function CategoriesRight() {
         <div className="sortBy_div">
           <div className="sortby_main_div">
             <select className="sortby_select" id="Sort" name="Sort">
-              <option value="volvo">Sort by</option>
-              <option value="saab">Sort by</option>
-              <option value="mercedes">Sort by</option>
-              <option value="audi">Sort by</option>
+              <option className="selectr_option" value="volvo">
+                Sort by
+              </option>
+              <option className="selectr_option" value="saab">
+                Sort by
+              </option>
+              <option className="selectr_option" value="mercedes">
+                Sort by
+              </option>
+              <option className="selectr_option" value="audi">
+                Sort by
+              </option>
             </select>
           </div>
           {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}

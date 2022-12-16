@@ -10,7 +10,7 @@ import SearchIcon from '../../assets/SearchIcon.svg';
 function Navbar2({ openNavMenu }) {
   const navigate = useNavigate();
   const SearchEvent = () => {
-    navigate('/video');
+    navigate('/home');
   };
   return (
     <>

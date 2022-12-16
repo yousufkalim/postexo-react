@@ -43,34 +43,21 @@ function CoursesComponent() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  // const style = {
-  //   position: 'absolute',
-  //   top: '50%',
-  //   left: '50%',
-  //   transform: 'translate(-50%, -50%)',
-  //   width: '100%',
-  //   border: 'none',
-  //   boxShadow: 24,
-  // };
   return (
     <>
       {open && (
         <Dialog maxWidth="xl" open={open} onClose={handleClose}>
-          {/* <Box sx={style}> */}
           <div className="homePlayer">
             <Player />
           </div>
-          {/* </Box> */}
         </Dialog>
       )}
       {cardsArray.map((_) => (
         <div
           key={_.id}
-          className={
-            window.location.pathname === '/homegrid' ? 'image-container2' : 'image-container'
-          }
+          className={window.location.pathname === '/home' ? 'image-container2' : 'image-container'}
         >
-          <p className="cours_time">20:31</p>
+          {window.location.pathname === '/' ? null : <p className="cours_time">20:31</p>}
           <img className="course-card-image" src={_?.img} alt={_?.alt} />
           <div className="card-img-parent-container">
             <div className="d-flex space-between">
@@ -81,7 +68,17 @@ function CoursesComponent() {
             </div>
             <div className="video-icon-container">
               {/* eslint-disable-next-line */}
-              <img src={PLAYVIDEOICONSVG} alt="video-icon" onClick={handleOpen} />
+              {window.location.pathname === '/home' ? (
+                <img src={PLAYVIDEOICONSVG} alt="video-icon" />
+              ) : (
+                // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+                <img
+                  src={PLAYVIDEOICONSVG}
+                  alt="video-icon"
+                  onClick={handleOpen}
+                  onKeyDown={handleOpen}
+                />
+              )}
             </div>
             <div className="Avatarcontent">
               <div className="card-image-content-hover">

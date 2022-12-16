@@ -51,6 +51,21 @@ body {
   font-family: 'Poppins', sans-serif !important;
   background-color: #2b2926;
 }
-.css-uhb5lp {
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: #2b2926;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #3f3e3c;
+}
+.css-uhb5lp,
+.css-18i3v7t {
   background: none !important;
+}
+.css-18i3v7t::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+.css-17e6t2v {
+  color: #6ec2b1 !important;
 }

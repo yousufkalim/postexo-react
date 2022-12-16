@@ -197,3 +197,11 @@
   height: 42px !important;
   width: 49px !important;
 }
+.likes_views {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #6ec2b1;
+}
