@@ -1,15 +1,45 @@
+/* eslint-disable no-console */
+/* eslint-disable no-shadow */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import FormLaftImg from '../../assets/FormLaftImg.svg';
 import ShowP from '../../assets/ShowP.svg';
 import HideIcon from '../../assets/HideIcon.svg';
 import RegisterIcon from '../../assets/RegisterIcon.svg';
+import API from '../../api/index';
 
 function SignUp() {
+  const navigate = useNavigate();
   const [passwordShown, setPasswordShown] = useState(false);
-
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((formState) => ({
+      ...formState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async () => {
+    await API('post', '/users/', {
+      name: formState.name,
+      email: formState.email,
+      password: formState.password,
+    })
+      .then(() => {
+        console.log('user Reister');
+        navigate('/login');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -26,13 +56,29 @@ function SignUp() {
               <div className="Input_feild">
                 <label htmlFor="a" className="input_label">
                   Name
-                  <input id="a" type="text" className="form_input" placeholder="Enter your name" />
+                  <input
+                    id="a"
+                    type="text"
+                    className="form_input"
+                    placeholder="Enter your name"
+                    value={formState.name}
+                    name="name"
+                    onChange={handleChange}
+                  />
                 </label>
               </div>
               <div className="input_feild">
                 <label htmlFor="b" className="input_label">
                   Email
-                  <input id="b" type="text" className="form_input" placeholder="Enter your email" />
+                  <input
+                    id="b"
+                    type="text"
+                    className="form_input"
+                    placeholder="Enter your email"
+                    value={formState.email}
+                    name="email"
+                    onChange={handleChange}
+                  />
                 </label>
               </div>
               <div className="input_feild">
@@ -43,6 +89,9 @@ function SignUp() {
                     type={passwordShown ? 'text' : 'password'}
                     className="form_input"
                     placeholder="Enter your password"
+                    value={formState.password}
+                    name="password"
+                    onChange={handleChange}
                   />
                   {/* eslint-disable-next-line  */}
                   <img
@@ -54,7 +103,7 @@ function SignUp() {
                 </label>
               </div>
               <div className="input_feild">
-                <button type="button" className="form_btn">
+                <button type="button" className="form_btn" onClick={handleSubmit}>
                   Register
                   <img src={RegisterIcon} alt="" className="register_icon" />
                 </button>

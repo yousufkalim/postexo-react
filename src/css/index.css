@@ -14,6 +14,7 @@
 @import url('./home//ResponsiveHome.css');
 @import url('./common/Popup.css');
 @import url('./VideoScreen/ResponsiveVideoScreen.css');
+@import url('./screen/PageNotFound.css');
 /* Defaults */
 * {
   padding: 0;

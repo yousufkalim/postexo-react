@@ -8,17 +8,63 @@ import Register from '../containers/Register';
 import Login from '../containers/Login';
 import HomeGrid from '../containers/HomeGrid';
 import VideoScreen from '../containers/VideoScreen';
+import PublicRoute from './PublicRoute';
+import PrivateRoute from './PrivateRoute';
+import PageNotFound from '../containers/PageNotFound';
 
 function Index() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<HomeGrid />} />
-        <Route path="/home/:id" element={<VideoScreen />} />
-        <Route path="/video" element={<VideoScreen />} />
+        <Route path="*" element={<PageNotFound />} />
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <Home />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute>
+              <HomeGrid />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/home/:id"
+          element={
+            <PrivateRoute>
+              <VideoScreen />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/video"
+          element={
+            <PrivateRoute>
+              <VideoScreen />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );
