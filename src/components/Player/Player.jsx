@@ -1,41 +1,61 @@
-/* eslint-disable no-unneeded-ternary */
-import React, { useEffect, useRef, useState } from 'react';
-import ReactPlayer from 'react-player';
+import React, { useRef, useEffect } from 'react';
+import Plyr from 'plyr-react';
 import Popup from '../Dialog/Popup';
 
-function Player() {
-  const [open, setOpen] = useState(false);
-  const [play, setPlay] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+const PlyrProps = {
+  type: 'video',
+  sources: [
+    {
+      src: 'yWtFb9LJs3o',
+      provider: 'youtube',
+    },
+  ],
+};
+
+const markerProps = {
+  enabled: true,
+  markers: {
+    enabled: true,
+    points: [
+      {
+        time: 30, // marker point time
+        label: 'first marker', // marker point hover display tip
+      },
+      {
+        time: 75,
+        label: 'second marker', // or you can custom marker hover tip by innerHTML
+      },
+    ],
+  },
+};
+
+function Player({ setOpenVideo }) {
+  const [open, setOpen] = React.useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [showPopup, setShowPopup] = React.useState(false);
 
   const videoRef = useRef();
 
   useEffect(() => {
-    if (play) {
+    // eslint-disable-next-line no-unused-vars
+    videoRef?.current?.plyr?.on('playing', (e) =>
       setTimeout(() => {
         setOpen(true);
         setShowPopup(true);
-      }, 5000);
-    }
-  }, [play]);
+      }, 5000),
+    );
+  }, [videoRef]);
 
   return (
     <>
-      <Popup open={open} setOpen={setOpen} />
-
-      <ReactPlayer
-        width="100%"
-        height="100%"
-        onPlay={() => {
-          if (!showPopup) {
-            setPlay(true);
-          }
-        }}
+      <Plyr
         ref={videoRef}
-        controls="true"
-        playing={!showPopup}
-        url="https://www.dailymotion.com/video/x85k8ga"
+        source={PlyrProps}
+        options={markerProps}
+        // onClick={handleClick}
+        // onPlaying={!showPopup}
       />
+      <Popup open={open} setOpen={setOpen} setOpenVideo={setOpenVideo} />
     </>
   );
 }

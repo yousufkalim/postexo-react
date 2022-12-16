@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import CheckCircle from '../../assets/CheckCircle.svg';
 import PopupArrow from '../../assets/PopupArrow.svg';
 
-function Popup({ open, setOpen }) {
+function Popup({ open, setOpen, setOpenVideo }) {
   const handleClose = () => {
     setOpen(false);
+    setOpenVideo(false);
   };
 
   return (

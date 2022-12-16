@@ -48,7 +48,7 @@ function CoursesComponent() {
       {open && (
         <Dialog maxWidth="xl" open={open} onClose={handleClose}>
           <div className="homePlayer">
-            <Player />
+            <Player setOpenVideo={setOpen} />
           </div>
         </Dialog>
       )}

@@ -7921,15 +7921,14 @@ pkg-up@^3.1.0:
   dependencies:
     find-up "^3.0.0"
 
-plyr-react@^5.1.2:
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/plyr-react/-/plyr-react-5.1.2.tgz#89f66bac1e2241461172add6176868b04588c605"
-  integrity sha512-RHRlK5wKIRIpX0xHmnHcGJGH2hFAU7njHrIE2bv/8J2l9BjmCM7KOaRKMQYPxkpCNXGtdVgAt3qYitegRN7g9g==
+plyr-react@3.0.7:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/plyr-react/-/plyr-react-3.0.7.tgz#37debcce288b99066ac52d221a9b720d52f47832"
+  integrity sha512-s9TKwekb8EBMYTuL1igTRk9X8hMtg7h4cNnQ9RWQ8xjqY+5VY3dEsP5czy9QiFOg86JaA15+zjUO0XHWfUJT9Q==
   dependencies:
-    plyr "^3.7.3"
-    react-aptor "^2.0.0-alpha.1"
+    plyr "^3.6.2"
 
-plyr@^3.7.3:
+plyr@^3.6.2:
   version "3.7.3"
   resolved "https://registry.yarnpkg.com/plyr/-/plyr-3.7.3.tgz#31465bb45dc910babed5f05f4cf2667604898fa5"
   integrity sha512-ORULENBvEvvzMYXRQBALDmEi8P+wZt1Hr/NvHqchu/t7E2xJKNkRYWx0qCA1HETIGZ6zobrOVgqeAUqWimS7fQ==
@@ -9075,11 +9074,6 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
-react-aptor@^2.0.0-alpha.1:
-  version "2.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/react-aptor/-/react-aptor-2.0.0-alpha.1.tgz#d3f228c67aaffaf7ac9425dbca0b98fb49d593cd"
-  integrity sha512-FbvxQKsZMUZcLr2WdrQEmxH0kifsN4N+v6YdL1g3At03zouJCEcPXv+o+bhP3Ci3ya4QPvNHK/bpbrCzuKWOMw==
-
 react-dev-utils@^12.0.1:
   version "12.0.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-12.0.1.tgz#ba92edb4a1f379bd46ccd6bcd4e7bc398df33e73"
@@ -9253,6 +9247,11 @@ react-transition-group@^4.4.0, react-transition-group@^4.4.5:
     dom-helpers "^5.0.1"
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
+
+react-video-markers@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-video-markers/-/react-video-markers-1.1.4.tgz#ca853276054954fdb18af73eb5c3f5d5b06b43cd"
+  integrity sha512-XFuhuEFpias+kO/ha5M5nigX31WpkmV/3C4tzOLoEvZpCkRciz8YgVCZU9uBVkpPASGMkBNMDekk1hlajsUPrQ==
 
 react@^18.2.0:
   version "18.2.0"
