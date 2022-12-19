@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable no-shadow */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import FormLaftImg from '../../assets/FormLaftImg.svg';
@@ -21,8 +19,8 @@ function SignUp() {
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormState((formState) => ({
-      ...formState,
+    setFormState((prevState) => ({
+      ...prevState,
       [name]: value,
     }));
   };
@@ -34,10 +32,10 @@ function SignUp() {
       password: formState.password,
     })
       .then(() => {
-        console.log('user Reister');
         navigate('/login');
       })
       .catch((err) => {
+        // eslint-disable-next-line no-console
         console.log(err);
       });
   };
