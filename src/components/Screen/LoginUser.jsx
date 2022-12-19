@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable no-shadow */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
@@ -30,8 +27,8 @@ function LoginUser() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormState((formState) => ({
-      ...formState,
+    setFormState((prevState) => ({
+      ...prevState,
       [name]: value,
     }));
   };
@@ -42,7 +39,6 @@ function LoginUser() {
         email: formState.email,
         password: formState.password,
       }).then((res) => {
-        console.log('user login');
         if (res?.data?.user) {
           localStorage.setItem('userData', JSON.stringify(res?.data?.user));
           localStorage.setItem('token', res?.data?.token);
@@ -50,7 +46,8 @@ function LoginUser() {
         }
       });
     } catch (err) {
-      console.log(err);
+      // eslint-disable-next-line no-console
+      console.log(err, 'login err');
     }
   };
 
@@ -102,13 +99,16 @@ function LoginUser() {
                     </div>
                   </label>
                   <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <p
-                      className="forgot_password"
-                      onClick={ForgotPasswordEvent}
-                      onKeyDown={ForgotPasswordEvent}
-                    >
-                      Forgot Password ?
-                    </p>
+                    {
+                      // eslint-disable-next-line
+                      <p
+                        className="forgot_password"
+                        onClick={ForgotPasswordEvent}
+                        onKeyDown={ForgotPasswordEvent}
+                      >
+                        Forgot Password ?
+                      </p>
+                    }
                   </div>
                 </div>
 
