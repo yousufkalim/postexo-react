@@ -46,11 +46,24 @@
 .nav_profile {
   display: flex;
   align-items: center;
+  position: relative;
 }
 .profile_DP {
   width: 50px;
   height: 50px;
   margin-right: 10px;
+  cursor: pointer;
+}
+.profile_options {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 10px;
+  border-radius: 7px;
+  font-size: 0.8rem;
+  cursor: pointer;
 }
 .Profile_name {
   font-family: 'Poppins';

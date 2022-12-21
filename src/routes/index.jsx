@@ -58,7 +58,7 @@ function Index() {
           }
         />
         <Route
-          path="/video"
+          path="/video/:id"
           element={
             <PrivateRoute>
               <VideoScreen />

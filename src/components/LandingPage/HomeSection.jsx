@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Avatar } from 'antd';
 import NEEDATEACHERREGBTNSVG from '../../assets/NEEDATEACHERREGBTN.svg';
-import Teacher from '../../assets/home/Teacher.svg';
+import Teacher from '../../assets/home/Teacher.png';
 import Pic1 from '../../assets/home/Ellipse1.svg';
 import Pic2 from '../../assets/home/Ellipse2.svg';
 import Pic3 from '../../assets/home/Ellipse3.svg';

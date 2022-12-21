@@ -69,22 +69,34 @@
   color: #fdfcfc;
 }
 .like-box {
-  background: rgba(110, 194, 177, 0.1);
+  background: transparent;
   border-radius: 10px;
   width: fit-content;
   display: flex;
   align-items: center;
-  color: #6ec2b1;
   padding: 0 10px;
+  cursor: pointer;
+}
+.like-box_active {
+  background: rgba(110, 194, 177, 0.1);
+  color: #6ec2b1;
 }
 .thumbDown-div {
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-inline: 10px 50px;
+  cursor: pointer;
+  padding: 10px;
+}
+.thumbDown-div_active {
+  background: rgba(110, 194, 177, 0.1);
+  color: #6ec2b1;
+  border-radius: 10px;
 }
 .dislike {
   cursor: pointer;
-  margin-left: 35px;
-  margin-right: 35px;
+  margin-right: 5px;
 }
 .playlist-div {
   display: flex;
@@ -136,6 +148,8 @@
   gap: 8px;
   margin-bottom: 5%;
   color: #fdfcfc;
+}
+.time-desc-content {
 }
 .options-div {
   display: flex;
@@ -203,5 +217,5 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
-  color: #6ec2b1;
+  color: #fff;
 }

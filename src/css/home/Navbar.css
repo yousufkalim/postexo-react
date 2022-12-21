@@ -13,6 +13,7 @@ a {
 
 .navbar-btn-container {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 .navbar-spacing {
@@ -26,10 +27,28 @@ a {
   border-radius: 1000px;
   font-family: 'Poppins';
   font-style: normal;
+  cursor: pointer;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.navbar_button {
+  border: 1.5px solid var(--white);
+  padding: 10px 19px;
+  background: transparent;
+  color: white;
+  border-radius: 1000px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  cursor: pointer;
   align-items: center;
   margin-left: 10px;
 }

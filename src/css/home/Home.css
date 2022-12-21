@@ -120,6 +120,7 @@
 .teacher-img {
   width: 100%;
   position: absolute;
+  z-index: 0;
 }
 .postExo {
   display: flex;

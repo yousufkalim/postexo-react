@@ -1,57 +1,36 @@
 import React from 'react';
 import { Avatar } from 'antd';
-import COURSECARDSVG from '../../assets/COURSECARDSVG.svg';
+import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
-import COURSECARDSVGTWO from '../../assets/COURSECARDSVGTWO.svg';
 import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
 import Pic4 from '../../assets/Pic1.svg';
-import Pic5 from '../../assets/Pic2.svg';
 
-function MoreVideos({ setCurrentVideo }) {
-  const cardsArray = [
-    {
-      id: '1',
-      text: 'cardone',
-      img: COURSECARDSVG,
-      alt: 'course-card-image-1',
-    },
-    {
-      id: '2',
-      text: 'cardtwo',
-      img: COURSECARDSVGTWO,
-      alt: 'course-card-image-2',
-    },
-    {
-      id: '3',
-      text: 'cardtwo',
-      img: COURSECARDSVGTWO,
-      alt: 'course-card-image-3',
-    },
-    {
-      id: '4',
-      text: 'cardtwo',
-      img: COURSECARDSVGTWO,
-      alt: 'course-card-image-4',
-    },
-  ];
+function MoreVideos({ setCurrentVideo, sessions }) {
+  const navigate = useNavigate();
+
+  const handleSelectVideo = (item) => {
+    navigate(`/video/${item?._id}`);
+    setCurrentVideo(item);
+  };
 
   return (
     <>
-      {cardsArray.map((_) => (
+      {sessions.map((item) => (
         <div
           role="presentation"
-          onClick={() => setCurrentVideo(_)}
-          key={_.id}
+          onClick={() => handleSelectVideo(item)}
+          key={item._id}
           className="image_container_videos"
         >
-          <p className="cours_time">20:31</p>
-          <img className="course-card-image" src={_?.img} alt={_?.alt} />
+          <p className="cours_time">{item?.duration}</p>
+          <img className="course-card-image" src={item?.resolution_file} alt="session" />
           <div className="card-img-parent-container">
             <div className="d-flex space-between">
               <span className="time-pill" />
               <span className="position-pill">
-                <p>UX Design</p>
+                <p>{item?.matter}</p>
               </span>
             </div>
             <div className="video-icon-container">
@@ -60,9 +39,34 @@ function MoreVideos({ setCurrentVideo }) {
             </div>
             <div className="Avatarcontent">
               <div className="card-image-content-hover">
-                <p>How to Create a Useful & Excellent Optimized Section </p>
+                <p>{item?.subject}</p>
               </div>
-              <div className="avatarRatings">
+              {item?.ratings?.length > 0 && (
+                <div className="avatarRatings">
+                  <Avatar.Group
+                    maxCount={2}
+                    maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
+                    maxPopoverTrigger="click"
+                  >
+                    {item?.ratings?.map(() => (
+                      <Avatar
+                        style={{
+                          border: 'none',
+                        }}
+                        alt="Remy Sharp"
+                        src={Pic4}
+                      />
+                    ))}
+                  </Avatar.Group>
+                  <div className="starRatings">
+                    <img src={Star} alt="star" />
+                    <div>
+                      <small>{item?.averageRating} Rating</small>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {/* <div className="avatarRatings">
                 <Avatar.Group
                   maxCount={3}
                   maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
@@ -117,20 +121,22 @@ function MoreVideos({ setCurrentVideo }) {
                     <p>3.9 Rating</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="course-card-image-content">
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img className="like-icon" src={LIKEICONSVG} alt="like-icon" />
-                <p className="card-image-content">3.5k Likes </p>
-              </div>
-              <div>
-                <p className="card_image_content_video">
-                  How to Create a Useful & Excellent Optimized Section{' '}
+                <p className="card-image-content">
+                  {item?.likes?.length > 0 && item?.likes?.length}
                 </p>
               </div>
               <div>
-                <p className="card-image-content-video">7:30 PM Thursday 21, Apr 2022 </p>
+                <p className="card_image_content_video">{item?.subject}</p>
+              </div>
+              <div>
+                <p className="card-image-content-video">
+                  {moment(item?.createdAt).format('hh:mm A dddd DD, MM YYYY')}
+                </p>
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 // import {  } from "react-router-dom";
@@ -8,10 +8,23 @@ import LOGOSVG from '../../assets/LOGO.svg';
 import SearchIcon from '../../assets/SearchIcon.svg';
 
 function Navbar2({ openNavMenu }) {
+  const [showOptions, setShowOptions] = useState(false);
   const navigate = useNavigate();
   const SearchEvent = () => {
     navigate('/home');
   };
+
+  const handleOpen = () => {
+    setShowOptions(!showOptions);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('userData');
+    localStorage.removeItem('token');
+    navigate('/');
+  };
+
+  const user = JSON.parse(localStorage.getItem('userData'));
   return (
     <>
       <MenuIcon className="hambgr" onClick={openNavMenu} />
@@ -33,10 +46,17 @@ function Navbar2({ openNavMenu }) {
             />
           </div>
           <div className="nav_profile">
-            <Avatar src="" className="profile_DP" />
+            <Avatar onClick={() => handleOpen()} src="" className="profile_DP" />
+            {showOptions && (
+              <div className="profile_options">
+                <div role="presentation" onClick={() => handleLogout()}>
+                  Logout
+                </div>
+              </div>
+            )}
             <div className="profile_details">
-              <p className="Profile_name">Younus Akram</p>
-              <p className="Profile_mail">Postexo@gmail.com</p>
+              <p className="Profile_name">{user?.name}</p>
+              <p className="Profile_mail">{user?.email}</p>
             </div>
           </div>
         </div>

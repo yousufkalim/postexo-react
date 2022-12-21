@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import FormLaftImg from '../../assets/FormLaftImg.svg';
 import ShowP from '../../assets/ShowP.svg';
 import HideIcon from '../../assets/HideIcon.svg';
@@ -32,7 +33,10 @@ function SignUp() {
       password: formState.password,
     })
       .then(() => {
-        navigate('/login');
+        toast.success('User registered successfully');
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
       })
       .catch((err) => {
         // eslint-disable-next-line no-console
