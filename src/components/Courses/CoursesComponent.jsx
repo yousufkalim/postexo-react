@@ -60,7 +60,7 @@ function CoursesComponent({ sessions }) {
                 <img
                   src={PLAYVIDEOICONSVG}
                   alt="video-icon"
-                  onClick={handleOpen}
+                  onClick={() => handleOpen(item)}
                   onKeyDown={handleOpen}
                 />
               )}
