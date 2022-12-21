@@ -5,7 +5,7 @@ function PublicRoute({ children }) {
   const isLogin = localStorage.getItem('token');
 
   if (isLogin) {
-    return <Navigate to="/home" />;
+    return <Navigate to="/" />;
   }
   return children;
 }
