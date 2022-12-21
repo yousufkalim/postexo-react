@@ -24,18 +24,10 @@ function VideoScreen({ session, getCurrentVideo }) {
   const isLiked = session?.likes?.find((item) => item === user?._id);
   const isDisliked = session?.dislikes?.find((item) => item === user?._id);
 
-  const handleLikeSession = async () => {
-    await API('patch', `/sessions/${session._id}?like=true`, { userId: user?._id, flag: !isLiked })
-      .then(() => {
-        getCurrentVideo();
-      })
-      .catch(() => {});
-  };
-
-  const handleDislikeSession = async () => {
-    await API('patch', `/sessions/${session._id}?dislike=true`, {
+  const handleLikDislikeSession = async (action) => {
+    await API('patch', `/sessions/${session._id}?${action}=true`, {
       userId: user?._id,
-      flag: !isDisliked,
+      flag: action === 'like' ? !isLiked : !isDisliked,
     })
       .then(() => {
         getCurrentVideo();
@@ -76,7 +68,7 @@ function VideoScreen({ session, getCurrentVideo }) {
             <div className="like-dislike-div">
               <div
                 role="presentation"
-                onClick={() => handleLikeSession()}
+                onClick={() => handleLikDislikeSession('like')}
                 className={`like-box ${isLiked && 'like-box_active'}`}
               >
                 <div>
@@ -86,7 +78,7 @@ function VideoScreen({ session, getCurrentVideo }) {
               </div>
               <div
                 role="presentation"
-                onClick={() => handleDislikeSession()}
+                onClick={() => handleLikDislikeSession('dislike')}
                 className={`${isDisliked && 'thumbDown-div_active'} thumbDown-div`}
               >
                 <img src={ThumbsDown} alt="dislike" className="dislike" />

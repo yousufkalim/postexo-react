@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import API from '../../api';
 import FILTERICONSVG from '../../assets/FILTERICONSVG.svg';
 import CoursesComponent from '../Courses/CoursesComponent';
 // import Popup from '../Dialog/Popup';
@@ -8,6 +9,23 @@ function Courses() {
   // const handleClickOpen = () => {
   //   setOpen(true);
   // };
+
+  const [sessions, setSessions] = useState([]);
+
+  const getSessions = async () => {
+    try {
+      await API('get', '/sessions').then((res) => {
+        setSessions(res?.data?.sessions);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getSessions();
+  }, []);
+
   return (
     <>
       {/* <Popup open={open} setOpen={setOpen} /> */}
@@ -24,7 +42,7 @@ function Courses() {
         </section>
         <section className="section-need-a-teacher-courses2">
           <div className="courseComp-div">
-            <CoursesComponent />
+            <CoursesComponent sessions={sessions} />
           </div>
         </section>
       </div>

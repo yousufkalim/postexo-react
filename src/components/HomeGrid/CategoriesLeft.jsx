@@ -1,9 +1,31 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
+import API from '../../api';
+
+const durations = ['Very short', 'Short', 'Long'];
+const languages = ['English', 'Urdu', 'French'];
 
 function CategoriesLeft() {
+  const [allLevels, setAllLevels] = useState([]);
+  // const [filters, setFilters] = useState({ levels: [], duration: [], language: [] });
+
+  const getLevels = () => {
+    API('get', '/levels')
+      .then((res) => {
+        console.log('LEVLS ', res);
+        setAllLevels(res?.data?.levels);
+      })
+      .catch(() => {});
+  };
+
+  // const handleChange = (name, value) => {};
+
+  useEffect(() => {
+    getLevels();
+  }, []);
+
   return (
     <div>
       <div className="CategoriesLeft">
@@ -28,62 +50,32 @@ function CategoriesLeft() {
 
         <div className="Classess_div">
           <p className="classes_p">Classes</p>
-          <div className="checked_option">
-            <Checkbox defaultChecked style={{ color: 'white', padding: '0' }} />
-            <label htmlFor="Level" className="levelLabel">
-              Level 1
-            </label>
-          </div>
-          <div className="checked_option">
-            <Checkbox style={{ color: 'white', padding: '0' }} />
-            <label htmlFor="Level" className="levelLabel">
-              Level 2
-            </label>
-          </div>
-          <div className="checked_option">
-            <Checkbox style={{ color: 'white', padding: '0' }} />
-            <label htmlFor="Level" className="levelLabel">
-              Level 3
-            </label>
-          </div>
+          {allLevels?.map((level) => (
+            <div id={level?._id} className="checked_option">
+              <Checkbox style={{ color: 'white', padding: '0' }} />
+              <label htmlFor="Level" className="levelLabel">
+                {level?.label}
+              </label>
+            </div>
+          ))}
           <p className="duraiton_p">video duration</p>
-          <div className="checked_option">
-            <Checkbox style={{ color: 'white', padding: '0' }} />
-            <label htmlFor="Level" className="levelLabel">
-              Very short
-            </label>
-          </div>
-          <div className="checked_option">
-            <Checkbox style={{ color: 'white', padding: '0' }} />
-            <label htmlFor="Level" className="levelLabel">
-              short
-            </label>
-          </div>
-          <div className="checked_option">
-            <Checkbox style={{ color: 'white', padding: '0' }} />
-            <label htmlFor="Level" className="levelLabel">
-              long
-            </label>
-          </div>
+          {durations?.map((duration) => (
+            <div id={duration} className="checked_option">
+              <Checkbox style={{ color: 'white', padding: '0' }} />
+              <label htmlFor="Level" className="levelLabel">
+                {duration}
+              </label>
+            </div>
+          ))}
           <p className="language_P">Language</p>
-          <div className="checked_option">
-            <Checkbox style={{ color: 'white', padding: '0' }} />
-            <label htmlFor="Level" className="levelLabel">
-              Urdu
-            </label>
-          </div>
-          <div className="checked_option">
-            <Checkbox style={{ color: 'white', padding: '0' }} />
-            <label htmlFor="Level" className="levelLabel">
-              English
-            </label>
-          </div>
-          <div className="checked_option">
-            <Checkbox style={{ color: 'white', padding: '0' }} />
-            <label htmlFor="Level" className="levelLabel">
-              French
-            </label>
-          </div>
+          {languages?.map((lang) => (
+            <div className="checked_option">
+              <Checkbox style={{ color: 'white', padding: '0' }} />
+              <label htmlFor="Level" className="levelLabel">
+                {lang}
+              </label>
+            </div>
+          ))}
         </div>
       </div>
     </div>
