@@ -1,8 +1,9 @@
 import React from 'react';
 
-function Button({ text, className, src }) {
+function Button({ text, className, src, ...rest }) {
   return (
-    <button className={`d-flex jcc aic pointer ${className}`} type="button">
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <button {...rest} className={`${className}`} type="submit">
       <img className="navbar-login-svg" src={src} alt="loginicon" />
       {text}
     </button>

@@ -1,65 +1,96 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-console */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 // import { useNavigate } from 'react-router-dom';
 import ShowMoreText from 'react-show-more-text';
+import moment from 'moment';
 import Avatar from '@mui/material/Avatar';
-import VideoPlayer from '../Player/VideoPlayer';
+import Player from '../Player/Player';
 import ThumbsUp from '../../assets/ThumbsUp.svg';
+import Like from '../../assets/like.png';
 import ThumbsDown from '../../assets/ThumbsDown.svg';
 import Save from '../../assets/Save.svg';
 import Options from '../../assets/Options.svg';
-import API from '../../api/index';
+import API from '../../api';
 
-function VideoScreen() {
+function VideoScreen({ session, getCurrentVideo }) {
   // const navigate = useNavigate();
-  const [sesstion, setSession] = useState([]);
-  console.log(sesstion, 'ddddd');
-  useEffect(() => {
-    getSessions();
-  }, []);
 
-  const getSessions = async () => {
-    try {
-      await API('get', '/sessions').then((res) => {
-        setSession(res?.data?.sessions);
-        console.log(res?.data?.sessions);
-      });
-    } catch (err) {
-      console.log(err);
-    }
+  console.log('SEssion ', session);
+  const userInfo = localStorage.getItem('userData');
+  const user = JSON.parse(userInfo);
+  console.log('IUSER ', user);
+  const isLiked = session?.likes?.find((item) => item === user?._id);
+  const isDisliked = session?.dislikes?.find((item) => item === user?._id);
+
+  const handleLikeSession = async () => {
+    await API('patch', `/sessions/${session._id}?like=true`, { userId: user?._id, flag: !isLiked })
+      .then(() => {
+        getCurrentVideo();
+      })
+      .catch(() => {});
   };
 
+  const handleDislikeSession = async () => {
+    await API('patch', `/sessions/${session._id}?dislike=true`, {
+      userId: user?._id,
+      flag: !isDisliked,
+    })
+      .then(() => {
+        getCurrentVideo();
+      })
+      .catch(() => {});
+  };
+
+  const handleViewSession = async () => {
+    console.log('VIEW SEssion ');
+    await API('patch', `/sessions/${session._id}?view=true`, { userId: user?._id })
+      .then(() => {
+        getCurrentVideo();
+      })
+      .catch(() => {});
+  };
   return (
     <div className="videoScreen_container">
       <div className="video_player">
-        <VideoPlayer />
+        <Player session={session} action={handleViewSession} />
       </div>
       <div>
         <div className="video_title">
-          <p className="time-date">7:30 PM Thursday 21, Apr 2022</p>
-          <h1 className="title">How to Create a Useful & Excellent Optimized Section</h1>
+          <p className="time-date">
+            {moment(session?.createdAt).format('hh:mm A dddd DD, MM YYYY')}
+          </p>
+          {/* <p className="time-date">7:30 PM Thursday 21, Apr 2022</p> */}
+          <h1 className="title">{session?.subject}</h1>
         </div>
         <div className="social">
           <div className="nav_profile">
             <Avatar src="" className="profile_DP" />
             <div className="profile_details">
-              <p className="Profile_names">Younus Akram</p>
-              <p className="Profile_mail">Postexo@gmail.com</p>
+              <p className="Profile_names">{session?.professor_name}</p>
+              <p className="Profile_mail">Senior Software Engineer</p>
             </div>
           </div>
           <div className="social-playlist">
             <div className="like-dislike-div">
-              <div className="like-box">
+              <div
+                role="presentation"
+                onClick={() => handleLikeSession()}
+                className={`like-box ${isLiked && 'like-box_active'}`}
+              >
                 <div>
-                  <img src={ThumbsUp} alt="likes" className="likes_img" />
+                  <img src={isLiked ? ThumbsUp : Like} alt="likes" className="likes_img" />
                 </div>
-                <p className="likes_views">3.5k</p>
+                <p className="likes_views">{session?.likes?.length}</p>
               </div>
-              <div className="thumbDown-div">
+              <div
+                role="presentation"
+                onClick={() => handleDislikeSession()}
+                className={`${isDisliked && 'thumbDown-div_active'} thumbDown-div`}
+              >
                 <img src={ThumbsDown} alt="dislike" className="dislike" />
-                <p className="likes_views">{sesstion.dislikes}</p>
+                <div className="likes_views">{session?.dislikes?.length}</div>
               </div>
             </div>
             <div className="playlist-opt">
@@ -78,7 +109,7 @@ function VideoScreen() {
           </div>
         </div>
         <div className="description-box">
-          <h4 className="description">Discription</h4>
+          <h4 className="description">Description</h4>
           <p className="description-para">
             <ShowMoreText
               lines={3}
@@ -89,38 +120,23 @@ function VideoScreen() {
               className="content-css"
               anchorClass="show-more-less-clickable"
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magLorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquipna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore magLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquipna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-              nostrud exercitation ullamco laboris nisi ut aliquipna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-              nostrud exercitation ullamco laboris nisi ut aliquipna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+              {session?.message}
             </ShowMoreText>
           </p>
         </div>
         <div className="time-desc-box">
-          <p className="time">10:31 / 38:20</p>
-          <p className="time-para">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magLorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquipna aliqua. Ut
-            enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip aa...
-          </p>
+          <p className="time">19:12/20:22</p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto ipsa sit, facere
+          assumenda quasi consequuntur debitis voluptate corrupti aliquid iure ea eligendi incidunt
+          rem in vero, placeat expedita. Magni, voluptatem?
+          {/* {session?.comments?.map((comment) => (
+            <div className="time-desc-content">
+              <p className="time">
+                {comment?.user?.name} / {moment(comment?.createdAt).format('hh:mm')}
+              </p>
+              <p className="time-para">{comment?.comment}</p>
+            </div>
+          ))} */}
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Salespro from './Salespro';
 import GridIcon from '../../assets/GridIcon.svg';
 import ViewIcon from '../../assets/ViewIcon.svg';
@@ -6,10 +6,28 @@ import WhiteGrid from '../../assets/WhiteGrid.svg';
 import BlueList from '../../assets/BlueList.svg';
 import CoursesComponent from '../Courses/CoursesComponent';
 import CoursesComponent2 from '../Courses/CoursesComponentFullWidth';
+import API from '../../api';
 
 function CategoriesRight() {
   const [showCours, setShowCoours] = useState(true);
   const [showCours2, setShowCoours2] = useState(true);
+  const [sessions, setSessions] = useState([]);
+
+  const getSessions = async () => {
+    try {
+      await API('get', '/sessions').then((res) => {
+        setSessions(res?.data?.sessions);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  console.log('All sessions ', sessions);
+
+  useEffect(() => {
+    getSessions();
+  }, []);
 
   const CourseEvent = () => {
     setShowCoours(true);
@@ -68,11 +86,11 @@ function CategoriesRight() {
       </div>
       {showCours ? (
         <div className="topCoursesAll">
-          <CoursesComponent />
+          <CoursesComponent sessions={sessions} />
         </div>
       ) : (
         <div className="topCoursesAll">
-          <CoursesComponent2 />
+          <CoursesComponent2 sessions={sessions} />
         </div>
       )}
 
@@ -116,11 +134,11 @@ function CategoriesRight() {
       </div>
       {showCours2 ? (
         <div className="topCoursesAll">
-          <CoursesComponent />
+          <CoursesComponent sessions={sessions} />
         </div>
       ) : (
         <div className="topCoursesAll">
-          <CoursesComponent2 />
+          <CoursesComponent2 sessions={sessions} />
         </div>
       )}
     </div>

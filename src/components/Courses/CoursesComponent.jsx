@@ -1,47 +1,26 @@
 import { React, useState } from 'react';
 import { Avatar } from 'antd';
 import Dialog from '@mui/material/Dialog';
-// import { Modal } from '@mui/material';
-// import Box from '@mui/material/Box';
-import COURSECARDSVG from '../../assets/COURSECARDSVG.svg';
+import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
-import COURSECARDSVGTWO from '../../assets/COURSECARDSVGTWO.svg';
 import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
 import Pic4 from '../../assets/Pic1.svg';
-import Pic5 from '../../assets/Pic2.svg';
 import Player from '../Player/Player';
 
-function CoursesComponent() {
-  const cardsArray = [
-    {
-      id: '1',
-      text: 'cardone',
-      img: COURSECARDSVG,
-      alt: 'course-card-image-1',
-    },
-    {
-      id: '2',
-      text: 'cardtwo',
-      img: COURSECARDSVGTWO,
-      alt: 'course-card-image-2',
-    },
-    {
-      id: '3',
-      text: 'cardtwo',
-      img: COURSECARDSVGTWO,
-      alt: 'course-card-image-3',
-    },
-    {
-      id: '4',
-      text: 'cardtwo',
-      img: COURSECARDSVGTWO,
-      alt: 'course-card-image-4',
-    },
-  ];
-
+function CoursesComponent({ sessions }) {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const navigate = useNavigate();
+  const isLogin = localStorage.getItem('token');
+
+  const handleOpen = (item) => {
+    if (isLogin) {
+      navigate(`/video/${item?._id}`);
+    } else {
+      setOpen(true);
+    }
+  };
   const handleClose = () => setOpen(false);
   return (
     <>
@@ -52,24 +31,30 @@ function CoursesComponent() {
           </div>
         </Dialog>
       )}
-      {cardsArray.map((_) => (
+      {sessions?.map((item) => (
         <div
-          key={_.id}
+          key={item._id}
           className={window.location.pathname === '/home' ? 'image-container2' : 'image-container'}
         >
-          {window.location.pathname === '/' ? null : <p className="cours_time">20:31</p>}
-          <img className="course-card-image" src={_?.img} alt={_?.alt} />
+          {window.location.pathname === '/' ? null : <p className="cours_time">{item?.duration}</p>}
+          <img className="course-card-image" src={item?.resolution_file} alt="thumbnail" />
           <div className="card-img-parent-container">
             <div className="d-flex space-between">
               <span className="time-pill" />
               <span className="position-pill">
-                <p>UX Design</p>
+                <p>{item?.matter}</p>
               </span>
             </div>
             <div className="video-icon-container">
               {/* eslint-disable-next-line */}
               {window.location.pathname === '/home' ? (
-                <img src={PLAYVIDEOICONSVG} alt="video-icon" />
+                // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+                <img
+                  onClick={() => handleOpen(item)}
+                  onKeyDown={handleOpen}
+                  src={PLAYVIDEOICONSVG}
+                  alt="video-icon"
+                />
               ) : (
                 // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
                 <img
@@ -82,77 +67,46 @@ function CoursesComponent() {
             </div>
             <div className="Avatarcontent">
               <div className="card-image-content-hover">
-                <small>How to Create a Useful & Excellent Optimized Section </small>
+                <small>{item?.subject}</small>
               </div>
-              <div className="avatarRatings">
-                <Avatar.Group
-                  maxCount={3}
-                  maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
-                  maxPopoverTrigger="click"
-                >
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Remy Sharp"
-                    src={Pic4}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Travis Howard"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
-                </Avatar.Group>
-                <div className="starRatings">
-                  <img src={Star} alt="star" />
-                  <div>
-                    <small>3.9 Rating</small>
+              {item?.ratings?.length > 0 && (
+                <div className="avatarRatings">
+                  <Avatar.Group
+                    maxCount={2}
+                    maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
+                    maxPopoverTrigger="click"
+                  >
+                    {item?.ratings?.map(() => (
+                      <Avatar
+                        style={{
+                          border: 'none',
+                        }}
+                        alt="Remy Sharp"
+                        src={Pic4}
+                      />
+                    ))}
+                  </Avatar.Group>
+                  <div className="starRatings">
+                    <img src={Star} alt="star" />
+                    <div>
+                      <small>{item?.averageRating} Rating</small>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
             <div className="course-card-image-content">
               <div>
                 <img className="like-icon" src={LIKEICONSVG} alt="like-icon" />
-                <small className="card-image-content">3.5k Likes </small>
+                <small className="card-image-content">{item?.likes?.length} Likes </small>
               </div>
               <div>
-                <small className="card-image-content2">
-                  How to Create a Useful & Excellent Optimized Section{' '}
+                <small className="card-image-content2">{item?.subject}</small>
+              </div>
+              <div>
+                <small className="card-image-content">
+                  {moment(item?.createdAt).format('hh:mm A dddd DD, MM YYYY')}
                 </small>
-              </div>
-              <div>
-                <small className="card-image-content">7:30 PM Thursday 21, Apr 2022 </small>
               </div>
             </div>
           </div>
