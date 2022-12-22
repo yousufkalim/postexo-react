@@ -192,9 +192,9 @@
   line-height: 24px;
   color: #fdfcfc;
 }
-.plyr--video {
+/* .plyr--video {
   border-radius: 15px;
-}
+} */
 .show-more-less-clickable {
   color: #6ec2b1;
   text-decoration: none !important;
