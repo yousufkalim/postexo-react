@@ -144,6 +144,7 @@
   font-size: 30px;
   line-height: 45px;
   color: #fdfcfc;
+  text-transform: capitalize;
 }
 .Salespro_p {
   font-family: 'Poppins';
