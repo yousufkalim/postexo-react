@@ -12,6 +12,9 @@ const PlyrProps = {
   ],
 };
 
+const click = {
+  clickToPlay: false,
+};
 const markerProps = {
   markers: {
     enabled: true,
@@ -62,7 +65,7 @@ function Player({ setOpenVideo, action, session }) {
       <Plyr
         ref={videoRef}
         source={PlyrProps}
-        options={markerProps}
+        options={(markerProps, click)}
         // onClick={handleClick}
         // onPlaying={!showPopup}
       />
