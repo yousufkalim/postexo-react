@@ -236,13 +236,13 @@
   z-index: 999;
   background: #3f3e3b;
   border-radius: 15px;
-  padding: 10px 5px;
+  padding: 10px 5px 15px 5px;
   width: 15%;
 }
 .inp {
   border: none;
   border-bottom: 2px solid #8c8c8c;
-  padding: 15px 10px;
+  padding: 15px 0;
   outline: none;
   background: transparent;
   width: 100%;
@@ -268,14 +268,13 @@
 }
 .create-play {
   padding: 10px;
-  display: none;
 }
 .name-play {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  color: #fdfcfc;
+  color: #6ec2b1;
 }
 .play-all {
   padding: 10px;

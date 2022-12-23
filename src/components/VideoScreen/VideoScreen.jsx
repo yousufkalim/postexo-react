@@ -65,6 +65,7 @@ function VideoScreen({ session, getCurrentVideo }) {
 
   const [openOption, setOpenOption] = useState(false);
   const [openPlaylist, setOpenPlaylist] = useState(false);
+  const [openNewPlaylist, setOpenNewPlaylist] = useState(true);
 
   const handleOpenOption = () => {
     setOpenOption(true);
@@ -73,11 +74,11 @@ function VideoScreen({ session, getCurrentVideo }) {
     setOpenPlaylist(true);
   };
   const handlePlaylist = () => {
-    document.getElementById('playlist').style.display = 'none';
-    document.getElementById('create-play').style.display = 'block';
+    setOpenNewPlaylist(false);
   };
   const handleClosePlaylist = () => {
     setOpenPlaylist(false);
+    setOpenNewPlaylist(true);
   };
   const handleViewSession = async () => {
     console.log('VIEW SEssion ');
@@ -162,23 +163,33 @@ function VideoScreen({ session, getCurrentVideo }) {
                         <Checkbox color="default" sx={{ width: '0.9rem', color: '#FDFCFC' }} />
                         {
                           // eslint-disable-next-line
+                          <label>UI/UX Courses</label>
+                        }
+                      </div>
+                      <div className="play-all">
+                        <Checkbox color="default" sx={{ width: '0.9rem', color: '#FDFCFC' }} />
+                        {
+                          // eslint-disable-next-line
                           <label>Watch later</label>
                         }
                       </div>
-                      <div id="playlist" className="new-playlist">
-                        {
-                          // eslint-disable-next-line
-                          <img className="add" src={Add} alt="Report" onClick={handlePlaylist} />
-                        }
-                        Create new playlist
-                      </div>
-                      <div id="create-play" className="create-play">
-                        <p className="name-play">Name</p>
-                        <input className="inp" placeholder="Enter Playlist Name" type="text" />
-                        <div className="create-div">
-                          <p className="create">Create</p>
+                      {openNewPlaylist ? (
+                        <div className="new-playlist">
+                          {
+                            // eslint-disable-next-line
+                            <img className="add" src={Add} alt="Report" onClick={handlePlaylist} />
+                          }
+                          Create new playlist
                         </div>
-                      </div>
+                      ) : (
+                        <div className="create-play">
+                          <p className="name-play">New Playlist Name</p>
+                          <input className="inp" placeholder="Enter Playlist Name" type="text" />
+                          <div className="create-div">
+                            <p className="create">Create</p>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
