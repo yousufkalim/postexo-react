@@ -65,6 +65,10 @@
   font-size: 0.8rem;
   cursor: pointer;
 }
+.profile_options:hover {
+  background-color: #6ec2b1;
+  color: #fdfcfc;
+}
 .Profile_name {
   font-family: 'Poppins';
   font-style: normal;
@@ -74,6 +78,7 @@
   display: flex;
   align-items: center;
   color: #fdfcfc;
+  text-transform: capitalize;
 }
 .Profile_mail {
   font-family: 'Poppins';
