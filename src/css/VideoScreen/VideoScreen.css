@@ -1,3 +1,7 @@
+/*hide play button in middle of the screen*/
+.plyr--full-ui.plyr--video .plyr__control--overlaid {
+  display: none !important;
+}
 .adjustScreen {
   display: flex;
   width: 90%;
@@ -138,6 +142,7 @@
 }
 .options {
   cursor: pointer;
+  position: relative;
 }
 .time-desc-box {
   border-radius: 20px;
@@ -218,4 +223,107 @@
   font-size: 14px;
   line-height: 21px;
   color: #fff;
+}
+.dropdown {
+  position: absolute;
+  z-index: 999;
+  background: #3f3e3b;
+  border-radius: 15px;
+  padding: 10px 0px;
+}
+.dropdown-playlist {
+  position: absolute;
+  z-index: 999;
+  background: #3f3e3b;
+  border-radius: 15px;
+  padding: 10px 5px 15px 5px;
+  width: 15%;
+}
+.inp {
+  border: none;
+  border-bottom: 2px solid #8c8c8c;
+  padding: 15px 0;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  color: #fdfcfc;
+}
+.inp::placeholder {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #fdfcfc;
+}
+.play-div {
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  color: #f0f9f7;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+}
+.create-play {
+  padding: 10px;
+}
+.name-play {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #6ec2b1;
+}
+.play-all {
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+  color: #f0f9f7;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+}
+.new-playlist {
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+  color: #f0f9f7;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+}
+.fav-div {
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+  color: #f0f9f7;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+}
+.create-div {
+  display: flex;
+  justify-content: flex-end;
+}
+.cross {
+  cursor: pointer;
+}
+.add {
+  cursor: pointer;
+}
+.create {
+  color: #6ec2b1;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 20px;
 }

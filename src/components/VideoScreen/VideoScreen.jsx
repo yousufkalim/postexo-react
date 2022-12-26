@@ -1,18 +1,43 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-console */
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import ShowMoreText from 'react-show-more-text';
 import moment from 'moment';
 import Avatar from '@mui/material/Avatar';
+import Checkbox from '@mui/material/Checkbox';
 import ThumbsUp from '../../assets/ThumbsUp.svg';
 import Like from '../../assets/like.png';
 import ThumbsDown from '../../assets/ThumbsDown.svg';
+import Favourite from '../../assets/Favourite.svg';
+import Report from '../../assets/Report.svg';
+import Watch from '../../assets/Watch.svg';
 import Save from '../../assets/Save.svg';
 import Options from '../../assets/Options.svg';
+import Cross from '../../assets/Cross.svg';
+import Add from '../../assets/Add.svg';
 import API from '../../api';
 import VideoReact from '../Player/VideoReact';
+
+function useOutsideAlerter(ref) {
+  useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        alert('You clicked outside of me!');
+      }
+    }
+    // Bind the event listener
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [ref]);
+}
 
 function VideoScreen({ session, getCurrentVideo }) {
   // const navigate = useNavigate();
@@ -34,7 +59,27 @@ function VideoScreen({ session, getCurrentVideo }) {
       })
       .catch(() => {});
   };
+  /* or outside click */
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
 
+  const [openOption, setOpenOption] = useState(false);
+  const [openPlaylist, setOpenPlaylist] = useState(false);
+  const [openNewPlaylist, setOpenNewPlaylist] = useState(true);
+
+  const handleOpenOption = () => {
+    setOpenOption(true);
+  };
+  const handleOpenPlaylist = () => {
+    setOpenPlaylist(true);
+  };
+  const handlePlaylist = () => {
+    setOpenNewPlaylist(false);
+  };
+  const handleClosePlaylist = () => {
+    setOpenPlaylist(false);
+    setOpenNewPlaylist(true);
+  };
   // const handleViewSession = async () => {
   //   console.log('VIEW SEssion ');
   //   await API('patch', `/sessions/${session._id}?view=true`, { userId: user?._id })
@@ -91,12 +136,93 @@ function VideoScreen({ session, getCurrentVideo }) {
               <div className="playlist-div">
                 <p className="playlist_p">Add To Playlist</p>
                 <div>
-                  <img src={Save} alt="save to playlist" className="save-playlist" />
+                  <div>
+                    {
+                      // eslint-disable-next-line
+                      <img
+                        src={Save}
+                        alt="save to playlist"
+                        className="save-playlist"
+                        onClick={handleOpenPlaylist}
+                      />
+                    }
+                  </div>
+                  {openPlaylist && (
+                    <div className="dropdown-playlist">
+                      <div className="play-div">
+                        Add To playlist
+                        {
+                          // eslint-disable-next-line
+                          <img
+                            className="cross"
+                            src={Cross}
+                            alt="Cross"
+                            onClick={handleClosePlaylist}
+                          />
+                        }
+                      </div>
+                      <div className="play-all">
+                        <Checkbox color="default" sx={{ width: '0.9rem', color: '#FDFCFC' }} />
+                        {
+                          // eslint-disable-next-line
+                          <label>UI/UX Courses</label>
+                        }
+                      </div>
+                      <div className="play-all">
+                        <Checkbox color="default" sx={{ width: '0.9rem', color: '#FDFCFC' }} />
+                        {
+                          // eslint-disable-next-line
+                          <label>Watch later</label>
+                        }
+                      </div>
+                      {openNewPlaylist ? (
+                        <div className="new-playlist">
+                          {
+                            // eslint-disable-next-line
+                            <img className="add" src={Add} alt="Report" onClick={handlePlaylist} />
+                          }
+                          Create new playlist
+                        </div>
+                      ) : (
+                        <div className="create-play">
+                          <p className="name-play">New Playlist Name</p>
+                          <input className="inp" placeholder="Enter Playlist Name" type="text" />
+                          <div className="create-div">
+                            <p className="create">Create</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="options-box">
                 <div className="options-div">
-                  <img src={Options} alt="options" className="options" />
+                  {
+                    // eslint-disable-next-line
+                    <img
+                      src={Options}
+                      alt="options"
+                      className="options"
+                      onClick={handleOpenOption}
+                    />
+                  }
+                  {openOption && (
+                    <div className="dropdown">
+                      <div className="fav-div">
+                        Add to Favourite
+                        <img src={Favourite} alt="Favourite" />
+                      </div>
+                      <div className="fav-div">
+                        Watch Later
+                        <img src={Watch} alt="Favourite" />
+                      </div>
+                      <div className="fav-div">
+                        Report
+                        <img src={Report} alt="Favourite" />
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
