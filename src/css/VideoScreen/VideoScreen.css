@@ -1,7 +1,4 @@
 /*hide play button in middle of the screen*/
-.plyr--full-ui.plyr--video .plyr__control--overlaid {
-  display: none !important;
-}
 .adjustScreen {
   display: flex;
   width: 90%;
