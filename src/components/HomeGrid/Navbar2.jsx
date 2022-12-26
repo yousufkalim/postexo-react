@@ -30,7 +30,7 @@ function Navbar2({ openNavMenu }) {
       <MenuIcon className="hambgr" onClick={openNavMenu} />
       <nav className="navBar_2" style={{ backgrounColor: 'red' }}>
         <div>
-          <Link to="/">
+          <Link to="/home">
             <img className="navbar-logo-svg2" src={LOGOSVG} alt="postexologo" />
           </Link>
         </div>

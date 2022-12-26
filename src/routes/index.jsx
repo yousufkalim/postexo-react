@@ -13,6 +13,7 @@ import PrivateRoute from './PrivateRoute';
 import PageNotFound from '../containers/PageNotFound';
 
 function Index() {
+  const isLogin = localStorage.getItem('token');
   return (
     <div>
       <Routes>
@@ -21,7 +22,7 @@ function Index() {
           path="/"
           element={
             <PublicRoute>
-              <Home />
+              <Home isLogin={isLogin} />
             </PublicRoute>
           }
         />

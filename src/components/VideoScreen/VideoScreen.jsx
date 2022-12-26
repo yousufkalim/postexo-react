@@ -6,13 +6,13 @@ import React from 'react';
 import ShowMoreText from 'react-show-more-text';
 import moment from 'moment';
 import Avatar from '@mui/material/Avatar';
-import Player from '../Player/Player';
 import ThumbsUp from '../../assets/ThumbsUp.svg';
 import Like from '../../assets/like.png';
 import ThumbsDown from '../../assets/ThumbsDown.svg';
 import Save from '../../assets/Save.svg';
 import Options from '../../assets/Options.svg';
 import API from '../../api';
+import VideoReact from '../Player/VideoReact';
 
 function VideoScreen({ session, getCurrentVideo }) {
   // const navigate = useNavigate();
@@ -35,18 +35,20 @@ function VideoScreen({ session, getCurrentVideo }) {
       .catch(() => {});
   };
 
-  const handleViewSession = async () => {
-    console.log('VIEW SEssion ');
-    await API('patch', `/sessions/${session._id}?view=true`, { userId: user?._id })
-      .then(() => {
-        getCurrentVideo();
-      })
-      .catch(() => {});
-  };
+  // const handleViewSession = async () => {
+  //   console.log('VIEW SEssion ');
+  //   await API('patch', `/sessions/${session._id}?view=true`, { userId: user?._id })
+  //     .then(() => {
+  //       getCurrentVideo();
+  //     })
+  //     .catch(() => {});
+  // };
   return (
     <div className="videoScreen_container">
       <div className="video_player">
-        <Player session={session} action={handleViewSession} />
+        {/* <Player session={session} action={handleViewSession} /> */}
+        {/* <PlayerNew /> */}
+        <VideoReact />
       </div>
       <div>
         <div className="video_title">

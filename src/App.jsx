@@ -8,6 +8,7 @@ import Index from './routes/index';
 import './css/index.css';
 
 import 'plyr-react/dist/plyr.css';
+import 'video-react/dist/video-react.css';
 
 // Component
 function App() {
