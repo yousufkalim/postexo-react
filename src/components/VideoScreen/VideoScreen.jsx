@@ -5,6 +5,7 @@ import React, { useState, useRef, useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import ShowMoreText from 'react-show-more-text';
 import moment from 'moment';
+import { toast } from 'react-toastify';
 import Avatar from '@mui/material/Avatar';
 import Checkbox from '@mui/material/Checkbox';
 import ThumbsUp from '../../assets/ThumbsUp.svg';
@@ -20,38 +21,73 @@ import Add from '../../assets/Add.svg';
 import API from '../../api';
 import VideoReact from '../Player/VideoReact';
 
-function useOutsideAlerter(ref) {
-  useEffect(() => {
-    /**
-     * Alert if clicked on outside of element
-     */
-    function handleClickOutside(event) {
-      if (ref.current && !ref.current.contains(event.target)) {
-        alert('You clicked outside of me!');
-      }
+// function useOutsideAlerter(ref) {
+//   useEffect(() => {
+//     /**
+//      * Alert if clicked on outside of element
+//      */
+//     function handleClickOutside(event) {
+//       if (ref.current && !ref.current.contains(event.target)) {
+//         alert('You clicked outside of me!');
+//       }
+//     }
+//     // Bind the event listener
+//     document.addEventListener('mousedown', handleClickOutside);
+//     return () => {
+//       // Unbind the event listener on clean up
+//       document.removeEventListener('mousedown', handleClickOutside);
+//     };
+//   }, [ref]);
+// }
+
+function VideoScreen({ session, getCurrentVideo }) {
+  // const navigate = useNavigate();
+  const [openOption, setOpenOption] = useState(false);
+  const [openPlaylist, setOpenPlaylist] = useState(false);
+  const [openNewPlaylist, setOpenNewPlaylist] = useState(true);
+  const [playlistName, setPlaylistName] = useState('');
+  const [user, setUser] = useState({});
+
+  const menuRef = useRef(null);
+
+  const handleClickOutside = (e) => {
+    console.log('handleClick ', e);
+    if (menuRef.current) {
+      // setOpenOption(false);
+      // setOpenPlaylist(false);
     }
-    // Bind the event listener
+  };
+  const getUserInfo = async () => {
+    await API('get', `/users/${userData?._id}`)
+      .then((res) => {
+        console.log('Respe ', res);
+        setUser(res?.data?.user);
+      })
+      .catch((err) => toast.error(err?.message));
+  };
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
+  useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       // Unbind the event listener on clean up
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [ref]);
-}
-
-function VideoScreen({ session, getCurrentVideo }) {
-  // const navigate = useNavigate();
+  }, [menuRef]);
 
   console.log('SEssion ', session);
   const userInfo = localStorage.getItem('userData');
-  const user = JSON.parse(userInfo);
-  console.log('IUSER ', user);
-  const isLiked = session?.likes?.find((item) => item === user?._id);
-  const isDisliked = session?.dislikes?.find((item) => item === user?._id);
+  const userData = JSON.parse(userInfo);
+  console.log('IUSER ', setUser);
+  const isLiked = session?.likes?.find((item) => item === userData?._id);
+  const isDisliked = session?.dislikes?.find((item) => item === userData?._id);
 
   const handleLikDislikeSession = async (action) => {
     await API('patch', `/sessions/${session._id}?${action}=true`, {
-      userId: user?._id,
+      userId: userData?._id,
       flag: action === 'like' ? !isLiked : !isDisliked,
     })
       .then(() => {
@@ -59,16 +95,19 @@ function VideoScreen({ session, getCurrentVideo }) {
       })
       .catch(() => {});
   };
-  /* or outside click */
-  const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
 
-  const [openOption, setOpenOption] = useState(false);
-  const [openPlaylist, setOpenPlaylist] = useState(false);
-  const [openNewPlaylist, setOpenNewPlaylist] = useState(true);
+  const handleAddToPlaylist = async (id) => {
+    await API('patch', `/playlist/${id}`, { sessionId: session?._id })
+      .then((res) => {
+        console.log('Playlist added ', res);
+        getUserInfo();
+        toast.success(res?.data?.message);
+      })
+      .catch((err) => toast.error(err?.message));
+  };
 
   const handleOpenOption = () => {
-    setOpenOption(true);
+    setOpenOption(!openOption);
   };
   const handleOpenPlaylist = () => {
     setOpenPlaylist(true);
@@ -80,6 +119,27 @@ function VideoScreen({ session, getCurrentVideo }) {
     setOpenPlaylist(false);
     setOpenNewPlaylist(true);
   };
+
+  const handleCreatePlaylist = async () => {
+    console.log('Create playlist');
+    API('post', '/playlist', { title: playlistName, userId: userData?._id })
+      .then(() => {
+        getUserInfo();
+        setPlaylistName('');
+        setOpenNewPlaylist(true);
+      })
+      .catch((err) => toast.error(err?.message));
+  };
+
+  const handleFavorite = async () => {
+    await API('patch', `/sessions/favourites/${session?._id}`, { userId: userData?._id })
+      .then(() => {
+        getUserInfo();
+      })
+      .catch((err) => toast.error(err?.message));
+  };
+
+  const handleWatchLater = async () => {};
   // const handleViewSession = async () => {
   //   console.log('VIEW SEssion ');
   //   await API('patch', `/sessions/${session._id}?view=true`, { userId: user?._id })
@@ -133,7 +193,7 @@ function VideoScreen({ session, getCurrentVideo }) {
               </div>
             </div>
             <div className="playlist-opt">
-              <div className="playlist-div">
+              <div ref={menuRef} className="playlist-div">
                 <p className="playlist_p">Add To Playlist</p>
                 <div>
                   <div>
@@ -161,20 +221,20 @@ function VideoScreen({ session, getCurrentVideo }) {
                           />
                         }
                       </div>
-                      <div className="play-all">
-                        <Checkbox color="default" sx={{ width: '0.9rem', color: '#FDFCFC' }} />
-                        {
-                          // eslint-disable-next-line
-                          <label>UI/UX Courses</label>
-                        }
-                      </div>
-                      <div className="play-all">
-                        <Checkbox color="default" sx={{ width: '0.9rem', color: '#FDFCFC' }} />
-                        {
-                          // eslint-disable-next-line
-                          <label>Watch later</label>
-                        }
-                      </div>
+                      {user?.play_list?.map((playlist) => (
+                        <div className="play-all">
+                          <Checkbox
+                            checked={playlist?.sessions?.find((item) => item === session?._id)}
+                            onClick={() => handleAddToPlaylist(playlist?._id)}
+                            color="default"
+                            sx={{ width: '0.9rem', color: '#FDFCFC' }}
+                          />
+                          {
+                            // eslint-disable-next-line
+                            <label>{playlist?.title}</label>
+                          }
+                        </div>
+                      ))}
                       {openNewPlaylist ? (
                         <div className="new-playlist">
                           {
@@ -186,9 +246,22 @@ function VideoScreen({ session, getCurrentVideo }) {
                       ) : (
                         <div className="create-play">
                           <p className="name-play">New Playlist Name</p>
-                          <input className="inp" placeholder="Enter Playlist Name" type="text" />
+                          <input
+                            value={playlistName}
+                            onChange={(e) => setPlaylistName(e.target.value)}
+                            className="inp"
+                            placeholder="Enter Playlist Name"
+                            type="text"
+                          />
                           <div className="create-div">
-                            <p className="create">Create</p>
+                            <button
+                              disabled={!playlistName}
+                              type="button"
+                              onClick={() => handleCreatePlaylist()}
+                              className="create"
+                            >
+                              Create
+                            </button>
                           </div>
                         </div>
                       )}
@@ -196,7 +269,7 @@ function VideoScreen({ session, getCurrentVideo }) {
                   )}
                 </div>
               </div>
-              <div className="options-box">
+              <div ref={menuRef} className="options-box">
                 <div className="options-div">
                   {
                     // eslint-disable-next-line
@@ -209,11 +282,15 @@ function VideoScreen({ session, getCurrentVideo }) {
                   }
                   {openOption && (
                     <div className="dropdown">
-                      <div className="fav-div">
+                      <div role="presentation" onClick={() => handleFavorite()} className="fav-div">
                         Add to Favourite
                         <img src={Favourite} alt="Favourite" />
                       </div>
-                      <div className="fav-div">
+                      <div
+                        role="presentation"
+                        onClick={() => handleWatchLater()}
+                        className="fav-div"
+                      >
                         Watch Later
                         <img src={Watch} alt="Favourite" />
                       </div>
