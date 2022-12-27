@@ -12,6 +12,7 @@ import ThumbsUp from '../../assets/ThumbsUp.svg';
 import Like from '../../assets/like.png';
 import ThumbsDown from '../../assets/ThumbsDown.svg';
 import Favourite from '../../assets/Favourite.svg';
+import Favorite from '../../assets/favorite.png';
 import Report from '../../assets/Report.svg';
 import Watch from '../../assets/Watch.svg';
 import Save from '../../assets/Save.svg';
@@ -20,6 +21,7 @@ import Cross from '../../assets/Cross.svg';
 import Add from '../../assets/Add.svg';
 import API from '../../api';
 import VideoReact from '../Player/VideoReact';
+import UserInfo from '../../hoc/UserInfo';
 
 // function useOutsideAlerter(ref) {
 //   useEffect(() => {
@@ -40,7 +42,7 @@ import VideoReact from '../Player/VideoReact';
 //   }, [ref]);
 // }
 
-function VideoScreen({ session, getCurrentVideo }) {
+function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo }) {
   // const navigate = useNavigate();
   const [openOption, setOpenOption] = useState(false);
   const [openPlaylist, setOpenPlaylist] = useState(false);
@@ -57,14 +59,14 @@ function VideoScreen({ session, getCurrentVideo }) {
       // setOpenPlaylist(false);
     }
   };
-  const getUserInfo = async () => {
-    await API('get', `/users/${userData?._id}`)
-      .then((res) => {
-        console.log('Respe ', res);
-        setUser(res?.data?.user);
-      })
-      .catch((err) => toast.error(err?.message));
-  };
+  // const getUserInfo = async () => {
+  //   await API('get', `/users/${userData?._id}`)
+  //     .then((res) => {
+  //       console.log('Respe ', res);
+  //       setUser(res?.data?.user);
+  //     })
+  //     .catch((err) => toast.error(err?.message));
+  // };
 
   useEffect(() => {
     getUserInfo();
@@ -79,8 +81,7 @@ function VideoScreen({ session, getCurrentVideo }) {
   }, [menuRef]);
 
   console.log('SEssion ', session);
-  const userInfo = localStorage.getItem('userData');
-  const userData = JSON.parse(userInfo);
+  const userData = JSON.parse(localStorage.getItem('userData'));
   console.log('IUSER ', setUser);
   const isLiked = session?.likes?.find((item) => item === userData?._id);
   const isDisliked = session?.dislikes?.find((item) => item === userData?._id);
@@ -133,13 +134,23 @@ function VideoScreen({ session, getCurrentVideo }) {
 
   const handleFavorite = async () => {
     await API('patch', `/sessions/favourites/${session?._id}`, { userId: userData?._id })
-      .then(() => {
+      .then((res) => {
+        console.log('REsspp ', res);
+        toast.success(res?.data?.data?.message);
         getUserInfo();
       })
       .catch((err) => toast.error(err?.message));
   };
 
-  const handleWatchLater = async () => {};
+  const handleWatchLater = async () => {
+    await API('patch', `/sessions/watchlater/${session?._id}`, { userId: userData?._id })
+      .then((res) => {
+        console.log('REsspp ', res);
+        toast.success(res?.data?.data?.message);
+        getUserInfo();
+      })
+      .catch((err) => toast.error(err?.message));
+  };
   // const handleViewSession = async () => {
   //   console.log('VIEW SEssion ');
   //   await API('patch', `/sessions/${session._id}?view=true`, { userId: user?._id })
@@ -148,6 +159,8 @@ function VideoScreen({ session, getCurrentVideo }) {
   //     })
   //     .catch(() => {});
   // };
+
+  console.log('favvv ===> ', user);
   return (
     <div className="videoScreen_container">
       <div className="video_player">
@@ -221,7 +234,7 @@ function VideoScreen({ session, getCurrentVideo }) {
                           />
                         }
                       </div>
-                      {user?.play_list?.map((playlist) => (
+                      {userInfo?.play_list?.map((playlist) => (
                         <div className="play-all">
                           <Checkbox
                             checked={playlist?.sessions?.find((item) => item === session?._id)}
@@ -283,8 +296,17 @@ function VideoScreen({ session, getCurrentVideo }) {
                   {openOption && (
                     <div className="dropdown">
                       <div role="presentation" onClick={() => handleFavorite()} className="fav-div">
-                        Add to Favourite
-                        <img src={Favourite} alt="Favourite" />
+                        {userInfo?.favorites?.find((item) => item?._id === session?._id)
+                          ? 'Remove from favourite'
+                          : 'Add to Favourite'}
+                        <img
+                          src={
+                            userInfo?.favorites?.find((item) => item?._id === session?._id)
+                              ? Favourite
+                              : Favorite
+                          }
+                          alt="Favourite"
+                        />
                       </div>
                       <div
                         role="presentation"
@@ -340,4 +362,5 @@ function VideoScreen({ session, getCurrentVideo }) {
   );
 }
 
+const VideoScreen = UserInfo(VideoScreenWrapped);
 export default VideoScreen;
