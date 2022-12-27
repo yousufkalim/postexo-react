@@ -156,6 +156,7 @@
 .options-div {
   display: flex;
   padding: 0 5px;
+  position: relative;
 }
 .social-playlist {
   display: flex;
@@ -227,6 +228,8 @@
   background: #3f3e3b;
   border-radius: 15px;
   padding: 10px 0px;
+  left: 30px;
+  min-width: 220px;
 }
 .dropdown-playlist {
   position: absolute;
@@ -305,6 +308,7 @@
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
+  cursor: pointer;
 }
 .create-div {
   display: flex;
@@ -316,11 +320,13 @@
 .add {
   cursor: pointer;
 }
-.create {
+.create-div .create {
   color: #6ec2b1;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   margin-top: 20px;
+  background: transparent;
+  border: none;
 }

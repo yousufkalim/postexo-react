@@ -3,11 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import API from '../../api';
+import UserInfo from '../../hoc/UserInfo';
 
 const durations = ['Very short', 'Short', 'Long'];
 const languages = ['English', 'Urdu', 'French'];
 
-function CategoriesLeft() {
+function CategoriesLeftWrapped({ userInfo }) {
   const [allLevels, setAllLevels] = useState([]);
   // const [filters, setFilters] = useState({ levels: [], duration: [], language: [] });
 
@@ -33,11 +34,15 @@ function CategoriesLeft() {
         <div className="border_line" />
         <div className="Categories_favourit_fields">
           <p className="MyFav_list">My favourites</p>
-          <p className="favourites_counts">1</p>
+          {userInfo?.favorites?.length && (
+            <p className="favourites_counts">{userInfo?.favorites?.length}</p>
+          )}
         </div>
         <div className="Categories_favourit_fields">
           <p className="MyFav_list">See later</p>
-          <p className="favourites_counts">1</p>
+          {userInfo?.watch_later?.length && (
+            <p className="favourites_counts">{userInfo?.watch_later?.length}</p>
+          )}
         </div>
         <p className="create_playlist">Create my playlist</p>
         <div className="filter_div">
@@ -82,4 +87,5 @@ function CategoriesLeft() {
   );
 }
 
+const CategoriesLeft = UserInfo(CategoriesLeftWrapped);
 export default CategoriesLeft;
