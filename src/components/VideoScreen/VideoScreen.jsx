@@ -2,7 +2,6 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-console */
 import React, { useState, useRef, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
 import ShowMoreText from 'react-show-more-text';
 import moment from 'moment';
 import { toast } from 'react-toastify';
@@ -20,30 +19,10 @@ import Options from '../../assets/Options.svg';
 import Cross from '../../assets/Cross.svg';
 import Add from '../../assets/Add.svg';
 import API from '../../api';
-import VideoReact from '../Player/VideoReact';
 import UserInfo from '../../hoc/UserInfo';
-
-// function useOutsideAlerter(ref) {
-//   useEffect(() => {
-//     /**
-//      * Alert if clicked on outside of element
-//      */
-//     function handleClickOutside(event) {
-//       if (ref.current && !ref.current.contains(event.target)) {
-//         alert('You clicked outside of me!');
-//       }
-//     }
-//     // Bind the event listener
-//     document.addEventListener('mousedown', handleClickOutside);
-//     return () => {
-//       // Unbind the event listener on clean up
-//       document.removeEventListener('mousedown', handleClickOutside);
-//     };
-//   }, [ref]);
-// }
+import Player from '../Player/Player';
 
 function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo }) {
-  // const navigate = useNavigate();
   const [openOption, setOpenOption] = useState(false);
   const [openPlaylist, setOpenPlaylist] = useState(false);
   const [openNewPlaylist, setOpenNewPlaylist] = useState(true);
@@ -59,14 +38,6 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
       // setOpenPlaylist(false);
     }
   };
-  // const getUserInfo = async () => {
-  //   await API('get', `/users/${userData?._id}`)
-  //     .then((res) => {
-  //       console.log('Respe ', res);
-  //       setUser(res?.data?.user);
-  //     })
-  //     .catch((err) => toast.error(err?.message));
-  // };
 
   useEffect(() => {
     getUserInfo();
@@ -151,22 +122,20 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
       })
       .catch((err) => toast.error(err?.message));
   };
-  // const handleViewSession = async () => {
-  //   console.log('VIEW SEssion ');
-  //   await API('patch', `/sessions/${session._id}?view=true`, { userId: user?._id })
-  //     .then(() => {
-  //       getCurrentVideo();
-  //     })
-  //     .catch(() => {});
-  // };
+  const handleViewSession = async () => {
+    console.log('VIEW SEssion ');
+    await API('patch', `/sessions/${session._id}?view=true`, { userId: user?._id })
+      .then(() => {
+        getCurrentVideo();
+      })
+      .catch(() => {});
+  };
 
   console.log('favvv ===> ', user);
   return (
     <div className="videoScreen_container">
       <div className="video_player">
-        {/* <Player session={session} action={handleViewSession} /> */}
-        {/* <PlayerNew /> */}
-        <VideoReact />
+        <Player session={session} action={handleViewSession} />
       </div>
       <div>
         <div className="video_title">
