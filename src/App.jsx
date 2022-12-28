@@ -14,7 +14,13 @@ function App() {
   return (
     <div className="App">
       {/* toastify Container for Notification */}
-      <ToastContainer position="bottom-right" autoClose={3000} hideProgressBar transition={Flip} />
+      <ToastContainer
+        position="bottom-right"
+        limit="4"
+        autoClose={2000}
+        hideProgressBar
+        transition={Flip}
+      />
 
       {/* Routes */}
       <Index />

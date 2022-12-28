@@ -46,7 +46,7 @@ function LoginUser() {
             localStorage.setItem('userData', JSON.stringify(res?.data?.user));
             localStorage.setItem('token', res?.data?.token);
             navigate('/home');
-          }, 2000);
+          }, 1000);
         }
       });
     } catch (err) {

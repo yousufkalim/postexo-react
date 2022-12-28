@@ -21,6 +21,11 @@ function CoursesComponent({ sessions }) {
       setOpen(true);
     }
   };
+
+  const handleNavigate = (matter) => {
+    console.log('Handle clicked');
+    navigate(`/sessions/${matter}`);
+  };
   const handleClose = () => setOpen(false);
   return (
     <>
@@ -36,14 +41,19 @@ function CoursesComponent({ sessions }) {
           key={item._id}
           className={window.location.pathname === '/home' ? 'image-container2' : 'image-container'}
         >
-          {window.location.pathname === '/' ? null : <p className="cours_time">{item?.duration}</p>}
           <img className="course-card-image" src={item?.resolution_file} alt="thumbnail" />
           <div className="card-img-parent-container">
+            <span className="position-pill">
+              <p onClick={() => handleNavigate(item?.matter)} role="presentation">
+                {item?.matter}
+              </p>
+            </span>
             <div className="d-flex space-between">
+              {window.location.pathname === '/' ? null : (
+                <p className="cours_time">{item?.duration}</p>
+              )}
+
               <span className="time-pill" />
-              <span className="position-pill">
-                <p>{item?.matter}</p>
-              </span>
             </div>
             <div className="video-icon-container">
               {/* eslint-disable-next-line */}
@@ -67,7 +77,7 @@ function CoursesComponent({ sessions }) {
             </div>
             <div className="Avatarcontent">
               <div className="card-image-content-hover">
-                <small>{item?.subject}</small>
+                <small>{item?.subject} test</small>
               </div>
               {item?.ratings?.length > 0 && (
                 <div className="avatarRatings">

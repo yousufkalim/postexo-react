@@ -6,11 +6,14 @@ import { Routes, Route } from 'react-router-dom';
 import Home from '../containers/Home';
 import Register from '../containers/Register';
 import Login from '../containers/Login';
-import HomeGrid from '../containers/HomeGrid';
 import VideoScreen from '../containers/VideoScreen';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 import PageNotFound from '../containers/PageNotFound';
+import ProfessorVideos from '../containers/ProfessorVideos';
+import Layout from '../hoc/Layout';
+import CategoriesRight from '../components/HomeGrid/CategoriesRight';
+import SessionsByMatter from '../containers/SessionsByMatter';
 
 function Index() {
   const isLogin = localStorage.getItem('token');
@@ -46,7 +49,29 @@ function Index() {
           path="/home"
           element={
             <PrivateRoute>
-              <HomeGrid />
+              <Layout>
+                <CategoriesRight />
+              </Layout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/professor_sessions/:name"
+          element={
+            <PrivateRoute>
+              <Layout>
+                <ProfessorVideos />
+              </Layout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/sessions/:matterName"
+          element={
+            <PrivateRoute>
+              <Layout>
+                <SessionsByMatter />
+              </Layout>
             </PrivateRoute>
           }
         />
