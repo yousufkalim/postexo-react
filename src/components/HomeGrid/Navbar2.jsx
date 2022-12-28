@@ -6,9 +6,16 @@ import Avatar from '@mui/material/Avatar';
 import MenuIcon from '@mui/icons-material/Menu';
 import LOGOSVG from '../../assets/LOGO.svg';
 import SearchIcon from '../../assets/SearchIcon.svg';
+import ChangePassword from '../Screen/ChangePassword';
 
 function Navbar2({ openNavMenu }) {
   const [showOptions, setShowOptions] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
   const navigate = useNavigate();
   const SearchEvent = () => {
     navigate('/home');
@@ -27,6 +34,7 @@ function Navbar2({ openNavMenu }) {
   const user = JSON.parse(localStorage.getItem('userData'));
   return (
     <>
+      <ChangePassword open={open} setOpen={setOpen} />
       <MenuIcon className="hambgr" onClick={openNavMenu} />
       <nav className="navBar_2" style={{ backgrounColor: 'red' }}>
         <div>
@@ -49,8 +57,13 @@ function Navbar2({ openNavMenu }) {
             <Avatar onClick={() => handleOpen()} src="" className="profile_DP" />
             {showOptions && (
               <div className="profile_options">
-                <div role="presentation" onClick={() => handleLogout()}>
-                  Logout
+                <div className="logout_div">
+                  <li role="presentation" className="presentation" onClick={() => handleClick()}>
+                    Change Password
+                  </li>
+                  <li role="presentation" className="presentation" onClick={() => handleLogout()}>
+                    Logout
+                  </li>
                 </div>
               </div>
             )}

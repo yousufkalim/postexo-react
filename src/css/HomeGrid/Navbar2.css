@@ -56,18 +56,33 @@
 }
 .profile_options {
   position: absolute;
-  bottom: -50px;
-  left: 0;
+  bottom: 0px;
+  left: -50px;
   right: 0;
-  background: #fff;
-  padding: 10px;
-  border-radius: 7px;
-  font-size: 0.8rem;
-  cursor: pointer;
+  top: 45px;
+  list-style: none;
+  width: 200px;
+  z-index: 10;
 }
-.profile_options:hover {
+.presentation {
+  white-space: pre;
+  padding: 10px 10px;
+  display: block;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+.presentation:hover {
   background-color: #6ec2b1;
-  color: #fdfcfc;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.logout_div {
+  background-color: #fff;
+  border-radius: 10px;
 }
 .Profile_name {
   font-family: 'Poppins';
