@@ -10,6 +10,11 @@ import Pic4 from '../../assets/Pic1.svg';
 function MoreVideos({ setCurrentVideo, sessions }) {
   const navigate = useNavigate();
 
+  const handleNavigate = (matter, e) => {
+    e.stopPropagation();
+    navigate(`/sessions/${matter}`);
+  };
+
   const handleSelectVideo = (item) => {
     navigate(`/video/${item?._id}`);
     setCurrentVideo(item);
@@ -30,7 +35,9 @@ function MoreVideos({ setCurrentVideo, sessions }) {
             <div className="d-flex space-between">
               <span className="time-pill" />
               <span className="position-pill">
-                <p>{item?.matter}</p>
+                <p role="presentation" onClick={(e) => handleNavigate(item?.matter, e)}>
+                  {item?.matter}
+                </p>
               </span>
             </div>
             <div className="video-icon-container">

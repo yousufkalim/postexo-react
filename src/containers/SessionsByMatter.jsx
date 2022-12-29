@@ -9,17 +9,28 @@ import CoursesComponent from '../components/Courses/CoursesComponent';
 import CoursesComponent2 from '../components/Courses/CoursesComponentFullWidth';
 import API from '../api';
 
-function SessionsByMatter() {
+function SessionsByMatter({ filters, setFilters }) {
   const [showCours, setShowCoours] = useState(true);
   const [showCours2, setShowCoours2] = useState(true);
   const [sessions, setSessions] = useState([]);
 
   const { matterName } = useParams();
 
+  useEffect(() => {
+    setFilters({ levels: [], durations: [], languages: [] });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const getSessions = async () => {
     try {
-      await API('get', `/sessions/getByMatter?matterName=${matterName}`).then((res) => {
-        console.log('Matter videos ', res);
+      const allLevels = [...filters.levels];
+      const allDurations = [...filters.durations];
+      const levels = filters?.levels?.length ? allLevels.toString() : filters?.levels;
+      const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
+      await API(
+        'get',
+        `/sessions/getByMatter?matterName=${matterName}&levels=${levels}&durations=${durations}`,
+      ).then((res) => {
         setSessions(res?.data?.sessions);
       });
     } catch (err) {
@@ -27,12 +38,10 @@ function SessionsByMatter() {
     }
   };
 
-  console.log('All sessions ', sessions);
-
   useEffect(() => {
     getSessions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [filters]);
 
   const CourseEvent = () => {
     setShowCoours(true);

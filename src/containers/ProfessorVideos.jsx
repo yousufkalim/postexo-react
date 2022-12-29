@@ -9,7 +9,7 @@ import CoursesComponent from '../components/Courses/CoursesComponent';
 import CoursesComponent2 from '../components/Courses/CoursesComponentFullWidth';
 import API from '../api';
 
-function ProfessorVideos() {
+function ProfessorVideos({ filters }) {
   const [showCours, setShowCoours] = useState(true);
   const [showCours2, setShowCoours2] = useState(true);
   const [sessions, setSessions] = useState([]);
@@ -18,8 +18,14 @@ function ProfessorVideos() {
 
   const getSessions = async () => {
     try {
-      await API('get', `/sessions/getByProfessor?matterName=${name}`).then((res) => {
-        console.log('Professor videos ', res);
+      const allLevels = [...filters.levels];
+      const allDurations = [...filters.durations];
+      const levels = filters?.levels?.length ? allLevels.toString() : filters?.levels;
+      const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
+      await API(
+        'get',
+        `/sessions/getByProfessor?professorName=${name}&levels=${levels}&durations=${durations}`,
+      ).then((res) => {
         setSessions(res?.data?.sessions);
       });
     } catch (err) {
@@ -27,12 +33,10 @@ function ProfessorVideos() {
     }
   };
 
-  console.log('All sessions ', sessions);
-
   useEffect(() => {
     getSessions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [filters]);
 
   const CourseEvent = () => {
     setShowCoours(true);
