@@ -20,7 +20,8 @@ import Cross from '../../assets/Cross.svg';
 import Add from '../../assets/Add.svg';
 import API from '../../api';
 import UserInfo from '../../hoc/UserInfo';
-import Player from '../Player/Player';
+import Audio from '../AudioPlayer/Audio';
+// import Player from '../Player/Player';
 
 function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo }) {
   const [openOption, setOpenOption] = useState(false);
@@ -122,20 +123,21 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
       })
       .catch((err) => toast.error(err?.message));
   };
-  const handleViewSession = async () => {
-    console.log('VIEW SEssion ');
-    await API('patch', `/sessions/${session._id}?view=true`, { userId: user?._id })
-      .then(() => {
-        getCurrentVideo();
-      })
-      .catch(() => {});
-  };
+  // const handleViewSession = async () => {
+  //   console.log('VIEW SEssion ');
+  //   await API('patch', `/sessions/${session._id}?view=true`, { userId: user?._id })
+  //     .then(() => {
+  //       getCurrentVideo();
+  //     })
+  //     .catch(() => {});
+  // };
 
   console.log('favvv ===> ', user);
   return (
     <div className="videoScreen_container">
       <div className="video_player">
-        <Player session={session} action={handleViewSession} />
+        {/* <Player session={session} action={handleViewSession} /> */}
+        <Audio />
       </div>
       <div>
         <div className="video_title">
