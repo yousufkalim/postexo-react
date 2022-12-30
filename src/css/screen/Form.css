@@ -64,6 +64,11 @@
 .input_feild {
   margin: 5% 0;
 }
+.input_feild2 {
+  width: 100%;
+  margin: auto;
+  text-align: left;
+}
 .input_label {
   display: block !important;
   font-family: 'Poppins';
@@ -186,24 +191,41 @@ input:-webkit-autofill:focus {
   color: #fdfcfc;
 }
 .forgotPopup {
-  width: 500px;
+  width: 44vw;
   background-color: #33312e;
-  padding: 30px;
+  padding: 100px;
   border-radius: 15px;
+  text-align: center;
+  position: relative;
+}
+.forgetBg {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.croseIcon {
+  position: absolute;
+  right: 5%;
+  top: 8%;
+  cursor: pointer;
 }
 .forgot_title {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
-  line-height: 21px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #6ec2b1;
-  display: block;
-  padding-bottom: 15px;
+  font-size: 36px;
+  line-height: 54px;
+  color: #fdfcfc;
   cursor: pointer;
+}
+.forgot_p {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: #919b9b;
+  margin-bottom: 9%;
 }
 .forgotBtn {
   display: flex;
@@ -290,6 +312,10 @@ input:-webkit-autofill:focus {
     font-size: 16px;
     line-height: 20px;
   }
+  .forgotPopup {
+    width: 77vw !important;
+    padding: 79px;
+  }
 }
 @media screen and (max-width: 800px) {
   .formRightImg {
@@ -349,5 +375,8 @@ input:-webkit-autofill:focus {
   .forgotBtn {
     height: 40px;
     margin: 8% 0 0 0;
+  }
+  .forgetBg {
+    width: 20%;
   }
 }
