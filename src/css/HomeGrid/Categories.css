@@ -92,6 +92,7 @@
   font-size: 14px;
   line-height: 21px;
   color: #6ec2b1;
+  cursor: pointer;
   border: none;
 }
 .classes_p,
@@ -206,7 +207,8 @@
 .topCoursesAll {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 1%;
 }
 .hambgr {
   display: none !important;

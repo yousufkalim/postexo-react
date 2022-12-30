@@ -31,6 +31,10 @@
 .card-img-parent-container:hover .position-pill {
   background: #fdfcfc;
 }
+.card-img-parent-container:hover .cours_time {
+  background: #fdfcfc;
+  color: #000;
+}
 .card-img-parent-container:hover .position-pill > p {
   background: linear-gradient(
     126.81deg,
@@ -201,11 +205,15 @@
 .position-pill {
   background: var(--need-a-teacher-section-bg);
   padding: 5px 15px;
+  display: inline-block;
   border-radius: 1000px;
   font-weight: 600;
-  display: flex;
   align-items: center;
-
+  width: fit-content;
+  position: absolute;
+  z-index: 999;
+  top: 10px;
+  right: 10px;
   font-family: 'Poppins';
   font-style: normal;
   font-size: 14px;

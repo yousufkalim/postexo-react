@@ -3,6 +3,7 @@
 /* eslint-disable no-console */
 import React, { useState, useRef, useEffect } from 'react';
 import ShowMoreText from 'react-show-more-text';
+import { NavLink } from 'react-router-dom';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 import Avatar from '@mui/material/Avatar';
@@ -30,13 +31,19 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
   const [playlistName, setPlaylistName] = useState('');
   const [user, setUser] = useState({});
 
-  const menuRef = useRef(null);
+  const menuRef = useRef();
+  const favRef = useRef();
 
-  const handleClickOutside = (e) => {
-    console.log('handleClick ', e);
-    if (menuRef.current) {
-      // setOpenOption(false);
-      // setOpenPlaylist(false);
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setOpenPlaylist(false);
+    }
+  };
+
+  const handleClickOutsideFav = (event) => {
+    console.log('handleClick ', favRef);
+    if (favRef.current && !favRef.current.contains(event.target)) {
+      setOpenOption(false);
     }
   };
 
@@ -45,12 +52,14 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
   }, []);
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('click', handleClickOutside, true);
+    document.addEventListener('click', handleClickOutsideFav, true);
     return () => {
       // Unbind the event listener on clean up
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('click', handleClickOutside, true);
+      document.removeEventListener('click', handleClickOutsideFav, true);
     };
-  }, [menuRef]);
+  }, [menuRef, favRef]);
 
   console.log('SEssion ', session);
   const userData = JSON.parse(localStorage.getItem('userData'));
@@ -132,7 +141,6 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
   //     .catch(() => {});
   // };
 
-  console.log('favvv ===> ', user);
   return (
     <div className="videoScreen_container">
       <div className="video_player">
@@ -148,13 +156,13 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
           <h1 className="title">{session?.subject}</h1>
         </div>
         <div className="social">
-          <div className="nav_profile">
+          <NavLink to={`/professor_sessions/${session?.professor_name}`} className="nav_profile">
             <Avatar src="" className="profile_DP" />
             <div className="profile_details">
               <p className="Profile_names">{session?.professor_name}</p>
               <p className="Profile_mail">Senior Software Engineer</p>
             </div>
-          </div>
+          </NavLink>
           <div className="social-playlist">
             <div className="like-dislike-div">
               <div
@@ -176,8 +184,8 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
                 <div className="likes_views">{session?.dislikes?.length}</div>
               </div>
             </div>
-            <div className="playlist-opt">
-              <div ref={menuRef} className="playlist-div">
+            <div ref={menuRef} className="playlist-opt">
+              <div className="playlist-div">
                 <p className="playlist_p">Add To Playlist</p>
                 <div>
                   <div>
@@ -253,7 +261,7 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
                   )}
                 </div>
               </div>
-              <div ref={menuRef} className="options-box">
+              <div ref={favRef} className="options-box">
                 <div className="options-div">
                   {
                     // eslint-disable-next-line

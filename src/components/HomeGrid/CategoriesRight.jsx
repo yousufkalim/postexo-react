@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import Salespro from './Salespro';
 import GridIcon from '../../assets/GridIcon.svg';
 import ViewIcon from '../../assets/ViewIcon.svg';
@@ -8,26 +9,29 @@ import CoursesComponent from '../Courses/CoursesComponent';
 import CoursesComponent2 from '../Courses/CoursesComponentFullWidth';
 import API from '../../api';
 
-function CategoriesRight() {
+function CategoriesRight({ filters }) {
   const [showCours, setShowCoours] = useState(true);
   const [showCours2, setShowCoours2] = useState(true);
   const [sessions, setSessions] = useState([]);
 
   const getSessions = async () => {
     try {
-      await API('get', '/sessions').then((res) => {
+      const allLevels = [...filters.levels];
+      const allDurations = [...filters.durations];
+      const levels = filters?.levels?.length ? allLevels.toString() : filters?.levels;
+      const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
+      await API('get', `/sessions?levels=${levels}&durations=${durations}`).then((res) => {
         setSessions(res?.data?.sessions);
       });
     } catch (err) {
-      console.log(err);
+      toast.error(err?.message);
     }
   };
 
-  console.log('All sessions ', sessions);
-
   useEffect(() => {
     getSessions();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters]);
 
   const CourseEvent = () => {
     setShowCoours(true);
