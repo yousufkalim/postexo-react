@@ -10,12 +10,19 @@ function Audio() {
 
   const chapter = [
     {
-      start: 0,
+      name: 'chapter 1',
+      start: 1,
       end: 4,
     },
     {
+      name: 'chapter 2',
       start: 6,
-      end: 10,
+      end: 9,
+    },
+    {
+      name: 'chapter 3',
+      start: 11,
+      end: 12,
     },
   ];
   // const duration = audio.current?.audio?.current?.duration;
@@ -25,11 +32,14 @@ function Audio() {
       console.log('Ref duration===> ', audioRef.current?.audio?.current?.duration);
       const audioDuration = audioRef?.current?.audio?.current?.duration;
       setDuration(audioDuration);
+      audioRef.current.progressBar.current.addEventListener('mouseover', (e) =>
+        console.log(e, 'event'),
+      );
     }
   }, [audioRef?.current?.audio?.current?.duration]);
 
   console.log('Update Duration ', duration);
-  console.log('Update Ref ', audioRef);
+  console.log('Update Ref ', audioRef.current);
 
   return (
     <div>
@@ -53,14 +63,23 @@ function Audio() {
           RHAP_UI.PROGRESS_BAR,
           <div className="chapter-div">
             {chapter.map((chap, i) => {
-              console.log('Start ', typeof chap?.start);
-              console.log('Start  type', chap?.start);
+              console.log('Start type ', typeof chap?.start);
+              console.log('Start ', chap?.start);
               console.log('Duration ', duration);
               console.log('Duration typeof ', typeof duration);
               const leftStyle = (chap.end / duration) * 100;
               const widthStyle = ((chap.end - chap.start) / duration) * 100;
               console.table({ i, leftStyle, widthStyle, duration });
-              return <span className="chapter" style={{ left: `${leftStyle}%` }} />;
+              return (
+                // eslint-disable-next-line react/no-array-index-key
+                <span key={i} className="chapter" style={{ left: `${leftStyle}%` }}>
+                  <div className="tooltip">
+                    <span style={{ left: `${leftStyle}%` }} className="tooltiptext">
+                      {chap.name}
+                    </span>
+                  </div>
+                </span>
+              );
             })}
           </div>,
           RHAP_UI.CURRENT_TIME,
