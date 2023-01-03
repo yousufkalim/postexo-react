@@ -14,6 +14,7 @@ function Navbar2({ openNavMenu }) {
 
   const handleClick = () => {
     setOpen(true);
+    setShowOptions(false);
   };
 
   const navigate = useNavigate();

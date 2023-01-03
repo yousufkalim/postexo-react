@@ -192,6 +192,7 @@
   line-height: 21px;
   color: #fdfcfc;
   border: none;
+  outline: none;
 }
 .selectr_option {
   background: #1e1e1e !important;

@@ -77,16 +77,17 @@ function ChangePassword({ open, setOpen }) {
           <p className="forgot_title">Change Password</p>
           <p className="forgot_p">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
           <div className="input_feild" style={{ textAlign: 'left' }}>
-            <label htmlFor="c" className="input_label">
+            <label htmlFor="a" className="input_label">
               Old Password
               <input
-                id="c"
+                id="a"
                 type={passwordShown ? 'text' : 'password'}
                 className="form_input"
                 placeholder="Enter your password"
                 value={changePassword.oldPassword}
                 name="oldPassword"
                 onChange={handleChange}
+                autoComplete="new-password"
               />
               {/* eslint-disable-next-line  */}
               <img
@@ -98,10 +99,10 @@ function ChangePassword({ open, setOpen }) {
             </label>
           </div>
           <div className="input_feild" style={{ textAlign: 'left' }}>
-            <label htmlFor="c" className="input_label">
+            <label htmlFor="b" className="input_label">
               New Password
               <input
-                id="c"
+                id="b"
                 type={passwordShown2 ? 'text' : 'password'}
                 className="form_input"
                 placeholder="Enter your password"

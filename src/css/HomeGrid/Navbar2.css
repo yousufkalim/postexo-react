@@ -36,12 +36,13 @@
   border-radius: 100000px;
   border: none;
   color: #fdfcfc;
+  outline: none;
 }
 .nav_search_bar::placeholder {
   color: #fdfcfc;
 }
 .nav_search_bar:focus {
-  outline: 2px solid #6ec2b1;
+  border: 2px solid #6ec2b1;
 }
 .nav_profile {
   display: flex;
