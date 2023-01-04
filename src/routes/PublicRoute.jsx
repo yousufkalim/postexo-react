@@ -5,7 +5,7 @@ function PublicRoute({ children }) {
   const isLogin = localStorage.getItem('token');
 
   if (isLogin) {
-    return <Navigate to="/home" replace />;
+    return <Navigate to="/sessions" replace />;
   }
   return children;
 }

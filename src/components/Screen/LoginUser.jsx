@@ -45,7 +45,7 @@ function LoginUser() {
           setTimeout(() => {
             localStorage.setItem('userData', JSON.stringify(res?.data?.user));
             localStorage.setItem('token', res?.data?.token);
-            navigate('/home');
+            navigate('/sessions');
           }, 1000);
         }
       });

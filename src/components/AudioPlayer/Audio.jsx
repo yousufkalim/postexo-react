@@ -4,7 +4,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import sample from '../../assets/sample.mp3';
 import { Icon, Icon2, Icon3, Icon4, Icon5, Icon6 } from '../Icons';
 
-function Audio() {
+function Audio({ viewSession }) {
   const audioRef = useRef();
   const [duration, setDuration] = useState(null);
 
@@ -29,7 +29,6 @@ function Audio() {
 
   useEffect(() => {
     if (audioRef.current?.audio?.current?.duration) {
-      console.log('Ref duration===> ', audioRef.current?.audio?.current?.duration);
       const audioDuration = audioRef?.current?.audio?.current?.duration;
       setDuration(audioDuration);
       audioRef.current.progressBar.current.addEventListener('mouseover', (e) =>
@@ -38,14 +37,12 @@ function Audio() {
     }
   }, [audioRef?.current?.audio?.current?.duration]);
 
-  console.log('Update Duration ', duration);
-  console.log('Update Ref ', audioRef.current);
-
   return (
     <div>
       <AudioPlayer
         ref={audioRef}
         src={sample}
+        onPlay={() => viewSession()}
         layout="horizontal-reverse"
         progressJumpSteps={{
           forward: 5000,
@@ -63,10 +60,6 @@ function Audio() {
           RHAP_UI.PROGRESS_BAR,
           <div className="chapter-div">
             {chapter.map((chap, i) => {
-              console.log('Start type ', typeof chap?.start);
-              console.log('Start ', chap?.start);
-              console.log('Duration ', duration);
-              console.log('Duration typeof ', typeof duration);
               const leftStyle = (chap.end / duration) * 100;
               const widthStyle = ((chap.end - chap.start) / duration) * 100;
               console.table({ i, leftStyle, widthStyle, duration });

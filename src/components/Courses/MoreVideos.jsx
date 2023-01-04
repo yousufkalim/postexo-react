@@ -12,11 +12,11 @@ function MoreVideos({ setCurrentVideo, sessions }) {
 
   const handleNavigate = (matter, e) => {
     e.stopPropagation();
-    navigate(`/sessions/${matter}`);
+    navigate(`/sessions/matter-sessions/${matter}`);
   };
 
   const handleSelectVideo = (item) => {
-    navigate(`/video/${item?._id}`);
+    navigate(`/sessions/${item?._id}`);
     setCurrentVideo(item);
   };
 

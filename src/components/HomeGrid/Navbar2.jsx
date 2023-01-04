@@ -19,7 +19,7 @@ function Navbar2({ openNavMenu }) {
 
   const navigate = useNavigate();
   const SearchEvent = () => {
-    navigate('/home');
+    navigate('/sessions');
   };
 
   const handleOpen = () => {
@@ -39,7 +39,7 @@ function Navbar2({ openNavMenu }) {
       <MenuIcon className="hambgr" onClick={openNavMenu} />
       <nav className="navBar_2" style={{ backgrounColor: 'red' }}>
         <div>
-          <Link to="/home">
+          <Link to="/sessions">
             <img className="navbar-logo-svg2" src={LOGOSVG} alt="postexologo" />
           </Link>
         </div>

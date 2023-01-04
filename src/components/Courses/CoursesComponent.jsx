@@ -16,7 +16,7 @@ function CoursesComponent({ sessions }) {
 
   const handleOpen = (item) => {
     if (isLogin) {
-      navigate(`/video/${item?._id}`);
+      navigate(`/sessions/${item?._id}`);
     } else {
       setOpen(true);
     }
@@ -24,7 +24,7 @@ function CoursesComponent({ sessions }) {
 
   const handleNavigate = (matter) => {
     console.log('Handle clicked');
-    navigate(`/sessions/${matter}`);
+    navigate(`/sessions/matter-sessions/${matter}`);
   };
   const handleClose = () => setOpen(false);
   return (
@@ -39,7 +39,9 @@ function CoursesComponent({ sessions }) {
       {sessions?.map((item) => (
         <div
           key={item._id}
-          className={window.location.pathname === '/home' ? 'image-container2' : 'image-container'}
+          className={
+            window.location.pathname === '/sessions' ? 'image-container2' : 'image-container'
+          }
         >
           <img className="course-card-image" src={item?.resolution_file} alt="thumbnail" />
           <div className="card-img-parent-container">
@@ -57,7 +59,7 @@ function CoursesComponent({ sessions }) {
             </div>
             <div className="video-icon-container">
               {/* eslint-disable-next-line */}
-              {window.location.pathname === '/home' ? (
+              {window.location.pathname === '/sessions' ? (
                 // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
                 <img
                   onClick={() => handleOpen(item)}
