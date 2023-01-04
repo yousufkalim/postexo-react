@@ -17,7 +17,7 @@ function SessionsByMatter({ filters, setFilters }) {
   const { matterName } = useParams();
 
   useEffect(() => {
-    setFilters({ levels: [], durations: [], languages: [] });
+    setFilters({ levels: [], durations: [] });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

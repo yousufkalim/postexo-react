@@ -228,7 +228,8 @@
   background: #3f3e3b;
   border-radius: 15px;
   padding: 10px 0px;
-  left: 30px;
+  left: 0;
+  top: 36px;
   min-width: 220px;
 }
 .dropdown-playlist {

@@ -6,7 +6,7 @@ import API from '../../api';
 import UserInfo from '../../hoc/UserInfo';
 
 const durations = ['Very short', 'Short', 'Long'];
-const languages = ['English', 'Urdu', 'French'];
+// const languages = ['English', 'Urdu', 'French'];
 
 function CategoriesLeftWrapped({ userInfo, filters, setFilters }) {
   const [allLevels, setAllLevels] = useState([]);
@@ -37,7 +37,7 @@ function CategoriesLeftWrapped({ userInfo, filters, setFilters }) {
   };
 
   const resetFilters = () => {
-    setFilters({ levels: [], durations: [], languages: [] });
+    setFilters({ levels: [], durations: [] });
   };
 
   console.log('ALL filters ', filters);
@@ -46,7 +46,7 @@ function CategoriesLeftWrapped({ userInfo, filters, setFilters }) {
     getLevels();
   }, []);
 
-  const isDisabledBtn = !filters?.level?.length && !filters?.durations?.length;
+  const isDisabledBtn = !filters?.levels?.length && !filters?.durations?.length;
 
   return (
     <div>
@@ -108,8 +108,8 @@ function CategoriesLeftWrapped({ userInfo, filters, setFilters }) {
               </label>
             </div>
           ))}
-          <p className="language_P">Language</p>
-          {languages?.map((lang) => (
+          {/* <p className="language_P">Language</p> */}
+          {/* {languages?.map((lang) => (
             <div className="checked_option">
               <Checkbox
                 checked={filters?.languages?.find((item) => item === lang) ?? false}
@@ -121,7 +121,7 @@ function CategoriesLeftWrapped({ userInfo, filters, setFilters }) {
                 {lang}
               </label>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </div>

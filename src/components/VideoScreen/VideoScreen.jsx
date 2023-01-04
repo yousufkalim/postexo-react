@@ -29,7 +29,6 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
   const [openPlaylist, setOpenPlaylist] = useState(false);
   const [openNewPlaylist, setOpenNewPlaylist] = useState(true);
   const [playlistName, setPlaylistName] = useState('');
-  const [user, setUser] = useState({});
 
   const menuRef = useRef();
   const favRef = useRef();
@@ -41,7 +40,6 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
   };
 
   const handleClickOutsideFav = (event) => {
-    console.log('handleClick ', favRef);
     if (favRef.current && !favRef.current.contains(event.target)) {
       setOpenOption(false);
     }
@@ -61,9 +59,7 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
     };
   }, [menuRef, favRef]);
 
-  console.log('SEssion ', session);
   const userData = JSON.parse(localStorage.getItem('userData'));
-  console.log('IUSER ', setUser);
   const isLiked = session?.likes?.find((item) => item === userData?._id);
   const isDisliked = session?.dislikes?.find((item) => item === userData?._id);
 
@@ -81,7 +77,6 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
   const handleAddToPlaylist = async (id) => {
     await API('patch', `/playlist/${id}`, { sessionId: session?._id })
       .then((res) => {
-        console.log('Playlist added ', res);
         getUserInfo();
         toast.success(res?.data?.message);
       })
@@ -103,7 +98,6 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
   };
 
   const handleCreatePlaylist = async () => {
-    console.log('Create playlist');
     API('post', '/playlist', { title: playlistName, userId: userData?._id })
       .then(() => {
         getUserInfo();
@@ -116,7 +110,6 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
   const handleFavorite = async () => {
     await API('patch', `/sessions/favourites/${session?._id}`, { userId: userData?._id })
       .then((res) => {
-        console.log('REsspp ', res);
         toast.success(res?.data?.data?.message);
         getUserInfo();
       })
@@ -126,26 +119,24 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
   const handleWatchLater = async () => {
     await API('patch', `/sessions/watchlater/${session?._id}`, { userId: userData?._id })
       .then((res) => {
-        console.log('REsspp ', res);
         toast.success(res?.data?.data?.message);
         getUserInfo();
       })
       .catch((err) => toast.error(err?.message));
   };
-  // const handleViewSession = async () => {
-  //   console.log('VIEW SEssion ');
-  //   await API('patch', `/sessions/${session._id}?view=true`, { userId: user?._id })
-  //     .then(() => {
-  //       getCurrentVideo();
-  //     })
-  //     .catch(() => {});
-  // };
+  const handleViewSession = async () => {
+    await API('patch', `/sessions/${session._id}?view=true`, { userId: userData?._id })
+      .then(() => {
+        getCurrentVideo();
+      })
+      .catch(() => {});
+  };
 
   return (
     <div className="videoScreen_container">
       <div className="video_player">
         {/* <Player session={session} action={handleViewSession} /> */}
-        <Audio />
+        <Audio viewSession={handleViewSession} />
       </div>
       <div>
         <div className="video_title">
@@ -156,7 +147,10 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
           <h1 className="title">{session?.subject}</h1>
         </div>
         <div className="social">
-          <NavLink to={`/professor_sessions/${session?.professor_name}`} className="nav_profile">
+          <NavLink
+            to={`/sessions/professor-sessions/${session?.professor_name}`}
+            className="nav_profile"
+          >
             <Avatar src="" className="profile_DP" />
             <div className="profile_details">
               <p className="Profile_names">{session?.professor_name}</p>

@@ -46,7 +46,7 @@ function Index() {
           }
         />
         <Route
-          path="/home"
+          path="/sessions"
           element={
             <PrivateRoute>
               <Layout>
@@ -56,7 +56,7 @@ function Index() {
           }
         />
         <Route
-          path="/professor_sessions/:name"
+          path="/sessions/professor-sessions/:name"
           element={
             <PrivateRoute>
               <Layout>
@@ -66,7 +66,7 @@ function Index() {
           }
         />
         <Route
-          path="/sessions/:matterName"
+          path="/sessions/matter-sessions/:matterName"
           element={
             <PrivateRoute>
               <Layout>
@@ -76,7 +76,7 @@ function Index() {
           }
         />
         <Route
-          path="/home/:id"
+          path="/sessions/:id"
           element={
             <PrivateRoute>
               <VideoScreen />
@@ -84,7 +84,7 @@ function Index() {
           }
         />
         <Route
-          path="/video/:id"
+          path="/sessions/:id"
           element={
             <PrivateRoute>
               <VideoScreen />
