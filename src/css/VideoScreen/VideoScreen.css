@@ -311,6 +311,13 @@
   font-size: 14px;
   cursor: pointer;
 }
+.fav-div:hover {
+  background-color: #f0f9f7;
+  color: #3f3e3b;
+}
+.fav-div:hover .heart-img {
+  filter: invert(20%) sepia(12%) saturate(196%) hue-rotate(7deg) brightness(102%) contrast(88%);
+}
 .create-div {
   display: flex;
   justify-content: flex-end;
@@ -321,7 +328,7 @@
 .add {
   cursor: pointer;
 }
-.create-div .create {
+.create {
   color: #6ec2b1;
   font-family: 'Poppins';
   font-style: normal;
@@ -330,4 +337,9 @@
   margin-top: 20px;
   background: transparent;
   border: none;
+  cursor: pointer;
+}
+.disabled {
+  color: #8c8c8c;
+  cursor: unset;
 }
