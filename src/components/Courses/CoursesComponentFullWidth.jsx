@@ -2,93 +2,83 @@
 import React from 'react';
 import { Avatar } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import COURSECARDSVG from '../../assets/COURSECARDSVG.svg';
-import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
-import COURSECARDSVGTWO from '../../assets/COURSECARDSVGTWO.svg';
+import moment from 'moment';
 import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
 import Pic4 from '../../assets/Pic1.svg';
-import Pic5 from '../../assets/Pic2.svg';
 
-function CoursesComponent2() {
+function CoursesComponent2({ sessions }) {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate('/video');
+  const handleClick = (item) => {
+    navigate(`/sessions/${item.id}`);
   };
-  const cardsArray = [
-    {
-      id: '1',
-      text: 'cardone',
-      img: COURSECARDSVG,
-      alt: 'course-card-image-1',
-    },
-    {
-      id: '2',
-      text: 'cardtwo',
-      img: COURSECARDSVGTWO,
-      alt: 'course-card-image-2',
-    },
-    {
-      id: '3',
-      text: 'cardtwo',
-      img: COURSECARDSVGTWO,
-      alt: 'course-card-image-3',
-    },
-    {
-      id: '4',
-      text: 'cardtwo',
-      img: COURSECARDSVGTWO,
-      alt: 'course-card-image-4',
-    },
-  ];
+
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {cardsArray.map((_) => (
+      {sessions?.map((_) => (
         <div className="image-container_row">
           <p className="cours_time">20:32</p>
           <img className="course-card-image" src={_?.img} alt={_?.alt} />
           <div className="card-img-parent-container2">
             <div className="d-flex space-between">
               <span className="time-pill" />
-              <span className="position-pill">UX Design</span>
+              <span className="position-pill">{_?.matter}</span>
             </div>
             <div className="video-icon-container">
               <img
-                src={PLAYVIDEOICONSVG}
+                src={_?.resolution_file}
                 alt="video-icon"
-                onClick={handleClick}
-                onKeyDown={handleClick}
+                onClick={() => handleClick(_)}
+                onKeyDown={() => handleClick(_)}
               />
             </div>
             <div className="Avatarcontent">
               <div className="card-image-content-hover">
-                <small>How to Create a Useful & Excellent Optimized Section </small>
+                <small>{_?.subject} </small>
               </div>
             </div>
             <div className="card_courses_contant">
               <div className="course-card-image-content">
                 <div className="course_likes">
                   <img className="like-icon" src={LIKEICONSVG} alt="like-icon" />
-                  <small className="card-image-content">3.5k Likes </small>
+                  <small className="card-image-content">
+                    {_?.likes?.length > 0 && _?.likes?.length}
+                  </small>
                   <div className="rating_stars">
                     <img src={Star} alt="star" />
                     <div>
-                      <small>&nbsp;3.9 Rating</small>
+                      <small>&nbsp;{_?.averageRating} Rating</small>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <small className="card-image-content2">
-                    How to Create a Useful & Excellent Optimized Section
-                  </small>
+                  <small className="card-image-content2">{_?.subject}</small>
                 </div>
                 <div>
-                  <small className="card-image-content">7:30 PM Thursday 21, Apr 2022 </small>
+                  <small className="card-image-content">
+                    {moment(_?.createdAt).format('hh:mm A dddd DD, MM YYYY')}{' '}
+                  </small>
                 </div>
               </div>
               <div className="avatarRatings2">
                 <Avatar.Group
+                  maxCount={2}
+                  maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
+                  maxPopoverTrigger="click"
+                >
+                  {_?.ratings?.map(() => (
+                    <Avatar
+                      style={{
+                        border: 'none',
+                      }}
+                      alt="Remy Sharp"
+                      src={Pic4}
+                    />
+                  ))}
+                </Avatar.Group>
+                {/* <Avatar.Group
                   maxCount={3}
                   maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
                   maxPopoverTrigger="click"
@@ -136,7 +126,7 @@ function CoursesComponent2() {
                     alt="Cindy Baker"
                     src={Pic5}
                   />
-                </Avatar.Group>
+                </Avatar.Group> */}
               </div>
             </div>
           </div>
