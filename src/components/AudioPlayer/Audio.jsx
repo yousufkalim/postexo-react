@@ -1,5 +1,3 @@
-/* eslint-disable radix */
-/* eslint-disable no-unsafe-optional-chaining */
 import React, { useRef, useEffect, useState } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
@@ -7,75 +5,62 @@ import Spinner from '../../common/Spinner';
 import data from '../../libs/exo_3565.json';
 import { Icon, Icon2, Icon3, Icon4, Icon5, Icon6 } from '../Icons';
 
+const chapter = [
+  {
+    name: 'chapter 1',
+    start: 1,
+    end: 4,
+  },
+  {
+    name: 'chapter 2',
+    start: 6,
+    end: 9,
+  },
+  {
+    name: 'chapter 3',
+    start: 11,
+    end: 12,
+  },
+];
+
 const addTime = 1 * 60 * 60 * 1000;
 
-const d = new Date(data.exo.created_at_from_twilio);
-const t = d.getTime() + addTime;
+const date = new Date(data.exo.created_at_from_twilio);
+const audioStartTime = date.getTime() + addTime;
 
-let currentStartTime = t + 14418769;
+let currentStartTime = audioStartTime + 14418769;
 
 const FPS = 1_00;
 const CANVAS_HEIGHT = 2800;
 const CANVAS_WIDTH = 5050;
 
-function Audio({ viewSession }) {
+function Audio({ viewSession, session }) {
   const audioRef = useRef();
   const canvasRef = useRef(null);
   const [allPaths, setAllPaths] = useState([]);
   const [allDates, setAllDates] = useState([]);
   const [currTime, setCurrTime] = useState(0);
   const [pauseTime, setPauseTime] = useState(0);
+  const [startTime, setStartTime] = useState(0);
   const [audio, setAudio] = useState(null);
   const [loading, setLoading] = useState(false);
-
   const [int, setInt] = useState();
-
   const [duration, setDuration] = useState(null);
 
-  useEffect(() => {
-    const audioSrc = JSON.parse(data.exo.recording_audio)[0].replace('.mp3', '.wav');
-    setAudio(audioSrc);
-  }, []);
+  let interval;
 
   const getStartTime = () => {
     const additionalTime = 1 * 60 * 60 * 1000;
-    const startTime = new Date(data.exo.created_at_from_twilio);
-    let time = startTime.getTime();
+    const sTime = new Date(session?.created_at_from_twilio);
+    let time = sTime.getTime();
     time += additionalTime;
     return time;
   };
-
-  const startTime = getStartTime() + 14418769;
 
   const handleCurrentTime = () => {
     const sTime = getStartTime() + 14418769;
     setCurrTime(sTime);
   };
-
-  useEffect(() => {
-    handleCurrentTime();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  let interval;
-
-  const chapter = [
-    {
-      name: 'chapter 1',
-      start: 1,
-      end: 4,
-    },
-    {
-      name: 'chapter 2',
-      start: 6,
-      end: 9,
-    },
-    {
-      name: 'chapter 3',
-      start: 11,
-      end: 12,
-    },
-  ];
 
   const formatPointColor = (val) => {
     switch (val) {
@@ -93,6 +78,51 @@ function Audio({ viewSession }) {
         return '#000000';
     }
   };
+
+  const setFormattedData = () => {
+    canvasRef.current.width = CANVAS_WIDTH;
+    canvasRef.current.height = CANVAS_HEIGHT;
+    const paths = JSON.parse(session.fb_data);
+    const keys = Object.entries(paths.paths).map((item) => ({ ...item[1], key: item[0] }));
+
+    const dates = [];
+    keys.forEach((obj) => {
+      obj.points?.forEach((item) => {
+        dates.push(item.date);
+      });
+    });
+
+    const sec = keys.map((obj) =>
+      obj.points?.map((item) => ({
+        color: formatPointColor(obj?.color),
+        x: item.point.X,
+        y: item.point.Y,
+        date: item.date,
+        width: obj.width,
+        key: obj.key,
+      })),
+    );
+    const first = sec.flat();
+    setAllPaths(first);
+    setAllDates(dates);
+  };
+
+  const setInitialData = () => {
+    const audioSrc = session.session_recording.replace('.mp3', '.wav');
+    setAudio(audioSrc);
+    const time = getStartTime() + 14418769;
+    setStartTime(time);
+    handleCurrentTime();
+    setFormattedData();
+  };
+
+  useEffect(() => {
+    console.log('SEssion ====> ', session);
+    if (session) {
+      setInitialData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session]);
 
   // draw a line
   const drawLine = (info, style = {}) => {
@@ -132,36 +162,8 @@ function Audio({ viewSession }) {
     }
   }, [audioRef?.current?.audio?.current?.duration]);
 
-  useEffect(() => {
-    canvasRef.current.width = CANVAS_WIDTH;
-    canvasRef.current.height = CANVAS_HEIGHT;
-    const paths = JSON.parse(data.exo.fb_data);
-    const keys = Object.entries(paths.paths).map((item) => ({ ...item[1], key: item[0] }));
-
-    const dates = [];
-    keys.forEach((obj) => {
-      obj.points?.forEach((item) => {
-        dates.push(item.date);
-      });
-    });
-
-    const sec = keys.map((obj) =>
-      obj.points?.map((item) => ({
-        color: formatPointColor(obj?.color),
-        x: item.point.X,
-        y: item.point.Y,
-        date: item.date,
-        width: obj.width,
-        key: obj.key,
-      })),
-    );
-    const first = sec.flat();
-    setAllPaths(first);
-    setAllDates(dates);
-  }, [canvasRef]);
-
   const isDurationIncreased = (time) => {
-    const playDuration = parseInt(time);
+    const playDuration = parseInt(time, 10);
     return pauseTime === playDuration;
   };
 
@@ -197,7 +199,7 @@ function Audio({ viewSession }) {
   };
 
   const handlePlay = (e) => {
-    currentStartTime = parseInt(currTime);
+    currentStartTime = parseInt(currTime, 10);
     const isSame = isDurationIncreased(e?.srcElement?.currentTime);
     if (!isSame) {
       setDataAfterPlay(e.srcElement.currentTime);
@@ -207,7 +209,7 @@ function Audio({ viewSession }) {
     if (ctx && allPaths?.length > 0 && currentStartTime) {
       ctx.fillStyle = '#ffffff';
       interval = setInterval(() => {
-        currentStartTime = parseInt(currentStartTime);
+        currentStartTime = parseInt(currentStartTime, 10);
         currentStartTime += FPS;
         const to = currentStartTime + FPS;
         let index;
@@ -242,7 +244,7 @@ function Audio({ viewSession }) {
   };
 
   const handlePause = (e) => {
-    setPauseTime(parseInt(e.srcElement?.currentTime));
+    setPauseTime(parseInt(e.srcElement?.currentTime, 10));
     setCurrTime(currentStartTime);
     clearInterval(int);
   };
@@ -259,9 +261,9 @@ function Audio({ viewSession }) {
       <AudioPlayer
         ref={audioRef}
         src={audio}
-        onPlay={(e) => handlePlay(e)}
-        onPause={(e) => handlePause(e)}
-        onSeeking={(e) => handleJump(e)}
+        onPlay={handlePlay}
+        onPause={handlePause}
+        onSeeking={handleJump}
         layout="horizontal-reverse"
         progressJumpSteps={{
           forward: 5000,
