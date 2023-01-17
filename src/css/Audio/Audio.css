@@ -127,3 +127,19 @@
   visibility: visible;
   opacity: 1;
 }
+
+/*          CANVAS           */
+
+.canva_div {
+  /* width: 1090px;
+  height: 600px; */
+  overflow-x: auto;
+  background: white;
+  /* overflow-y: hidden; */
+}
+
+#tableau_canva {
+  /* width: 1090px;
+  height: 600px; */
+  /* background-color: white; */
+}
