@@ -1,8 +1,8 @@
 import React from 'react';
 import { Spin } from 'antd';
 
-function Spinner() {
-  return <Spin size="large" className="spinner" />;
+function Spinner({ className }) {
+  return <Spin size="large" className={`${className} spinner`} />;
 }
 
 export default Spinner;

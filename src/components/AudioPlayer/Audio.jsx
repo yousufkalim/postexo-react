@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import Spinner from '../../common/Spinner';
-import data from '../../libs/exo_3565.json';
 import { Icon, Icon2, Icon3, Icon4, Icon5, Icon6 } from '../Icons';
 
 const chapter = [
@@ -23,12 +22,12 @@ const chapter = [
   },
 ];
 
-const addTime = 1 * 60 * 60 * 1000;
+// const addTime = 1 * 60 * 60 * 1000;
 
-const date = new Date(data.exo.created_at_from_twilio);
-const audioStartTime = date.getTime() + addTime;
+// const date = new Date(data.exo.created_at_from_twilio);
+// const audioStartTime = date.getTime() + addTime;
 
-let currentStartTime = audioStartTime + 14418769;
+let currentStartTime = 0;
 
 const FPS = 1_00;
 const CANVAS_HEIGHT = 2800;
@@ -60,6 +59,8 @@ function Audio({ viewSession, session }) {
   const handleCurrentTime = () => {
     const sTime = getStartTime() + 14418769;
     setCurrTime(sTime);
+    setStartTime(sTime);
+    currentStartTime = sTime;
   };
 
   const formatPointColor = (val) => {
@@ -110,14 +111,11 @@ function Audio({ viewSession, session }) {
   const setInitialData = () => {
     const audioSrc = session.session_recording.replace('.mp3', '.wav');
     setAudio(audioSrc);
-    const time = getStartTime() + 14418769;
-    setStartTime(time);
     handleCurrentTime();
     setFormattedData();
   };
 
   useEffect(() => {
-    console.log('SEssion ====> ', session);
     if (session) {
       setInitialData();
     }
@@ -156,9 +154,9 @@ function Audio({ viewSession, session }) {
     if (audioRef.current?.audio?.current?.duration) {
       const audioDuration = audioRef?.current?.audio?.current?.duration;
       setDuration(audioDuration);
-      audioRef.current.progressBar.current.addEventListener('mouseover', (e) =>
-        console.log(e, 'event'),
-      );
+      // audioRef.current.progressBar.current.addEventListener('mouseover', (e) =>
+      //   console.log(e, 'event'),
+      // );
     }
   }, [audioRef?.current?.audio?.current?.duration]);
 
@@ -207,6 +205,7 @@ function Audio({ viewSession, session }) {
     const ctx = canvasRef?.current?.getContext('2d');
 
     if (ctx && allPaths?.length > 0 && currentStartTime) {
+      const endTime = startTime + e.srcElement.duration * 1000;
       ctx.fillStyle = '#ffffff';
       interval = setInterval(() => {
         currentStartTime = parseInt(currentStartTime, 10);
@@ -229,6 +228,9 @@ function Audio({ viewSession, session }) {
               },
               { color: allPaths[index]?.color, width: allPaths[index]?.width },
             );
+          }
+          if (currentStartTime <= endTime) {
+            clearInterval(int);
           }
         }
       }, FPS);

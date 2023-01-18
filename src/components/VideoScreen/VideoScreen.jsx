@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ShowMoreText from 'react-show-more-text';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 import Avatar from '@mui/material/Avatar';
@@ -21,25 +21,15 @@ import UserInfo from '../../hoc/UserInfo';
 import Audio from '../AudioPlayer/Audio';
 // import Player from '../Player/Player';
 
-function VideoScreenWrapped({ getCurrentVideo, userInfo, getUserInfo }) {
+function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo }) {
   const [openOption, setOpenOption] = useState(false);
   const [openPlaylist, setOpenPlaylist] = useState(false);
   const [openNewPlaylist, setOpenNewPlaylist] = useState(true);
   const [playlistName, setPlaylistName] = useState('');
-  const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const params = useParams();
   const menuRef = useRef();
   const favRef = useRef();
-
-  const getSessionById = async () => {
-    try {
-      const res = await API('get', `/sessions/${params?.id}`);
-      setSession(res?.data?.session);
-    } catch (err) {
-      toast.error(err?.message);
-    }
-  };
 
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -55,7 +45,6 @@ function VideoScreenWrapped({ getCurrentVideo, userInfo, getUserInfo }) {
 
   useEffect(() => {
     getUserInfo();
-    getSessionById();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -63,7 +52,6 @@ function VideoScreenWrapped({ getCurrentVideo, userInfo, getUserInfo }) {
     document.addEventListener('click', handleClickOutside, true);
     document.addEventListener('click', handleClickOutsideFav, true);
     return () => {
-      // Unbind the event listener on clean up
       document.removeEventListener('click', handleClickOutside, true);
       document.removeEventListener('click', handleClickOutsideFav, true);
     };
@@ -146,7 +134,12 @@ function VideoScreenWrapped({ getCurrentVideo, userInfo, getUserInfo }) {
     <div className="videoScreen_container">
       <div className="video_player">
         {/* <Player session={session} action={handleViewSession} /> */}
-        <Audio session={session} viewSession={handleViewSession} />
+        <Audio
+          setLoading={setLoading}
+          loading={loading}
+          session={session}
+          viewSession={handleViewSession}
+        />
       </div>
       <div>
         <div className="video_title">

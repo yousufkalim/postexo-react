@@ -7,7 +7,7 @@ import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
 import Pic4 from '../../assets/Pic1.svg';
 
-function MoreVideos({ setCurrentVideo, sessions }) {
+function MoreVideos({ sessions }) {
   const navigate = useNavigate();
 
   const handleNavigate = (matter, e) => {
@@ -17,7 +17,7 @@ function MoreVideos({ setCurrentVideo, sessions }) {
 
   const handleSelectVideo = (item) => {
     navigate(`/sessions/${item?._id}`);
-    setCurrentVideo(item);
+    // setCurrentVideo(item);
   };
 
   return (
