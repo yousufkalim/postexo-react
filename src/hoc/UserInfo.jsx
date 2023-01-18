@@ -11,7 +11,6 @@ const UserInfo = (WrappedComponent) => {
     const getUserInfo = async () => {
       await API('get', `/users/${user?._id}`)
         .then((res) => {
-          console.log('USER INFORMATION ====> ', res);
           setUserInfo(res?.data?.user);
         })
         .catch((err) => console.log('USER INFORMATION ====> ERROR ==> ', err));

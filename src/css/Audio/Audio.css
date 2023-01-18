@@ -127,3 +127,9 @@
   visibility: visible;
   opacity: 1;
 }
+
+/*          CANVAS           */
+.canva_div {
+  overflow-x: auto;
+  background: white;
+}

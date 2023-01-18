@@ -4,6 +4,10 @@
   width: 90%;
   margin: 3% auto;
   justify-content: space-between;
+  position: relative;
+}
+.video_spinner {
+  top: 30vh !important;
 }
 .component-set {
   display: flex;

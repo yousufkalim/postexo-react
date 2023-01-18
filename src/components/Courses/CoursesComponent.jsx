@@ -79,7 +79,7 @@ function CoursesComponent({ sessions }) {
             </div>
             <div className="Avatarcontent">
               <div className="card-image-content-hover">
-                <small>{item?.subject} test</small>
+                <small>{item?.subject}</small>
               </div>
               {item?.ratings?.length > 0 && (
                 <div className="avatarRatings">
