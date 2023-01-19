@@ -1,6 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-console */
 import React, { useState, useRef, useEffect } from 'react';
 import ShowMoreText from 'react-show-more-text';
 import { NavLink } from 'react-router-dom';
@@ -31,6 +28,7 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
   const [openPlaylist, setOpenPlaylist] = useState(false);
   const [openNewPlaylist, setOpenNewPlaylist] = useState(true);
   const [playlistName, setPlaylistName] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const menuRef = useRef();
   const favRef = useRef();
@@ -49,13 +47,13 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
 
   useEffect(() => {
     getUserInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true);
     document.addEventListener('click', handleClickOutsideFav, true);
     return () => {
-      // Unbind the event listener on clean up
       document.removeEventListener('click', handleClickOutside, true);
       document.removeEventListener('click', handleClickOutsideFav, true);
     };
@@ -146,10 +144,23 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
         open={openReport}
         setOpen={setOpenReport}
       />
-      <div className="videoScreen_container">
-        <div className="video_player">
-          {/* <Player session={session} action={handleViewSession} /> */}
-          <Audio viewSession={handleViewSession} />
+    <div className="videoScreen_container">
+      <div className="video_player">
+        {/* <Player session={session} action={handleViewSession} /> */}
+        <Audio
+          setLoading={setLoading}
+          loading={loading}
+          session={session}
+          viewSession={handleViewSession}
+        />
+      </div>
+      <div>
+        <div className="video_title">
+          <p className="time-date">
+            {moment(session?.createdAt).format('hh:mm A dddd DD, MM YYYY')}
+          </p>
+          {/* <p className="time-date">7:30 PM Thursday 21, Apr 2022</p> */}
+          <h1 className="title">{session?.subject}</h1>
         </div>
         <div>
           <div className="video_title">

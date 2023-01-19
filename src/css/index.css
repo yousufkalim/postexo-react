@@ -57,6 +57,14 @@ body {
   font-family: 'Poppins', sans-serif !important;
   background-color: #2b2926;
 }
+
+.spinner {
+  position: absolute;
+  z-index: 9999999999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 ::-webkit-scrollbar {
   width: 5px;
   background-color: #2b2926;
