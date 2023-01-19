@@ -33,7 +33,7 @@ const FPS = 1_00;
 const CANVAS_HEIGHT = 2800;
 const CANVAS_WIDTH = 5050;
 
-function Audio({ viewSession, session }) {
+const Audio = React.memo(({ viewSession, session }) => {
   const audioRef = useRef();
   const canvasRef = useRef(null);
   const [allPaths, setAllPaths] = useState([]);
@@ -306,6 +306,6 @@ function Audio({ viewSession, session }) {
       />
     </div>
   );
-}
+});
 
 export default Audio;

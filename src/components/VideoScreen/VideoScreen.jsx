@@ -21,7 +21,7 @@ import UserInfo from '../../hoc/UserInfo';
 import Audio from '../AudioPlayer/Audio';
 // import Player from '../Player/Player';
 
-function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo }) {
+function VideoScreenWrapped({ session, currentSession, getCurrentVideo, userInfo, getUserInfo }) {
   const [openOption, setOpenOption] = useState(false);
   const [openPlaylist, setOpenPlaylist] = useState(false);
   const [openNewPlaylist, setOpenNewPlaylist] = useState(true);
@@ -125,7 +125,7 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
   const handleViewSession = async () => {
     await API('patch', `/sessions/${session._id}?view=true`, { userId: userData?._id })
       .then(() => {
-        getCurrentVideo();
+        // getCurrentVideo();
       })
       .catch(() => {});
   };
@@ -137,7 +137,7 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
         <Audio
           setLoading={setLoading}
           loading={loading}
-          session={session}
+          session={currentSession}
           viewSession={handleViewSession}
         />
       </div>
