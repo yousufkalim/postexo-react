@@ -8,14 +8,17 @@ import BlueList from '../../assets/BlueList.svg';
 import CoursesComponent from '../Courses/CoursesComponent';
 import CoursesComponent2 from '../Courses/CoursesComponentFullWidth';
 import API from '../../api';
+import Spinner from '../../common/Spinner';
 
 function CategoriesRight({ filters }) {
   const [showCours, setShowCoours] = useState(true);
   const [showCours2, setShowCoours2] = useState(true);
   const [sessions, setSessions] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getSessions = async () => {
     try {
+      setLoading(true);
       const allLevels = [...filters.levels];
       const allDurations = [...filters.durations];
       const levels = filters?.levels?.length ? allLevels.toString() : filters?.levels;
@@ -23,7 +26,9 @@ function CategoriesRight({ filters }) {
       await API('get', `/sessions?levels=${levels}&durations=${durations}`).then((res) => {
         setSessions(res?.data?.sessions);
       });
+      setLoading(false);
     } catch (err) {
+      setLoading(false);
       toast.error(err?.message);
     }
   };
@@ -46,7 +51,8 @@ function CategoriesRight({ filters }) {
     setShowCoours2(false);
   };
   return (
-    <div>
+    <div className="category_right">
+      {loading && <Spinner className="home_spinner" />}
       <div className="Salespro">
         <Salespro />
         {/* Courses  */}

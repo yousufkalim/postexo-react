@@ -22,7 +22,7 @@ import Audio from '../AudioPlayer/Audio';
 import Report from '../Screen/Report';
 // import Player from '../Player/Player';
 
-function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo }) {
+function VideoScreenWrapped({ session, currentSession, getCurrentVideo, userInfo, getUserInfo }) {
   const [openOption, setOpenOption] = useState(false);
   const [openReport, setOpenReport] = useState(false);
   const [openPlaylist, setOpenPlaylist] = useState(false);
@@ -127,7 +127,7 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
   const handleViewSession = async () => {
     await API('patch', `/sessions/${session._id}?view=true`, { userId: userData?._id })
       .then(() => {
-        getCurrentVideo();
+        // getCurrentVideo();
       })
       .catch(() => {});
   };
@@ -150,7 +150,7 @@ function VideoScreenWrapped({ session, getCurrentVideo, userInfo, getUserInfo })
         <Audio
           setLoading={setLoading}
           loading={loading}
-          session={session}
+          session={currentSession}
           viewSession={handleViewSession}
         />
       </div>

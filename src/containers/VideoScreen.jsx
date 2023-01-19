@@ -10,9 +10,20 @@ import Spinner from '../common/Spinner';
 
 function VideoScreen() {
   const [currentVideo, setCurrentVideo] = useState();
+  const [currentSession, setCurentSession] = useState();
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(false);
   const params = useParams();
+
+  const getCurrentSession = () => {
+    API('get', `/sessions/${params?.id}`)
+      .then((res) => {
+        setCurentSession(res?.data?.session);
+      })
+      .catch((err) => {
+        toast.error(err?.message);
+      });
+  };
 
   const getCurrentVideo = () => {
     setLoading(true);
@@ -41,7 +52,9 @@ function VideoScreen() {
   };
 
   useEffect(() => {
+    getCurrentSession();
     getSessions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -54,7 +67,12 @@ function VideoScreen() {
       <Navbar2 />
       <div className="adjustScreen">
         {loading && <Spinner className="video_spinner" />}
-        <Screen getCurrentVideo={getCurrentVideo} session={currentVideo} />
+        <Screen
+          currentSession={currentSession}
+          setCurrentVideo={setCurrentVideo}
+          getCurrentVideo={getCurrentVideo}
+          session={currentVideo}
+        />
         <div className="component-set">
           {/* <CoursesComponent /> */}
           <MoreVideos setLoading={setLoading} sessions={sessions} />

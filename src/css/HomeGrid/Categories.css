@@ -2,6 +2,9 @@
   width: 90%;
   margin: 3% auto;
 }
+.home_spinner {
+  left: 60% !important;
+}
 .Categories_center {
   display: flex;
   color: #fdfcfc;
