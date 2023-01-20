@@ -345,20 +345,20 @@ function VideoScreenWrapped({ session, currentSession, getCurrentVideo, userInfo
               </ShowMoreText>
             </p>
           </div>
-          <div className="time-desc-box">
+          {/* <div className="time-desc-box">
             <p className="time">19:12/20:22</p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto ipsa sit, facere
             assumenda quasi consequuntur debitis voluptate corrupti aliquid iure ea eligendi
             incidunt rem in vero, placeat expedita. Magni, voluptatem?
-            {/* {session?.comments?.map((comment) => (
+            {session?.comments?.map((comment) => (
             <div className="time-desc-content">
               <p className="time">
                 {comment?.user?.name} / {moment(comment?.createdAt).format('hh:mm')}
               </p>
               <p className="time-para">{comment?.comment}</p>
             </div>
-          ))} */}
-          </div>
+          ))}
+          </div> */}
         </div>
       </div>
     </>
