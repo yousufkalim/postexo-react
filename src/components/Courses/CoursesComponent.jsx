@@ -23,7 +23,6 @@ function CoursesComponent({ sessions }) {
   };
 
   const handleNavigate = (matter) => {
-    console.log('Handle clicked');
     navigate(`/sessions/matter-sessions/${matter}`);
   };
   const handleClose = () => setOpen(false);
@@ -117,7 +116,7 @@ function CoursesComponent({ sessions }) {
               </div>
               <div>
                 <small className="card-image-content">
-                  {moment(item?.createdAt).format('hh:mm A dddd DD, MM YYYY')}
+                  {moment(item?.createdAt).format('hh:mm A dddd DD, MMM YYYY')}
                 </small>
               </div>
             </div>
