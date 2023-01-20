@@ -2,7 +2,7 @@
 .card-img-parent-container2 {
   padding: 6%;
   background: var(--card-content-bg);
-  border-radius: 1.15em;
+  border-radius: 20px;
   width: 100%;
   z-index: 9;
   display: flex;
@@ -128,9 +128,27 @@
   justify-content: space-between;
   display: none;
 }
+.video-icon-container_play {
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .video-icon-container > img {
   width: 44px;
   height: 44px;
+}
+.image_container_banner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
 }
 .card_courses_contant {
   display: flex;

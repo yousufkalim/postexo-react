@@ -133,9 +133,7 @@ function MoreVideos({ sessions }) {
             <div className="course-card-image-content">
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img className="like-icon" src={LIKEICONSVG} alt="like-icon" />
-                <p className="card-image-content">
-                  {item?.likes?.length > 0 && item?.likes?.length}
-                </p>
+                <p className="card-image-content">{item?.likes?.length} Likes</p>
               </div>
               <div>
                 <p className="card_image_content_video">{item?.subject}</p>

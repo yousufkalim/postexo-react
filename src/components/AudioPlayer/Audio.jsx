@@ -255,10 +255,10 @@ const Audio = React.memo(({ viewSession, session }) => {
 
   return (
     <div>
-      <div style={{ height: '65vh', width: '99%', position: 'relative', marginBottom: '10px' }}>
+      <div style={{ height: '65vh', width: '100%', position: 'relative', marginBottom: '10px' }}>
         {loading && <Spinner />}
         <canvas
-          style={{ height: '65vh', width: '99%', border: '1px solid #333', background: 'white' }}
+          style={{ height: '65vh', width: '100%', border: '1px solid #333', background: 'white' }}
           ref={canvasRef}
         />
       </div>
