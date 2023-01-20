@@ -142,7 +142,7 @@ function MoreVideos({ sessions }) {
               </div>
               <div>
                 <p className="card-image-content-video">
-                  {moment(item?.createdAt).format('hh:mm A dddd DD, MM YYYY')}
+                  {moment(item?.createdAt).format('hh:mm A dddd DD, MMM YYYY')}
                 </p>
               </div>
             </div>

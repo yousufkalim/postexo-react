@@ -48,6 +48,8 @@ const Audio = React.memo(({ viewSession, session }) => {
 
   let interval;
 
+  console.log('Child Rerender ', currentStartTime);
+
   const getStartTime = () => {
     const additionalTime = 1 * 60 * 60 * 1000;
     const sTime = new Date(session?.created_at_from_twilio);

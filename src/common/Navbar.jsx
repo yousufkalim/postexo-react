@@ -29,7 +29,7 @@ function Navbar() {
 
         <Button
           onClick={() => handleNavigate('/register')}
-          className="navbar-btn"
+          className="navbar_register_btn navbar-btn"
           text="Register"
           src={REGISTERSVG}
         />

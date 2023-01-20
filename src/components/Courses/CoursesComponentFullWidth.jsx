@@ -58,7 +58,7 @@ function CoursesComponent2({ sessions }) {
                 </div>
                 <div>
                   <small className="card-image-content">
-                    {moment(_?.createdAt).format('hh:mm A dddd DD, MM YYYY')}{' '}
+                    {moment(_?.createdAt).format('hh:mm A dddd DD, MMM YYYY')}{' '}
                   </small>
                 </div>
               </div>

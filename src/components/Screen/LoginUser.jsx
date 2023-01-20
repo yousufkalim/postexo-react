@@ -43,6 +43,7 @@ function LoginUser() {
         if (res?.data?.user) {
           toast.success('Login successfully');
           setTimeout(() => {
+            console.log('res?.data?.user ', res?.data?.user);
             localStorage.setItem('userData', JSON.stringify(res?.data?.user));
             localStorage.setItem('token', res?.data?.token);
             navigate('/sessions');

@@ -7,6 +7,7 @@ import Navbar2 from '../components/HomeGrid/Navbar2';
 import Screen from '../components/VideoScreen/VideoScreen';
 import API from '../api';
 import Spinner from '../common/Spinner';
+import { mediaUrl } from '../config';
 
 function VideoScreen() {
   const [currentVideo, setCurrentVideo] = useState();
@@ -18,7 +19,17 @@ function VideoScreen() {
   const getCurrentSession = () => {
     API('get', `/sessions/${params?.id}`)
       .then((res) => {
-        setCurentSession(res?.data?.session);
+        const data = res?.data?.session;
+        const fbData = `${mediaUrl}/${data?.fb_data}`;
+        fetch(fbData)
+          .then((response) => response.json())
+          .then((responseJson) => {
+            data.fb_data = responseJson?.exo?.fb_data;
+            setCurentSession(data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       })
       .catch((err) => {
         toast.error(err?.message);
@@ -43,7 +54,7 @@ function VideoScreen() {
     try {
       await API('get', '/sessions').then((res) => {
         setSessions(res?.data?.sessions);
-        // setLoading(false);
+        setLoading(false);
       });
     } catch (err) {
       setLoading(false);
@@ -53,11 +64,13 @@ function VideoScreen() {
 
   useEffect(() => {
     getCurrentSession();
+    getCurrentVideo();
     getSessions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
+    getCurrentSession();
     getCurrentVideo();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);

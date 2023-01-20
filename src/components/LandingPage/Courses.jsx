@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import API from '../../api';
 import FILTERICONSVG from '../../assets/FILTERICONSVG.svg';
 import CoursesComponent from '../Courses/CoursesComponent';
@@ -14,11 +15,10 @@ function Courses() {
 
   const getSessions = async () => {
     try {
-      await API('get', '/sessions').then((res) => {
-        setSessions(res?.data?.sessions);
-      });
+      const res = await API('get', '/sessions');
+      setSessions(res?.data?.sessions);
     } catch (err) {
-      console.log(err);
+      toast.error(err?.message);
     }
   };
 
