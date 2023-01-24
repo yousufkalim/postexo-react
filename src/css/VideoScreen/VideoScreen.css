@@ -9,6 +9,39 @@
 .video_spinner {
   top: 30vh !important;
 }
+
+/*    Rating Modal    */
+.rating_modal {
+  width: 400px !important;
+}
+/* .rating_modal .rating_stars {
+  text-align: center !important;
+  margin-top: 20px;
+} */
+.rating_modal .ant-modal-content {
+  background-color: #3f3e3b;
+}
+.rating_modal .ant-modal-close-icon {
+  color: #fdfcfc;
+  opacity: 0.3;
+}
+.rating_modal_title {
+  color: #6ec2b1;
+  padding-block: 20px 5px;
+  font-size: 14px;
+}
+.rating_modal .ant-modal-content .ant-rate-star .anticon svg {
+  width: 30px;
+  height: 30px;
+}
+.rating_modal .ant-modal-header {
+  background: transparent;
+}
+.rating_modal .ant-modal-header .ant-modal-title {
+  color: white;
+}
+/*    Rating Modal End    */
+
 .component-set {
   display: flex;
   flex-direction: column;

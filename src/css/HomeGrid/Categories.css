@@ -28,6 +28,10 @@
 .CategoriesLeft {
   margin-top: 14%;
 }
+.categories_playlist .MyFav_list {
+  cursor: pointer;
+  display: inline-block;
+}
 .border_line {
   width: 84px;
   height: 0px;
@@ -50,6 +54,25 @@
   font-size: 18px;
   line-height: 22px;
   color: #fdfcfc;
+  cursor: pointer;
+}
+.create_playlist_modal .ant-modal-content {
+  background-color: #3f3e3b;
+}
+.create_playlist_modal_title {
+  color: #6ec2b1;
+  padding-block: 20px 5px;
+  font-size: 14px;
+}
+.create_playlist_modal .ant-modal-content .anticon svg {
+  color: #fdfcfc;
+  opacity: 0.3;
+}
+.create_playlist_modal .ant-modal-header {
+  background: transparent;
+}
+.create_playlist_modal .ant-modal-header .ant-modal-title {
+  color: white;
 }
 .create_playlist {
   font-style: normal;
@@ -57,6 +80,7 @@
   font-size: 18px;
   line-height: 22px;
   color: #fdfcfc;
+  cursor: pointer;
 }
 .favourites_counts {
   width: 30px;

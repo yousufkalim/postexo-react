@@ -14,6 +14,9 @@ import ProfessorVideos from '../containers/ProfessorVideos';
 import Layout from '../hoc/Layout';
 import CategoriesRight from '../components/HomeGrid/CategoriesRight';
 import SessionsByMatter from '../containers/SessionsByMatter';
+import PlaylistSessions from '../containers/PlaylistSessions';
+import FavouriteSessions from '../containers/FavouriteSessions';
+import WatchLaterSessions from '../containers/WatchLaterSessions';
 
 function Index() {
   const isLogin = localStorage.getItem('token');
@@ -56,11 +59,41 @@ function Index() {
           }
         />
         <Route
+          path="/sessions/favourites"
+          element={
+            <PrivateRoute>
+              <Layout>
+                <FavouriteSessions />
+              </Layout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/sessions/watch-later"
+          element={
+            <PrivateRoute>
+              <Layout>
+                <WatchLaterSessions />
+              </Layout>
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/sessions/professor-sessions/:name"
           element={
             <PrivateRoute>
               <Layout>
                 <ProfessorVideos />
+              </Layout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/playlist/:id"
+          element={
+            <PrivateRoute>
+              <Layout>
+                <PlaylistSessions />
               </Layout>
             </PrivateRoute>
           }

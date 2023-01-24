@@ -19,9 +19,9 @@ function CoursesComponent2({ sessions }) {
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {sessions?.map((_) => (
-        <div className="image-container_row image-container_row_full">
+        <div key={_._id} className="image-container_row image-container_row_full">
           <img src={_?.resolution_file} className="image_container_banner" alt="video-icon" />
-          <p className="cours_time">20:32</p>
+          <p className="cours_time">{_?.duration}</p>
           <img className="course-card-image" src={_?.img} alt={_?.alt} />
           <div className="card-img-parent-container2 card-img-parent-container2_full">
             <div className="d-flex space-between">
@@ -57,7 +57,7 @@ function CoursesComponent2({ sessions }) {
                 </div>
                 <div>
                   <small className="card-image-content">
-                    {moment(_?.createdAt).format('hh:mm A dddd DD, MMM YYYY')}{' '}
+                    {moment(_?.created_at).format('hh:mm A dddd DD, MMM YYYY')}{' '}
                   </small>
                 </div>
               </div>

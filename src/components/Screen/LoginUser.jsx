@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
-import { toast } from 'react-toastify';
 import FormLaftImg from '../../assets/FormLaftImg.svg';
 import ShowP from '../../assets/ShowP.svg';
 import HideIcon from '../../assets/HideIcon.svg';
@@ -41,7 +40,7 @@ function LoginUser() {
         password: formState.password,
       }).then((res) => {
         if (res?.data?.user) {
-          toast.success('Login successfully');
+          // toast.success('Login successfully');
           setTimeout(() => {
             console.log('res?.data?.user ', res?.data?.user);
             localStorage.setItem('userData', JSON.stringify(res?.data?.user));
