@@ -3,6 +3,7 @@ import React, { useState, cloneElement } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import CategoriesLeft from '../components/HomeGrid/CategoriesLeft';
 import Navbar2 from '../components/HomeGrid/Navbar2';
+import Salespro from '../components/HomeGrid/Salespro';
 
 function Layout({ children }) {
   const [showMenu, setShowMenu] = useState(true);
@@ -22,6 +23,8 @@ function Layout({ children }) {
               <CategoriesLeft setFilters={setFilters} filters={filters} />
             </div>
             <div className="Categories_column2">
+              <Salespro />
+
               {cloneElement(children, { filters, setFilters })}
             </div>
           </div>

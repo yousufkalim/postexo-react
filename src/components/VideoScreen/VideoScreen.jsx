@@ -2,11 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import ShowMoreText from 'react-show-more-text';
 import { NavLink } from 'react-router-dom';
 import moment from 'moment';
+import { Modal, Rate } from 'antd';
 import { toast } from 'react-toastify';
 import Avatar from '@mui/material/Avatar';
 import Checkbox from '@mui/material/Checkbox';
 import ThumbsUp from '../../assets/ThumbsUp.svg';
 import Like from '../../assets/like.png';
+import RateIcon from '../../assets/rating.png';
 import ThumbsDown from '../../assets/ThumbsDown.svg';
 import Favourite from '../../assets/Favourite.svg';
 import Favorite from '../../assets/favorite.png';
@@ -29,6 +31,18 @@ function VideoScreenWrapped({ session, currentSession, getCurrentVideo, userInfo
   const [openNewPlaylist, setOpenNewPlaylist] = useState(true);
   const [playlistName, setPlaylistName] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [rating, setRating] = useState(0);
+
+  const user = JSON.parse(localStorage.getItem('userData'));
+  const currentRating = session?.ratings?.find((item) => item.user === user?._id);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   const menuRef = useRef();
   const favRef = useRef();
@@ -136,6 +150,18 @@ function VideoScreenWrapped({ session, currentSession, getCurrentVideo, userInfo
     setOpenOption(false);
   };
 
+  const handleRateSession = async () => {
+    await API('patch', `/sessions/${session._id}?rate=true`, {
+      userId: userData?._id,
+      rating,
+    })
+      .then(() => {
+        getCurrentVideo();
+        handleCancel();
+      })
+      .catch(() => {});
+  };
+
   return (
     <>
       <Report
@@ -157,7 +183,7 @@ function VideoScreenWrapped({ session, currentSession, getCurrentVideo, userInfo
         <div>
           <div className="video_title">
             <p className="time-date">
-              {moment(session?.createdAt).format('hh:mm A dddd DD, MMM YYYY')}
+              {moment(session?.created_at).format('hh:mm A dddd DD, MMM YYYY')}
             </p>
             {/* <p className="time-date">7:30 PM Thursday 21, Apr 2022</p> */}
             <h1 className="title">{session?.subject}</h1>
@@ -315,13 +341,15 @@ function VideoScreenWrapped({ session, currentSession, getCurrentVideo, userInfo
                           Watch Later
                           <img src={Watch} alt="Favourite" className="heart-img" />
                         </div>
-                        {
-                          // eslint-disable-next-line
-                          <div className="fav-div" onClick={handleReport}>
-                            Report
-                            <img src={ReportImg} alt="ReportImg" className="heart-img" />
-                          </div>
-                        }
+                        <div role="presentation" onClick={showModal} className="fav-div">
+                          Give Rating
+                          <img src={RateIcon} alt="Favourite" className="heart-img" />
+                        </div>
+
+                        <div className="fav-div" role="presentation" onClick={handleReport}>
+                          Report
+                          <img src={ReportImg} alt="ReportImg" className="heart-img" />
+                        </div>
                       </div>
                     )}
                   </div>
@@ -345,22 +373,29 @@ function VideoScreenWrapped({ session, currentSession, getCurrentVideo, userInfo
               </ShowMoreText>
             </p>
           </div>
-          {/* <div className="time-desc-box">
-            <p className="time">19:12/20:22</p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto ipsa sit, facere
-            assumenda quasi consequuntur debitis voluptate corrupti aliquid iure ea eligendi
-            incidunt rem in vero, placeat expedita. Magni, voluptatem?
-            {session?.comments?.map((comment) => (
-            <div className="time-desc-content">
-              <p className="time">
-                {comment?.user?.name} / {moment(comment?.createdAt).format('hh:mm')}
-              </p>
-              <p className="time-para">{comment?.comment}</p>
-            </div>
-          ))}
-          </div> */}
         </div>
       </div>
+      <Modal
+        className="rating_modal"
+        title="Rate this session"
+        open={isModalOpen}
+        footer={false}
+        onCancel={handleCancel}
+      >
+        <div style={{ textAlign: 'center', marginTop: '25px' }}>
+          <Rate onChange={(value) => setRating(value)} value={rating || currentRating?.rating} />
+        </div>
+        <div style={{ textAlign: 'right' }}>
+          <button
+            disabled={!rating}
+            type="button"
+            onClick={() => handleRateSession()}
+            className={!rating ? 'create disabled' : 'create'}
+          >
+            Submit
+          </button>
+        </div>
+      </Modal>
     </>
   );
 }

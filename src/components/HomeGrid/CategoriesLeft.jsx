@@ -1,6 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Modal } from 'antd';
+import { toast } from 'react-toastify';
 import Checkbox from '@mui/material/Checkbox';
 import API from '../../api';
 import UserInfo from '../../hoc/UserInfo';
@@ -8,13 +11,23 @@ import UserInfo from '../../hoc/UserInfo';
 const durations = ['Very short', 'Short', 'Long'];
 // const languages = ['English', 'Urdu', 'French'];
 
-function CategoriesLeftWrapped({ userInfo, filters, setFilters }) {
+function CategoriesLeftWrapped({ userInfo, getUserInfo, filters, setFilters }) {
   const [allLevels, setAllLevels] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [playlistName, setPlaylistName] = useState('');
+  const params = useParams();
+
+  const userData = JSON.parse(localStorage.getItem('userData'));
+
+  const navigate = useNavigate();
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
 
   const getLevels = () => {
     API('get', '/levels')
       .then((res) => {
-        console.log('LEVLS ', res);
         setAllLevels(res?.data?.levels);
       })
       .catch(() => {});
@@ -31,16 +44,34 @@ function CategoriesLeftWrapped({ userInfo, filters, setFilters }) {
     } else {
       setFilters({ ...filters, [name]: [...filters[name], value] });
     }
+  };
 
-    // console.log('If already exists ', alreadyExist);
-    console.log('If already exists ', isExist);
+  const handlePlaylist = (id) => {
+    navigate(`/playlist/${id}`);
+  };
+
+  const handleFavourites = () => {
+    navigate('/sessions/favourites');
   };
 
   const resetFilters = () => {
     setFilters({ levels: [], durations: [] });
   };
 
-  console.log('ALL filters ', filters);
+  const handleCreatePlaylist = async () => {
+    API('post', '/playlist', { title: playlistName, userId: userData?._id })
+      .then(() => {
+        getUserInfo();
+        setPlaylistName('');
+        setIsModalOpen(false);
+      })
+      .catch((err) => toast.error(err?.message));
+  };
+
+  useEffect(() => {
+    resetFilters();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, params);
 
   useEffect(() => {
     getLevels();
@@ -50,22 +81,63 @@ function CategoriesLeftWrapped({ userInfo, filters, setFilters }) {
 
   return (
     <div>
+      <Modal
+        footer={false}
+        className="create_playlist_modal"
+        title="Create New Playlist"
+        onCancel={() => setIsModalOpen(false)}
+        open={isModalOpen}
+      >
+        <div className="create_playlist_modal_title">New Playlist Name</div>
+        <input
+          value={playlistName}
+          onChange={(e) => setPlaylistName(e.target.value)}
+          className="inp"
+          placeholder="Enter Playlist Name"
+          type="text"
+        />
+        <div className="create-div">
+          <button
+            disabled={!playlistName}
+            type="button"
+            onClick={() => handleCreatePlaylist()}
+            className={!playlistName ? 'create disabled' : 'create'}
+          >
+            Create
+          </button>
+        </div>
+      </Modal>
       <div className="CategoriesLeft">
         <p className="CategoriesLeft_title">Categories</p>
         <div className="border_line" />
-        <div className="Categories_favourit_fields">
+        <div className="Categories_favourit_fields" role="presentation" onClick={handleFavourites}>
           <p className="MyFav_list">My favourites</p>
-          {userInfo?.favorites?.length && (
-            <p className="favourites_counts">{userInfo?.favorites?.length}</p>
-          )}
+          <p className="favourites_counts">{userInfo?.favorites?.length}</p>
         </div>
-        <div className="Categories_favourit_fields">
+        <div
+          role="presentation"
+          onClick={() => navigate('/sessions/watch-later')}
+          className="Categories_favourit_fields"
+        >
           <p className="MyFav_list">See later</p>
-          {userInfo?.watch_later?.length && (
-            <p className="favourites_counts">{userInfo?.watch_later?.length}</p>
-          )}
+          <p className="favourites_counts">{userInfo?.watch_later?.length}</p>
         </div>
-        <p className="create_playlist">Create my playlist</p>
+        {userInfo?.play_list?.length > 0 &&
+          userInfo?.play_list?.map((playlist) => (
+            <div className="Categories_favourit_fields categories_playlist">
+              <p
+                className="MyFav_list"
+                onClick={() => handlePlaylist(playlist?._id)}
+                role="presentation"
+              >
+                {playlist?.title}
+              </p>
+              <p className="favourites_counts">{playlist?.sessions?.length}</p>
+            </div>
+          ))}
+        <p onClick={showModal} role="presentation" className="create_playlist">
+          Create playlist
+        </p>
         <div className="filter_div">
           <p className="filter_title">Filters</p>
           <button

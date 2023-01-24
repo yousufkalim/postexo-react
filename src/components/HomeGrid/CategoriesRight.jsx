@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import Salespro from './Salespro';
 import GridIcon from '../../assets/GridIcon.svg';
 import ViewIcon from '../../assets/ViewIcon.svg';
 import WhiteGrid from '../../assets/WhiteGrid.svg';
@@ -10,10 +9,15 @@ import CoursesComponent2 from '../Courses/CoursesComponentFullWidth';
 import API from '../../api';
 import Spinner from '../../common/Spinner';
 
+const sortOptions = ['Sort By', 'Date', 'Most liked', 'Most viewed', 'Top rated'];
+
 function CategoriesRight({ filters }) {
   const [showCours, setShowCoours] = useState(true);
   const [showCours2, setShowCoours2] = useState(true);
   const [sessions, setSessions] = useState([]);
+  const [viewedSessions, setViewedSessions] = useState([]);
+  const [sortType, setSortType] = useState('');
+  const [viewedSortType, setViewedSortType] = useState('');
   const [loading, setLoading] = useState(false);
 
   const getSessions = async () => {
@@ -24,7 +28,12 @@ function CategoriesRight({ filters }) {
       const levels = filters?.levels?.length ? allLevels.toString() : filters?.levels;
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
       await API('get', `/sessions?levels=${levels}&durations=${durations}`).then((res) => {
-        setSessions(res?.data?.sessions);
+        const response = res?.data?.sessions?.length > 0 ? [...res.data.sessions] : [];
+        const response2 = res?.data?.sessions?.length > 0 ? [...res.data.sessions] : [];
+        const topRated = response?.sort((a, b) => b.averageRating - a.averageRating);
+        const mostViewed = response2?.sort((a, b) => b.views.length - a.views.length);
+        setSessions(topRated);
+        setViewedSessions(mostViewed);
       });
       setLoading(false);
     } catch (err) {
@@ -38,6 +47,46 @@ function CategoriesRight({ filters }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
 
+  const handleSelectSort = (e) => {
+    const { value } = e.target;
+    setSortType(value);
+    const sessionsCopy = [...sessions];
+    if (value === 'Date') {
+      sessionsCopy?.sort(
+        (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+      );
+    } else if (value === 'Most liked') {
+      sessionsCopy?.sort((a, b) => b.likes.length - a.likes.length);
+    } else if (value === 'Most viewed') {
+      sessionsCopy?.sort((a, b) => b.views.length - a.views.length);
+    } else if (value === 'Top rated') {
+      sessionsCopy?.sort((a, b) => b.averageRating - a.averageRating);
+    } else {
+      setSessions(sessions);
+    }
+    setSessions(sessionsCopy);
+  };
+
+  const handleSelectSortViewed = (e) => {
+    const { value } = e.target;
+    setViewedSortType(value);
+    const viewedSessionsCopy = [...viewedSessions];
+    if (value === 'Date') {
+      viewedSessionsCopy?.sort(
+        (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+      );
+    } else if (value === 'Most liked') {
+      viewedSessionsCopy?.sort((a, b) => b.likes.length - a.likes.length);
+    } else if (value === 'Most viewed') {
+      viewedSessionsCopy?.sort((a, b) => b.views.length - a.views.length);
+    } else if (value === 'Top rated') {
+      viewedSessionsCopy?.sort((a, b) => b.averageRating - a.averageRating);
+    } else {
+      setViewedSessions(viewedSessions);
+    }
+    setViewedSessions(viewedSessionsCopy);
+  };
+
   const CourseEvent = () => {
     setShowCoours(true);
   };
@@ -50,29 +99,27 @@ function CategoriesRight({ filters }) {
   const Course2Event2 = () => {
     setShowCoours2(false);
   };
+
   return (
     <div className="category_right">
       {loading && <Spinner className="home_spinner" />}
       <div className="Salespro">
-        <Salespro />
-        {/* Courses  */}
         <div className="TopCourses">
           <p className="TopCourses_title">Top Courses</p>
           <div className="sortBy_div">
             <div className="sortby_main_div">
-              <select className="sortby_select" id="Sort" name="Sort">
-                <option className="selectr_option" value="volvo">
-                  Sort by
-                </option>
-                <option className="selectr_option" value="saab">
-                  Sort by
-                </option>
-                <option className="selectr_option" value="mercedes">
-                  Sort by
-                </option>
-                <option className="selectr_option" value="audi">
-                  Sort by
-                </option>
+              <select
+                onChange={handleSelectSort}
+                value={sortType}
+                className="sortby_select"
+                id="Sort"
+                name="Sort"
+              >
+                {sortOptions?.map((sortName) => (
+                  <option key={sortName} value={sortName} id={sortName}>
+                    {sortName}
+                  </option>
+                ))}
               </select>
             </div>
             {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
@@ -109,19 +156,18 @@ function CategoriesRight({ filters }) {
         <p className="TopCourses_title">Most Viewed</p>
         <div className="sortBy_div">
           <div className="sortby_main_div">
-            <select className="sortby_select" id="Sort" name="Sort">
-              <option className="selectr_option" value="volvo">
-                Sort by
-              </option>
-              <option className="selectr_option" value="saab">
-                Sort by
-              </option>
-              <option className="selectr_option" value="mercedes">
-                Sort by
-              </option>
-              <option className="selectr_option" value="audi">
-                Sort by
-              </option>
+            <select
+              onChange={handleSelectSortViewed}
+              value={viewedSortType}
+              className="sortby_select"
+              id="Sort"
+              name="Sort"
+            >
+              {sortOptions?.map((sortName) => (
+                <option value={sortName} key={sortName} id={sortName}>
+                  {sortName}
+                </option>
+              ))}
             </select>
           </div>
           {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
@@ -144,11 +190,11 @@ function CategoriesRight({ filters }) {
       </div>
       {showCours2 ? (
         <div className="topCoursesAll">
-          <CoursesComponent sessions={sessions} />
+          <CoursesComponent sessions={viewedSessions} />
         </div>
       ) : (
         <div className="topCoursesAll">
-          <CoursesComponent2 sessions={sessions} />
+          <CoursesComponent2 sessions={viewedSessions} />
         </div>
       )}
     </div>

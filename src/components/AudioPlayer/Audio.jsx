@@ -1,6 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
+import { FullScreen, useFullScreenHandle } from 'react-full-screen';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import 'react-h5-audio-player/lib/styles.css';
+import FullScreenIcon from '../../assets/fullscreen.png';
+import ExitScreen from '../../assets/minimize.png';
 import Spinner from '../../common/Spinner';
 import { Icon, Icon2, Icon3, Icon4, Icon5, Icon6 } from '../Icons';
 
@@ -46,9 +50,9 @@ const Audio = React.memo(({ viewSession, session }) => {
   const [int, setInt] = useState();
   const [duration, setDuration] = useState(null);
 
-  let interval;
+  const handle = useFullScreenHandle();
 
-  console.log('Child Rerender ', currentStartTime);
+  let interval;
 
   const getStartTime = () => {
     const additionalTime = 1 * 60 * 60 * 1000;
@@ -253,59 +257,106 @@ const Audio = React.memo(({ viewSession, session }) => {
     clearInterval(int);
   };
 
+  const wheel = {
+    wheelDisabled: true,
+  };
+
+  const doubleClick = {
+    disabled: true,
+  };
+
   return (
     <div>
-      <div style={{ height: '65vh', width: '100%', position: 'relative', marginBottom: '10px' }}>
-        {loading && <Spinner />}
-        <canvas
-          style={{ height: '65vh', width: '100%', border: '1px solid #333', background: 'white' }}
-          ref={canvasRef}
-        />
-      </div>
-      <AudioPlayer
-        ref={audioRef}
-        src={audio}
-        onPlay={handlePlay}
-        onPause={handlePause}
-        onSeeking={handleJump}
-        layout="horizontal-reverse"
-        progressJumpSteps={{
-          forward: 5000,
-          backward: 5000,
-        }}
-        customIcons={{
-          forward: <Icon />,
-          pause: <Icon2 />,
-          play: <Icon3 />,
-          rewind: <Icon4 />,
-          volume: <Icon5 />,
-          volumeMute: <Icon6 />,
-        }}
-        customProgressBarSection={[
-          RHAP_UI.PROGRESS_BAR,
-          <div className="chapter-div">
-            {chapter.map((chap, i) => {
-              const leftStyle = (chap.end / duration) * 100;
-              // const widthStyle = ((chap.end - chap.start) / duration) * 100;
-              return (
-                // eslint-disable-next-line react/no-array-index-key
-                <span key={i} className="chapter" style={{ left: `${leftStyle}%` }}>
-                  <div className="tooltip">
-                    <span style={{ left: `${leftStyle}%` }} className="tooltiptext">
-                      {chap.name}
-                    </span>
-                  </div>
-                </span>
-              );
-            })}
-          </div>,
-          RHAP_UI.CURRENT_TIME,
-          <div className="slash">&nbsp;/&nbsp;</div>,
-          RHAP_UI.DURATION,
-          RHAP_UI.VOLUME_CONTROLS,
-        ]}
-        customControlsSection={[RHAP_UI.MAIN_CONTROLS]}
-      />
+      <FullScreen handle={handle}>
+        <TransformWrapper wheel={wheel} doubleClick={doubleClick}>
+          <TransformComponent>
+            <div
+              style={{
+                height: `${handle.active ? '93vh' : '65vh'}`,
+                width: '100%',
+                position: 'relative',
+                marginBottom: '10px',
+              }}
+            >
+              {loading && <Spinner />}
+              <canvas
+                style={{
+                  height: `${handle.active ? '93vh' : '65vh'}`,
+                  width: '100%',
+                  border: '1px solid #333',
+                  background: 'white',
+                }}
+                ref={canvasRef}
+              />
+              {!handle.active && (
+                <img
+                  onClick={handle.enter}
+                  role="presentation"
+                  src={FullScreenIcon}
+                  alt="full-screen"
+                  className="full_screen_icon"
+                />
+              )}
+              {handle.active && (
+                <img
+                  onClick={handle.exit}
+                  role="presentation"
+                  src={ExitScreen}
+                  alt="exit-full-screen"
+                  className="full_screen_icon"
+                />
+              )}
+            </div>
+            <AudioPlayer
+              ref={audioRef}
+              src={audio}
+              onPlay={handlePlay}
+              onPause={handlePause}
+              onSeeking={handleJump}
+              layout="horizontal-reverse"
+              progressJumpSteps={{
+                forward: 5000,
+                backward: 5000,
+              }}
+              customIcons={{
+                forward: <Icon />,
+                pause: <Icon2 />,
+                play: <Icon3 />,
+                rewind: <Icon4 />,
+                volume: <Icon5 />,
+                volumeMute: <Icon6 />,
+              }}
+              customProgressBarSection={[
+                RHAP_UI.PROGRESS_BAR,
+                <div className="chapter-div">
+                  {chapter.map((chap, i) => {
+                    const leftStyle = (chap.end / duration) * 100;
+                    // const widthStyle = ((chap.end - chap.start) / duration) * 100;
+                    return (
+                      // eslint-disable-next-line react/no-array-index-key
+                      <span key={i} className="chapter" style={{ left: `${leftStyle}%` }}>
+                        <div className="tooltip">
+                          <span style={{ left: `${leftStyle}%` }} className="tooltiptext">
+                            {chap.name}
+                          </span>
+                        </div>
+                      </span>
+                    );
+                  })}
+                </div>,
+                RHAP_UI.CURRENT_TIME,
+                <div className="slash">&nbsp;/&nbsp;</div>,
+                RHAP_UI.DURATION,
+                RHAP_UI.VOLUME_CONTROLS,
+              ]}
+              customControlsSection={[RHAP_UI.MAIN_CONTROLS]}
+            />
+          </TransformComponent>
+        </TransformWrapper>
+      </FullScreen>
+      {/* <button type="button" onClick={handle.enter}>
+        Enter fullscreen
+      </button> */}
     </div>
   );
 });
