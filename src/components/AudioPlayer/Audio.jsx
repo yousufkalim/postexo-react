@@ -1,11 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
+import { Spin } from 'antd';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import 'react-h5-audio-player/lib/styles.css';
 import FullScreenIcon from '../../assets/fullscreen.png';
 import ExitScreen from '../../assets/minimize.png';
-import Spinner from '../../common/Spinner';
+// import Spinner from '../../common/Spinner';
 import { Icon, Icon2, Icon3, Icon4, Icon5, Icon6 } from '../Icons';
 
 const chapter = [
@@ -49,6 +50,7 @@ const Audio = React.memo(({ viewSession, session }) => {
   const [loading, setLoading] = useState(false);
   const [int, setInt] = useState();
   const [duration, setDuration] = useState(null);
+  const [jumped, setJumped] = useState(false);
 
   const handle = useFullScreenHandle();
 
@@ -164,6 +166,12 @@ const Audio = React.memo(({ viewSession, session }) => {
       //   console.log(e, 'event'),
       // );
     }
+    document.getElementsByClassName('rhap_forward-button')?.[0].addEventListener('click', () => {
+      setJumped(true);
+    });
+    document.getElementsByClassName('rhap_rewind-button')?.[0].addEventListener('click', () => {
+      setJumped(true);
+    });
   }, [audioRef?.current?.audio?.current?.duration]);
 
   const isDurationIncreased = (time) => {
@@ -172,7 +180,6 @@ const Audio = React.memo(({ viewSession, session }) => {
   };
 
   const displayContentAfterJump = (currentPlayedTime) => {
-    setLoading(true);
     const newArr = [...allPaths];
     const startPaths = newArr.filter((item) => item.date < currentPlayedTime);
     for (let i = 0; i <= startPaths?.length; i++) {
@@ -191,10 +198,10 @@ const Audio = React.memo(({ viewSession, session }) => {
       );
     }
     currentStartTime = currentPlayedTime;
-    setLoading(false);
   };
 
-  const setDataAfterPlay = (playedTime) => {
+  const setDataAfterPlay = async (playedTime) => {
+    setLoading(true);
     const ctx = canvasRef?.current?.getContext('2d');
     const actualPlayedTime = playedTime * 1000;
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -209,7 +216,7 @@ const Audio = React.memo(({ viewSession, session }) => {
       setDataAfterPlay(e.srcElement.currentTime);
     }
     const ctx = canvasRef?.current?.getContext('2d');
-
+    setLoading(false);
     if (ctx && allPaths?.length > 0 && currentStartTime) {
       const endTime = startTime + e.srcElement.duration * 1000;
       ctx.fillStyle = '#ffffff';
@@ -247,8 +254,16 @@ const Audio = React.memo(({ viewSession, session }) => {
   };
 
   const handleJump = (e) => {
-    const playTime = e.srcElement.currentTime;
-    setDataAfterPlay(playTime);
+    // console.log('Jump ', e);
+    setLoading(true);
+    if (!jumped) {
+      const playTime = e.srcElement.currentTime;
+      setDataAfterPlay(playTime);
+    }
+    setJumped(false);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
   };
 
   const handlePause = (e) => {
@@ -278,7 +293,13 @@ const Audio = React.memo(({ viewSession, session }) => {
                 marginBottom: '10px',
               }}
             >
-              {loading && <Spinner />}
+              {loading && (
+                <div className="spinner_container">
+                  <div className="spinner_inner">
+                    <Spin size="large" className="spinner" />
+                  </div>
+                </div>
+              )}
               <canvas
                 style={{
                   height: `${handle.active ? '93vh' : '65vh'}`,
@@ -311,6 +332,8 @@ const Audio = React.memo(({ viewSession, session }) => {
               ref={audioRef}
               src={audio}
               onPlay={handlePlay}
+              autoPlayAfterSrcChange={false}
+              autoPlay={false}
               onPause={handlePause}
               onSeeking={handleJump}
               layout="horizontal-reverse"
