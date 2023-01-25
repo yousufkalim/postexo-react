@@ -61,6 +61,7 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  overflow: visible !important;
 }
 .rhap_download-progress {
   background: #d9d9d9 !important;
@@ -128,6 +129,23 @@
   opacity: 1;
 }
 
+.spinner_container {
+  position: absolute;
+  z-index: 9999999999;
+  top: 0%;
+  left: 0%;
+  bottom: 0;
+  right: 0;
+  z-index: 99999999999;
+  height: 80vh;
+  width: 100%;
+}
+.spinner_inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
 .full_screen_icon {
   position: absolute;
   right: 10px;
@@ -137,7 +155,26 @@
   height: 30px;
   pointer-events: all !important;
 }
-
+.rewind_container {
+  position: relative;
+}
+.rewind_container:hover .audio_tooltip {
+  display: block;
+}
+.audio_tooltip {
+  display: none;
+  position: absolute;
+  width: 120px;
+  border-radius: 10px;
+  z-index: 9999999999;
+  background: #33312e;
+  box-shadow: 1px 2px 2px #000;
+  padding: 10px 3px;
+  color: #fff;
+  font-size: 12px;
+  top: -50px;
+  left: 0px;
+}
 /*          CANVAS           */
 .canva_div {
   overflow-x: auto;

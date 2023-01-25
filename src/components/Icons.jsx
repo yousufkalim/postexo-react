@@ -7,7 +7,12 @@ import Volume from '../assets/Volume.svg';
 import Mute from '../assets/Mute.svg';
 
 function Icon() {
-  return <img src={Second} alt="second" />;
+  return (
+    <div className="rewind_container">
+      <div className="audio_tooltip">Only audio would be forward</div>
+      <img src={Second} alt="Second" />
+    </div>
+  );
 }
 function Icon2() {
   return <img src={Pause} alt="secPauseond" />;
@@ -16,7 +21,12 @@ function Icon3() {
   return <img src={Play} alt="Play" />;
 }
 function Icon4() {
-  return <img src={Rewind} alt="Rewind" />;
+  return (
+    <div className="rewind_container">
+      <div className="audio_tooltip">Only audio would be rewind</div>
+      <img src={Rewind} alt="Rewind" />
+    </div>
+  );
 }
 function Icon5() {
   return <img src={Volume} alt="Volume" style={{ width: '26px' }} />;

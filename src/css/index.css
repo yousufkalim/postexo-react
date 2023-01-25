@@ -2,6 +2,7 @@
 /* Importing all CSS files */
 @import url('./global/Global.css');
 @import url('./common/Button.css');
+@import url('./common/Banner.css');
 @import url('./home//Navbar.css');
 @import url('./home/Home.css');
 @import url('./CoursesComponent/CoursesComponent.css');
@@ -57,6 +58,7 @@ body {
   font-family: 'Poppins', sans-serif !important;
   background-color: #2b2926;
 }
+
 .spinner {
   position: absolute;
   z-index: 9999999999;

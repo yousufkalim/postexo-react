@@ -4,6 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import CategoriesLeft from '../components/HomeGrid/CategoriesLeft';
 import Navbar2 from '../components/HomeGrid/Navbar2';
 import Salespro from '../components/HomeGrid/Salespro';
+import Banner from '../common/Banner';
 
 function Layout({ children }) {
   const [showMenu, setShowMenu] = useState(true);
@@ -12,6 +13,7 @@ function Layout({ children }) {
   const openNavMenu = () => {
     setShowMenu(!showMenu);
   };
+
   return (
     <div>
       <Navbar2 openNavMenu={openNavMenu} />
@@ -26,6 +28,8 @@ function Layout({ children }) {
               <Salespro />
 
               {cloneElement(children, { filters, setFilters })}
+
+              <Banner />
             </div>
           </div>
         </div>
