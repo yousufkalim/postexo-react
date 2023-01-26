@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import API from '../api';
 import SessionsContent from '../components/SessionsContent/SessionsContent';
 
-function ProfessorVideos({ filters }) {
-  const [sessions, setSessions] = useState([]);
-
+function ProfessorVideos({ filters, sessions, setSessions }) {
   const { name } = useParams();
 
   const getSessions = async () => {

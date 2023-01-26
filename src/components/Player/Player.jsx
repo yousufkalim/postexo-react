@@ -66,7 +66,6 @@ function Player({ setOpenVideo, action, session }) {
   const videoRef = useRef();
 
   useEffect(() => {
-    console.log(videoRef?.current?.plyr, 'videoref');
     // eslint-disable-next-line no-unused-vars
 
     if (!isLogin && videoRef?.current) {

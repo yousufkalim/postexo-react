@@ -11,10 +11,10 @@ import Spinner from '../../common/Spinner';
 
 const sortOptions = ['Sort By', 'Date', 'Most liked', 'Most viewed', 'Top rated'];
 
-function CategoriesRight({ filters }) {
+function CategoriesRight({ filters, sessions, setSessions }) {
   const [showCours, setShowCoours] = useState(true);
   const [showCours2, setShowCoours2] = useState(true);
-  const [sessions, setSessions] = useState([]);
+  const [topSessions, setTopSessions] = useState([]);
   const [viewedSessions, setViewedSessions] = useState([]);
   const [sortType, setSortType] = useState('');
   const [viewedSortType, setViewedSortType] = useState('');
@@ -28,12 +28,7 @@ function CategoriesRight({ filters }) {
       const levels = filters?.levels?.length ? allLevels.toString() : filters?.levels;
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
       await API('get', `/sessions?levels=${levels}&durations=${durations}`).then((res) => {
-        const response = res?.data?.sessions?.length > 0 ? [...res.data.sessions] : [];
-        const response2 = res?.data?.sessions?.length > 0 ? [...res.data.sessions] : [];
-        const topRated = response?.sort((a, b) => b.averageRating - a.averageRating);
-        const mostViewed = response2?.sort((a, b) => b.views.length - a.views.length);
-        setSessions(topRated);
-        setViewedSessions(mostViewed);
+        setSessions(res?.data?.sessions);
       });
       setLoading(false);
     } catch (err) {
@@ -41,6 +36,22 @@ function CategoriesRight({ filters }) {
       toast.error(err?.message);
     }
   };
+
+  const getSetSessions = () => {
+    if (sessions?.length > 0) {
+      const response = sessions?.length > 0 ? [...sessions] : [];
+      const response2 = sessions?.length > 0 ? [...sessions] : [];
+      const topRated = response?.sort((a, b) => b.averageRating - a.averageRating);
+      const mostViewed = response2?.sort((a, b) => b.views.length - a.views.length);
+      setTopSessions(topRated);
+      setViewedSessions(mostViewed);
+    }
+  };
+
+  useEffect(() => {
+    getSetSessions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sessions]);
 
   useEffect(() => {
     getSessions();
@@ -143,11 +154,11 @@ function CategoriesRight({ filters }) {
       </div>
       {showCours ? (
         <div className="topCoursesAll">
-          <CoursesComponent sessions={sessions} />
+          <CoursesComponent sessions={topSessions} />
         </div>
       ) : (
         <div className="topCoursesAll">
-          <CoursesComponent2 sessions={sessions} />
+          <CoursesComponent2 sessions={topSessions} />
         </div>
       )}
 

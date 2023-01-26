@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
 import API from '../api';
 import SessionsContent from '../components/SessionsContent/SessionsContent';
 
-function FavouriteSessions({ filters }) {
-  const [user, setUser] = useState(null);
-
+function FavouriteSessions({ filters, sessions, setSessions }) {
   const userData = JSON.parse(localStorage.getItem('userData'));
 
   const getSessions = async () => {
@@ -18,7 +16,7 @@ function FavouriteSessions({ filters }) {
         'get',
         `/sessions/getFavouriteSessions/${userData?._id}?levels=${levels}&durations=${durations}`,
       ).then((res) => {
-        setUser(res?.data?.user);
+        setSessions(res?.data?.user?.favorites);
       });
     } catch (err) {
       toast.error(err.message);
@@ -30,7 +28,7 @@ function FavouriteSessions({ filters }) {
       filters={filters}
       getSessions={getSessions}
       title="My Favourites"
-      sessions={user?.favorites}
+      sessions={sessions}
     />
   );
 }

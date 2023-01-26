@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
 import API from '../api';
 import SessionsContent from '../components/SessionsContent/SessionsContent';
 
-function WatchLaterSessions({ filters }) {
-  const [user, setUser] = useState(null);
-
+function WatchLaterSessions({ filters, sessions, setSessions }) {
   const userData = JSON.parse(localStorage.getItem('userData'));
 
   const getSessions = async () => {
@@ -18,8 +16,8 @@ function WatchLaterSessions({ filters }) {
         'get',
         `/sessions/getWatchLaterSessions/${userData?._id}?levels=${levels}&durations=${durations}`,
       ).then((res) => {
-        console.log('watch later sessions ', res.data);
-        setUser(res?.data?.user);
+        const currentUser = res?.data?.user;
+        setSessions(currentUser?.watch_later);
       });
     } catch (err) {
       toast.error(err.message);
@@ -31,7 +29,7 @@ function WatchLaterSessions({ filters }) {
       filters={filters}
       getSessions={getSessions}
       title="See Later"
-      sessions={user?.watch_later}
+      sessions={sessions}
     />
   );
 }

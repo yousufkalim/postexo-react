@@ -50,9 +50,6 @@ function SessionsContent({ title, sessions, getSessions, filters, mutator }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, mutator]);
 
-  console.log('SEssions ', sessions);
-  console.log('ALL SEssions ', allSessions);
-
   return (
     <>
       <div className="Salespro">

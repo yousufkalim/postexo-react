@@ -77,7 +77,9 @@
 .position-rel {
   position: relative;
 }
-
+.css-hppdow {
+  background: none !important;
+}
 .text-ellipsis-2 {
   text-overflow: ellipsis;
   display: -webkit-box;

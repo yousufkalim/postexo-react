@@ -249,7 +249,7 @@ input:-webkit-autofill:focus {
   color: #fdfcfc;
 }
 .forgotPopup {
-  width: 44vw;
+  width: 40vw;
   background-color: #33312e;
   padding: 100px;
   border-radius: 15px;
@@ -261,11 +261,12 @@ input:-webkit-autofill:focus {
   position: absolute;
   right: 0;
   top: 0;
+  border-top-right-radius: inherit;
 }
 .croseIcon {
   position: absolute;
   right: 5%;
-  top: 8%;
+  top: 6%;
   cursor: pointer;
 }
 .forgot_title {
@@ -371,7 +372,7 @@ input:-webkit-autofill:focus {
     line-height: 20px;
   }
   .forgotPopup {
-    width: 77vw !important;
+    width: 75vw !important;
     padding: 79px;
   }
 }

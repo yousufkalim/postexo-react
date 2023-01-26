@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import API from '../api';
 import SessionsContent from '../components/SessionsContent/SessionsContent';
 
-function SessionsByMatter({ filters, setFilters }) {
-  const [sessions, setSessions] = useState([]);
-
+function SessionsByMatter({ filters, setFilters, sessions, setSessions }) {
   const { matterName } = useParams();
 
   useEffect(() => {
