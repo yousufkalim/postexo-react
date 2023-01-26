@@ -27,7 +27,6 @@ function CoursesComponent({ sessions }) {
   };
   const handleClose = () => setOpen(false);
 
-  console.log('Sessions content ', sessions);
   return (
     <>
       {open && (
@@ -44,11 +43,7 @@ function CoursesComponent({ sessions }) {
             window.location.pathname === '/sessions' ? 'image-container2' : 'image-container'
           }
         >
-          <img
-            className="course-card-image"
-            src="https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014_1280.jpg"
-            alt="thumbnail"
-          />
+          <img className="course-card-image" src={item?.resolution_file} alt="thumbnail" />
           <div className="card-img-parent-container">
             <span className="position-pill">
               <p onClick={() => handleNavigate(item?.matter)} role="presentation">

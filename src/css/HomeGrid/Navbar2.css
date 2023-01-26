@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
 }
-.nav_search_bar {
+.nav_search_bar input {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -37,8 +37,9 @@
   border: none;
   color: #fdfcfc;
   outline: none;
+  font-size: 16px;
 }
-.nav_search_bar::placeholder {
+.nav_search_bar input::placeholder {
   color: #fdfcfc;
 }
 .nav_search_bar:focus {

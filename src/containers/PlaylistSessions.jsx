@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import API from '../api';
 import SessionsContent from '../components/SessionsContent/SessionsContent';
 
-function PlaylistSessions({ filters }) {
+function PlaylistSessions({ filters, sessions, setSessions }) {
   const [playlist, setPlaylist] = useState(null);
 
   const { id } = useParams();
@@ -21,6 +21,7 @@ function PlaylistSessions({ filters }) {
       ).then((res) => {
         const playlistSessions = res?.data?.playlist;
         setPlaylist(playlistSessions);
+        setSessions(playlistSessions?.sessions);
       });
     } catch (err) {
       toast.error(err.message);
@@ -33,7 +34,7 @@ function PlaylistSessions({ filters }) {
       getSessions={getSessions}
       title={playlist?.title}
       mutator={id}
-      sessions={playlist?.sessions}
+      sessions={sessions}
     />
   );
 }

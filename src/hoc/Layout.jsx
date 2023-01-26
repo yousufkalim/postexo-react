@@ -1,22 +1,29 @@
 import React, { useState, cloneElement } from 'react';
 // eslint-disable-next-line import/no-named-as-default
+import { createFilter } from 'react-search-input';
 import CloseIcon from '@mui/icons-material/Close';
 import CategoriesLeft from '../components/HomeGrid/CategoriesLeft';
 import Navbar2 from '../components/HomeGrid/Navbar2';
 import Salespro from '../components/HomeGrid/Salespro';
 import Banner from '../common/Banner';
 
+const KEYS_TO_FILTERS = ['subject', 'professor_name', 'student_level', 'matter', 'student_name'];
+
 function Layout({ children }) {
   const [showMenu, setShowMenu] = useState(true);
   const [filters, setFilters] = useState({ levels: [], durations: [], languages: [] });
+  const [sessions, setSessions] = useState([]);
+  const [searchText, setSearchText] = useState('');
 
   const openNavMenu = () => {
     setShowMenu(!showMenu);
   };
 
+  const filteredSessions = sessions.filter(createFilter(searchText, KEYS_TO_FILTERS));
+
   return (
     <div>
-      <Navbar2 openNavMenu={openNavMenu} />
+      <Navbar2 setSearchText={setSearchText} openNavMenu={openNavMenu} />
       <div>
         <div className="Categories">
           <div className="Categories_center">
@@ -27,7 +34,12 @@ function Layout({ children }) {
             <div className="Categories_column2">
               <Salespro />
 
-              {cloneElement(children, { filters, setFilters })}
+              {cloneElement(children, {
+                filters,
+                setFilters,
+                sessions: filteredSessions,
+                setSessions,
+              })}
 
               <Banner />
             </div>

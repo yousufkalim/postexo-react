@@ -256,7 +256,6 @@ const Audio = React.memo(({ viewSession, session }) => {
   };
 
   const handleJump = (e) => {
-    // console.log('Jump ', e);
     setLoading(true);
     if (!jumped) {
       const playTime = e.srcElement.currentTime;

@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import SearchInput from 'react-search-input';
 import Avatar from '@mui/material/Avatar';
 // import {  } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
@@ -8,7 +9,7 @@ import LOGOSVG from '../../assets/LOGO.svg';
 import SearchIcon from '../../assets/SearchIcon.svg';
 import ChangePassword from '../Screen/ChangePassword';
 
-function Navbar2({ openNavMenu }) {
+function Navbar2({ openNavMenu, setSearchText }) {
   const [showOptions, setShowOptions] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -45,7 +46,8 @@ function Navbar2({ openNavMenu }) {
         </div>
         <div className="navBar_2_container">
           <div className="input_search_div">
-            <input className="nav_search_bar" type="text" placeholder="UI/UX Design" />
+            <SearchInput className="nav_search_bar" onChange={(value) => setSearchText(value)} />
+            {/* <input className="nav_search_bar" type="text" placeholder="UI/UX Design" /> */}
             <img
               src={SearchIcon}
               alt=""
