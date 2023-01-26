@@ -252,6 +252,7 @@ function VideoScreenWrapped({ session, currentSession, getCurrentVideo, userInfo
                         {userInfo?.play_list?.map((playlist) => (
                           <div className="play-all">
                             <Checkbox
+                              key={playlist._id}
                               checked={playlist?.sessions?.find((item) => item === session?._id)}
                               onClick={() => handleAddToPlaylist(playlist?._id)}
                               color="default"
@@ -359,7 +360,7 @@ function VideoScreenWrapped({ session, currentSession, getCurrentVideo, userInfo
           </div>
           <div className="description-box">
             <h4 className="description">Description</h4>
-            <p className="description-para">
+            <div className="description-para">
               <ShowMoreText
                 lines={3}
                 more="Show more"
@@ -371,7 +372,7 @@ function VideoScreenWrapped({ session, currentSession, getCurrentVideo, userInfo
               >
                 {session?.message}
               </ShowMoreText>
-            </p>
+            </div>
           </div>
         </div>
       </div>

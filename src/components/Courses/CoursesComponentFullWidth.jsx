@@ -67,8 +67,9 @@ function CoursesComponent2({ sessions }) {
                   maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
                   maxPopoverTrigger="click"
                 >
-                  {_?.ratings?.map(() => (
+                  {_?.ratings?.map((rate) => (
                     <Avatar
+                      id={rate._id}
                       style={{
                         border: 'none',
                       }}

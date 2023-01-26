@@ -77,3 +77,11 @@
 .position-rel {
   position: relative;
 }
+
+.text-ellipsis-2 {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

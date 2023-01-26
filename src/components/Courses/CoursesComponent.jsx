@@ -44,7 +44,11 @@ function CoursesComponent({ sessions }) {
             window.location.pathname === '/sessions' ? 'image-container2' : 'image-container'
           }
         >
-          <img className="course-card-image" src={item?.resolution_file} alt="thumbnail" />
+          <img
+            className="course-card-image"
+            src="https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014_1280.jpg"
+            alt="thumbnail"
+          />
           <div className="card-img-parent-container">
             <span className="position-pill">
               <p onClick={() => handleNavigate(item?.matter)} role="presentation">
@@ -80,7 +84,7 @@ function CoursesComponent({ sessions }) {
             </div>
             <div className="Avatarcontent">
               <div className="card-image-content-hover">
-                <small>{item?.subject}</small>
+                <small className="text-ellipsis-2">{item?.subject}</small>
               </div>
               {item?.ratings?.length > 0 && (
                 <div className="avatarRatings">
@@ -89,11 +93,12 @@ function CoursesComponent({ sessions }) {
                     maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
                     maxPopoverTrigger="click"
                   >
-                    {item?.ratings?.map(() => (
+                    {item?.ratings?.map((rate) => (
                       <Avatar
                         style={{
                           border: 'none',
                         }}
+                        key={rate?._id}
                         alt="Remy Sharp"
                         src={Pic4}
                       />
@@ -114,7 +119,7 @@ function CoursesComponent({ sessions }) {
                 <small className="card-image-content">{item?.likes?.length} Likes </small>
               </div>
               <div>
-                <small className="card-image-content2">{item?.subject}</small>
+                <div className="card-image-content2 text-ellipsis-2">{item?.subject}</div>
               </div>
               <div>
                 <small className="card-image-content">

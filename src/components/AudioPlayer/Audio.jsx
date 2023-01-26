@@ -91,29 +91,31 @@ const Audio = React.memo(({ viewSession, session }) => {
   const setFormattedData = () => {
     canvasRef.current.width = CANVAS_WIDTH;
     canvasRef.current.height = CANVAS_HEIGHT;
-    const paths = JSON.parse(session.fb_data);
-    const keys = Object.entries(paths.paths).map((item) => ({ ...item[1], key: item[0] }));
+    if (session?.fb_data) {
+      const paths = JSON?.parse(session?.fb_data);
+      const keys = Object.entries(paths.paths).map((item) => ({ ...item[1], key: item[0] }));
 
-    const dates = [];
-    keys.forEach((obj) => {
-      obj.points?.forEach((item) => {
-        dates.push(item.date);
+      const dates = [];
+      keys.forEach((obj) => {
+        obj.points?.forEach((item) => {
+          dates.push(item.date);
+        });
       });
-    });
 
-    const sec = keys.map((obj) =>
-      obj.points?.map((item) => ({
-        color: formatPointColor(obj?.color),
-        x: item.point.X,
-        y: item.point.Y,
-        date: item.date,
-        width: obj.width,
-        key: obj.key,
-      })),
-    );
-    const first = sec.flat();
-    setAllPaths(first);
-    setAllDates(dates);
+      const sec = keys.map((obj) =>
+        obj.points?.map((item) => ({
+          color: formatPointColor(obj?.color),
+          x: item.point.X,
+          y: item.point.Y,
+          date: item.date,
+          width: obj.width,
+          key: obj.key,
+        })),
+      );
+      const first = sec.flat();
+      setAllPaths(first);
+      setAllDates(dates);
+    }
   };
 
   const setInitialData = () => {

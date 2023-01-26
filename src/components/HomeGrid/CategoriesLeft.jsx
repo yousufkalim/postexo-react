@@ -25,12 +25,13 @@ function CategoriesLeftWrapped({ userInfo, getUserInfo, filters, setFilters }) {
     setIsModalOpen(true);
   };
 
-  const getLevels = () => {
-    API('get', '/levels')
-      .then((res) => {
-        setAllLevels(res?.data?.levels);
-      })
-      .catch(() => {});
+  const getLevels = async () => {
+    try {
+      const response = await API('get', '/levels');
+      setAllLevels(response?.data?.levels);
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   const handleChange = (name, value) => {
@@ -58,7 +59,7 @@ function CategoriesLeftWrapped({ userInfo, getUserInfo, filters, setFilters }) {
     setFilters({ levels: [], durations: [] });
   };
 
-  const handleCreatePlaylist = async () => {
+  const handleCreatePlaylist = () => {
     API('post', '/playlist', { title: playlistName, userId: userData?._id })
       .then(() => {
         getUserInfo();
@@ -71,7 +72,7 @@ function CategoriesLeftWrapped({ userInfo, getUserInfo, filters, setFilters }) {
   useEffect(() => {
     resetFilters();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, params);
+  }, [params]);
 
   useEffect(() => {
     getLevels();
@@ -124,7 +125,7 @@ function CategoriesLeftWrapped({ userInfo, getUserInfo, filters, setFilters }) {
         </div>
         {userInfo?.play_list?.length > 0 &&
           userInfo?.play_list?.map((playlist) => (
-            <div className="Categories_favourit_fields categories_playlist">
+            <div key={playlist._id} className="Categories_favourit_fields categories_playlist">
               <p
                 className="MyFav_list"
                 onClick={() => handlePlaylist(playlist?._id)}
@@ -154,7 +155,7 @@ function CategoriesLeftWrapped({ userInfo, getUserInfo, filters, setFilters }) {
         <div className="Classess_div">
           <p className="classes_p">Classes</p>
           {allLevels?.map((level) => (
-            <div id={level?._id} className="checked_option">
+            <div key={level?._id} className="checked_option">
               <Checkbox
                 checked={filters?.levels?.find((item) => item === level?.label) ?? false}
                 onChange={() => handleChange('levels', level?.label)}
@@ -168,7 +169,7 @@ function CategoriesLeftWrapped({ userInfo, getUserInfo, filters, setFilters }) {
           ))}
           <p className="duraiton_p">video duration</p>
           {durations?.map((duration) => (
-            <div id={duration} className="checked_option">
+            <div key={duration} id={duration} className="checked_option">
               <Checkbox
                 checked={filters?.durations?.find((item) => item === duration) ?? false}
                 onChange={() => handleChange('durations', duration)}
