@@ -55,11 +55,12 @@ function MoreVideos({ sessions }) {
                     maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
                     maxPopoverTrigger="click"
                   >
-                    {item?.ratings?.map(() => (
+                    {item?.ratings?.map((rate) => (
                       <Avatar
                         style={{
                           border: 'none',
                         }}
+                        key={rate._id}
                         alt="Remy Sharp"
                         src={Pic4}
                       />
@@ -136,7 +137,7 @@ function MoreVideos({ sessions }) {
                 <p className="card-image-content">{item?.likes?.length} Likes</p>
               </div>
               <div>
-                <p className="card_image_content_video">{item?.subject}</p>
+                <div className="card_image_content_video text-ellipsis-2">{item?.subject}</div>
               </div>
               <div>
                 <p className="card-image-content-video">

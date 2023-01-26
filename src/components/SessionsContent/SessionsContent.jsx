@@ -69,7 +69,7 @@ function SessionsContent({ title, sessions, getSessions, filters, mutator }) {
                 name="Sort"
               >
                 {sortOptions?.map((sortName) => (
-                  <option value={sortName} id={sortName}>
+                  <option key={sortName} value={sortName} id={sortName}>
                     {sortName}
                   </option>
                 ))}

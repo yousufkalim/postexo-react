@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: 1px solid #1e1e1e;
 }
 .card-img-parent-container2 {
   padding: 1%;
@@ -25,7 +26,8 @@
   display: none;
 }
 .card-img-parent-container:hover .Avatarcontent {
-  display: block;
+  opacity: 1;
+  visibility: visible;
   display: flex;
 }
 .card-img-parent-container:hover .position-pill {
@@ -122,11 +124,13 @@
   align-items: center;
 }
 .Avatarcontent {
-  display: flex;
+  display: none;
+  visibility: hidden;
   flex-direction: column;
   height: 45%;
   justify-content: space-between;
-  display: none;
+  opacity: 0;
+  transition: 0.3s all ease-in;
 }
 .video-icon-container_play {
   width: 44px;
@@ -185,7 +189,9 @@
 }
 .card-image-content-hover small {
   font-size: 18px;
+  width: 100%;
 }
+
 .avatarRatings {
   display: flex;
   justify-content: space-between;

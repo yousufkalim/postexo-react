@@ -11,25 +11,23 @@ import { mediaUrl } from '../config';
 
 function VideoScreen() {
   const [currentVideo, setCurrentVideo] = useState();
-  const [currentSession, setCurentSession] = useState();
+  const [currentSession, setCurrentSession] = useState();
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(false);
   const params = useParams();
 
   const getCurrentSession = () => {
     API('get', `/sessions/${params?.id}`)
-      .then((res) => {
+      .then(async (res) => {
         const data = res?.data?.session;
         const fbData = `${mediaUrl}/${data?.fb_data}`;
-        fetch(fbData)
+        await fetch(fbData)
           .then((response) => response.json())
           .then((responseJson) => {
             data.fb_data = responseJson?.exo?.fb_data;
-            setCurentSession(data);
           })
-          .catch((error) => {
-            console.error(error);
-          });
+          .catch(() => {});
+        setCurrentSession(data);
       })
       .catch((err) => {
         toast.error(err?.message);
@@ -86,7 +84,10 @@ function VideoScreen() {
         />
         <div className="component-set">
           {/* <CoursesComponent /> */}
-          <MoreVideos setLoading={setLoading} sessions={sessions} />
+          <MoreVideos
+            setLoading={setLoading}
+            sessions={sessions?.filter((session) => session._id !== currentSession?._id)}
+          />
         </div>
         {/* <div className="component-2">
           <CoursesComponent2 setCurrentVideo={setCurrentVideo} />

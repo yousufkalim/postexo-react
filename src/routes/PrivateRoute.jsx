@@ -1,21 +1,23 @@
+import axios from 'axios';
 import React, { useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { baseUrl } from '../config';
 
 function PrivateRoute({ children }) {
   const isLogin = localStorage.getItem('token');
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const validateLogin = async () => {
-    // axios
-    //   .get(`${baseUrl}/auth`)
-    //   .then(() => {})
-    //   .catch((err) => {
-    //     if (err?.request?.status === 403) {
-    //       localStorage.removeItem('userData');
-    //       localStorage.removeItem('token');
-    //       navigate('/login');
-    //     }
-    //   });
+    axios
+      .get(`${baseUrl}/auth`)
+      .then(() => {})
+      .catch((err) => {
+        if (err?.request?.status === 403) {
+          localStorage.removeItem('userData');
+          localStorage.removeItem('token');
+          navigate('/login');
+        }
+      });
   };
   useEffect(() => {
     validateLogin();
