@@ -34,11 +34,6 @@
   .component-set {
     width: 28%;
   }
-  .nav_profile {
-    /* display: flex;
-    align-items: center;
-    margin-bottom: 3%; */
-  }
   .rhap_progress-container {
     width: 46% !important;
     flex: none !important;

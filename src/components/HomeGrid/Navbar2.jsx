@@ -9,6 +9,7 @@ import SearchIcon from '../../assets/SearchIcon.svg';
 import ChangePassword from '../Screen/ChangePassword';
 
 function Navbar2({ openNavMenu, setSearchText }) {
+  // console.log(id, 'idid');
   const [showOptions, setShowOptions] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -36,11 +37,22 @@ function Navbar2({ openNavMenu, setSearchText }) {
   return (
     <>
       <ChangePassword open={open} setOpen={setOpen} />
-      <MenuIcon className="hambgr" onClick={openNavMenu} />
+      {window.location.pathname === `/sessions` ? (
+        <MenuIcon className="hambgr" onClick={openNavMenu} />
+      ) : (
+        ''
+      )}
+
       <nav className="navBar_2" style={{ backgrounColor: 'red' }}>
         <div>
           <Link to="/sessions">
-            <img className="navbar-logo-svg2" src={LOGOSVG} alt="postexologo" />
+            <img
+              className={
+                window.location.pathname === `/sessions` ? 'navbar-logo-svg2' : 'navbar-logo-svg3'
+              }
+              src={LOGOSVG}
+              alt="postexologo"
+            />
           </Link>
         </div>
         <div className="navBar_2_container">
