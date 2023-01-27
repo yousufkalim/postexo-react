@@ -38,16 +38,13 @@ function CategoriesRight({ filters, sessions, setSessions }) {
   };
 
   const getSetSessions = () => {
-    if (sessions?.length > 0) {
+    if (sessions) {
       const response = sessions?.length > 0 ? [...sessions] : [];
       const response2 = sessions?.length > 0 ? [...sessions] : [];
       const topRated = response?.sort((a, b) => b.averageRating - a.averageRating);
       const mostViewed = response2?.sort((a, b) => b.views.length - a.views.length);
       setTopSessions(topRated);
       setViewedSessions(mostViewed);
-    } else {
-      setTopSessions([]);
-      setViewedSessions([]);
     }
   };
 
@@ -76,9 +73,9 @@ function CategoriesRight({ filters, sessions, setSessions }) {
     } else if (value === 'Top rated') {
       sessionsCopy?.sort((a, b) => b.averageRating - a.averageRating);
     } else {
-      setSessions(topSessions);
+      setTopSessions(topSessions);
     }
-    setSessions(sessionsCopy);
+    setTopSessions(sessionsCopy);
   };
 
   const handleSelectSortViewed = (e) => {

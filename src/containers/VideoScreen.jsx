@@ -26,7 +26,10 @@ function VideoScreen() {
           .then((responseJson) => {
             data.fb_data = responseJson?.exo?.fb_data;
           })
-          .catch(() => {});
+          .catch((err) => {
+            console.log('fb_data file not found', err?.message);
+            data.fb_data = '';
+          });
         setCurrentSession(data);
       })
       .catch((err) => {

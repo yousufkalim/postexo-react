@@ -162,7 +162,7 @@ function CategoriesLeftWrapped({ userInfo, getUserInfo, filters, setFilters }) {
                 inputProps={{ 'aria-label': 'controlled' }}
                 style={{ color: 'white', padding: '0' }}
               />
-              <label htmlFor="Level" className="levelLabel">
+              <label htmlFor="Level" className="levelLabel text-ellipsis-1">
                 {level?.label}
               </label>
             </div>
