@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import API from '../../api';
-import FILTERICONSVG from '../../assets/FILTERICONSVG.svg';
 import CoursesComponent from '../Courses/CoursesComponent';
 // import Popup from '../Dialog/Popup';
 
@@ -34,10 +33,10 @@ function Courses() {
           <div className="courses-div">
             <h4 className="courses_h4">Courses</h4>
             {/* <H1 text="Courses" /> */}
-            <div className="btn-filter">
+            {/* <div className="btn-filter">
               <span className="filter">Filter</span>
               <img className="filter-courses-icon" src={FILTERICONSVG} alt="FILTERICONSVG" />
-            </div>
+            </div> */}
           </div>
         </section>
         <section className="section-need-a-teacher-courses2">
