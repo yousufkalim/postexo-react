@@ -1,12 +1,18 @@
+.video_spinner {
+  top: 30% !important;
+  left: 40% !important;
+}
 @media screen and (max-width: 1640px) {
+  .video_spinner {
+    top: 32vh !important;
+    left: 38% !important;
+  }
 }
 @media screen and (max-width: 1200px) {
   .image_container_videos {
     height: 216px;
   }
-  .video_player {
-    height: 430px;
-  }
+
   .card_image_content_video {
     font-size: 14px;
     line-height: 19px;
@@ -29,9 +35,26 @@
     width: 28%;
   }
   .nav_profile {
-    display: flex;
+    /* display: flex;
     align-items: center;
-    margin-bottom: 3%;
+    margin-bottom: 3%; */
+  }
+  .rhap_progress-container {
+    width: 46% !important;
+    flex: none !important;
+    margin: 12px !important;
+  }
+  .rhap_progress-section {
+    position: relative !important;
+    width: 50% !important;
+    flex: 3 1 auto !important;
+  }
+  .video_canvas {
+    height: 50vh !important;
+  }
+  .video_spinner {
+    top: 26vh !important;
+    left: 36% !important;
   }
 }
 @media screen and (max-width: 800px) {
@@ -42,16 +65,11 @@
     width: 100%;
   }
   .component-set {
-    width: 50%;
-    margin-top: 180px;
+    width: 60%;
+    margin: auto;
   }
-  .video_player {
-    height: 291px;
-  }
-
-  .playlist_p {
-    font-size: 10px;
-    line-height: 12px;
+  .video_canvas {
+    height: 35vh !important;
   }
   .social {
     flex-wrap: inherit !important;
@@ -70,11 +88,11 @@
     align-items: center;
   }
   .likes_img {
-    width: 12px;
+    width: 25px;
   }
   .dislike {
-    width: 15px;
-    margin-left: 10px;
+    width: 25px;
+    margin-left: 0px;
     margin-right: 10px;
   }
   .likes_views {
@@ -98,12 +116,15 @@
     font-size: 12px;
     line-height: 20px;
   }
+  .video_spinner {
+    top: 18vh !important;
+    left: 50% !important;
+  }
+  .rhap_progress-container {
+    width: 43% !important;
+  }
 }
 @media screen and (max-width: 500px) {
-  .video_player {
-    height: 220px;
-  }
-
   .playlist_p {
     font-size: 10px;
     line-height: 12px;
@@ -126,12 +147,12 @@
     align-items: center;
   }
   .likes_img {
-    width: 12px;
+    width: 30px;
   }
   .dislike {
-    width: 15px;
-    margin-left: 10px;
-    margin-right: 0px;
+    width: 30px;
+    margin-left: 0px;
+    margin-right: 10px;
   }
   .likes_views {
     font-size: 10px;
@@ -166,14 +187,16 @@
   }
   .component-set {
     width: 100%;
-    margin-top: 180px;
   }
 
   /*    Audio Player    */
   .rhap_horizontal-reverse {
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: flex-start;
     padding-inline: 20px;
+  }
+  .rhap_progress-section {
+    flex: 1 1 auto !important;
   }
 
   .rhap_volume-controls {
@@ -184,5 +207,9 @@
   }
   .rhap_progress-container {
     margin: 12px 12px 12px 0 !important;
+  }
+  .video_spinner {
+    top: 18vh !important;
+    left: 50% !important;
   }
 }

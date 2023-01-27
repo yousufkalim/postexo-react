@@ -36,8 +36,8 @@
     width: 30%;
   }
   .nav_search_bar {
-    width: 296px;
-    height: 40px;
+    width: 200px;
+    height: 100%;
   }
   .Profile_name {
     font-size: 14px;
@@ -76,6 +76,10 @@
   .TopCourses_title {
     font-size: 22px;
     line-height: 45px;
+  }
+  .nav_search_bar input {
+    width: 200px;
+    height: 100%;
   }
 }
 
@@ -135,8 +139,12 @@
     margin-left: 5px;
   }
   .nav_search_bar {
-    width: 232px;
-    height: 35px;
+    width: 200px;
+    height: 100%;
+  }
+  .nav_search_bar input {
+    width: 200px;
+    height: 100%;
   }
 }
 
@@ -213,5 +221,17 @@
   }
   .card-img-parent-container2 {
     padding: 2%;
+  }
+  .profile_details {
+    display: none;
+  }
+  .profile_options {
+    left: -149px;
+  }
+  .presentation {
+    text-align: center;
+    padding: 15px 10px;
+    font-size: 15px;
+    line-height: 2px;
   }
 }

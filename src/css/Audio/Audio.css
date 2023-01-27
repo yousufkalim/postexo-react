@@ -9,7 +9,7 @@
 .rhap_progress-section {
   position: relative !important;
   width: 90%;
-  flex: none !important;
+  /* flex: none !important; */
 }
 .rhap_container {
   padding: 5px 20px !important;

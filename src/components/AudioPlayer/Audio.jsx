@@ -287,6 +287,7 @@ const Audio = React.memo(({ viewSession, session }) => {
         <TransformWrapper wheel={wheel} doubleClick={doubleClick}>
           <TransformComponent>
             <div
+              className="video_canvas"
               style={{
                 height: `${handle.active ? '93vh' : '65vh'}`,
                 width: '100%',
@@ -302,6 +303,7 @@ const Audio = React.memo(({ viewSession, session }) => {
                 </div>
               )}
               <canvas
+                className="video_canvas"
                 style={{
                   height: `${handle.active ? '93vh' : '65vh'}`,
                   width: '100%',
