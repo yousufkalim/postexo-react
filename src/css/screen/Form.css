@@ -438,4 +438,8 @@ input:-webkit-autofill:focus {
   .forgetBg {
     width: 20%;
   }
+  .forgot_p {
+    font-size: 14px;
+    line-height: 20px;
+  }
 }

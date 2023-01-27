@@ -138,6 +138,9 @@
     width: 90px;
     margin-left: 5px;
   }
+  .navbar-logo-svg3 {
+    width: 90px;
+  }
   .nav_search_bar {
     width: 200px;
     height: 100%;
@@ -233,5 +236,12 @@
     padding: 15px 10px;
     font-size: 15px;
     line-height: 2px;
+  }
+  .croseIcon {
+    position: absolute;
+    right: 5%;
+    top: 3%;
+    cursor: pointer;
+    width: 16px;
   }
 }
