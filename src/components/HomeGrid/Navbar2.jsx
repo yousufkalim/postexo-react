@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SearchInput from 'react-search-input';
 import Avatar from '@mui/material/Avatar';
-// import {  } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
 import LOGOSVG from '../../assets/LOGO.svg';
 import SearchIcon from '../../assets/SearchIcon.svg';

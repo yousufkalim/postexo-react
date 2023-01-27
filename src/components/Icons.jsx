@@ -18,7 +18,7 @@ function Icon2() {
   return <img src={Pause} alt="secPauseond" />;
 }
 function Icon3() {
-  return <img src={Play} alt="Play" />;
+  return <img style={{ paddingInline: '8px' }} src={Play} alt="Play" />;
 }
 function Icon4() {
   return (
