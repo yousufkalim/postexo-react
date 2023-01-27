@@ -8,7 +8,7 @@ import CoursesComponent2 from '../Courses/CoursesComponentFullWidth';
 
 const sortOptions = ['Sort By', 'Date', 'Most liked', 'Most viewed', 'Top rated'];
 
-function SessionsContent({ title, sessions, getSessions, filters, mutator }) {
+function SessionsContent({ title, sessions, getSessions, filters, mutator, setSessions }) {
   const [showCours, setShowCoours] = useState(true);
   const [allSessions, setAllSessions] = useState([]);
   const [sortType, setSortType] = useState('');
@@ -39,6 +39,13 @@ function SessionsContent({ title, sessions, getSessions, filters, mutator }) {
     }
     setAllSessions(sessionsCopy);
   };
+
+  useEffect(() => {
+    return () => {
+      setSessions([]);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setAllSessions(sessions);

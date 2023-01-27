@@ -52,7 +52,7 @@ function CoursesComponent({ sessions }) {
             </span>
             <div className="d-flex space-between">
               {window.location.pathname === '/' ? null : (
-                <p className="cours_time">{item?.duration}</p>
+                <p className="cours_time">{`${item?.duration}:00`}</p>
               )}
 
               <span className="time-pill" />

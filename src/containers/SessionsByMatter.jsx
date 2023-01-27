@@ -33,6 +33,7 @@ function SessionsByMatter({ filters, setFilters, sessions, setSessions }) {
     <SessionsContent
       filters={filters}
       getSessions={getSessions}
+      setSessions={setSessions}
       title={matterName}
       sessions={sessions}
     />

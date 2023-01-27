@@ -86,7 +86,10 @@ function VideoScreen() {
           {/* <CoursesComponent /> */}
           <MoreVideos
             setLoading={setLoading}
-            sessions={sessions?.filter((session) => session._id !== currentSession?._id)}
+            sessions={sessions?.filter(
+              (session) =>
+                session._id !== currentSession?._id && session.matter === currentSession?.matter,
+            )}
           />
         </div>
         {/* <div className="component-2">

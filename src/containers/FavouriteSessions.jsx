@@ -26,6 +26,7 @@ function FavouriteSessions({ filters, sessions, setSessions }) {
   return (
     <SessionsContent
       filters={filters}
+      setSessions={setSessions}
       getSessions={getSessions}
       title="My Favourites"
       sessions={sessions}

@@ -28,6 +28,7 @@ function WatchLaterSessions({ filters, sessions, setSessions }) {
     <SessionsContent
       filters={filters}
       getSessions={getSessions}
+      setSessions={setSessions}
       title="See Later"
       sessions={sessions}
     />

@@ -32,6 +32,7 @@ function PlaylistSessions({ filters, sessions, setSessions }) {
     <SessionsContent
       filters={filters}
       getSessions={getSessions}
+      setSessions={setSessions}
       title={playlist?.title}
       mutator={id}
       sessions={sessions}
