@@ -32,16 +32,18 @@
   white-space: nowrap;
   cursor: pointer;
 }
+
+@media screen and (max-width: 900px) {
+  .banner_btn {
+    padding: 12px 40px;
+    left: 83%;
+  }
+}
+
 @media screen and (max-width: 676px) {
   .banner_btn {
     padding: 7px 21px;
     top: 50%;
     left: 77%;
-  }
-}
-@media screen and (max-width: 900px) {
-  .banner_btn {
-    padding: 12px 40px;
-    left: 83%;
   }
 }
