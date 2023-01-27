@@ -22,8 +22,8 @@ function HomeSection() {
             <div className="need-a-teacher-container-one">
               <h1 className="Need_teacher_title">Hello ! Need a teacher ?</h1>
               <span className="need-a-teacher-span">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industry standard dummy text ever since the 1500s,
+                After registering, you will be able to see the most popular courses of the platform,
+                and benefit from them !
               </span>
               <button type="button" className="btn-need-a-teacher" onClick={registorForm}>
                 <div className="regbtnImgDiv">

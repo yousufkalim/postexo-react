@@ -92,6 +92,7 @@ const Audio = React.memo(({ viewSession, session }) => {
     canvasRef.current.width = CANVAS_WIDTH;
     canvasRef.current.height = CANVAS_HEIGHT;
     if (session?.fb_data) {
+      console.log('SEssions ', session);
       const paths = JSON?.parse(session?.fb_data);
       const keys = Object.entries(paths.paths).map((item) => ({ ...item[1], key: item[0] }));
 
@@ -289,6 +290,7 @@ const Audio = React.memo(({ viewSession, session }) => {
             <div
               className="video_canvas"
               style={{
+                cursor: 'zoom-in',
                 height: `${handle.active ? '93vh' : '65vh'}`,
                 width: '100%',
                 position: 'relative',
@@ -331,54 +333,54 @@ const Audio = React.memo(({ viewSession, session }) => {
                 />
               )}
             </div>
-            <AudioPlayer
-              ref={audioRef}
-              src={audio}
-              onPlay={handlePlay}
-              autoPlayAfterSrcChange={false}
-              autoPlay={false}
-              onPause={handlePause}
-              onSeeking={handleJump}
-              layout="horizontal-reverse"
-              progressJumpSteps={{
-                forward: 5000,
-                backward: 5000,
-              }}
-              customIcons={{
-                forward: <Icon />,
-                pause: <Icon2 />,
-                play: <Icon3 />,
-                rewind: <Icon4 />,
-                volume: <Icon5 />,
-                volumeMute: <Icon6 />,
-              }}
-              customProgressBarSection={[
-                RHAP_UI.PROGRESS_BAR,
-                <div className="chapter-div">
-                  {chapter.map((chap, i) => {
-                    const leftStyle = (chap.end / duration) * 100;
-                    // const widthStyle = ((chap.end - chap.start) / duration) * 100;
-                    return (
-                      // eslint-disable-next-line react/no-array-index-key
-                      <span key={i} className="chapter" style={{ left: `${leftStyle}%` }}>
-                        <div className="tooltip">
-                          <span style={{ left: `${leftStyle}%` }} className="tooltiptext">
-                            {chap.name}
-                          </span>
-                        </div>
-                      </span>
-                    );
-                  })}
-                </div>,
-                RHAP_UI.CURRENT_TIME,
-                <div className="slash">&nbsp;/&nbsp;</div>,
-                RHAP_UI.DURATION,
-                RHAP_UI.VOLUME_CONTROLS,
-              ]}
-              customControlsSection={[RHAP_UI.MAIN_CONTROLS]}
-            />
           </TransformComponent>
         </TransformWrapper>
+        <AudioPlayer
+          ref={audioRef}
+          src={audio}
+          onPlay={handlePlay}
+          autoPlayAfterSrcChange={false}
+          autoPlay={false}
+          onPause={handlePause}
+          onSeeking={handleJump}
+          layout="horizontal-reverse"
+          progressJumpSteps={{
+            forward: 5000,
+            backward: 5000,
+          }}
+          customIcons={{
+            forward: <Icon />,
+            pause: <Icon2 />,
+            play: <Icon3 />,
+            rewind: <Icon4 />,
+            volume: <Icon5 />,
+            volumeMute: <Icon6 />,
+          }}
+          customProgressBarSection={[
+            RHAP_UI.PROGRESS_BAR,
+            <div className="chapter-div">
+              {chapter.map((chap, i) => {
+                const leftStyle = (chap.end / duration) * 100;
+                // const widthStyle = ((chap.end - chap.start) / duration) * 100;
+                return (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <span key={i} className="chapter" style={{ left: `${leftStyle}%` }}>
+                    <div className="tooltip">
+                      <span style={{ left: `${leftStyle}%` }} className="tooltiptext">
+                        {chap.name}
+                      </span>
+                    </div>
+                  </span>
+                );
+              })}
+            </div>,
+            RHAP_UI.CURRENT_TIME,
+            <div className="slash">&nbsp;/&nbsp;</div>,
+            RHAP_UI.DURATION,
+            RHAP_UI.VOLUME_CONTROLS,
+          ]}
+          customControlsSection={[RHAP_UI.MAIN_CONTROLS]}
+        />
       </FullScreen>
       {/* <button type="button" onClick={handle.enter}>
         Enter fullscreen
