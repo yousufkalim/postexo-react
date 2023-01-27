@@ -28,7 +28,7 @@ function CategoriesRight({ filters, sessions, setSessions }) {
       const levels = filters?.levels?.length ? allLevels.toString() : filters?.levels;
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
       await API('get', `/sessions?levels=${levels}&durations=${durations}`).then((res) => {
-        setSessions(res?.data?.sessions);
+        setSessions(res.data.sessions);
       });
       setLoading(false);
     } catch (err) {
@@ -45,6 +45,9 @@ function CategoriesRight({ filters, sessions, setSessions }) {
       const mostViewed = response2?.sort((a, b) => b.views.length - a.views.length);
       setTopSessions(topRated);
       setViewedSessions(mostViewed);
+    } else {
+      setTopSessions([]);
+      setViewedSessions([]);
     }
   };
 
@@ -61,7 +64,7 @@ function CategoriesRight({ filters, sessions, setSessions }) {
   const handleSelectSort = (e) => {
     const { value } = e.target;
     setSortType(value);
-    const sessionsCopy = [...sessions];
+    const sessionsCopy = [...topSessions];
     if (value === 'Date') {
       sessionsCopy?.sort(
         (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
@@ -73,7 +76,7 @@ function CategoriesRight({ filters, sessions, setSessions }) {
     } else if (value === 'Top rated') {
       sessionsCopy?.sort((a, b) => b.averageRating - a.averageRating);
     } else {
-      setSessions(sessions);
+      setSessions(topSessions);
     }
     setSessions(sessionsCopy);
   };
@@ -97,6 +100,9 @@ function CategoriesRight({ filters, sessions, setSessions }) {
     }
     setViewedSessions(viewedSessionsCopy);
   };
+
+  // console.log('Top rated sessions ', topSessions);
+  // console.log('Most viewed rated sessions ', viewedSessions);
 
   const CourseEvent = () => {
     setShowCoours(true);

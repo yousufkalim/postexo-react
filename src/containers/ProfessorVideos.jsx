@@ -24,7 +24,13 @@ function ProfessorVideos({ filters, sessions, setSessions }) {
   };
 
   return (
-    <SessionsContent filters={filters} getSessions={getSessions} title={name} sessions={sessions} />
+    <SessionsContent
+      filters={filters}
+      setSessions={setSessions}
+      getSessions={getSessions}
+      title={name}
+      sessions={sessions}
+    />
   );
 }
 

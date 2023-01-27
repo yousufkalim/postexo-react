@@ -21,7 +21,7 @@ function CoursesComponent2({ sessions }) {
       {sessions?.map((_) => (
         <div key={_._id} className="image-container_row image-container_row_full">
           <img src={_?.resolution_file} className="image_container_banner" alt="video-icon" />
-          <p className="cours_time">{_?.duration}</p>
+          <p className="cours_time">{`${_?.duration}:00`}</p>
           <img className="course-card-image" src={_?.img} alt={_?.alt} />
           <div className="card-img-parent-container2 card-img-parent-container2_full">
             <div className="d-flex space-between">

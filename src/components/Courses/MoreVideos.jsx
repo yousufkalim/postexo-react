@@ -29,7 +29,7 @@ function MoreVideos({ sessions }) {
           key={item._id}
           className="image_container_videos"
         >
-          <p className="cours_time">{item?.duration}</p>
+          <p className="cours_time">{`${item?.duration}:00`}</p>
           <img className="course-card-image" src={item?.resolution_file} alt="session" />
           <div className="card-img-parent-container">
             <div className="d-flex space-between">

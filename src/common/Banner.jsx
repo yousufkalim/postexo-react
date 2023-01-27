@@ -22,7 +22,12 @@ function Banner() {
 
   return (
     <div className="banner" style={{ backgroundImage: `${mediaUrl}/${banner?.bannerImg}` }}>
-      <img src={`${mediaUrl}/${banner?.bannerImg}`} alt="banner" className="banner_image" />
+      <img
+        src="https://img.freepik.com/free-vector/space-background-with-landscape-planet_107791-797.jpg?size=626&ext=jpg&ga=GA1.2.1218366192.1674817616"
+        alt="banner"
+        className="banner_image"
+      />
+      {/* <img src={`${mediaUrl}/${banner?.bannerImg}`} alt="banner" className="banner_image" /> */}
       <a target="_blank" href={banner?.link} className="banner_btn" type="button" rel="noreferrer">
         Learn More
       </a>
