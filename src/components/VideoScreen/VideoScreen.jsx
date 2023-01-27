@@ -194,7 +194,7 @@ function VideoScreenWrapped({ session, currentSession, getCurrentVideo, userInfo
               className="nav_profile"
             >
               <Avatar src="" className="profile_DP" />
-              <div className="profile_details">
+              <div className="profile_details_video">
                 <p className="Profile_names">{session?.professor_name}</p>
                 <p className="Profile_mail">Senior Software Engineer</p>
               </div>
