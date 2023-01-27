@@ -43,6 +43,7 @@
   }
   .component-set {
     width: 50%;
+    margin-top: 180px;
   }
   .video_player {
     height: 291px;
@@ -165,5 +166,23 @@
   }
   .component-set {
     width: 100%;
+    margin-top: 180px;
+  }
+
+  /*    Audio Player    */
+  .rhap_horizontal-reverse {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-inline: 20px;
+  }
+
+  .rhap_volume-controls {
+    width: 50%;
+    position: absolute;
+    bottom: -33px;
+    right: 0;
+  }
+  .rhap_progress-container {
+    margin: 12px 12px 12px 0 !important;
   }
 }
