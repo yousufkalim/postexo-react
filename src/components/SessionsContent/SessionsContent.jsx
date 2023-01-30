@@ -55,7 +55,7 @@ function SessionsContent({ title, sessions, getSessions, filters, mutator, setSe
   useEffect(() => {
     getSessions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters, mutator]);
+  }, [filters.levels.length, filters.durations.length, mutator]);
 
   return (
     <>

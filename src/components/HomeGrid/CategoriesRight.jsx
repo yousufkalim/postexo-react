@@ -57,7 +57,7 @@ function CategoriesRight({ filters, sessions, setSessions }) {
   useEffect(() => {
     getSessions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters]);
+  }, [filters.levels.length, filters.durations.length]);
 
   console.log('Filters ', filters);
 

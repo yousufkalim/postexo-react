@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Modal } from 'antd';
-import mongoose from 'mongoose';
 import { toast } from 'react-toastify';
 import Checkbox from '@mui/material/Checkbox';
 import API from '../../api';
@@ -22,8 +21,11 @@ function CategoriesLeftWrapped({ userInfo, getUserInfo, filters, setFilters }) {
   const userData = JSON.parse(localStorage.getItem('userData'));
 
   const navigate = useNavigate();
-  const isSessionUrl =
-    history.pathname.includes('sessions') && mongoose.Types.ObjectId.isValid(params?.id);
+
+  // eslint-disable-next-line prefer-regex-literals
+  const checkForHexRegExp = new RegExp('^[0-9a-fA-F]{24}$');
+
+  const isSessionUrl = history.pathname.includes('sessions') && checkForHexRegExp.test(params?.id);
 
   const showModal = () => {
     setIsModalOpen(true);
