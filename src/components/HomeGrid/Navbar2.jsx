@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
-import mongoose from 'mongoose';
 import SearchInput from 'react-search-input';
 import Avatar from '@mui/material/Avatar';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -16,10 +15,10 @@ function Navbar2({ openNavMenu, setSearchText }) {
   const params = useParams();
   const history = useLocation();
 
-  // const isValidId = mongoose.Types.ObjectId.isValid(params?.id);
+  // eslint-disable-next-line prefer-regex-literals
+  const checkForHexRegExp = new RegExp('^[0-9a-fA-F]{24}$');
 
-  const isSessionUrl =
-    history.pathname.includes('sessions') && mongoose.Types.ObjectId.isValid(params?.id);
+  const isSessionUrl = history.pathname.includes('sessions') && checkForHexRegExp.test(params?.id);
   console.log('Params check ', isSessionUrl);
 
   const handleClick = () => {

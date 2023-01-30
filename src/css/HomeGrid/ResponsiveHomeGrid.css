@@ -105,7 +105,7 @@
   .Categories_column {
     position: absolute;
     left: -100%;
-    transition: all 0.5s;
+    /* transition: all 0.5s; */
   }
   .Categories_columnActive {
     transition: all 0.5s;
