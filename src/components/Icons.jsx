@@ -1,8 +1,8 @@
 import React from 'react';
-import Second from '../assets/seconds.svg';
+import Second from '../assets/Second.svg';
 import Pause from '../assets/Pause.svg';
 import Play from '../assets/Play.svg';
-import Rewind from '../assets/Rewind.svg';
+import Rewind from '../assets/Rewinds.svg';
 import Volume from '../assets/Volume.svg';
 import Mute from '../assets/Mute.svg';
 
