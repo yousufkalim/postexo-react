@@ -93,29 +93,33 @@ const Audio = React.memo(({ viewSession, session }) => {
     canvasRef.current.height = CANVAS_HEIGHT;
     if (session?.fb_data) {
       console.log('SEssions ', session);
-      const paths = JSON?.parse(session?.fb_data);
-      const keys = Object.entries(paths.paths).map((item) => ({ ...item[1], key: item[0] }));
+      try {
+        const paths = JSON?.parse(session?.fb_data);
+        const keys = Object.entries(paths.paths).map((item) => ({ ...item[1], key: item[0] }));
 
-      const dates = [];
-      keys.forEach((obj) => {
-        obj.points?.forEach((item) => {
-          dates.push(item.date);
+        const dates = [];
+        keys.forEach((obj) => {
+          obj.points?.forEach((item) => {
+            dates.push(item.date);
+          });
         });
-      });
 
-      const sec = keys.map((obj) =>
-        obj.points?.map((item) => ({
-          color: formatPointColor(obj?.color),
-          x: item.point.X,
-          y: item.point.Y,
-          date: item.date,
-          width: obj.width,
-          key: obj.key,
-        })),
-      );
-      const first = sec.flat();
-      setAllPaths(first);
-      setAllDates(dates);
+        const sec = keys.map((obj) =>
+          obj.points?.map((item) => ({
+            color: formatPointColor(obj?.color),
+            x: item.point.X,
+            y: item.point.Y,
+            date: item.date,
+            width: obj.width,
+            key: obj.key,
+          })),
+        );
+        const first = sec.flat();
+        setAllPaths(first);
+        setAllDates(dates);
+      } catch (err) {
+        console.log('REsponse ERRor ', err);
+      }
     }
   };
 
@@ -282,10 +286,14 @@ const Audio = React.memo(({ viewSession, session }) => {
     disabled: true,
   };
 
+  const zoomAnimation = {
+    disabled: true,
+  };
+
   return (
     <div>
       <FullScreen handle={handle}>
-        <TransformWrapper wheel={wheel} doubleClick={doubleClick}>
+        <TransformWrapper zoomAnimation={zoomAnimation} wheel={wheel} doubleClick={doubleClick}>
           <TransformComponent>
             <div
               className="video_canvas"
