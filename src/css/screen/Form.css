@@ -90,7 +90,7 @@
   line-height: 21px;
   display: flex;
   align-items: center;
-  color: #454238;
+  color: #8c8c8c;
   position: relative;
 }
 .input_comment_label {
@@ -251,7 +251,7 @@ input:-webkit-autofill:focus {
 .forgotPopup {
   width: 40vw;
   background-color: #33312e;
-  padding: 100px;
+  padding: 80px;
   border-radius: 15px;
   text-align: center;
   position: relative;
