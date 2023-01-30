@@ -353,8 +353,8 @@ const Audio = React.memo(({ viewSession, session }) => {
           onSeeking={handleJump}
           layout="horizontal-reverse"
           progressJumpSteps={{
-            forward: 5000,
-            backward: 5000,
+            forward: 1000,
+            backward: 1000,
           }}
           customIcons={{
             forward: <Icon />,
