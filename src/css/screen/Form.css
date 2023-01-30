@@ -314,7 +314,7 @@ input:-webkit-autofill:focus {
 }
 @media screen and (min-width: 1200px) and (max-width: 1680px) {
   .formRightImg {
-    height: 125%;
+    height: 121%;
   }
   .formTitle {
     font-size: 30px;
@@ -348,17 +348,24 @@ input:-webkit-autofill:focus {
   .formLeftImg {
     width: 83%;
   }
+  .forgotPopup {
+    width: 63vw;
+    padding: 65px;
+  }
 }
 @media screen and (min-width: 800px) and (max-width: 1200px) {
   .formRightImg {
-    height: 91%;
+    height: 69%;
   }
   .form_right_div {
     width: 82%;
   }
   .form_input {
     padding: 10px 18px;
-    height: 40px;
+    height: 45px;
+  }
+  .form_input::placeholder {
+    font-size: 14px;
   }
   .form_btn {
     height: 40px;
@@ -375,6 +382,15 @@ input:-webkit-autofill:focus {
     width: 75vw !important;
     padding: 79px;
   }
+  .forgot_title {
+    font-size: 25px;
+    line-height: 40px;
+  }
+  .forgot_p {
+    font-size: 16px;
+    margin-bottom: 7%;
+    padding: 0 40px;
+  }
 }
 @media screen and (max-width: 800px) {
   .formRightImg {
@@ -387,6 +403,7 @@ input:-webkit-autofill:focus {
   .form_col2 {
     width: 80%;
     margin: auto;
+    padding-bottom: 50px;
   }
   .form_right_div {
     width: 100%;
@@ -405,7 +422,7 @@ input:-webkit-autofill:focus {
     font-size: 14px;
   }
   .form_input::placeholder {
-    font-size: 14px;
+    font-size: 12px;
   }
   .form_btn {
     height: 40px;
@@ -434,6 +451,7 @@ input:-webkit-autofill:focus {
   .forgotBtn {
     height: 40px;
     margin: 8% 0 0 0;
+    font-size: 14px;
   }
   .forgetBg {
     width: 20%;
@@ -441,5 +459,26 @@ input:-webkit-autofill:focus {
   .forgot_p {
     font-size: 14px;
     line-height: 20px;
+  }
+  .hidePassword {
+    width: 1.2rem;
+  }
+  .css-2rbg70-MuiPaper-root-MuiDialog-paper {
+    margin: 0 !important;
+  }
+  .homePlayer {
+    width: 94vw !important;
+    height: 54vw !important;
+    overflow: hidden;
+  }
+  .plyr__time {
+    font-size: var(--plyr-font-size-time, var(--plyr-font-size-small, 9px)) !important;
+  }
+}
+@media screen and (max-width: 500px) {
+  .forgot_p {
+    font-size: 13px;
+    line-height: 18px;
+    margin-bottom: 6%;
   }
 }

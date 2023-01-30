@@ -1,6 +1,7 @@
-import React, { useState, cloneElement } from 'react';
+import React, { useState, cloneElement, useEffect } from 'react';
 // eslint-disable-next-line import/no-named-as-default
 import { createFilter } from 'react-search-input';
+import { useLocation } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 import CategoriesLeft from '../components/HomeGrid/CategoriesLeft';
 import Navbar2 from '../components/HomeGrid/Navbar2';
@@ -10,6 +11,7 @@ import Banner from '../common/Banner';
 const KEYS_TO_FILTERS = ['subject', 'professor_name', 'student_level', 'matter', 'student_name'];
 
 function Layout({ children }) {
+  const location = useLocation();
   const [showMenu, setShowMenu] = useState(true);
   const [filters, setFilters] = useState({ levels: [], durations: [], languages: [] });
   const [sessions, setSessions] = useState([]);
@@ -18,6 +20,9 @@ function Layout({ children }) {
   const openNavMenu = () => {
     setShowMenu(!showMenu);
   };
+  useEffect(() => {
+    setShowMenu(true);
+  }, [location.pathname]);
 
   const filteredSessions = sessions.filter(createFilter(searchText, KEYS_TO_FILTERS));
 

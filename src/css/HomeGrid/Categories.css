@@ -223,6 +223,8 @@
   color: #fdfcfc;
   border: none;
   outline: none;
+  background-color: rgb(49 49 42) !important;
+  cursor: pointer;
 }
 .selectr_option {
   background: #1e1e1e !important;
