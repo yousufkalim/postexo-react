@@ -90,7 +90,7 @@
   line-height: 21px;
   display: flex;
   align-items: center;
-  color: #454238;
+  color: #8c8c8c;
   position: relative;
 }
 .input_comment_label {
@@ -251,7 +251,7 @@ input:-webkit-autofill:focus {
 .forgotPopup {
   width: 40vw;
   background-color: #33312e;
-  padding: 100px;
+  padding: 80px;
   border-radius: 15px;
   text-align: center;
   position: relative;
@@ -473,6 +473,9 @@ input:-webkit-autofill:focus {
   }
   .plyr__time {
     font-size: var(--plyr-font-size-time, var(--plyr-font-size-small, 9px)) !important;
+  }
+  .plyr__controls .plyr__controls__item {
+    margin-left: calc(var(--plyr-control-spacing, 10px) / 6) !important;
   }
 }
 @media screen and (max-width: 500px) {
