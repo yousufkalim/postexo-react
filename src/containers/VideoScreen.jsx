@@ -24,25 +24,24 @@ function VideoScreen() {
     setShowMenu(!showMenu);
   };
 
-  const getCurrentSession = () => {
-    API('get', `/sessions/${params?.id}`)
-      .then(async (res) => {
-        const data = res?.data?.session;
-        const fbData = `${mediaUrl}/${data?.fb_data}`;
-        await fetch(fbData)
-          .then((response) => response.json())
-          .then((responseJson) => {
-            data.fb_data = responseJson?.exo?.fb_data;
-          })
-          .catch((err) => {
-            console.log('fb_data file not found', err?.message);
-            data.fb_data = '';
-          });
-        setCurrentSession(data);
-      })
-      .catch((err) => {
-        toast.error(err?.message);
-      });
+  const getCurrentSession = async () => {
+    try {
+      const res = await API('get', `/sessions/${params?.id}`);
+      const data = res?.data?.session;
+      const fbData = `${mediaUrl}/${data?.fb_data}`;
+      try {
+        const resp = await fetch(fbData);
+        const response = await resp?.json();
+        console.log('Fetch response ', response);
+        data.fb_data = response?.exo?.fb_data;
+      } catch (err) {
+        console.log('ERROR ', err);
+      }
+
+      setCurrentSession(data);
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   const getCurrentVideo = () => {

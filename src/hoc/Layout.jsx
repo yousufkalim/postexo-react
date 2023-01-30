@@ -11,13 +11,17 @@ const KEYS_TO_FILTERS = ['subject', 'professor_name', 'student_level', 'matter',
 
 function Layout({ children }) {
   const [showMenu, setShowMenu] = useState(true);
-  const [filters, setFilters] = useState({ levels: [], durations: [], languages: [] });
+  const [filters, setFilters] = useState({ levels: [], durations: [] });
   const [sessions, setSessions] = useState([]);
   const [searchText, setSearchText] = useState('');
 
   const openNavMenu = () => {
     setShowMenu(!showMenu);
   };
+
+  // const memoFilters = useMemo(() => {
+  //   return filters;
+  // }, [filters]);
 
   const filteredSessions = sessions.filter(createFilter(searchText, KEYS_TO_FILTERS));
 

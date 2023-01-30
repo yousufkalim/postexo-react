@@ -21,6 +21,7 @@ function CategoriesRight({ filters, sessions, setSessions }) {
   const [loading, setLoading] = useState(false);
 
   const getSessions = async () => {
+    console.log('GEt sessions called');
     try {
       setLoading(true);
       const allLevels = [...filters.levels];
@@ -57,6 +58,8 @@ function CategoriesRight({ filters, sessions, setSessions }) {
     getSessions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
+
+  console.log('Filters ', filters);
 
   const handleSelectSort = (e) => {
     const { value } = e.target;
