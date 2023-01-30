@@ -17,16 +17,6 @@
   overflow-y: hidden !important;
 }
 
-.main_popup::-webkit-scrollbar {
-  background-color: transparent;
-  width: 1px !important;
-}
-
-.main_popup::-webkit-scrollbar-thumb {
-  background-color: transparent;
-  border-radius: 3px;
-}
-
 .popup {
   background: #33312e;
   width: 5px !important;
@@ -144,8 +134,19 @@
   .popup_container2 {
     margin: 0 0 7% 0;
   }
+  ::-webkit-scrollbar {
+    background-color: transparent !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent !important;
+    border-radius: 3px !important;
+  }
 }
 @media screen and (max-width: 667px) {
+  .main_popup {
+    padding: 20px;
+  }
   .popup_container,
   .popup_container2 {
     padding: 15px;

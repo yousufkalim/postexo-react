@@ -72,6 +72,7 @@
   }
   .image-container2 {
     min-width: 48%;
+    height: 230px;
   }
   .TopCourses_title {
     font-size: 22px;
@@ -148,6 +149,9 @@
   .nav_search_bar input {
     width: 200px;
     height: 100%;
+  }
+  .CategoriesLeft {
+    margin-top: 10%;
   }
 }
 
