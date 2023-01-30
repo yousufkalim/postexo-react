@@ -10,6 +10,10 @@
 a {
   text-decoration: none;
 }
+.input_search_div_mobile {
+  display: none;
+  visibility: hidden;
+}
 
 .navbar-btn-container {
   display: flex;

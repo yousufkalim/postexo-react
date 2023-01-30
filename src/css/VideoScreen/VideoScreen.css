@@ -277,6 +277,9 @@
   padding: 10px 5px 15px 5px;
   width: 15%;
 }
+.categories_menu {
+  display: none;
+}
 .inp {
   border: none;
   border-bottom: 2px solid #8c8c8c;

@@ -207,7 +207,7 @@
 }
 .sortby_main_div {
   padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.1);
+  background: #33312e !important;
   border-radius: 10000px;
 }
 .sortby_select {

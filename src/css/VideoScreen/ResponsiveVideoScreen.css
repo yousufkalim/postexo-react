@@ -118,10 +118,23 @@
   .rhap_progress-container {
     width: 43% !important;
   }
+  .dropdown {
+    left: -200px;
+  }
+  .rhap_volume-controls {
+    display: none;
+  }
+  .dropdown-playlist {
+    width: 213px;
+    right: 20px;
+  }
+  .home_spinner {
+    left: 50% !important;
+  }
 }
 @media screen and (max-width: 500px) {
   .playlist_p {
-    font-size: 10px;
+    font-size: 12px;
     line-height: 12px;
   }
   .social {
@@ -133,7 +146,7 @@
   }
   .Profile_names {
     font-size: 12px;
-    line-height: 10px;
+    line-height: 18px;
   }
   .like-box {
     padding: 0 10px;
@@ -142,12 +155,13 @@
     align-items: center;
   }
   .likes_img {
-    width: 30px;
+    width: 20px;
+    margin-right: 0;
   }
   .dislike {
-    width: 30px;
+    width: 20px;
     margin-left: 0px;
-    margin-right: 10px;
+    margin-right: 8px;
   }
   .likes_views {
     font-size: 10px;
@@ -156,7 +170,13 @@
     margin-right: 5px;
   }
   .like-dislike-div {
-    padding: 0 8px;
+    padding: 0;
+  }
+  .video_title {
+    margin: 10px 0 15px 0;
+  }
+  .social-playlist {
+    margin-top: 15px;
   }
   .options-div {
     padding: 0 0px;
@@ -186,9 +206,7 @@
 
   /*    Audio Player    */
   .rhap_horizontal-reverse {
-    /* flex-direction: column; */
     align-items: flex-start;
-    padding-inline: 20px;
   }
   .rhap_progress-section {
     flex: 1 1 auto !important;

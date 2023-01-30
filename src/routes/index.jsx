@@ -116,14 +116,14 @@ function Index() {
             </PrivateRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/sessions/:id"
           element={
             <PrivateRoute>
               <VideoScreen />
             </PrivateRoute>
           }
-        />
+        /> */}
       </Routes>
     </div>
   );

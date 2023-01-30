@@ -159,6 +159,25 @@
     width: 90%;
     margin: 1% auto;
   }
+  .input_search_div_mobile {
+    display: flex;
+    justify-content: center;
+    visibility: visible;
+    position: relative;
+  }
+  .input_search_div_mobile .searchIcon {
+    right: 10%;
+    top: 33%;
+  }
+  .input_search_div_mobile .nav_search_bar {
+    width: 88%;
+    margin-block: 10px;
+  }
+  .input_search_div_mobile .nav_search_bar input {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
   .profile_DP {
     width: 35px !important;
     height: 35px !important;
@@ -194,8 +213,10 @@
   .sortby_main_div {
     padding: 6px 12px;
   }
-  .gridImage {
+  .gridImage,
+  .ViewImage {
     margin: 0 10px;
+    display: none;
   }
   .card-image-content2 {
     font-size: 12px;
@@ -217,6 +238,9 @@
   .Categories_columnActive {
     position: fixed;
     width: 100%;
+  }
+  .categories_menu {
+    display: block;
   }
   :where(.css-dev-only-do-not-override-1kau3su).ant-avatar {
     width: 27px !important;
