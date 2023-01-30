@@ -474,6 +474,9 @@ input:-webkit-autofill:focus {
   .plyr__time {
     font-size: var(--plyr-font-size-time, var(--plyr-font-size-small, 9px)) !important;
   }
+  .plyr__controls .plyr__controls__item {
+    margin-left: calc(var(--plyr-control-spacing, 10px) / 6) !important;
+  }
 }
 @media screen and (max-width: 500px) {
   .forgot_p {
