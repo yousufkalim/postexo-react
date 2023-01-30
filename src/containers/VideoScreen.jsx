@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import CloseIcon from '@mui/icons-material/Close';
 import MoreVideos from '../components/Courses/MoreVideos';
 // import CoursesComponent2 from '../components/Courses/CoursesComponentFullWidth';
 import Navbar2 from '../components/HomeGrid/Navbar2';
@@ -8,13 +9,20 @@ import Screen from '../components/VideoScreen/VideoScreen';
 import API from '../api';
 import Spinner from '../common/Spinner';
 import { mediaUrl } from '../config';
+import CategoriesLeft from '../components/HomeGrid/CategoriesLeft';
 
 function VideoScreen() {
   const [currentVideo, setCurrentVideo] = useState();
   const [currentSession, setCurrentSession] = useState();
   const [sessions, setSessions] = useState([]);
+  const [filters, setFilters] = useState({ levels: [], durations: [], languages: [] });
   const [loading, setLoading] = useState(false);
+  const [showMenu, setShowMenu] = useState(true);
   const params = useParams();
+
+  const openNavMenu = () => {
+    setShowMenu(!showMenu);
+  };
 
   const getCurrentSession = () => {
     API('get', `/sessions/${params?.id}`)
@@ -76,7 +84,13 @@ function VideoScreen() {
 
   return (
     <>
-      <Navbar2 />
+      <Navbar2 openNavMenu={openNavMenu} />
+      <div
+        className={`categories_menu ${showMenu ? 'Categories_column' : 'Categories_columnActive'}`}
+      >
+        <CloseIcon className="closeIcon" onClick={openNavMenu} />
+        <CategoriesLeft setFilters={setFilters} filters={filters} />
+      </div>
       <div className="adjustScreen">
         {loading && <Spinner className="video_spinner" />}
         <Screen

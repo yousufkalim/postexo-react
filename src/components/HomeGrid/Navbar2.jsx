@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
+import mongoose from 'mongoose';
 import SearchInput from 'react-search-input';
 import Avatar from '@mui/material/Avatar';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -12,6 +13,14 @@ function Navbar2({ openNavMenu, setSearchText }) {
   // console.log(id, 'idid');
   const [showOptions, setShowOptions] = useState(false);
   const [open, setOpen] = useState(false);
+  const params = useParams();
+  const history = useLocation();
+
+  // const isValidId = mongoose.Types.ObjectId.isValid(params?.id);
+
+  const isSessionUrl =
+    history.pathname.includes('sessions') && mongoose.Types.ObjectId.isValid(params?.id);
+  console.log('Params check ', isSessionUrl);
 
   const handleClick = () => {
     setOpen(true);
@@ -37,22 +46,12 @@ function Navbar2({ openNavMenu, setSearchText }) {
   return (
     <>
       <ChangePassword open={open} setOpen={setOpen} />
-      {window.location.pathname === `/sessions` ? (
-        <MenuIcon className="hambgr" onClick={openNavMenu} />
-      ) : (
-        ''
-      )}
 
+      <MenuIcon id="TEsting" className="hambgr" onClick={openNavMenu} />
       <nav className="navBar_2" style={{ backgrounColor: 'red' }}>
         <div>
           <Link to="/sessions">
-            <img
-              className={
-                window.location.pathname === `/sessions` ? 'navbar-logo-svg2' : 'navbar-logo-svg3'
-              }
-              src={LOGOSVG}
-              alt="postexologo"
-            />
+            <img className="navbar-logo-svg2" src={LOGOSVG} alt="postexologo" />
           </Link>
         </div>
         <div className="navBar_2_container">
@@ -88,6 +87,17 @@ function Navbar2({ openNavMenu, setSearchText }) {
           </div>
         </div>
       </nav>
+      <div className="input_search_div_mobile">
+        <SearchInput className="nav_search_bar" onChange={(value) => setSearchText(value)} />
+        {/* <input className="nav_search_bar" type="text" placeholder="UI/UX Design" /> */}
+        <img
+          src={SearchIcon}
+          alt=""
+          className="searchIcon"
+          onClick={SearchEvent}
+          onKeyDown={SearchEvent}
+        />
+      </div>
     </>
   );
 }

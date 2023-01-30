@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Modal } from 'antd';
+import mongoose from 'mongoose';
 import { toast } from 'react-toastify';
 import Checkbox from '@mui/material/Checkbox';
 import API from '../../api';
@@ -16,10 +17,13 @@ function CategoriesLeftWrapped({ userInfo, getUserInfo, filters, setFilters }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playlistName, setPlaylistName] = useState('');
   const params = useParams();
+  const history = useLocation();
 
   const userData = JSON.parse(localStorage.getItem('userData'));
 
   const navigate = useNavigate();
+  const isSessionUrl =
+    history.pathname.includes('sessions') && mongoose.Types.ObjectId.isValid(params?.id);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -139,63 +143,67 @@ function CategoriesLeftWrapped({ userInfo, getUserInfo, filters, setFilters }) {
         <p onClick={showModal} role="presentation" className="create_playlist">
           Create playlist
         </p>
-        <div className="filter_div">
-          <p className="filter_title">Filters</p>
-          <button
-            disabled={isDisabledBtn}
-            onClick={() => resetFilters()}
-            type="button"
-            className="clear_btn"
-          >
-            Clear
-          </button>
-        </div>
-        <div className="border_line" />
+        {!isSessionUrl && (
+          <>
+            <div className="filter_div">
+              <p className="filter_title">Filters</p>
+              <button
+                disabled={isDisabledBtn}
+                onClick={() => resetFilters()}
+                type="button"
+                className="clear_btn"
+              >
+                Clear
+              </button>
+            </div>
+            <div className="border_line" />
 
-        <div className="Classess_div">
-          <p className="classes_p">Classes</p>
-          {allLevels?.map((level) => (
-            <div key={level?._id} className="checked_option">
-              <Checkbox
-                checked={filters?.levels?.find((item) => item === level?.label) ?? false}
-                onChange={() => handleChange('levels', level?.label)}
-                inputProps={{ 'aria-label': 'controlled' }}
-                style={{ color: 'white', padding: '0' }}
-              />
-              <label htmlFor="Level" className="levelLabel text-ellipsis-1">
-                {level?.label}
-              </label>
+            <div className="Classess_div">
+              <p className="classes_p">Classes</p>
+              {allLevels?.map((level) => (
+                <div key={level?._id} className="checked_option">
+                  <Checkbox
+                    checked={filters?.levels?.find((item) => item === level?.label) ?? false}
+                    onChange={() => handleChange('levels', level?.label)}
+                    inputProps={{ 'aria-label': 'controlled' }}
+                    style={{ color: 'white', padding: '0' }}
+                  />
+                  <label htmlFor="Level" className="levelLabel text-ellipsis-1">
+                    {level?.label}
+                  </label>
+                </div>
+              ))}
+              <p className="duraiton_p">video duration</p>
+              {durations?.map((duration) => (
+                <div key={duration} id={duration} className="checked_option">
+                  <Checkbox
+                    checked={filters?.durations?.find((item) => item === duration) ?? false}
+                    onChange={() => handleChange('durations', duration)}
+                    inputProps={{ 'aria-label': 'controlled' }}
+                    style={{ color: 'white', padding: '0' }}
+                  />
+                  <label htmlFor="Level" className="levelLabel">
+                    {duration}
+                  </label>
+                </div>
+              ))}
+              {/* <p className="language_P">Language</p> */}
+              {/* {languages?.map((lang) => (
+              <div className="checked_option">
+                <Checkbox
+                  checked={filters?.languages?.find((item) => item === lang) ?? false}
+                  onChange={() => handleChange('languages', lang)}
+                  inputProps={{ 'aria-label': 'controlled' }}
+                  style={{ color: 'white', padding: '0' }}
+                />
+                <label htmlFor="Level" className="levelLabel">
+                  {lang}
+                </label>
+              </div>
+            ))} */}
             </div>
-          ))}
-          <p className="duraiton_p">video duration</p>
-          {durations?.map((duration) => (
-            <div key={duration} id={duration} className="checked_option">
-              <Checkbox
-                checked={filters?.durations?.find((item) => item === duration) ?? false}
-                onChange={() => handleChange('durations', duration)}
-                inputProps={{ 'aria-label': 'controlled' }}
-                style={{ color: 'white', padding: '0' }}
-              />
-              <label htmlFor="Level" className="levelLabel">
-                {duration}
-              </label>
-            </div>
-          ))}
-          {/* <p className="language_P">Language</p> */}
-          {/* {languages?.map((lang) => (
-            <div className="checked_option">
-              <Checkbox
-                checked={filters?.languages?.find((item) => item === lang) ?? false}
-                onChange={() => handleChange('languages', lang)}
-                inputProps={{ 'aria-label': 'controlled' }}
-                style={{ color: 'white', padding: '0' }}
-              />
-              <label htmlFor="Level" className="levelLabel">
-                {lang}
-              </label>
-            </div>
-          ))} */}
-        </div>
+          </>
+        )}
       </div>
     </div>
   );
