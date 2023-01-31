@@ -206,7 +206,7 @@
 
   /*    Audio Player    */
   .rhap_horizontal-reverse {
-    align-items: flex-start;
+    align-items: center;
   }
   .rhap_progress-section {
     flex: 1 1 auto !important;

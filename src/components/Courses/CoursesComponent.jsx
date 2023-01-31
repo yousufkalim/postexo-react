@@ -109,7 +109,8 @@ function CoursesComponent({ sessions }) {
               )}
             </div>
             <div className="course-card-image-content">
-              <div>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <span className="level_btn">{item?.student_level}</span>
                 <img className="like-icon" src={LIKEICONSVG} alt="like-icon" />
                 <small className="card-image-content">{item?.likes?.length} Likes </small>
               </div>

@@ -66,7 +66,7 @@ function Report({ open, setOpen, sessionId, userId }) {
             <p className="forgot_p">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
             <div className="input_feild" style={{ textAlign: 'left' }}>
               <label htmlFor="a" className="input_report_label">
-                email
+                Email
                 <input
                   id="a"
                   type="email"
@@ -132,7 +132,10 @@ function Report({ open, setOpen, sessionId, userId }) {
                   onKeyDown={handleSubmittedClose}
                 />
               }
-              <p className="forgot_title">Your Report has been Submit</p>
+              <p className="forgot_title" style={{ marginBottom: '8px' }}>
+                Your Report has been Submit
+              </p>
+
               <p className="forgot_p">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
             </div>
           </Dialog>

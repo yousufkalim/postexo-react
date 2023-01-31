@@ -153,6 +153,9 @@
   .CategoriesLeft {
     margin-top: 10%;
   }
+  .categories_menu {
+    display: block;
+  }
 }
 
 @media screen and (max-width: 676px) {

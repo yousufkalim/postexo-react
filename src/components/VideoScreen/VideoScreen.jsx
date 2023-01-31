@@ -42,7 +42,6 @@ function VideoScreen({ session, currentSession, getCurrentVideo }) {
       />
       <div className="videoScreen_container">
         <div className="video_player">
-          {/* <Player session={session} action={handleViewSession} /> */}
           <Audio
             setLoading={setLoading}
             loading={loading}

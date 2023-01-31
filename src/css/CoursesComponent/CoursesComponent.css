@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid #1e1e1e;
+  border: 1px solid #2b2926;
 }
 .card-img-parent-container2 {
   padding: 1%;
@@ -210,6 +210,23 @@
   display: flex;
   gap: 5px;
   justify-content: flex-end;
+}
+.level_btn,
+.level_btn2 {
+  padding: 5px 15px;
+  background: #fdfcfc;
+  border-radius: 10000px;
+  font-family: 'Poppins';
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 15px;
+  color: #2b2926;
+  margin: 0 10px 2px 0;
+  display: inline-block;
+}
+.level_btn2 {
+  padding: 6px 28px;
+  font-size: 12px;
 }
 .like-icon {
   width: 16px;
