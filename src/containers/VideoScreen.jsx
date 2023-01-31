@@ -92,7 +92,7 @@ function VideoScreen() {
             setLoading={setLoading}
             sessions={sessions?.filter(
               (session) =>
-                session._id !== currentSession?._id && session.matter === currentSession?.matter,
+                session._id !== currentVideo?._id && session.matter === currentVideo?.matter,
             )}
           />
         </div>
