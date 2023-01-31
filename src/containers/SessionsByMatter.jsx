@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import API from '../api';
 import SessionsContent from '../components/SessionsContent/SessionsContent';
 
-function SessionsByMatter({ filters, setFilters, sessions, setSessions }) {
+function SessionsByMatter({ filters, setFilters, sessions, setSessions, loading, setLoading }) {
   const { matterName } = useParams();
 
   useEffect(() => {
@@ -13,19 +13,21 @@ function SessionsByMatter({ filters, setFilters, sessions, setSessions }) {
   }, []);
 
   const getSessions = async () => {
+    setLoading(true);
     try {
       const allLevels = [...filters.levels];
       const allDurations = [...filters.durations];
       const levels = filters?.levels?.length ? allLevels.toString() : filters?.levels;
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
-      await API(
+      const res = await API(
         'get',
         `/sessions/getByMatter?matterName=${matterName}&levels=${levels}&durations=${durations}`,
-      ).then((res) => {
-        setSessions(res?.data?.sessions);
-      });
+      );
+      setSessions(res?.data?.sessions);
+      setLoading(false);
     } catch (err) {
       toast.error(err.message);
+      setLoading(false);
     }
   };
 
@@ -36,6 +38,7 @@ function SessionsByMatter({ filters, setFilters, sessions, setSessions }) {
       setSessions={setSessions}
       title={matterName}
       sessions={sessions}
+      loading={loading}
     />
   );
 }

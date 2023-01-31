@@ -59,8 +59,6 @@ function CategoriesRight({ filters, sessions, setSessions }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters.levels.length, filters.durations.length]);
 
-  console.log('Filters ', filters);
-
   const handleSelectSort = (e) => {
     const { value } = e.target;
     setSortType(value);
@@ -100,9 +98,6 @@ function CategoriesRight({ filters, sessions, setSessions }) {
     }
     setViewedSessions(viewedSessionsCopy);
   };
-
-  // console.log('Top rated sessions ', topSessions);
-  // console.log('Most viewed rated sessions ', viewedSessions);
 
   const CourseEvent = () => {
     setShowCoours(true);

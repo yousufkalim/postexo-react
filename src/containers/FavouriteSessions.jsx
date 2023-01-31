@@ -3,23 +3,25 @@ import { toast } from 'react-toastify';
 import API from '../api';
 import SessionsContent from '../components/SessionsContent/SessionsContent';
 
-function FavouriteSessions({ filters, sessions, setSessions }) {
+function FavouriteSessions({ filters, sessions, setSessions, loading, setLoading }) {
   const userData = JSON.parse(localStorage.getItem('userData'));
 
   const getSessions = async () => {
+    setLoading(true);
     try {
       const allLevels = [...filters.levels];
       const allDurations = [...filters.durations];
       const levels = filters?.levels?.length ? allLevels.toString() : filters?.levels;
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
-      await API(
+      const res = await API(
         'get',
         `/sessions/getFavouriteSessions/${userData?._id}?levels=${levels}&durations=${durations}`,
-      ).then((res) => {
-        setSessions(res?.data?.user?.favorites);
-      });
+      );
+      setSessions(res?.data?.user?.favorites);
+      setLoading(false);
     } catch (err) {
       toast.error(err.message);
+      setLoading(false);
     }
   };
 
@@ -30,6 +32,7 @@ function FavouriteSessions({ filters, sessions, setSessions }) {
       getSessions={getSessions}
       title="My Favourites"
       sessions={sessions}
+      loading={loading}
     />
   );
 }

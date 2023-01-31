@@ -6,11 +6,18 @@ import ShowP from '../../assets/ShowP.svg';
 import HideIcon from '../../assets/HideIcon.svg';
 import RegisterIcon from '../../assets/RegisterIcon.svg';
 import API from '../../api/index';
+import ErrorField from '../../common/ErrorField';
+import { handleBlur } from '../../utils/form';
 
 function SignUp() {
   const navigate = useNavigate();
   const [passwordShown, setPasswordShown] = useState(false);
   const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+  const [errors, setErrors] = useState({
     name: '',
     email: '',
     password: '',
@@ -26,6 +33,10 @@ function SignUp() {
     }));
   };
 
+  const blurHandler = (e) => {
+    handleBlur(e, errors, setErrors);
+  };
+
   const handleSubmit = async () => {
     await API('post', '/users/', {
       name: formState.name,
@@ -36,7 +47,7 @@ function SignUp() {
         toast.success('User registered successfully');
         setTimeout(() => {
           navigate('/login');
-        }, 1000);
+        }, 200);
       })
       .catch((err) => {
         // eslint-disable-next-line no-console
@@ -65,9 +76,11 @@ function SignUp() {
                     placeholder="Enter your name"
                     value={formState.name}
                     name="name"
+                    onBlur={blurHandler}
                     onChange={handleChange}
                   />
                 </label>
+                {errors.name && <ErrorField error={errors.name} />}
               </div>
               <div className="input_feild">
                 <label htmlFor="b" className="input_label">
@@ -79,9 +92,11 @@ function SignUp() {
                     placeholder="Enter your email"
                     value={formState.email}
                     name="email"
+                    onBlur={blurHandler}
                     onChange={handleChange}
                   />
                 </label>
+                {errors.email && <ErrorField error={errors.email} />}
               </div>
               <div className="input_feild">
                 <label htmlFor="c" className="input_label">
@@ -93,6 +108,7 @@ function SignUp() {
                     placeholder="Enter your password"
                     value={formState.password}
                     name="password"
+                    onBlur={blurHandler}
                     onChange={handleChange}
                   />
                   {/* eslint-disable-next-line  */}
@@ -103,6 +119,7 @@ function SignUp() {
                     className="hidePassword"
                   />
                 </label>
+                {errors.password && <ErrorField error={errors.password} />}
               </div>
               <div className="input_feild">
                 <button type="button" className="form_btn" onClick={handleSubmit}>

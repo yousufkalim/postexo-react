@@ -7,12 +7,19 @@ import HideIcon from '../../assets/HideIcon.svg';
 import LoginIcon from '../../assets/LoginIcon.png';
 import ForgotPassword from './ForgotPassword';
 import API from '../../api/index';
+import { handleBlur } from '../../utils/form';
+import ErrorField from '../../common/ErrorField';
 
 function LoginUser() {
   const navigate = useNavigate();
   const [passwordShown, setPasswordShown] = useState(false);
   const [open, setOpen] = useState(false);
   const [formState, setFormState] = useState({
+    email: '',
+    password: '',
+  });
+  const [errors, setErrors] = useState({
+    name: '',
     email: '',
     password: '',
   });
@@ -33,6 +40,12 @@ function LoginUser() {
     }));
   };
 
+  const blurHandler = (e) => {
+    handleBlur(e, errors, setErrors);
+  };
+
+  const disableBtn = !(formState.email && formState.password);
+
   const handleLoggin = async () => {
     try {
       await API('post', '/auth/login', {
@@ -45,7 +58,7 @@ function LoginUser() {
             localStorage.setItem('userData', JSON.stringify(res?.data?.user));
             localStorage.setItem('token', res?.data?.token);
             navigate('/sessions');
-          }, 1000);
+          }, 200);
         }
       });
     } catch (err) {
@@ -78,8 +91,10 @@ function LoginUser() {
                       name="email"
                       value={formState.email}
                       onChange={handleChange}
+                      onBlur={blurHandler}
                     />
                   </label>
+                  {errors.email && <ErrorField error={errors.email} />}
                 </div>
                 <div className="input_feild">
                   <label htmlFor="c" className="input_label">
@@ -92,6 +107,7 @@ function LoginUser() {
                       name="password"
                       value={formState.password}
                       onChange={handleChange}
+                      onBlur={blurHandler}
                     />
                     <div role="presentation" onClick={togglePassword} onKeyUp={togglePassword}>
                       <img
@@ -101,6 +117,8 @@ function LoginUser() {
                       />
                     </div>
                   </label>
+                  {errors.password && <ErrorField error={errors.password} />}
+
                   <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     {
                       // eslint-disable-next-line
@@ -124,7 +142,12 @@ function LoginUser() {
                 </div>
 
                 <div className="input_feild">
-                  <button type="button" className="form_btn" onClick={handleLoggin}>
+                  <button
+                    disabled={disableBtn}
+                    type="button"
+                    className="form_btn"
+                    onClick={handleLoggin}
+                  >
                     Login
                     <img src={LoginIcon} alt="" className="register_icon" />
                   </button>

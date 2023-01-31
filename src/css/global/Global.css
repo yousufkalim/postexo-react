@@ -80,7 +80,7 @@
 .css-hppdow {
   background: none !important;
 }
-.text-ellipsis-1 {
+.text-ellipsis-2 {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -99,4 +99,11 @@
 .transform-component-module_content__2jYgh,
 .transform-component-module_wrapper__1_Fgj {
   width: 100% !important;
+}
+
+.error_text {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  font-weight: 400;
 }
