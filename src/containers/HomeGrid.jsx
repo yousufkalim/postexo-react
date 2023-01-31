@@ -7,7 +7,6 @@ function HomeGrid() {
   const [showMenu, setShowMenu] = useState(true);
 
   const openNavMenu = () => {
-    console.log('Show menu');
     setShowMenu(!showMenu);
   };
   return (

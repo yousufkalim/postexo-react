@@ -92,7 +92,6 @@ const Audio = React.memo(({ viewSession, session }) => {
     canvasRef.current.width = CANVAS_WIDTH;
     canvasRef.current.height = CANVAS_HEIGHT;
     if (session?.fb_data) {
-      console.log('SEssions ', session);
       try {
         const paths = JSON?.parse(session?.fb_data);
         const keys = Object.entries(paths.paths).map((item) => ({ ...item[1], key: item[0] }));

@@ -5,10 +5,11 @@ import WhiteGrid from '../../assets/WhiteGrid.svg';
 import BlueList from '../../assets/BlueList.svg';
 import CoursesComponent from '../Courses/CoursesComponent';
 import CoursesComponent2 from '../Courses/CoursesComponentFullWidth';
+import NoDataFound from '../../common/NoDataFound';
 
 const sortOptions = ['Sort By', 'Date', 'Most liked', 'Most viewed', 'Top rated'];
 
-function SessionsContent({ title, sessions, getSessions, filters, mutator, setSessions }) {
+function SessionsContent({ title, sessions, getSessions, filters, mutator, setSessions, loading }) {
   const [showCours, setShowCoours] = useState(true);
   const [allSessions, setAllSessions] = useState([]);
   const [sortType, setSortType] = useState('');
@@ -98,15 +99,17 @@ function SessionsContent({ title, sessions, getSessions, filters, mutator, setSe
           </div>
         </div>
       </div>
-      {showCours ? (
-        <div className="topCoursesAll">
-          <CoursesComponent sessions={allSessions} />
-        </div>
-      ) : (
-        <div className="topCoursesAll">
-          <CoursesComponent2 sessions={allSessions} />
-        </div>
-      )}
+      <NoDataFound loading={loading} data={sessions}>
+        {showCours ? (
+          <div className="topCoursesAll">
+            <CoursesComponent sessions={allSessions} />
+          </div>
+        ) : (
+          <div className="topCoursesAll">
+            <CoursesComponent2 sessions={allSessions} />
+          </div>
+        )}
+      </NoDataFound>
     </>
   );
 }

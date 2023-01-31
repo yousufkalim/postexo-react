@@ -6,12 +6,12 @@ import { Modal } from 'antd';
 import { toast } from 'react-toastify';
 import Checkbox from '@mui/material/Checkbox';
 import API from '../../api';
-import UserInfo from '../../hoc/UserInfo';
 
 const durations = ['Very short', 'Short', 'Long'];
 // const languages = ['English', 'Urdu', 'French'];
 
-function CategoriesLeftWrapped({ userInfo, getUserInfo, filters, setFilters }) {
+function CategoriesLeft({ filters, setFilters }) {
+  const [userInfo, setUserInfo] = useState({});
   const [allLevels, setAllLevels] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playlistName, setPlaylistName] = useState('');
@@ -64,6 +64,19 @@ function CategoriesLeftWrapped({ userInfo, getUserInfo, filters, setFilters }) {
   const resetFilters = () => {
     setFilters({ levels: [], durations: [] });
   };
+
+  const getUserInfo = async () => {
+    await API('get', `/users/${userData?._id}`)
+      .then((res) => {
+        setUserInfo(res?.data?.user);
+      })
+      .catch((err) => console.log('USER INFORMATION ====> ERROR ==> ', err));
+  };
+
+  useEffect(() => {
+    getUserInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleCreatePlaylist = () => {
     API('post', '/playlist', { title: playlistName, userId: userData?._id })
@@ -211,5 +224,4 @@ function CategoriesLeftWrapped({ userInfo, getUserInfo, filters, setFilters }) {
   );
 }
 
-const CategoriesLeft = UserInfo(CategoriesLeftWrapped);
 export default CategoriesLeft;

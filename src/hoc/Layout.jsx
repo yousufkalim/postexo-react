@@ -16,6 +16,7 @@ function Layout({ children }) {
   const [filters, setFilters] = useState({ levels: [], durations: [] });
   const [sessions, setSessions] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const [loading, setLoading] = useState([]);
 
   const openNavMenu = () => {
     setShowMenu(!showMenu);
@@ -48,6 +49,8 @@ function Layout({ children }) {
                 setFilters,
                 sessions: filteredSessions,
                 setSessions,
+                setLoading,
+                loading,
               })}
 
               <Banner />

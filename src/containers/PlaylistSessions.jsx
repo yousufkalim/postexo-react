@@ -4,26 +4,28 @@ import { toast } from 'react-toastify';
 import API from '../api';
 import SessionsContent from '../components/SessionsContent/SessionsContent';
 
-function PlaylistSessions({ filters, sessions, setSessions }) {
+function PlaylistSessions({ filters, sessions, setSessions, loading, setLoading }) {
   const [playlist, setPlaylist] = useState(null);
 
   const { id } = useParams();
 
   const getSessions = async () => {
+    setLoading(true);
     try {
       const allLevels = [...filters.levels];
       const allDurations = [...filters.durations];
       const levels = filters?.levels?.length ? allLevels.toString() : filters?.levels;
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
-      await API(
+      const res = await API(
         'get',
         `/sessions/getByPlaylist/${id}?levels=${levels}&durations=${durations}`,
-      ).then((res) => {
-        const playlistSessions = res?.data?.playlist;
-        setPlaylist(playlistSessions);
-        setSessions(playlistSessions?.sessions);
-      });
+      );
+      const playlistSessions = res?.data?.playlist;
+      setPlaylist(playlistSessions);
+      setSessions(playlistSessions?.sessions);
+      setLoading(false);
     } catch (err) {
+      setLoading(false);
       toast.error(err.message);
     }
   };
@@ -35,6 +37,7 @@ function PlaylistSessions({ filters, sessions, setSessions }) {
       setSessions={setSessions}
       title={playlist?.title}
       mutator={id}
+      loading={loading}
       sessions={sessions}
     />
   );

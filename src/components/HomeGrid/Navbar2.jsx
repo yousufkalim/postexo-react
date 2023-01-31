@@ -9,7 +9,6 @@ import SearchIcon from '../../assets/SearchIcon.svg';
 import ChangePassword from '../Screen/ChangePassword';
 
 function Navbar2({ openNavMenu, setSearchText }) {
-  // console.log(id, 'idid');
   const [showOptions, setShowOptions] = useState(false);
   const [open, setOpen] = useState(false);
   const params = useParams();
@@ -19,7 +18,6 @@ function Navbar2({ openNavMenu, setSearchText }) {
   const checkForHexRegExp = new RegExp('^[0-9a-fA-F]{24}$');
 
   const isSessionUrl = history.pathname.includes('sessions') && checkForHexRegExp.test(params?.id);
-  console.log('Params check ', isSessionUrl);
 
   const handleClick = () => {
     setOpen(true);
@@ -86,17 +84,19 @@ function Navbar2({ openNavMenu, setSearchText }) {
           </div>
         </div>
       </nav>
-      <div className="input_search_div_mobile">
-        <SearchInput className="nav_search_bar" onChange={(value) => setSearchText(value)} />
-        {/* <input className="nav_search_bar" type="text" placeholder="UI/UX Design" /> */}
-        <img
-          src={SearchIcon}
-          alt=""
-          className="searchIcon"
-          onClick={SearchEvent}
-          onKeyDown={SearchEvent}
-        />
-      </div>
+      {!isSessionUrl && (
+        <div className="input_search_div_mobile">
+          <SearchInput className="nav_search_bar" onChange={(value) => setSearchText(value)} />
+          {/* <input className="nav_search_bar" type="text" placeholder="UI/UX Design" /> */}
+          <img
+            src={SearchIcon}
+            alt=""
+            className="searchIcon"
+            onClick={SearchEvent}
+            onKeyDown={SearchEvent}
+          />
+        </div>
+      )}
     </>
   );
 }

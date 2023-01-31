@@ -277,6 +277,16 @@
   padding: 10px 5px 15px 5px;
   width: 15%;
 }
+
+/*      No Data Found     */
+.session_content_loading {
+  left: 60% !important;
+}
+.no_data_found {
+  margin-top: 70px;
+}
+/*      No Data Found  Edn    */
+
 .categories_menu {
   display: none;
 }

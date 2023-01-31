@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CloseIcon from '@mui/icons-material/Close';
 import MoreVideos from '../components/Courses/MoreVideos';
-// import CoursesComponent2 from '../components/Courses/CoursesComponentFullWidth';
 import Navbar2 from '../components/HomeGrid/Navbar2';
 import Screen from '../components/VideoScreen/VideoScreen';
 import API from '../api';
@@ -17,6 +16,7 @@ function VideoScreen() {
   const [sessions, setSessions] = useState([]);
   const [filters, setFilters] = useState({ levels: [], durations: [], languages: [] });
   const [loading, setLoading] = useState(false);
+  const [rerender, setRerender] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
   const params = useParams();
 
@@ -32,29 +32,18 @@ function VideoScreen() {
       try {
         const resp = await fetch(fbData);
         const response = await resp?.json();
-        console.log('Fetch response ', response);
         data.fb_data = response?.exo?.fb_data;
       } catch (err) {
         console.log('ERROR ', err);
       }
-
-      setCurrentSession(data);
+      if (!rerender) {
+        setCurrentSession(data);
+        setRerender(true);
+      }
+      setCurrentVideo(data);
     } catch (err) {
       toast.error(err.message);
     }
-  };
-
-  const getCurrentVideo = () => {
-    setLoading(true);
-    API('get', `/sessions/${params?.id}`)
-      .then((res) => {
-        setCurrentVideo(res?.data?.session);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-        toast.error(err?.message);
-      });
   };
 
   const getSessions = async () => {
@@ -77,7 +66,6 @@ function VideoScreen() {
 
   useEffect(() => {
     getCurrentSession();
-    getCurrentVideo();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
 
@@ -95,7 +83,7 @@ function VideoScreen() {
         <Screen
           currentSession={currentSession}
           setCurrentVideo={setCurrentVideo}
-          getCurrentVideo={getCurrentVideo}
+          getCurrentVideo={getCurrentSession}
           session={currentVideo}
         />
         <div className="component-set">
