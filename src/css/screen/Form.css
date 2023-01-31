@@ -156,7 +156,7 @@
   align-items: center;
   padding: 16px 32px;
   width: 100%;
-  /* height: 56px; */
+  height: 130px;
   background: #2b2926;
   border-radius: 20px;
   border: 2px solid rgba(140, 140, 140, 0.3);
@@ -391,6 +391,13 @@ input:-webkit-autofill:focus {
     margin-bottom: 7%;
     padding: 0 40px;
   }
+  .text-area {
+    font-size: 13px;
+    padding: 12px 20px;
+  }
+  .text-area::placeholder {
+    font-size: 14px;
+  }
 }
 @media screen and (max-width: 800px) {
   .formRightImg {
@@ -477,11 +484,25 @@ input:-webkit-autofill:focus {
   .plyr__controls .plyr__controls__item {
     margin-left: calc(var(--plyr-control-spacing, 10px) / 6) !important;
   }
+  .text-area {
+    font-size: 13px;
+    padding: 12px 20px;
+  }
+  .text-area::placeholder {
+    font-size: 14px;
+  }
 }
 @media screen and (max-width: 500px) {
   .forgot_p {
     font-size: 13px;
     line-height: 18px;
     margin-bottom: 6%;
+  }
+  .text-area {
+    font-size: 12px;
+    padding: 12px 20px;
+  }
+  .text-area::placeholder {
+    font-size: 12px;
   }
 }
