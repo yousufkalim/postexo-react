@@ -3,9 +3,16 @@ import Dialog from '@mui/material/Dialog';
 import { toast } from 'react-toastify';
 import CroseIcon from '../../assets/CroseIcon.svg';
 import API from '../../api/index';
+import { handleBlur } from '../../utils/form';
+import ErrorField from '../../common/ErrorField';
 
 function Report({ open, setOpen, sessionId, userId }) {
   const [report, setReport] = useState({
+    email: '',
+    subject: '',
+    comment: '',
+  });
+  const [errors, setErrors] = useState({
     email: '',
     subject: '',
     comment: '',
@@ -25,6 +32,10 @@ function Report({ open, setOpen, sessionId, userId }) {
       [name]: value,
     }));
   };
+  const blurHandler = (e) => {
+    handleBlur(e, errors, setErrors);
+  };
+
   const handleSendReport = async () => {
     try {
       await API('post', `/reports`, {
@@ -47,6 +58,9 @@ function Report({ open, setOpen, sessionId, userId }) {
       toast.error(err);
     }
   };
+
+  const disableBtn = !(report.email && report.subject && report.comment);
+
   return (
     <>
       <div className="popup">
@@ -75,9 +89,11 @@ function Report({ open, setOpen, sessionId, userId }) {
                   value={report.email}
                   name="email"
                   onChange={handleChange}
+                  onBlur={blurHandler}
                   autoComplete="new-password"
                 />
               </label>
+              {errors.email && <ErrorField error={errors.email} />}
             </div>
             <div className="input_feild" style={{ textAlign: 'left' }}>
               <label htmlFor="b" className="input_report_label">
@@ -90,8 +106,10 @@ function Report({ open, setOpen, sessionId, userId }) {
                   value={report.subject}
                   name="subject"
                   onChange={handleChange}
+                  onBlur={blurHandler}
                 />
               </label>
+              {errors.subject && <ErrorField error={errors.subject} />}
             </div>
             <div className="input_feild" style={{ textAlign: 'left' }}>
               <label htmlFor="c" className="input_comment_label">
@@ -104,10 +122,17 @@ function Report({ open, setOpen, sessionId, userId }) {
                   value={report.comment}
                   name="comment"
                   onChange={handleChange}
+                  onBlur={blurHandler}
                 />
               </label>
+              {errors.comment && <ErrorField error={errors.comment} />}
             </div>
-            <button className="forgotBtn" type="button" onClick={handleSendReport}>
+            <button
+              disabled={disableBtn}
+              className="forgotBtn"
+              type="button"
+              onClick={handleSendReport}
+            >
               Send Report
             </button>
           </div>
