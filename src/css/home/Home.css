@@ -129,10 +129,6 @@
   justify-content: center;
   align-items: flex-end;
 }
-.filter-courses-icon {
-  width: 15px;
-  margin-left: 5px;
-}
 .regbtnImgDiv {
   width: 16%;
   margin-right: 5px;
@@ -140,16 +136,6 @@
 }
 .regbtnImg {
   width: 100%;
-}
-.btn-filter {
-  width: 7em;
-  background: var(--btn-filter-bg);
-  padding: 8px 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 1000px;
-  cursor: pointer;
 }
 .students-circle {
   background-color: #33312e;

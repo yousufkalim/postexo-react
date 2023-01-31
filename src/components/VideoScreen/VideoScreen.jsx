@@ -172,7 +172,6 @@ function VideoScreenWrapped({ session, currentSession, getCurrentVideo, userInfo
       />
       <div className="videoScreen_container">
         <div className="video_player">
-          {/* <Player session={session} action={handleViewSession} /> */}
           <Audio
             setLoading={setLoading}
             loading={loading}
@@ -185,8 +184,10 @@ function VideoScreenWrapped({ session, currentSession, getCurrentVideo, userInfo
             <p className="time-date">
               {moment(session?.created_at).format('hh:mm A dddd DD, MMM YYYY')}
             </p>
-            {/* <p className="time-date">7:30 PM Thursday 21, Apr 2022</p> */}
-            <h1 className="title">{session?.subject}</h1>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h1 className="title">{session?.subject}</h1>
+              <span className="level_btn2">{session?.student_level}</span>
+            </div>
           </div>
           <div className="social">
             <NavLink

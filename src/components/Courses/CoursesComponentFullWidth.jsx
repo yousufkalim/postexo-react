@@ -43,6 +43,7 @@ function CoursesComponent2({ sessions }) {
             <div className="card_courses_contant">
               <div className="course-card-image-content">
                 <div className="course_likes">
+                  <span className="level_btn">{_?.student_level}</span>
                   <img className="like-icon" src={LIKEICONSVG} alt="like-icon" />
                   <small className="card-image-content">{_?.likes?.length} Likes</small>
                   <div className="rating_stars">
