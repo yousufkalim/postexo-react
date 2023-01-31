@@ -21,17 +21,16 @@ function CategoriesRight({ filters, sessions, setSessions }) {
   const [loading, setLoading] = useState(false);
 
   const getSessions = async () => {
-    console.log('GEt sessions called');
     try {
       setLoading(true);
       const allLevels = [...filters.levels];
       const allDurations = [...filters.durations];
       const levels = filters?.levels?.length ? allLevels.toString() : filters?.levels;
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
-      await API('get', `/sessions?levels=${levels}&durations=${durations}`).then((res) => {
-        setSessions(res.data.sessions);
-      });
+      const res = await API('get', `/sessions?levels=${levels}&durations=${durations}`);
+      setSessions(res.data.sessions);
       setLoading(false);
+      console.log('Fetching data');
     } catch (err) {
       setLoading(false);
       toast.error(err?.message);
@@ -39,18 +38,18 @@ function CategoriesRight({ filters, sessions, setSessions }) {
   };
 
   const getSetSessions = () => {
-    if (sessions) {
-      const response = sessions?.length > 0 ? [...sessions] : [];
-      const response2 = sessions?.length > 0 ? [...sessions] : [];
-      const topRated = response?.sort((a, b) => b.averageRating - a.averageRating);
-      const mostViewed = response2?.sort((a, b) => b.views.length - a.views.length);
-      setTopSessions(topRated);
-      setViewedSessions(mostViewed);
-    }
+    const response = sessions?.length > 0 ? [...sessions] : [];
+    const response2 = sessions?.length > 0 ? [...sessions] : [];
+    const topRated = response?.sort((a, b) => b.averageRating - a.averageRating);
+    const mostViewed = response2?.sort((a, b) => b.views.length - a.views.length);
+    setTopSessions(topRated);
+    setViewedSessions(mostViewed);
   };
 
   useEffect(() => {
-    getSetSessions();
+    if (sessions?.length > 0) {
+      getSetSessions();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessions]);
 
@@ -111,6 +110,8 @@ function CategoriesRight({ filters, sessions, setSessions }) {
   const Course2Event2 = () => {
     setShowCoours2(false);
   };
+
+  console.log('Render sessions');
 
   return (
     <div className="category_right">

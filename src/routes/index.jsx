@@ -1,122 +1,125 @@
 // Init
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 // Routes
-import Home from '../containers/Home';
 import Register from '../containers/Register';
 import Login from '../containers/Login';
-import VideoScreen from '../containers/VideoScreen';
-import PublicRoute from './PublicRoute';
-import PrivateRoute from './PrivateRoute';
 import PageNotFound from '../containers/PageNotFound';
-import ProfessorVideos from '../containers/ProfessorVideos';
-import Layout from '../hoc/Layout';
-import CategoriesRight from '../components/HomeGrid/CategoriesRight';
-import SessionsByMatter from '../containers/SessionsByMatter';
-import PlaylistSessions from '../containers/PlaylistSessions';
-import FavouriteSessions from '../containers/FavouriteSessions';
-import WatchLaterSessions from '../containers/WatchLaterSessions';
+import Spinner from '../common/Spinner';
+
+const HomePage = React.lazy(() => import('../containers/Home'));
+const VideoScreenPage = React.lazy(() => import('../containers/VideoScreen'));
+const ProfessorVideosPage = React.lazy(() => import('../containers/ProfessorVideos'));
+const LayoutPage = React.lazy(() => import('../hoc/Layout'));
+const CategoriesRightPage = React.lazy(() => import('../components/HomeGrid/CategoriesRight'));
+const SessionsByMatterPage = React.lazy(() => import('../containers/SessionsByMatter'));
+const PlaylistSessionsPage = React.lazy(() => import('../containers/PlaylistSessions'));
+const FavouriteSessionsPage = React.lazy(() => import('../containers/FavouriteSessions'));
+const WatchLaterSessionsPage = React.lazy(() => import('../containers/WatchLaterSessions'));
+const PublicRoutePage = React.lazy(() => import('./PublicRoute'));
+const PrivateRoutePage = React.lazy(() => import('./PrivateRoute'));
 
 function Index() {
   const isLogin = localStorage.getItem('token');
   return (
     <div>
-      <Routes>
-        <Route path="*" element={<PageNotFound />} />
-        <Route
-          path="/"
-          element={
-            <PublicRoute>
-              <Home isLogin={isLogin} />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <PublicRoute>
-              <Register />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <PublicRoute>
-              <Login />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/sessions"
-          element={
-            <PrivateRoute>
-              <Layout>
-                <CategoriesRight />
-              </Layout>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/sessions/favourites"
-          element={
-            <PrivateRoute>
-              <Layout>
-                <FavouriteSessions />
-              </Layout>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/sessions/watch-later"
-          element={
-            <PrivateRoute>
-              <Layout>
-                <WatchLaterSessions />
-              </Layout>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/sessions/professor-sessions/:name"
-          element={
-            <PrivateRoute>
-              <Layout>
-                <ProfessorVideos />
-              </Layout>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/playlist/:id"
-          element={
-            <PrivateRoute>
-              <Layout>
-                <PlaylistSessions />
-              </Layout>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/sessions/matter-sessions/:matterName"
-          element={
-            <PrivateRoute>
-              <Layout>
-                <SessionsByMatter />
-              </Layout>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/sessions/:id"
-          element={
-            <PrivateRoute>
-              <VideoScreen />
-            </PrivateRoute>
-          }
-        />
-        {/* <Route
+      <Suspense fallback={<Spinner />}>
+        <Routes>
+          <Route path="*" element={<PageNotFound />} />
+          <Route
+            path="/"
+            element={
+              <PublicRoutePage>
+                <HomePage isLogin={isLogin} />
+              </PublicRoutePage>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <PublicRoutePage>
+                <Register />
+              </PublicRoutePage>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoutePage>
+                <Login />
+              </PublicRoutePage>
+            }
+          />
+          <Route
+            path="/sessions"
+            element={
+              <PrivateRoutePage>
+                <LayoutPage>
+                  <CategoriesRightPage />
+                </LayoutPage>
+              </PrivateRoutePage>
+            }
+          />
+          <Route
+            path="/sessions/favourites"
+            element={
+              <PrivateRoutePage>
+                <LayoutPage>
+                  <FavouriteSessionsPage />
+                </LayoutPage>
+              </PrivateRoutePage>
+            }
+          />
+          <Route
+            path="/sessions/watch-later"
+            element={
+              <PrivateRoutePage>
+                <LayoutPage>
+                  <WatchLaterSessionsPage />
+                </LayoutPage>
+              </PrivateRoutePage>
+            }
+          />
+          <Route
+            path="/sessions/professor-sessions/:name"
+            element={
+              <PrivateRoutePage>
+                <LayoutPage>
+                  <ProfessorVideosPage />
+                </LayoutPage>
+              </PrivateRoutePage>
+            }
+          />
+          <Route
+            path="/playlist/:id"
+            element={
+              <PrivateRoutePage>
+                <LayoutPage>
+                  <PlaylistSessionsPage />
+                </LayoutPage>
+              </PrivateRoutePage>
+            }
+          />
+          <Route
+            path="/sessions/matter-sessions/:matterName"
+            element={
+              <PrivateRoutePage>
+                <LayoutPage>
+                  <SessionsByMatterPage />
+                </LayoutPage>
+              </PrivateRoutePage>
+            }
+          />
+          <Route
+            path="/sessions/:id"
+            element={
+              <PrivateRoutePage>
+                <VideoScreenPage />
+              </PrivateRoutePage>
+            }
+          />
+          {/* <Route
           path="/sessions/:id"
           element={
             <PrivateRoute>
@@ -124,7 +127,8 @@ function Index() {
             </PrivateRoute>
           }
         /> */}
-      </Routes>
+        </Routes>
+      </Suspense>
     </div>
   );
 }
