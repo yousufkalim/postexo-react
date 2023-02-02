@@ -5,7 +5,7 @@ import moment from 'moment';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
 import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
-import Pic4 from '../../assets/Pic1.svg';
+import Pic4 from '../../assets/Pic2.png';
 
 function MoreVideos({ sessions }) {
   const navigate = useNavigate();

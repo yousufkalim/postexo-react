@@ -6,7 +6,7 @@ import moment from 'moment';
 import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
-import Pic4 from '../../assets/Pic1.svg';
+import Pic4 from '../../assets/Pic2.png';
 
 function CoursesComponent2({ sessions }) {
   const navigate = useNavigate();
