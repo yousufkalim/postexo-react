@@ -6,7 +6,7 @@ import MoreVideos from '../components/Courses/MoreVideos';
 import Navbar2 from '../components/HomeGrid/Navbar2';
 import Screen from '../components/VideoScreen/VideoScreen';
 import API from '../api';
-import Spinner from '../common/Spinner';
+// import Spinner from '../common/Spinner';
 import { mediaUrl } from '../config';
 import CategoriesLeft from '../components/HomeGrid/CategoriesLeft';
 
@@ -15,7 +15,7 @@ function VideoScreen() {
   const [currentSession, setCurrentSession] = useState();
   const [sessions, setSessions] = useState([]);
   const [filters, setFilters] = useState({ levels: [], durations: [], languages: [] });
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [rerender, setRerender] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
   const params = useParams();
@@ -28,12 +28,14 @@ function VideoScreen() {
     try {
       const res = await API('get', `/sessions/${params?.id}`);
       const data = res?.data?.session;
+      console.log('Session data ', data);
       const fbData = `${mediaUrl}/${data?.fb_data}`;
       try {
         const resp = await fetch(fbData);
         const response = await resp?.json();
         data.fb_data = response?.exo?.fb_data;
       } catch (err) {
+        data.fb_data = '';
         console.log('ERROR ', err);
       }
       if (!rerender) {
@@ -47,14 +49,14 @@ function VideoScreen() {
   };
 
   const getSessions = async () => {
-    setLoading(true);
+    // setLoading(true);
     try {
       await API('get', '/sessions').then((res) => {
         setSessions(res?.data?.sessions);
-        setLoading(false);
+        // setLoading(false);
       });
     } catch (err) {
-      setLoading(false);
+      // setLoading(false);
       toast.error(err.message);
     }
   };
@@ -79,7 +81,7 @@ function VideoScreen() {
         <CategoriesLeft setFilters={setFilters} filters={filters} />
       </div>
       <div className="adjustScreen">
-        {loading && <Spinner className="video_spinner" />}
+        {/* {loading && <Spinner className="video_spinner" />} */}
         <Screen
           currentSession={currentSession}
           setCurrentVideo={setCurrentVideo}
@@ -89,7 +91,7 @@ function VideoScreen() {
         <div className="component-set">
           {/* <CoursesComponent /> */}
           <MoreVideos
-            setLoading={setLoading}
+            // setLoading={setLoading}
             sessions={sessions?.filter(
               (session) =>
                 session._id !== currentVideo?._id && session.matter === currentVideo?.matter,

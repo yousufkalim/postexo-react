@@ -128,7 +128,6 @@
   visibility: visible;
   opacity: 1;
 }
-
 .spinner_container {
   position: absolute;
   z-index: 9999999999;
@@ -137,7 +136,7 @@
   bottom: 0;
   right: 0;
   z-index: 99999999999;
-  height: 80vh;
+  height: 75vh;
   width: 100%;
 }
 .spinner_inner {
