@@ -130,6 +130,7 @@ const Audio = React.memo(({ viewSession, session }) => {
   };
 
   useEffect(() => {
+    setLoading(true);
     if (session) {
       setInitialData();
     }
@@ -203,7 +204,13 @@ const Audio = React.memo(({ viewSession, session }) => {
         { color: startPaths[i]?.color, width: startPaths[i]?.width },
       );
     }
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 0);
     currentStartTime = currentPlayedTime;
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 1500);
   };
 
   const setDataAfterPlay = async (playedTime) => {
@@ -222,7 +229,7 @@ const Audio = React.memo(({ viewSession, session }) => {
       setDataAfterPlay(e.srcElement.currentTime);
     }
     const ctx = canvasRef?.current?.getContext('2d');
-    setLoading(false);
+    // setLoading(false);
     if (ctx && allPaths?.length > 0 && currentStartTime) {
       const endTime = startTime + e.srcElement.duration * 1000;
       ctx.fillStyle = '#ffffff';
@@ -259,22 +266,25 @@ const Audio = React.memo(({ viewSession, session }) => {
     viewSession();
   };
 
-  const handleJump = (e) => {
-    setLoading(true);
+  const handleJump = async (e) => {
     if (!jumped) {
+      setLoading(true);
       const playTime = e.srcElement.currentTime;
-      setDataAfterPlay(playTime);
+      await setDataAfterPlay(playTime);
     }
     setJumped(false);
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
   };
 
   const handlePause = (e) => {
     setPauseTime(parseInt(e.srcElement?.currentTime, 10));
     setCurrTime(currentStartTime);
     clearInterval(int);
+  };
+
+  const handleListen = () => {
+    if (loading) {
+      setLoading(false);
+    }
   };
 
   const wheel = {
@@ -289,9 +299,27 @@ const Audio = React.memo(({ viewSession, session }) => {
     disabled: true,
   };
 
+  const handleLoadStart = () => {
+    setLoading(false);
+  };
+
   return (
     <div>
       <FullScreen handle={handle}>
+        {loading && (
+          <div
+            style={{
+              height: handle?.active ? '100vh' : '75vh',
+              background: handle?.active && 'rgba(0, 0, 0, 0.2)',
+              width: handle?.active ? '100%' : '80%',
+            }}
+            className="spinner_container"
+          >
+            <div className="spinner_inner">
+              <Spin size="large" className="spinner" />
+            </div>
+          </div>
+        )}
         <TransformWrapper zoomAnimation={zoomAnimation} wheel={wheel} doubleClick={doubleClick}>
           <TransformComponent>
             <div
@@ -304,13 +332,6 @@ const Audio = React.memo(({ viewSession, session }) => {
                 marginBottom: '10px',
               }}
             >
-              {loading && (
-                <div className="spinner_container">
-                  <div className="spinner_inner">
-                    <Spin size="large" className="spinner" />
-                  </div>
-                </div>
-              )}
               <canvas
                 className="video_canvas"
                 style={{
@@ -346,8 +367,10 @@ const Audio = React.memo(({ viewSession, session }) => {
           ref={audioRef}
           src={audio}
           onPlay={handlePlay}
+          onListen={handleListen}
           autoPlayAfterSrcChange={false}
           autoPlay={false}
+          onLoadedData={handleLoadStart}
           onPause={handlePause}
           onSeeking={handleJump}
           layout="horizontal-reverse"
