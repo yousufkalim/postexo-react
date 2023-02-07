@@ -15,7 +15,6 @@ function VideoScreen() {
   const [currentSession, setCurrentSession] = useState();
   const [sessions, setSessions] = useState([]);
   const [filters, setFilters] = useState({ levels: [], durations: [], languages: [] });
-  // const [loading, setLoading] = useState(false);
   const [rerender, setRerender] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
   const params = useParams();
@@ -28,7 +27,6 @@ function VideoScreen() {
     try {
       const res = await API('get', `/sessions/${params?.id}`);
       const data = res?.data?.session;
-      console.log('Session data ', data);
       const fbData = `${mediaUrl}/${data?.fb_data}`;
       try {
         const resp = await fetch(fbData);
@@ -36,7 +34,6 @@ function VideoScreen() {
         data.fb_data = response?.exo?.fb_data;
       } catch (err) {
         data.fb_data = '';
-        console.log('ERROR ', err);
       }
       if (!rerender) {
         setCurrentSession(data);
@@ -49,7 +46,6 @@ function VideoScreen() {
   };
 
   const getSessions = async () => {
-    // setLoading(true);
     try {
       await API('get', '/sessions').then((res) => {
         setSessions(res?.data?.sessions);

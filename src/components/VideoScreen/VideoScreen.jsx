@@ -7,7 +7,6 @@ import VideoScreenContent from './VideoScreenContent';
 function VideoScreen({ session, currentSession, getCurrentVideo }) {
   const [userInfo, setUserInfo] = useState({});
   const [openReport, setOpenReport] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const userData = JSON.parse(localStorage.getItem('userData'));
 
@@ -24,14 +23,6 @@ function VideoScreen({ session, currentSession, getCurrentVideo }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleViewSession = async () => {
-    await API('patch', `/sessions/${session._id}?view=true`, { userId: userData?._id })
-      .then(() => {
-        // getCurrentVideo();
-      })
-      .catch(() => {});
-  };
-
   return (
     <>
       <Report
@@ -42,12 +33,7 @@ function VideoScreen({ session, currentSession, getCurrentVideo }) {
       />
       <div className="videoScreen_container">
         <div className="video_player">
-          <Audio
-            setLoading={setLoading}
-            loading={loading}
-            session={currentSession}
-            viewSession={handleViewSession}
-          />
+          <Audio session={currentSession} />
         </div>
         <VideoScreenContent
           getCurrentVideo={getCurrentVideo}

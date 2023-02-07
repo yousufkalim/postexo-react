@@ -8,6 +8,7 @@ import FullScreenIcon from '../../assets/fullscreen.png';
 import ExitScreen from '../../assets/minimize.png';
 // import Spinner from '../../common/Spinner';
 import { Icon, Icon2, Icon3, Icon4, Icon5, Icon6 } from '../Icons';
+import api from '../../api';
 
 const chapter = [
   {
@@ -38,7 +39,7 @@ const FPS = 1_00;
 const CANVAS_HEIGHT = 2800;
 const CANVAS_WIDTH = 5050;
 
-const Audio = React.memo(({ viewSession, session }) => {
+const Audio = React.memo(({ session }) => {
   const audioRef = useRef();
   const canvasRef = useRef(null);
   const [allPaths, setAllPaths] = useState([]);
@@ -54,6 +55,8 @@ const Audio = React.memo(({ viewSession, session }) => {
 
   const handle = useFullScreenHandle();
 
+  const userData = JSON.parse(localStorage.getItem('userData'));
+
   let interval;
 
   const getStartTime = () => {
@@ -62,6 +65,14 @@ const Audio = React.memo(({ viewSession, session }) => {
     let time = sTime.getTime();
     time += additionalTime;
     return time;
+  };
+
+  const handleViewSession = async () => {
+    await api('patch', `/sessions/${session._id}?view=true`, { userId: userData?._id })
+      .then(() => {
+        // getCurrentVideo();
+      })
+      .catch(() => {});
   };
 
   const handleCurrentTime = () => {
@@ -263,7 +274,6 @@ const Audio = React.memo(({ viewSession, session }) => {
 
       setInt(interval);
     }
-    viewSession();
   };
 
   const handleJump = async (e) => {
@@ -302,6 +312,9 @@ const Audio = React.memo(({ viewSession, session }) => {
   const handleLoadStart = () => {
     setLoading(false);
     audioRef.current.audio.current.play();
+    setTimeout(() => {
+      handleViewSession();
+    }, 5000);
   };
 
   return (
