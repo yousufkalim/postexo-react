@@ -301,6 +301,7 @@ const Audio = React.memo(({ viewSession, session }) => {
 
   const handleLoadStart = () => {
     setLoading(false);
+    audioRef.current.audio.current.play();
   };
 
   return (
