@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar } from 'antd';
+import { Avatar, Carousel } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
@@ -7,7 +7,7 @@ import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
 import Pic4 from '../../assets/Pic2.png';
 
-function MoreVideos({ sessions }) {
+function MoreVideos({ sessions, currentSession }) {
   const navigate = useNavigate();
 
   const handleNavigate = (matter, e) => {
@@ -22,6 +22,19 @@ function MoreVideos({ sessions }) {
 
   return (
     <>
+      {currentSession?.photos?.length > 0 && (
+        <div className="carousel_container">
+          <Carousel autoplay className="more_carousel">
+            {currentSession?.photos?.map((pic) => (
+              <div className="more_image_container">
+                {/* <h1>Test</h1> */}
+                <img src={pic} alt="test" />
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      )}
+
       {sessions.map((item) => (
         <div
           role="presentation"
