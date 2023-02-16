@@ -47,8 +47,15 @@
   position: absolute;
   width: 75%;
   margin-inline: 12px;
+  left: 0;
   top: 18.5px;
   z-index: 3;
+}
+.chapter_div_wrapper {
+  background: inherit;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 .rhap_main-controls {
   width: 100%;
@@ -92,11 +99,10 @@
   background: #fdfcfc;
 }
 .tooltip {
-  position: relative;
-  width: -webkit-fill-available;
+  /* position: relative; */
+  width: 100%;
 }
 .tooltip .tooltiptext {
-  visibility: hidden;
   width: max-content;
   font-size: 10px;
   background-color: #555;
@@ -105,12 +111,13 @@
   border-radius: 6px;
   padding: 5px 10px;
   position: absolute;
-  z-index: 1;
-  bottom: 110%;
+  z-index: 99999;
+  top: -40px;
   /* left: 50%; */
-  margin-left: -80px;
-  opacity: 0;
+  margin-left: -35px;
   transition: opacity 0.3s;
+  /* visibility: hidden;
+  opacity: 0; */
 }
 
 .tooltip .tooltiptext::after {
@@ -124,7 +131,7 @@
   border-color: #555 transparent transparent transparent;
 }
 
-.chapter:hover .tooltiptext {
+.rhap_progress-container:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
@@ -179,6 +186,23 @@
   overflow-x: auto;
   background: white;
 }
+/* 
+.custom_tooltip {
+  background-color: #000;
+  color: #fff;
+  font-size: 12px;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  z-index: 9999999;
+  display: none;
+} */
+
+.rhap_progress-container:hover + .custom_tooltip {
+  /* background-color: #d9d9d9; */
+  display: inline-block !important;
+}
+
 @media screen and (max-width: 800px) {
   .rhap_container {
     padding: 0px 20px !important;
