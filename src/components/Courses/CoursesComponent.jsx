@@ -1,12 +1,10 @@
 import { React, useState } from 'react';
-import { Avatar } from 'antd';
 import Dialog from '@mui/material/Dialog';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
 import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
-import Pic4 from '../../assets/Pic2.png';
 import Player from '../Player/Player';
 
 function CoursesComponent({ sessions }) {
@@ -83,7 +81,7 @@ function CoursesComponent({ sessions }) {
               </div>
               {item?.ratings?.length > 0 && (
                 <div className="avatarRatings">
-                  <Avatar.Group
+                  {/* <Avatar.Group
                     maxCount={2}
                     maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
                     maxPopoverTrigger="click"
@@ -98,7 +96,7 @@ function CoursesComponent({ sessions }) {
                         src={Pic4}
                       />
                     ))}
-                  </Avatar.Group>
+                  </Avatar.Group> */}
                   <div className="starRatings">
                     <img src={Star} alt="star" />
                     <div>

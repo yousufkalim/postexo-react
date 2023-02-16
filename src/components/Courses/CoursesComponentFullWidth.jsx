@@ -1,12 +1,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
-import { Avatar } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
-import Pic4 from '../../assets/Pic2.png';
 
 function CoursesComponent2({ sessions }) {
   const navigate = useNavigate();
@@ -63,7 +61,7 @@ function CoursesComponent2({ sessions }) {
                 </div>
               </div>
               <div className="avatarRatings2">
-                <Avatar.Group
+                {/* <Avatar.Group
                   maxCount={2}
                   maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
                   maxPopoverTrigger="click"
@@ -78,55 +76,6 @@ function CoursesComponent2({ sessions }) {
                       src={Pic4}
                     />
                   ))}
-                </Avatar.Group>
-                {/* <Avatar.Group
-                  maxCount={3}
-                  maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
-                  maxPopoverTrigger="click"
-                  className="avatar_groups"
-                >
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Remy Sharp"
-                    src={Pic4}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Travis Howard"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
                 </Avatar.Group> */}
               </div>
             </div>
