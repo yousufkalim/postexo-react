@@ -144,29 +144,26 @@ const Audio = React.memo(({ session }) => {
 
   useEffect(() => {
     const element = document.getElementsByClassName('rhap_progress-bar');
+
     element[0].addEventListener('mousemove', (event) => {
+      const addOffset = event?.target?.className.includes('rhap_download-progress')
+        ? event?.target?.offsetLeft
+        : 0;
+
       const element2 = document.getElementsByClassName('rhap_container');
       const width = element[0].clientWidth;
       const offSetX = event.offsetX;
-      setTooltipOffset(offSetX);
+      const totalOffset = addOffset ? offSetX + addOffset : offSetX;
+      setTooltipOffset(totalOffset);
       // eslint-disable-next-line react-hooks/exhaustive-deps
 
       const audioDuration = parseInt(element2?.[0]?.firstChild?.duration, 10);
       const elementPosition = (offSetX / width) * 100;
       const audioTime = (audioDuration / 100) * elementPosition;
-
-      // console.log('percentage % ', elementPosition);
-      // console.log('Element Width ', width);
-      // console.log('Element offSet ', offSetX);
-      // console.log('Mouse MOVEE =====> ', audioDuration);
       setCurrentAudioTime(audioTime);
-      // setCurrentAudioTime(currentTime);
-
-      // setCurrentAudioTime(audioRef?.current?.audio?.current?.currentTime);
     });
 
     element[0].addEventListener('mouseleave', () => {
-      // const element2 = document.getElementsByClassName('rhap_progress-filled');
       setCurrentAudioTime(0);
     });
   }, []);
