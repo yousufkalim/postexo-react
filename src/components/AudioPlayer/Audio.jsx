@@ -12,13 +12,13 @@ import api from '../../api';
 
 const chapter = [
   {
-    name: 'chapter 1',
+    name: 'Chapter 1: How to learn ReactJS? | How to start ReactJS?',
     start: 0,
     end: 1200,
   },
   {
-    name: 'chapter 2',
-    start: 1200,
+    name: 'Chapter 2 : How to use useCallback and useMemo in react',
+    start: 1000,
     end: 2000,
   },
   {

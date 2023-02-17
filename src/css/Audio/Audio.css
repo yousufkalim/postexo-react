@@ -5,6 +5,7 @@
   /* width: 100%; */
   /* margin-left: 2px; */
   flex: 4.1 0 auto !important;
+  margin-left: 4px;
 }
 .rhap_progress-section {
   position: relative !important;
@@ -103,7 +104,12 @@
   width: 100%;
 }
 .tooltip .tooltiptext {
-  width: max-content;
+  /* width: max-content; */
+  width: 130px;
+  min-height: 25px;
+  text-align: left;
+  padding: 2px;
+  line-height: 14px;
   font-size: 10px;
   background-color: #555;
   color: #fff;
@@ -112,9 +118,9 @@
   padding: 5px 10px;
   position: absolute;
   z-index: 99999;
-  top: -40px;
+  bottom: 40px;
   /* left: 50%; */
-  margin-left: -35px;
+  margin-left: -65px;
   transition: opacity 0.3s;
   /* visibility: hidden;
   opacity: 0; */
