@@ -12,19 +12,19 @@ import api from '../../api';
 
 const chapter = [
   {
-    name: 'chapter 1',
-    start: 1,
-    end: 4,
+    name: 'Chapter 1: How to learn ReactJS? | How to start ReactJS?',
+    start: 0,
+    end: 1200,
   },
   {
-    name: 'chapter 2',
-    start: 6,
-    end: 9,
+    name: 'Chapter 2 : How to use useCallback and useMemo in react',
+    start: 1000,
+    end: 2000,
   },
   {
     name: 'chapter 3',
-    start: 11,
-    end: 12,
+    start: 2100,
+    end: 3000,
   },
 ];
 
@@ -52,6 +52,8 @@ const Audio = React.memo(({ session }) => {
   const [int, setInt] = useState();
   const [duration, setDuration] = useState(null);
   const [jumped, setJumped] = useState(false);
+  const [currentAudioTime, setCurrentAudioTime] = useState(0);
+  const [tooltipOffset, setTooltipOffset] = useState(0);
 
   const handle = useFullScreenHandle();
 
@@ -139,6 +141,32 @@ const Audio = React.memo(({ session }) => {
     handleCurrentTime();
     setFormattedData();
   };
+
+  useEffect(() => {
+    const element = document.getElementsByClassName('rhap_progress-bar');
+
+    element[0].addEventListener('mousemove', (event) => {
+      const addOffset = event?.target?.className.includes('rhap_download-progress')
+        ? event?.target?.offsetLeft
+        : 0;
+
+      const element2 = document.getElementsByClassName('rhap_container');
+      const width = element[0].clientWidth;
+      const offSetX = event.offsetX;
+      const totalOffset = addOffset ? offSetX + addOffset : offSetX;
+      setTooltipOffset(totalOffset);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+
+      const audioDuration = parseInt(element2?.[0]?.firstChild?.duration, 10);
+      const elementPosition = (offSetX / width) * 100;
+      const audioTime = (audioDuration / 100) * elementPosition;
+      setCurrentAudioTime(audioTime);
+    });
+
+    element[0].addEventListener('mouseleave', () => {
+      setCurrentAudioTime(0);
+    });
+  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -403,20 +431,37 @@ const Audio = React.memo(({ session }) => {
           customProgressBarSection={[
             RHAP_UI.PROGRESS_BAR,
             <div className="chapter-div">
-              {chapter.map((chap, i) => {
-                const leftStyle = (chap.end / duration) * 100;
-                // const widthStyle = ((chap.end - chap.start) / duration) * 100;
-                return (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <span key={i} className="chapter" style={{ left: `${leftStyle}%` }}>
-                    <div className="tooltip">
-                      <span style={{ left: `${leftStyle}%` }} className="tooltiptext">
-                        {chap.name}
-                      </span>
-                    </div>
-                  </span>
-                );
-              })}
+              <div className="chapter_div_wrapper">
+                {chapter.map((chap, i) => {
+                  const leftStyle = (chap.end / duration) * 100;
+                  const findTooltip = chapter.find(
+                    (item) => currentAudioTime > item.start && currentAudioTime < item.end,
+                  );
+                  let index = -1;
+                  index = chapter.findIndex(({ name }) => name === findTooltip?.name);
+                  // console.log('LEFT POSITION =  ', tooltipOffset);
+                  // const widthStyle = ((chap.end - chap.start) / duration) * 100;
+                  return (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <>
+                      <span className="chapter" style={{ left: `${leftStyle}%` }} />
+                      <div className="tooltip">
+                        {findTooltip && currentAudioTime && (
+                          <span
+                            style={{
+                              left: `${tooltipOffset}px`,
+                              display: i === index ? 'block' : 'none',
+                            }}
+                            className="tooltiptext"
+                          >
+                            {chap.name}
+                          </span>
+                        )}
+                      </div>
+                    </>
+                  );
+                })}
+              </div>
             </div>,
             RHAP_UI.CURRENT_TIME,
             <div className="slash">&nbsp;/&nbsp;</div>,
