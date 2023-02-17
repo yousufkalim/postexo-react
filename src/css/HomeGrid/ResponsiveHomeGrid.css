@@ -10,6 +10,9 @@
   .image-container_row {
     height: 304px;
   }
+  .image-container_row_full .carousel_image_container_full img {
+    height: 304px;
+  }
   .nav_search_bar {
     height: 45px;
   }

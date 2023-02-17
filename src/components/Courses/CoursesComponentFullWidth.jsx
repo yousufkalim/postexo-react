@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Carousel } from 'antd';
 import moment from 'moment';
 import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
@@ -20,23 +21,30 @@ function CoursesComponent2({ sessions }) {
         <div key={_._id} className="image-container_row image-container_row_full">
           <img src={_?.resolution_file} className="image_container_banner" alt="video-icon" />
           <p className="cours_time">{`${_?.duration}:00`}</p>
+          <div className="Avatarcontent">
+            {_.photos?.length > 0 && (
+              <Carousel autoplay dots={false} className="custom_carousel_full">
+                {_?.photos?.map((pic) => (
+                  <div className="carousel_image_container_full">
+                    {/* <h1>Test</h1> */}
+                    <img src={pic} alt="test" />
+                  </div>
+                ))}
+              </Carousel>
+            )}
+          </div>
           <img className="course-card-image" src={_?.img} alt={_?.alt} />
+          <img
+            src={PLAYVIDEOICONSVG}
+            alt="video-icon"
+            className="video-icon-container_play"
+            onClick={() => handleClick(_)}
+            onKeyDown={() => handleClick(_)}
+          />
           <div className="card-img-parent-container2 card-img-parent-container2_full">
             <div className="d-flex space-between">
               <span className="time-pill" />
               <span className="position-pill">{_?.matter}</span>
-            </div>
-            <img
-              src={PLAYVIDEOICONSVG}
-              alt="video-icon"
-              className="video-icon-container_play"
-              onClick={() => handleClick(_)}
-              onKeyDown={() => handleClick(_)}
-            />
-            <div className="Avatarcontent">
-              <div className="card-image-content-hover">
-                <small>{_?.subject} </small>
-              </div>
             </div>
             <div className="card_courses_contant">
               <div className="course-card-image-content">
