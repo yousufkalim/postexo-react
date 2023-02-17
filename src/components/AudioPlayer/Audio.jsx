@@ -17,7 +17,7 @@ const chapter = [
     end: 1200,
   },
   {
-    name: 'Chapter 2 : How to use useCallback and useMemo in react',
+    name: 'Chapter 2 : Advanced javascript',
     start: 1000,
     end: 2000,
   },
@@ -152,8 +152,8 @@ const Audio = React.memo(({ session }) => {
 
       const element2 = document.getElementsByClassName('rhap_container');
       const width = element[0].clientWidth;
-      const offSetX = event.offsetX;
-      const totalOffset = addOffset ? offSetX + addOffset : offSetX;
+      const offSetX = addOffset ? addOffset + event.offsetX : event.offsetX;
+      const totalOffset = offSetX;
       setTooltipOffset(totalOffset);
       // eslint-disable-next-line react-hooks/exhaustive-deps
 
