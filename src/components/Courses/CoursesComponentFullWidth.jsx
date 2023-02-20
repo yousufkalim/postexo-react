@@ -34,13 +34,16 @@ function CoursesComponent2({ sessions }) {
             )}
           </div>
           <img className="course-card-image" src={_?.img} alt={_?.alt} />
-          <img
-            src={PLAYVIDEOICONSVG}
-            alt="video-icon"
-            className="video-icon-container_play"
-            onClick={() => handleClick(_)}
-            onKeyDown={() => handleClick(_)}
-          />
+          <div className="video-icon-container">
+            <div className="video-icon-container_notions">{_?.notions}</div>
+            <img
+              src={PLAYVIDEOICONSVG}
+              alt="video-icon"
+              className="video-icon-container_play"
+              onClick={() => handleClick(_)}
+              onKeyDown={() => handleClick(_)}
+            />
+          </div>
           <div className="card-img-parent-container2 card-img-parent-container2_full">
             <div className="d-flex space-between">
               <span className="time-pill" />

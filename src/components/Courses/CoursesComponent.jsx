@@ -69,6 +69,7 @@ function CoursesComponent({ sessions }) {
               )} */}
           </div>
           <div className="video-icon-container">
+            <div className="video-icon-container_notions">{item?.notions}</div>
             {/* eslint-disable-next-line */}
             {window.location.pathname === '/sessions' ? (
               // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
