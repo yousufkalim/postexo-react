@@ -6,27 +6,26 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import 'react-h5-audio-player/lib/styles.css';
 import FullScreenIcon from '../../assets/fullscreen.png';
 import ExitScreen from '../../assets/minimize.png';
-// import Spinner from '../../common/Spinner';
 import { Icon, Icon2, Icon3, Icon4, Icon5, Icon6 } from '../Icons';
 import api from '../../api';
 
-const chapter = [
-  {
-    name: 'Chapter 1: How to learn ReactJS? | How to start ReactJS?',
-    start: 0,
-    end: 1200,
-  },
-  {
-    name: 'Chapter 2 : Advanced javascript',
-    start: 1000,
-    end: 2000,
-  },
-  {
-    name: 'chapter 3',
-    start: 2100,
-    end: 3000,
-  },
-];
+// const chapter = [
+//   {
+//     name: 'Chapter 1: How to learn ReactJS? | How to start ReactJS?',
+//     start: 0,
+//     end: 60,
+//   },
+//   {
+//     name: 'Chapter 2 : Advanced javascript',
+//     start: 1000,
+//     end: 2000,
+//   },
+//   {
+//     name: 'chapter 3',
+//     start: 2100,
+//     end: 3000,
+//   },
+// ];
 
 // const addTime = 1 * 60 * 60 * 1000;
 
@@ -432,13 +431,13 @@ const Audio = React.memo(({ session }) => {
             RHAP_UI.PROGRESS_BAR,
             <div className="chapter-div">
               <div className="chapter_div_wrapper">
-                {chapter.map((chap, i) => {
-                  const leftStyle = (chap.end / duration) * 100;
-                  const findTooltip = chapter.find(
-                    (item) => currentAudioTime > item.start && currentAudioTime < item.end,
+                {session?.chapters?.map((chap, i) => {
+                  const leftStyle = (chap.endTime / duration) * 100;
+                  const findTooltip = session?.chapters.find(
+                    (item) => currentAudioTime > item.startTime && currentAudioTime < item.endTime,
                   );
                   let index = -1;
-                  index = chapter.findIndex(({ name }) => name === findTooltip?.name);
+                  index = session?.chapters.findIndex(({ name }) => name === findTooltip?.name);
                   // console.log('LEFT POSITION =  ', tooltipOffset);
                   // const widthStyle = ((chap.end - chap.start) / duration) * 100;
                   return (
