@@ -39,7 +39,14 @@ function VideoScreen() {
         setCurrentSession(data);
         setRerender(true);
       }
-      setCurrentVideo(data);
+      let sortedData = data;
+      if (data.chapters?.length > 0) {
+        sortedData = {
+          ...data,
+          chapters: { ...data.chapters.sort((a, b) => a.startTime - b.startTime) },
+        };
+      }
+      setCurrentVideo(sortedData);
     } catch (err) {
       toast.error(err.message);
     }
