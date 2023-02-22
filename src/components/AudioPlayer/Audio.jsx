@@ -207,9 +207,6 @@ const Audio = React.memo(({ session }) => {
     if (audioRef.current?.audio?.current?.duration) {
       const audioDuration = audioRef?.current?.audio?.current?.duration;
       setDuration(audioDuration);
-      // audioRef.current.progressBar.current.addEventListener('mouseover', (e) =>
-      //   console.log(e, 'event'),
-      // );
     }
     document.getElementsByClassName('rhap_forward-button')?.[0].addEventListener('click', () => {
       setJumped(true);
@@ -432,18 +429,25 @@ const Audio = React.memo(({ session }) => {
             <div className="chapter-div">
               <div className="chapter_div_wrapper">
                 {session?.chapters?.map((chap, i) => {
-                  const leftStyle = (chap.endTime / duration) * 100;
-                  const findTooltip = session?.chapters.find(
-                    (item) => currentAudioTime > item.startTime && currentAudioTime < item.endTime,
-                  );
+                  const leftStyle = (chap.startTime / duration) * 100;
+                  let findTooltip;
+                  const chaptersCopy = [...session.chapters];
+                  if (i === chaptersCopy.length - 1) {
+                    if (currentAudioTime > chap.startTime) {
+                      findTooltip = chap;
+                    }
+                  } else if (
+                    currentAudioTime > chap.startTime &&
+                    chaptersCopy?.[i + 1]?.startTime > currentAudioTime
+                  ) {
+                    findTooltip = chap;
+                  }
                   let index = -1;
                   index = session?.chapters.findIndex(({ name }) => name === findTooltip?.name);
-                  // console.log('LEFT POSITION =  ', tooltipOffset);
-                  // const widthStyle = ((chap.end - chap.start) / duration) * 100;
                   return (
                     // eslint-disable-next-line react/no-array-index-key
                     <>
-                      <span className="chapter" style={{ left: `${leftStyle}%` }} />
+                      {i !== 0 && <span className="chapter" style={{ left: `${leftStyle}%` }} />}
                       <div className="tooltip">
                         {findTooltip && currentAudioTime && (
                           <span

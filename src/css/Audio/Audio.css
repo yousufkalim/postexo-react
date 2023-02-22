@@ -32,10 +32,9 @@
 } */
 .chapter {
   display: inline-block;
-  width: 4px;
-  height: 6px;
+  width: 2px;
   height: 7px;
-  background-color: black;
+  background-color: #000;
   position: absolute;
   /* top: 4px; */
   /* left: 20%;
