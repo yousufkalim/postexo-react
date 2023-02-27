@@ -1,14 +1,19 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import SearchInput from 'react-search-input';
 import Avatar from '@mui/material/Avatar';
 import MenuIcon from '@mui/icons-material/Menu';
 import LOGOSVG from '../../assets/LOGO.svg';
 import SearchIcon from '../../assets/SearchIcon.svg';
 import ChangePassword from '../Screen/ChangePassword';
+import Flag from '../../assets/home/flag.png';
+import FrFlag from '../../assets/home/fran_flag.png';
 
 function Navbar2({ openNavMenu, setSearchText }) {
+  const [showBtn, setShowBtn] = useState(false);
+  const { i18n, t } = useTranslation();
   const [showOptions, setShowOptions] = useState(false);
   const [open, setOpen] = useState(false);
   const params = useParams();
@@ -37,6 +42,11 @@ function Navbar2({ openNavMenu, setSearchText }) {
     localStorage.removeItem('userData');
     localStorage.removeItem('token');
     navigate('/');
+  };
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+    localStorage.setItem('language', lang);
+    setShowBtn(!showBtn);
   };
 
   const user = JSON.parse(localStorage.getItem('userData'));
@@ -69,10 +79,10 @@ function Navbar2({ openNavMenu, setSearchText }) {
               <div className="profile_options">
                 <div className="logout_div">
                   <li role="presentation" className="presentation" onClick={() => handleClick()}>
-                    Change Password
+                    {t('Change Password')}
                   </li>
                   <li role="presentation" className="presentation" onClick={() => handleLogout()}>
-                    Logout
+                    {t('Logout')}
                   </li>
                 </div>
               </div>
@@ -81,6 +91,17 @@ function Navbar2({ openNavMenu, setSearchText }) {
               <p className="Profile_name">{user?.name}</p>
               <p className="Profile_mail">{user?.email}</p>
             </div>
+            {showBtn ? (
+              <button className="trans_btn" type="button" onClick={() => changeLanguage('fr')}>
+                <img src={FrFlag} alt="Flag" />
+                FR
+              </button>
+            ) : (
+              <button className="trans_btn" type="button" onClick={() => changeLanguage('en')}>
+                <img src={Flag} alt="Flag" />
+                EN
+              </button>
+            )}
           </div>
         </div>
       </nav>

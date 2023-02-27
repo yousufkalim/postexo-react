@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Avatar } from 'antd';
 import Dialog from '@mui/material/Dialog';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +11,7 @@ import Pic4 from '../../assets/Pic2.png';
 import Player from '../Player/Player';
 
 function CoursesComponent({ sessions }) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const isLogin = localStorage.getItem('token');
@@ -102,7 +104,9 @@ function CoursesComponent({ sessions }) {
                   <div className="starRatings">
                     <img src={Star} alt="star" />
                     <div>
-                      <small>{item?.averageRating} Rating</small>
+                      <small>
+                        {item?.averageRating} {t('Rating')}
+                      </small>
                     </div>
                   </div>
                 </div>
@@ -112,7 +116,9 @@ function CoursesComponent({ sessions }) {
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <span className="level_btn">{item?.student_level}</span>
                 <img className="like-icon" src={LIKEICONSVG} alt="like-icon" />
-                <small className="card-image-content">{item?.likes?.length} Likes </small>
+                <small className="card-image-content">
+                  {item?.likes?.length} {t('Likes')}{' '}
+                </small>
               </div>
               <div>
                 <div className="card-image-content2 text-ellipsis-2">{item?.subject}</div>

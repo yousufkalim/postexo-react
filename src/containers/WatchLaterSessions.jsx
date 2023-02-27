@@ -1,9 +1,11 @@
 import React from 'react';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import API from '../api';
 import SessionsContent from '../components/SessionsContent/SessionsContent';
 
 function WatchLaterSessions({ filters, sessions, setSessions, loading, setLoading }) {
+  const { t } = useTranslation();
   const userData = JSON.parse(localStorage.getItem('userData'));
 
   const getSessions = async () => {
@@ -31,7 +33,7 @@ function WatchLaterSessions({ filters, sessions, setSessions, loading, setLoadin
       filters={filters}
       getSessions={getSessions}
       setSessions={setSessions}
-      title="See Later"
+      title={t('See later')}
       sessions={sessions}
       loading={loading}
     />

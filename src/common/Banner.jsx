@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import API from '../api';
 import { mediaUrl } from '../config';
 
 function Banner() {
+  const { t } = useTranslation();
   const [banner, setBanner] = useState(null);
 
   const getBanner = async () => {
@@ -29,7 +31,7 @@ function Banner() {
       />
       {/* <img src={`${mediaUrl}/${banner?.bannerImg}`} alt="banner" className="banner_image" /> */}
       <a target="_blank" href={banner?.link} className="banner_btn" type="button" rel="noreferrer">
-        Learn More
+        {t('Learn More')}
       </a>
     </div>
   );

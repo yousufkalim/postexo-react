@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Dialog from '@mui/material/Dialog';
 import { toast } from 'react-toastify';
 import CroseIcon from '../../assets/CroseIcon.svg';
@@ -7,6 +8,7 @@ import { handleBlur } from '../../utils/form';
 import ErrorField from '../../common/ErrorField';
 
 function Report({ open, setOpen, sessionId, userId }) {
+  const { t } = useTranslation();
   const [report, setReport] = useState({
     email: '',
     subject: '',
@@ -45,7 +47,7 @@ function Report({ open, setOpen, sessionId, userId }) {
         subject: report.subject,
         comment: report.comment,
       }).then(() => {
-        toast.success('Report submitted successfully');
+        toast.success(t('Report submitted successfully'));
         setReport({
           email: '',
           subject: '',
@@ -76,11 +78,11 @@ function Report({ open, setOpen, sessionId, userId }) {
                 onKeyDown={handleClose}
               />
             }
-            <p className="forgot_title">Report</p>
+            <p className="forgot_title">{t('Report')}</p>
             <p className="forgot_p">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
             <div className="input_feild" style={{ textAlign: 'left' }}>
               <label htmlFor="a" className="input_report_label">
-                Email
+                {t('Email')}
                 <input
                   id="a"
                   type="email"
@@ -97,12 +99,12 @@ function Report({ open, setOpen, sessionId, userId }) {
             </div>
             <div className="input_feild" style={{ textAlign: 'left' }}>
               <label htmlFor="b" className="input_report_label">
-                Subject
+                {t('Subject')}
                 <input
                   id="b"
                   type="text"
                   className="form_input border"
-                  placeholder="Inappropriate"
+                  placeholder={t('Inappropriate')}
                   value={report.subject}
                   name="subject"
                   onChange={handleChange}
@@ -113,12 +115,12 @@ function Report({ open, setOpen, sessionId, userId }) {
             </div>
             <div className="input_feild" style={{ textAlign: 'left' }}>
               <label htmlFor="c" className="input_comment_label">
-                Comment
+                {t('Comment')}
                 <textarea
                   id="c"
                   type="text"
                   className="text-area"
-                  placeholder="Type here"
+                  placeholder={t('Type here')}
                   value={report.comment}
                   name="comment"
                   onChange={handleChange}
@@ -133,7 +135,7 @@ function Report({ open, setOpen, sessionId, userId }) {
               type="button"
               onClick={handleSendReport}
             >
-              Send Report
+              {t('Send Report')}
             </button>
           </div>
         </Dialog>
@@ -158,7 +160,7 @@ function Report({ open, setOpen, sessionId, userId }) {
                 />
               }
               <p className="forgot_title" style={{ marginBottom: '8px' }}>
-                Your Report has been Submit
+                {t('Your Report has been Submit')}
               </p>
 
               <p className="forgot_p">Lorem ipsum dolor sit amet, consectetur adipiscing</p>

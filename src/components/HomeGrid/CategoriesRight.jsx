@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import GridIcon from '../../assets/GridIcon.svg';
 import ViewIcon from '../../assets/ViewIcon.svg';
 import WhiteGrid from '../../assets/WhiteGrid.svg';
@@ -12,6 +13,7 @@ import Spinner from '../../common/Spinner';
 const sortOptions = ['Sort By', 'Date', 'Most liked', 'Most viewed', 'Top rated'];
 
 function CategoriesRight({ filters, sessions, setSessions }) {
+  const { t } = useTranslation();
   const [showCours, setShowCoours] = useState(true);
   const [showCours2, setShowCoours2] = useState(true);
   const [topSessions, setTopSessions] = useState([]);
@@ -117,7 +119,7 @@ function CategoriesRight({ filters, sessions, setSessions }) {
       {loading && <Spinner className="home_spinner" />}
       <div className="Salespro">
         <div className="TopCourses">
-          <p className="TopCourses_title">Top Courses</p>
+          <p className="TopCourses_title">{t('Top Courses')}</p>
           <div className="sortBy_div">
             <div className="sortby_main_div">
               <select
@@ -129,7 +131,7 @@ function CategoriesRight({ filters, sessions, setSessions }) {
               >
                 {sortOptions?.map((sortName) => (
                   <option key={sortName} value={sortName} id={sortName}>
-                    {sortName}
+                    {t(sortName)}
                   </option>
                 ))}
               </select>
@@ -165,7 +167,7 @@ function CategoriesRight({ filters, sessions, setSessions }) {
 
       {/* Courses 2  */}
       <div className="TopCourses">
-        <p className="TopCourses_title">Most Viewed</p>
+        <p className="TopCourses_title">{t('Most viewed')}</p>
         <div className="sortBy_div">
           <div className="sortby_main_div">
             <select
@@ -177,7 +179,7 @@ function CategoriesRight({ filters, sessions, setSessions }) {
             >
               {sortOptions?.map((sortName) => (
                 <option value={sortName} key={sortName} id={sortName}>
-                  {sortName}
+                  {t(sortName)}
                 </option>
               ))}
             </select>

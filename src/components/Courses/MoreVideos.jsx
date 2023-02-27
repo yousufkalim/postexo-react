@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Avatar } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
@@ -8,6 +9,7 @@ import Star from '../../assets/Star.svg';
 import Pic4 from '../../assets/Pic2.png';
 
 function MoreVideos({ sessions }) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleNavigate = (matter, e) => {
@@ -69,7 +71,9 @@ function MoreVideos({ sessions }) {
                   <div className="starRatings">
                     <img src={Star} alt="star" />
                     <div>
-                      <small>{item?.averageRating} Rating</small>
+                      <small>
+                        {item?.averageRating} {t('Rating')}
+                      </small>
                     </div>
                   </div>
                 </div>

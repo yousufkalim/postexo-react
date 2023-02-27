@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Checkbox from '@mui/material/Checkbox';
 import FormLaftImg from '../../assets/FormLaftImg.svg';
 import ShowP from '../../assets/ShowP.svg';
@@ -11,6 +12,7 @@ import { handleBlur } from '../../utils/form';
 import ErrorField from '../../common/ErrorField';
 
 function LoginUser() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [passwordShown, setPasswordShown] = useState(false);
   const [open, setOpen] = useState(false);
@@ -78,16 +80,16 @@ function LoginUser() {
           <div className="form_col2">
             <div className="form_right_div">
               <div className="form_feilds">
-                <p className="formTitle">Login</p>
+                <p className="formTitle">{t('Login')}</p>
                 <p className="formP">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
                 <div className="input_feild">
                   <label htmlFor="b" className="input_label">
-                    Email
+                    {t('Email')}
                     <input
                       id="b"
                       type="text"
                       className="form_input"
-                      placeholder="Enter your email"
+                      placeholder={t('Enter your email')}
                       name="email"
                       value={formState.email}
                       onChange={handleChange}
@@ -98,12 +100,12 @@ function LoginUser() {
                 </div>
                 <div className="input_feild">
                   <label htmlFor="c" className="input_label">
-                    Password
+                    {t('Password')}
                     <input
                       id="c"
                       type={passwordShown ? 'text' : 'password'}
                       className="form_input"
-                      placeholder="Enter your password"
+                      placeholder={t('Enter your password')}
                       name="password"
                       value={formState.password}
                       onChange={handleChange}
@@ -127,7 +129,7 @@ function LoginUser() {
                         onClick={ForgotPasswordEvent}
                         onKeyDown={ForgotPasswordEvent}
                       >
-                        Forgot Password ?
+                        {t('Forgot Password ?')}
                       </p>
                     }
                   </div>
@@ -137,7 +139,7 @@ function LoginUser() {
                   {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                   <label className="checkmark" htmlFor="e">
                     <Checkbox defaultChecked color="secondary" id="e" />
-                    &nbsp;Stay Login
+                    &nbsp;{t('Stay Login')}
                   </label>
                 </div>
 
@@ -148,13 +150,13 @@ function LoginUser() {
                     className="form_btn"
                     onClick={handleLoggin}
                   >
-                    Login
+                    {t('Login')}
                     <img src={LoginIcon} alt="" className="register_icon" />
                   </button>
                   <p className="form_account_p">
-                    Don’t have an account?
+                    {t('Don’t have an account?')}
                     <Link to="/register">
-                      <span className="form_span"> Register</span>
+                      <span className="form_span"> {t('Register')}</span>
                     </Link>
                   </p>
                 </div>

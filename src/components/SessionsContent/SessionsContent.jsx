@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import GridIcon from '../../assets/GridIcon.svg';
 import ViewIcon from '../../assets/ViewIcon.svg';
 import WhiteGrid from '../../assets/WhiteGrid.svg';
@@ -10,6 +11,7 @@ import NoDataFound from '../../common/NoDataFound';
 const sortOptions = ['Sort By', 'Date', 'Most liked', 'Most viewed', 'Top rated'];
 
 function SessionsContent({ title, sessions, getSessions, filters, mutator, setSessions, loading }) {
+  const { t } = useTranslation();
   const [showCours, setShowCoours] = useState(true);
   const [allSessions, setAllSessions] = useState([]);
   const [sortType, setSortType] = useState('');
@@ -75,7 +77,7 @@ function SessionsContent({ title, sessions, getSessions, filters, mutator, setSe
               >
                 {sortOptions?.map((sortName) => (
                   <option key={sortName} value={sortName} id={sortName}>
-                    {sortName}
+                    {t(sortName)}
                   </option>
                 ))}
               </select>

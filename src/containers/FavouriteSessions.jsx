@@ -1,9 +1,11 @@
 import React from 'react';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import API from '../api';
 import SessionsContent from '../components/SessionsContent/SessionsContent';
 
 function FavouriteSessions({ filters, sessions, setSessions, loading, setLoading }) {
+  const { t } = useTranslation();
   const userData = JSON.parse(localStorage.getItem('userData'));
 
   const getSessions = async () => {
@@ -30,7 +32,7 @@ function FavouriteSessions({ filters, sessions, setSessions, loading, setLoading
       filters={filters}
       setSessions={setSessions}
       getSessions={getSessions}
-      title="My Favourites"
+      title={t('My favourites')}
       sessions={sessions}
       loading={loading}
     />

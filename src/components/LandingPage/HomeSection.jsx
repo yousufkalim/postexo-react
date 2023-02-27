@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Avatar } from 'antd';
 import NEEDATEACHERREGBTNSVG from '../../assets/NEEDATEACHERREGBTN.svg';
 import Teacher from '../../assets/home/Teacher.png';
@@ -8,6 +9,8 @@ import Pic3 from '../../assets/home/Ellipse3.svg';
 import Popup from '../Dialog/Popup';
 
 function HomeSection() {
+  const { t } = useTranslation();
+
   const [open, setOpen] = useState(false);
 
   const registorForm = () => {
@@ -20,10 +23,11 @@ function HomeSection() {
         <section className="section-need-a-teacher">
           <div className="sectionAndTeacher">
             <div className="need-a-teacher-container-one">
-              <h1 className="Need_teacher_title">Hello ! Need a teacher ?</h1>
+              <h1 className="Need_teacher_title">{t('Hello ! Need a teacher ?')}</h1>
               <span className="need-a-teacher-span">
-                After registering, you will be able to see the most popular courses of the platform,
-                and benefit from them !
+                {t(
+                  'After registering, you will be able to see the most popular courses of the platform, and benefit from them !',
+                )}
               </span>
               <button type="button" className="btn-need-a-teacher" onClick={registorForm}>
                 <div className="regbtnImgDiv">
@@ -34,7 +38,7 @@ function HomeSection() {
                     style={{ width: '100%' }}
                   />
                 </div>
-                Register
+                {t('Register')}
               </button>
             </div>
 
@@ -44,7 +48,7 @@ function HomeSection() {
           </div>
           <div className="postExo">
             <div className="students-circle">
-              <p>Postexo Students</p>
+              <p>{t('Postexo Students')}</p>
               <div>
                 <Avatar.Group
                   maxCount={3}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Second from '../assets/Second.svg';
 import Pause from '../assets/Pause.svg';
 import Play from '../assets/Play.svg';
@@ -7,9 +8,10 @@ import Volume from '../assets/Volume.svg';
 import Mute from '../assets/Mute.svg';
 
 function Icon() {
+  const { t } = useTranslation();
   return (
     <div className="rewind_container">
-      <div className="audio_tooltip">Only audio would be forward</div>
+      <div className="audio_tooltip">{t('Only audio would be forward')}</div>
       <img src={Second} alt="Second" />
     </div>
   );
@@ -21,9 +23,11 @@ function Icon3() {
   return <img style={{ paddingInline: '8px' }} src={Play} alt="Play" />;
 }
 function Icon4() {
+  const { t } = useTranslation();
+
   return (
     <div className="rewind_container">
-      <div className="audio_tooltip">Only audio would be rewind</div>
+      <div className="audio_tooltip">{t('Only audio would be rewind')}</div>
       <img src={Rewind} alt="Rewind" />
     </div>
   );

@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
 import { Avatar } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
@@ -9,6 +10,7 @@ import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
 import Pic4 from '../../assets/Pic2.png';
 
 function CoursesComponent2({ sessions }) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleClick = (item) => {
@@ -45,11 +47,15 @@ function CoursesComponent2({ sessions }) {
                 <div className="course_likes">
                   <span className="level_btn">{_?.student_level}</span>
                   <img className="like-icon" src={LIKEICONSVG} alt="like-icon" />
-                  <small className="card-image-content">{_?.likes?.length} Likes</small>
+                  <small className="card-image-content">
+                    {_?.likes?.length} {t('Likes')}
+                  </small>
                   <div className="rating_stars">
                     <img src={Star} alt="star" />
                     <div>
-                      <small className="card-image-content">&nbsp;{_?.averageRating} Rating</small>
+                      <small className="card-image-content">
+                        &nbsp;{_?.averageRating} {t('Rating')}
+                      </small>
                     </div>
                   </div>
                 </div>
