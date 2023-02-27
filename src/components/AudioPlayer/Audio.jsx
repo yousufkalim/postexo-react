@@ -6,27 +6,26 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import 'react-h5-audio-player/lib/styles.css';
 import FullScreenIcon from '../../assets/fullscreen.png';
 import ExitScreen from '../../assets/minimize.png';
-// import Spinner from '../../common/Spinner';
 import { Icon, Icon2, Icon3, Icon4, Icon5, Icon6 } from '../Icons';
 import api from '../../api';
 
-const chapter = [
-  {
-    name: 'chapter 1',
-    start: 1,
-    end: 4,
-  },
-  {
-    name: 'chapter 2',
-    start: 6,
-    end: 9,
-  },
-  {
-    name: 'chapter 3',
-    start: 11,
-    end: 12,
-  },
-];
+// const chapter = [
+//   {
+//     name: 'Chapter 1: How to learn ReactJS? | How to start ReactJS?',
+//     start: 0,
+//     end: 60,
+//   },
+//   {
+//     name: 'Chapter 2 : Advanced javascript',
+//     start: 1000,
+//     end: 2000,
+//   },
+//   {
+//     name: 'chapter 3',
+//     start: 2100,
+//     end: 3000,
+//   },
+// ];
 
 // const addTime = 1 * 60 * 60 * 1000;
 
@@ -52,6 +51,8 @@ const Audio = React.memo(({ session }) => {
   const [int, setInt] = useState();
   const [duration, setDuration] = useState(null);
   const [jumped, setJumped] = useState(false);
+  const [currentAudioTime, setCurrentAudioTime] = useState(0);
+  const [tooltipOffset, setTooltipOffset] = useState(0);
 
   const handle = useFullScreenHandle();
 
@@ -141,6 +142,32 @@ const Audio = React.memo(({ session }) => {
   };
 
   useEffect(() => {
+    const element = document.getElementsByClassName('rhap_progress-bar');
+
+    element[0].addEventListener('mousemove', (event) => {
+      const addOffset = event?.target?.className.includes('rhap_download-progress')
+        ? event?.target?.offsetLeft
+        : 0;
+
+      const element2 = document.getElementsByClassName('rhap_container');
+      const width = element[0].clientWidth;
+      const offSetX = addOffset ? addOffset + event.offsetX : event.offsetX;
+      const totalOffset = offSetX;
+      setTooltipOffset(totalOffset);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+
+      const audioDuration = parseInt(element2?.[0]?.firstChild?.duration, 10);
+      const elementPosition = (offSetX / width) * 100;
+      const audioTime = (audioDuration / 100) * elementPosition;
+      setCurrentAudioTime(audioTime);
+    });
+
+    element[0].addEventListener('mouseleave', () => {
+      setCurrentAudioTime(0);
+    });
+  }, []);
+
+  useEffect(() => {
     setLoading(true);
     if (session) {
       setInitialData();
@@ -180,9 +207,6 @@ const Audio = React.memo(({ session }) => {
     if (audioRef.current?.audio?.current?.duration) {
       const audioDuration = audioRef?.current?.audio?.current?.duration;
       setDuration(audioDuration);
-      // audioRef.current.progressBar.current.addEventListener('mouseover', (e) =>
-      //   console.log(e, 'event'),
-      // );
     }
     document.getElementsByClassName('rhap_forward-button')?.[0].addEventListener('click', () => {
       setJumped(true);
@@ -403,20 +427,44 @@ const Audio = React.memo(({ session }) => {
           customProgressBarSection={[
             RHAP_UI.PROGRESS_BAR,
             <div className="chapter-div">
-              {chapter.map((chap, i) => {
-                const leftStyle = (chap.end / duration) * 100;
-                // const widthStyle = ((chap.end - chap.start) / duration) * 100;
-                return (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <span key={i} className="chapter" style={{ left: `${leftStyle}%` }}>
-                    <div className="tooltip">
-                      <span style={{ left: `${leftStyle}%` }} className="tooltiptext">
-                        {chap.name}
-                      </span>
-                    </div>
-                  </span>
-                );
-              })}
+              <div className="chapter_div_wrapper">
+                {session?.chapters?.map((chap, i) => {
+                  const leftStyle = (chap.startTime / duration) * 100;
+                  let findTooltip;
+                  const chaptersCopy = [...session.chapters];
+                  if (i === chaptersCopy.length - 1) {
+                    if (currentAudioTime > chap.startTime) {
+                      findTooltip = chap;
+                    }
+                  } else if (
+                    currentAudioTime > chap.startTime &&
+                    chaptersCopy?.[i + 1]?.startTime > currentAudioTime
+                  ) {
+                    findTooltip = chap;
+                  }
+                  let index = -1;
+                  index = session?.chapters.findIndex(({ name }) => name === findTooltip?.name);
+                  return (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <>
+                      {i !== 0 && <span className="chapter" style={{ left: `${leftStyle}%` }} />}
+                      <div className="tooltip">
+                        {findTooltip && currentAudioTime && (
+                          <span
+                            style={{
+                              left: `${tooltipOffset}px`,
+                              display: i === index ? 'block' : 'none',
+                            }}
+                            className="tooltiptext"
+                          >
+                            {chap.name}
+                          </span>
+                        )}
+                      </div>
+                    </>
+                  );
+                })}
+              </div>
             </div>,
             RHAP_UI.CURRENT_TIME,
             <div className="slash">&nbsp;/&nbsp;</div>,

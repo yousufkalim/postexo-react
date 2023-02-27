@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Carousel } from 'antd';
 import CloseIcon from '@mui/icons-material/Close';
-import MoreVideos from '../components/Courses/MoreVideos';
+// import MoreVideos from '../components/Courses/MoreVideos';
 import Navbar2 from '../components/HomeGrid/Navbar2';
 import Screen from '../components/VideoScreen/VideoScreen';
 import API from '../api';
@@ -13,7 +14,6 @@ import CategoriesLeft from '../components/HomeGrid/CategoriesLeft';
 function VideoScreen() {
   const [currentVideo, setCurrentVideo] = useState();
   const [currentSession, setCurrentSession] = useState();
-  const [sessions, setSessions] = useState([]);
   const [filters, setFilters] = useState({ levels: [], durations: [], languages: [] });
   const [rerender, setRerender] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
@@ -39,28 +39,18 @@ function VideoScreen() {
         setCurrentSession(data);
         setRerender(true);
       }
-      setCurrentVideo(data);
+      let sortedData = data;
+      if (data.chapters?.length > 0) {
+        sortedData = {
+          ...data,
+          chapters: { ...data.chapters.sort((a, b) => a.startTime - b.startTime) },
+        };
+      }
+      setCurrentVideo(sortedData);
     } catch (err) {
       toast.error(err.message);
     }
   };
-
-  const getSessions = async () => {
-    try {
-      await API('get', '/sessions').then((res) => {
-        setSessions(res?.data?.sessions);
-        // setLoading(false);
-      });
-    } catch (err) {
-      // setLoading(false);
-      toast.error(err.message);
-    }
-  };
-
-  useEffect(() => {
-    getSessions();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     getCurrentSession();
@@ -85,14 +75,25 @@ function VideoScreen() {
           session={currentVideo}
         />
         <div className="component-set">
-          {/* <CoursesComponent /> */}
-          <MoreVideos
-            // setLoading={setLoading}
+          {currentSession?.photos?.length > 0 && (
+            <div className="carousel_container">
+              <Carousel autoplay className="more_carousel">
+                {currentSession?.photos?.map((pic) => (
+                  <div className="more_image_container">
+                    {/* <h1>Test</h1> */}
+                    <img src={pic} alt="test" />
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+          )}
+          {/* <MoreVideos
+            currentSession={currentSession}
             sessions={sessions?.filter(
               (session) =>
                 session._id !== currentVideo?._id && session.matter === currentVideo?.matter,
             )}
-          />
+          /> */}
         </div>
         {/* <div className="component-2">
           <CoursesComponent2 setCurrentVideo={setCurrentVideo} />

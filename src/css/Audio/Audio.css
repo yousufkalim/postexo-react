@@ -5,6 +5,7 @@
   /* width: 100%; */
   /* margin-left: 2px; */
   flex: 4.1 0 auto !important;
+  margin-left: 4px;
 }
 .rhap_progress-section {
   position: relative !important;
@@ -31,10 +32,9 @@
 } */
 .chapter {
   display: inline-block;
-  width: 4px;
-  height: 6px;
+  width: 2px;
   height: 7px;
-  background-color: black;
+  background-color: #000;
   position: absolute;
   /* top: 4px; */
   /* left: 20%;
@@ -47,8 +47,15 @@
   position: absolute;
   width: 75%;
   margin-inline: 12px;
+  left: 0;
   top: 18.5px;
   z-index: 3;
+}
+.chapter_div_wrapper {
+  background: inherit;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 .rhap_main-controls {
   width: 100%;
@@ -92,12 +99,16 @@
   background: #fdfcfc;
 }
 .tooltip {
-  position: relative;
-  width: -webkit-fill-available;
+  /* position: relative; */
+  width: 100%;
 }
 .tooltip .tooltiptext {
-  visibility: hidden;
-  width: max-content;
+  /* width: max-content; */
+  width: 130px;
+  min-height: 25px;
+  text-align: left;
+  padding: 2px;
+  line-height: 14px;
   font-size: 10px;
   background-color: #555;
   color: #fff;
@@ -105,12 +116,13 @@
   border-radius: 6px;
   padding: 5px 10px;
   position: absolute;
-  z-index: 1;
-  bottom: 110%;
+  z-index: 99999;
+  bottom: 40px;
   /* left: 50%; */
-  margin-left: -80px;
-  opacity: 0;
+  margin-left: -65px;
   transition: opacity 0.3s;
+  /* visibility: hidden;
+  opacity: 0; */
 }
 
 .tooltip .tooltiptext::after {
@@ -124,7 +136,7 @@
   border-color: #555 transparent transparent transparent;
 }
 
-.chapter:hover .tooltiptext {
+.rhap_progress-container:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
@@ -179,6 +191,23 @@
   overflow-x: auto;
   background: white;
 }
+/* 
+.custom_tooltip {
+  background-color: #000;
+  color: #fff;
+  font-size: 12px;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  z-index: 9999999;
+  display: none;
+} */
+
+.rhap_progress-container:hover + .custom_tooltip {
+  /* background-color: #d9d9d9; */
+  display: inline-block !important;
+}
+
 @media screen and (max-width: 800px) {
   .rhap_container {
     padding: 0px 20px !important;

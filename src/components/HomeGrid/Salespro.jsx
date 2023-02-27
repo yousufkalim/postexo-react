@@ -12,8 +12,8 @@ function Salespro() {
           {t('Hello')} {user?.name}
         </p>
         <p className="Salespro_p">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-          been the industry standard dummy text ever since the 1500s,
+          Welcome to PostExo! Explore our courses and take the first step towards enhancing your
+          knowledge and skills.
         </p>
       </div>
     </div>

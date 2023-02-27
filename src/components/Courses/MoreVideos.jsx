@@ -1,15 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Avatar } from 'antd';
+import { Carousel } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
 import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
-import Pic4 from '../../assets/Pic2.png';
 
 function MoreVideos({ sessions }) {
   const { t } = useTranslation();
+function MoreVideos({ sessions, currentSession }) {
   const navigate = useNavigate();
 
   const handleNavigate = (matter, e) => {
@@ -24,6 +25,19 @@ function MoreVideos({ sessions }) {
 
   return (
     <>
+      {currentSession?.photos?.length > 0 && (
+        <div className="carousel_container">
+          <Carousel autoplay className="more_carousel">
+            {currentSession?.photos?.map((pic) => (
+              <div className="more_image_container">
+                {/* <h1>Test</h1> */}
+                <img src={pic} alt="test" />
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      )}
+
       {sessions.map((item) => (
         <div
           role="presentation"
@@ -52,7 +66,7 @@ function MoreVideos({ sessions }) {
               </div>
               {item?.ratings?.length > 0 && (
                 <div className="avatarRatings">
-                  <Avatar.Group
+                  {/* <Avatar.Group
                     maxCount={2}
                     maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
                     maxPopoverTrigger="click"
@@ -67,7 +81,7 @@ function MoreVideos({ sessions }) {
                         src={Pic4}
                       />
                     ))}
-                  </Avatar.Group>
+                  </Avatar.Group> */}
                   <div className="starRatings">
                     <img src={Star} alt="star" />
                     <div>
@@ -78,62 +92,6 @@ function MoreVideos({ sessions }) {
                   </div>
                 </div>
               )}
-              {/* <div className="avatarRatings">
-                <Avatar.Group
-                  maxCount={3}
-                  maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
-                  maxPopoverTrigger="click"
-                >
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Remy Sharp"
-                    src={Pic4}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Travis Howard"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
-                </Avatar.Group>
-                <div className="starRatings">
-                  <img src={Star} alt="star" />
-                  <div>
-                    <p>3.9 Rating</p>
-                  </div>
-                </div>
-              </div> */}
             </div>
             <div className="course-card-image-content">
               <div style={{ display: 'flex', alignItems: 'center' }}>

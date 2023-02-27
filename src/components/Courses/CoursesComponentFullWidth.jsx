@@ -3,11 +3,11 @@ import React from 'react';
 import { Avatar } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { Carousel } from 'antd';
 import moment from 'moment';
 import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
-import Pic4 from '../../assets/Pic2.png';
 
 function CoursesComponent2({ sessions }) {
   const { t } = useTranslation();
@@ -24,12 +24,21 @@ function CoursesComponent2({ sessions }) {
         <div key={_._id} className="image-container_row image-container_row_full">
           <img src={_?.resolution_file} className="image_container_banner" alt="video-icon" />
           <p className="cours_time">{`${_?.duration}:00`}</p>
+          <div className="Avatarcontent">
+            {_.photos?.length > 0 && (
+              <Carousel autoplay dots={false} className="custom_carousel_full">
+                {_?.photos?.map((pic) => (
+                  <div className="carousel_image_container_full">
+                    {/* <h1>Test</h1> */}
+                    <img src={pic} alt="test" />
+                  </div>
+                ))}
+              </Carousel>
+            )}
+          </div>
           <img className="course-card-image" src={_?.img} alt={_?.alt} />
-          <div className="card-img-parent-container2 card-img-parent-container2_full">
-            <div className="d-flex space-between">
-              <span className="time-pill" />
-              <span className="position-pill">{_?.matter}</span>
-            </div>
+          <div className="video-icon-container">
+            <div className="video-icon-container_notions">{_?.notions}</div>
             <img
               src={PLAYVIDEOICONSVG}
               alt="video-icon"
@@ -37,10 +46,11 @@ function CoursesComponent2({ sessions }) {
               onClick={() => handleClick(_)}
               onKeyDown={() => handleClick(_)}
             />
-            <div className="Avatarcontent">
-              <div className="card-image-content-hover">
-                <small>{_?.subject} </small>
-              </div>
+          </div>
+          <div className="card-img-parent-container2 card-img-parent-container2_full">
+            <div className="d-flex space-between">
+              <span className="time-pill" />
+              <span className="position-pill">{_?.matter}</span>
             </div>
             <div className="card_courses_contant">
               <div className="course-card-image-content">
@@ -69,7 +79,7 @@ function CoursesComponent2({ sessions }) {
                 </div>
               </div>
               <div className="avatarRatings2">
-                <Avatar.Group
+                {/* <Avatar.Group
                   maxCount={2}
                   maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
                   maxPopoverTrigger="click"
@@ -84,55 +94,6 @@ function CoursesComponent2({ sessions }) {
                       src={Pic4}
                     />
                   ))}
-                </Avatar.Group>
-                {/* <Avatar.Group
-                  maxCount={3}
-                  maxStyle={{ backgroundColor: 'transparent', border: 'none' }}
-                  maxPopoverTrigger="click"
-                  className="avatar_groups"
-                >
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Remy Sharp"
-                    src={Pic4}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Travis Howard"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
-                  <Avatar
-                    style={{
-                      border: 'none',
-                    }}
-                    alt="Cindy Baker"
-                    src={Pic5}
-                  />
                 </Avatar.Group> */}
               </div>
             </div>
