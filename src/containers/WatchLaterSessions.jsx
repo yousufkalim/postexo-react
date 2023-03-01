@@ -33,7 +33,7 @@ function WatchLaterSessions({ filters, sessions, setSessions, loading, setLoadin
       filters={filters}
       getSessions={getSessions}
       setSessions={setSessions}
-      title={t('See later')}
+      title={t('See Later')}
       sessions={sessions}
       loading={loading}
     />
