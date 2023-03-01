@@ -167,7 +167,7 @@ function CategoriesRight({ filters, sessions, setSessions }) {
 
       {/* Courses 2  */}
       <div className="TopCourses">
-        <p className="TopCourses_title">{t('Most viewed')}</p>
+        <p className="TopCourses_title">{t('Most Viewed')}</p>
         <div className="sortBy_div">
           <div className="sortby_main_div">
             <select

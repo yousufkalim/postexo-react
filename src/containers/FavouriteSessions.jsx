@@ -32,7 +32,7 @@ function FavouriteSessions({ filters, sessions, setSessions, loading, setLoading
       filters={filters}
       setSessions={setSessions}
       getSessions={getSessions}
-      title={t('My favourites')}
+      title={t('My Favourites')}
       sessions={sessions}
       loading={loading}
     />
