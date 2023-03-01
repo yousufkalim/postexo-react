@@ -1,6 +1,5 @@
 import { React, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Avatar } from 'antd';
 import Dialog from '@mui/material/Dialog';
 import { Carousel } from 'antd';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +7,7 @@ import moment from 'moment';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
 import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Player from '../Player/Player';
+import convertMsToTime from '../../utils/common';
 
 function CoursesComponent({ sessions }) {
   const { t } = useTranslation();
@@ -102,14 +102,20 @@ function CoursesComponent({ sessions }) {
             </span>
             <div className="d-flex space-between course_duration">
               {window.location.pathname === '/' ? null : (
-                <p className="cours_time">{`${item?.duration}:00`}</p>
+                <p className="cours_time">
+                  {item?.duration ? convertMsToTime(Number(item.duration) * 60 * 1000) : '0'}
+                </p>
               )}
-
               <span className="time-pill" />
             </div>
             <div className="course-card-image-content">
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <span className="level_btn">{item?.student_level}</span>
+                <span className="level_btn">
+                  {' '}
+                  {item?.student_level.length > 20
+                    ? `${item.student_level.substring(0, 20)} ...`
+                    : item?.student_level}
+                </span>
                 <img className="like-icon" src={LIKEICONSVG} alt="like-icon" />
                 <small className="card-image-content">
                   {item?.likes?.length} {t('Likes')}{' '}

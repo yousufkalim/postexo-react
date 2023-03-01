@@ -129,7 +129,7 @@ const Audio = React.memo(({ session }) => {
         setAllPaths(first);
         setAllDates(dates);
       } catch (err) {
-        console.log('REsponse ERRor ', err);
+        console.log('Response Error ', err);
       }
     }
   };

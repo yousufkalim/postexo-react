@@ -233,6 +233,7 @@
 .course-card-image-content {
   display: flex;
   flex-direction: column;
+  gap: 2px;
   font-size: 0.8em;
 }
 .avatar_groups {
