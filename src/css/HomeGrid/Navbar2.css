@@ -23,6 +23,7 @@
   display: flex;
   align-items: center;
 }
+
 .nav_search_bar input {
   display: flex;
   flex-direction: row;
@@ -67,7 +68,7 @@
   z-index: 10;
 }
 .presentation {
-  white-space: pre;
+  /* white-space: pre; */
   padding: 10px 10px;
   display: block;
   cursor: pointer;
@@ -75,6 +76,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
+  text-align: center;
 }
 .presentation:hover {
   background-color: #6ec2b1;

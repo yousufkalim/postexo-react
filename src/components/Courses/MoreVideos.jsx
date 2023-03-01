@@ -1,4 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Avatar } from 'antd';
 import { Carousel } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
@@ -6,6 +8,8 @@ import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
 import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
 
+function MoreVideos({ sessions }) {
+  const { t } = useTranslation();
 function MoreVideos({ sessions, currentSession }) {
   const navigate = useNavigate();
 
@@ -81,7 +85,9 @@ function MoreVideos({ sessions, currentSession }) {
                   <div className="starRatings">
                     <img src={Star} alt="star" />
                     <div>
-                      <small>{item?.averageRating} Rating</small>
+                      <small>
+                        {item?.averageRating} {t('Rating')}
+                      </small>
                     </div>
                   </div>
                 </div>

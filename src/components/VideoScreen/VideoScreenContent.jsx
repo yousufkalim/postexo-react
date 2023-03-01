@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 import { NavLink } from 'react-router-dom';
@@ -21,6 +22,7 @@ import Cross from '../../assets/Cross.svg';
 import Add from '../../assets/Add.svg';
 
 function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, setOpenReport }) {
+  const { t } = useTranslation();
   const [openPlaylist, setOpenPlaylist] = useState(false);
   const [openNewPlaylist, setOpenNewPlaylist] = useState(true);
   const [playlistName, setPlaylistName] = useState('');
@@ -163,7 +165,7 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
             <Avatar src="" className="profile_DP" />
             <div className="profile_details_video">
               <p className="Profile_names">{session?.professor_name}</p>
-              <p className="Profile_mail">Senior Software Engineer</p>
+              <p className="Profile_mail">{t('Senior Software Engineer')}</p>
             </div>
           </NavLink>
           <div className="social-playlist">
@@ -189,7 +191,7 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
             </div>
             <div ref={menuRef} className="playlist-opt">
               <div className="playlist-div">
-                <p className="playlist_p">Add To Playlist</p>
+                <p className="playlist_p">{t('Add To Playlist')}</p>
                 <div>
                   <div>
                     {
@@ -205,7 +207,7 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
                   {openPlaylist && (
                     <div className="dropdown-playlist">
                       <div className="play-div">
-                        Add To playlist
+                        {t('Add To Playlist')}
                         {
                           // eslint-disable-next-line
                           <img
@@ -237,16 +239,16 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
                             // eslint-disable-next-line
                             <img className="add" src={Add} alt="Report" onClick={handlePlaylist} />
                           }
-                          Create new playlist
+                          {t('Create new playlist')}
                         </div>
                       ) : (
                         <div className="create-play">
-                          <p className="name-play">New Playlist Name</p>
+                          <p className="name-play">{t('New Playlist Name')}</p>
                           <input
                             value={playlistName}
                             onChange={(e) => setPlaylistName(e.target.value)}
                             className="inp"
-                            placeholder="Enter Playlist Name"
+                            placeholder={t('Enter Playlist Name')}
                             type="text"
                           />
                           <div className="create-div">
@@ -256,7 +258,7 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
                               onClick={() => handleCreatePlaylist()}
                               className={!playlistName ? 'create disabled' : 'create'}
                             >
-                              Create
+                              {t('Create')}
                             </button>
                           </div>
                         </div>
@@ -280,8 +282,8 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
                     <div className="dropdown">
                       <div role="presentation" onClick={() => handleFavorite()} className="fav-div">
                         {userInfo?.favorites?.find((item) => item?._id === session?._id)
-                          ? 'Remove from favourite'
-                          : 'Add to Favourite'}
+                          ? t('Remove from favourite')
+                          : t('Add to Favourite')}
                         <img
                           src={
                             userInfo?.favorites?.find((item) => item?._id === session?._id)
@@ -297,16 +299,16 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
                         onClick={() => handleWatchLater()}
                         className="fav-div"
                       >
-                        Watch Later
+                        {t('Watch Later')}
                         <img src={Watch} alt="Favourite" className="heart-img" />
                       </div>
                       <div role="presentation" onClick={showModal} className="fav-div">
-                        Give Rating
+                        {t('Give Rating')}
                         <img src={RateIcon} alt="Favourite" className="heart-img" />
                       </div>
 
                       <div className="fav-div" role="presentation" onClick={handleReport}>
-                        Report
+                        {t('Report')}
                         <img src={ReportImg} alt="ReportImg" className="heart-img" />
                       </div>
                     </div>
@@ -317,12 +319,12 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
           </div>
         </div>
         <div className="description-box">
-          <h4 className="description">Description</h4>
+          <h4 className="description">{t('Description')}</h4>
           <div className="description-para">
             <ShowMoreText
               lines={3}
-              more="Show more"
-              less="Show less"
+              more={t('Show more')}
+              less={t('Show less')}
               expanded={false}
               truncatedEndingComponent=" "
               className="content-css"
@@ -335,7 +337,7 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
       </div>
       <Modal
         className="rating_modal"
-        title="Rate this session"
+        title={t('Rate this session')}
         open={isModalOpen}
         footer={false}
         onCancel={handleCancel}
@@ -350,7 +352,7 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
             onClick={() => handleRateSession()}
             className={!rating ? 'create disabled' : 'create'}
           >
-            Submit
+            {t('Submit')}
           </button>
         </div>
       </Modal>

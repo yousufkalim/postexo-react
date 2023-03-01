@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Dialog from '@mui/material/Dialog';
 import ForgetBg from '../../assets/ForgetBg.svg';
@@ -8,6 +9,7 @@ import CroseIcon from '../../assets/CroseIcon.svg';
 import API from '../../api/index';
 
 function ForgotPassword({ open, setOpen }) {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
 
   const handleClose = () => {
@@ -41,17 +43,17 @@ function ForgotPassword({ open, setOpen }) {
             onClick={handleClose}
             onKeyDown={handleClose}
           />
-          <p className="forgot_title">Forgot Password</p>
+          <p className="forgot_title">{t('Forgot Password')}</p>
           <p className="forgot_p">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
           <div className="input_feild2">
             <label htmlFor="b" className="input_label2">
-              Email
+              {t('Email')}
               <input
                 style={{ background: '#2b2926' }}
                 id="b"
                 type="text"
                 className="form_input"
-                placeholder="Enter your email"
+                placeholder={t('Enter your email')}
                 name="email"
                 value={email}
                 onChange={handleChange}
@@ -59,7 +61,7 @@ function ForgotPassword({ open, setOpen }) {
             </label>
           </div>
           <button className="forgotBtn" type="button" onClick={handleForget}>
-            Send Reset Instructions
+            {t('Send Reset Instructions')}
           </button>
         </div>
       </Dialog>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import FormLaftImg from '../../assets/FormLaftImg.svg';
 import ShowP from '../../assets/ShowP.svg';
@@ -10,6 +11,7 @@ import ErrorField from '../../common/ErrorField';
 import { handleBlur } from '../../utils/form';
 
 function SignUp() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [passwordShown, setPasswordShown] = useState(false);
   const [formState, setFormState] = useState({
@@ -44,7 +46,7 @@ function SignUp() {
       password: formState.password,
     })
       .then(() => {
-        toast.success('User registered successfully');
+        toast.success(t('User registered successfully'));
         setTimeout(() => {
           navigate('/login');
         }, 200);
@@ -64,16 +66,16 @@ function SignUp() {
         <div className="form_col2">
           <div className="form_right_div">
             <div className="form_feilds">
-              <p className="formTitle">Register</p>
+              <p className="formTitle">{t('Register')}</p>
               <p className="formP">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
               <div className="Input_feild">
                 <label htmlFor="a" className="input_label">
-                  Name
+                  {t('Name')}
                   <input
                     id="a"
                     type="text"
                     className="form_input"
-                    placeholder="Enter your name"
+                    placeholder={t('Enter your name')}
                     value={formState.name}
                     name="name"
                     onBlur={blurHandler}
@@ -84,12 +86,12 @@ function SignUp() {
               </div>
               <div className="input_feild">
                 <label htmlFor="b" className="input_label">
-                  Email
+                  {t('Email')}
                   <input
                     id="b"
                     type="text"
                     className="form_input"
-                    placeholder="Enter your email"
+                    placeholder={t('Enter your email')}
                     value={formState.email}
                     name="email"
                     onBlur={blurHandler}
@@ -100,12 +102,12 @@ function SignUp() {
               </div>
               <div className="input_feild">
                 <label htmlFor="c" className="input_label">
-                  Password
+                  {t('Password')}
                   <input
                     id="c"
                     type={passwordShown ? 'text' : 'password'}
                     className="form_input"
-                    placeholder="Enter your password"
+                    placeholder={t('Enter your password')}
                     value={formState.password}
                     name="password"
                     onBlur={blurHandler}
@@ -123,13 +125,13 @@ function SignUp() {
               </div>
               <div className="input_feild">
                 <button type="button" className="form_btn" onClick={handleSubmit}>
-                  Register
+                  {t('Register')}
                   <img src={RegisterIcon} alt="" className="register_icon" />
                 </button>
                 <p className="form_account_p">
-                  You have an account?
+                  {t('You have an account?')}
                   <Link to="/login">
-                    <span className="form_span"> Login</span>
+                    <span className="form_span"> {t('Login')}</span>
                   </Link>
                 </p>
               </div>

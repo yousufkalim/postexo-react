@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Modal } from 'antd';
 import { toast } from 'react-toastify';
 import Checkbox from '@mui/material/Checkbox';
@@ -11,6 +12,7 @@ const durations = ['Very short', 'Short', 'Long'];
 // const languages = ['English', 'Urdu', 'French'];
 
 function CategoriesLeft({ filters, setFilters }) {
+  const { t } = useTranslation();
   const [userInfo, setUserInfo] = useState({});
   const [allLevels, setAllLevels] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -104,16 +106,16 @@ function CategoriesLeft({ filters, setFilters }) {
       <Modal
         footer={false}
         className="create_playlist_modal"
-        title="Create New Playlist"
+        title={t('Create new playlist')}
         onCancel={() => setIsModalOpen(false)}
         open={isModalOpen}
       >
-        <div className="create_playlist_modal_title">New Playlist Name</div>
+        <div className="create_playlist_modal_title">{t('New Playlist Name')}</div>
         <input
           value={playlistName}
           onChange={(e) => setPlaylistName(e.target.value)}
           className="inp"
-          placeholder="Enter Playlist Name"
+          placeholder={t('Enter Playlist Name')}
           type="text"
         />
         <div className="create-div">
@@ -123,15 +125,15 @@ function CategoriesLeft({ filters, setFilters }) {
             onClick={() => handleCreatePlaylist()}
             className={!playlistName ? 'create disabled' : 'create'}
           >
-            Create
+            {t('Create')}
           </button>
         </div>
       </Modal>
       <div className="CategoriesLeft">
-        <p className="CategoriesLeft_title">Categories</p>
+        <p className="CategoriesLeft_title">{t('Categories')}</p>
         <div className="border_line" />
         <div className="Categories_favourit_fields" role="presentation" onClick={handleFavourites}>
-          <p className="MyFav_list">My favourites</p>
+          <p className="MyFav_list">{t('My favourites')}</p>
           <p className="favourites_counts">{userInfo?.favorites?.length}</p>
         </div>
         <div
@@ -139,7 +141,7 @@ function CategoriesLeft({ filters, setFilters }) {
           onClick={() => navigate('/sessions/watch-later')}
           className="Categories_favourit_fields"
         >
-          <p className="MyFav_list">See later</p>
+          <p className="MyFav_list">{t('See later')}</p>
           <p className="favourites_counts">{userInfo?.watch_later?.length}</p>
         </div>
         {userInfo?.play_list?.length > 0 &&
@@ -156,25 +158,25 @@ function CategoriesLeft({ filters, setFilters }) {
             </div>
           ))}
         <p onClick={showModal} role="presentation" className="create_playlist">
-          Create playlist
+          {t('Create playlist')}
         </p>
         {!isSessionUrl && (
           <>
             <div className="filter_div">
-              <p className="filter_title">Filters</p>
+              <p className="filter_title">{t('Filters')}</p>
               <button
                 disabled={isDisabledBtn}
                 onClick={() => resetFilters()}
                 type="button"
                 className="clear_btn"
               >
-                Clear
+                {t('Clear')}
               </button>
             </div>
             <div className="border_line" />
 
             <div className="Classess_div">
-              <p className="classes_p">Classes</p>
+              <p className="classes_p">{t('Classes')}</p>
               {allLevels?.map((level) => (
                 <div key={level?._id} className="checked_option">
                   <Checkbox
@@ -188,7 +190,7 @@ function CategoriesLeft({ filters, setFilters }) {
                   </label>
                 </div>
               ))}
-              <p className="duraiton_p">video duration</p>
+              <p className="duraiton_p">{t('video duration')}</p>
               {durations?.map((duration) => (
                 <div key={duration} id={duration} className="checked_option">
                   <Checkbox
@@ -198,7 +200,7 @@ function CategoriesLeft({ filters, setFilters }) {
                     style={{ color: 'white', padding: '0' }}
                   />
                   <label htmlFor="Level" className="levelLabel">
-                    {duration}
+                    {t(duration)}
                   </label>
                 </div>
               ))}

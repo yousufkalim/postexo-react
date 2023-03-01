@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Dialog from '@mui/material/Dialog';
 import { toast } from 'react-toastify';
 import ForgetBg from '../../assets/ForgetBg.svg';
@@ -9,6 +10,7 @@ import HideIcon from '../../assets/HideIcon.svg';
 import API from '../../api/index';
 
 function ChangePassword({ open, setOpen }) {
+  const { t } = useTranslation();
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordShown2, setPasswordShown2] = useState(false);
   const [passwordShown3, setPasswordShown3] = useState(false);
@@ -47,7 +49,7 @@ function ChangePassword({ open, setOpen }) {
         newPassword: changePassword.newPassword,
         confirmPassword: changePassword.confirmPassword,
       }).then(() => {
-        toast.success('Password Changed successfully');
+        toast.success(t('Password Changed successfully'));
         setChangePassword({
           oldPassword: '',
           newPassword: '',
@@ -74,16 +76,16 @@ function ChangePassword({ open, setOpen }) {
             onClick={handleClose}
             onKeyDown={handleClose}
           />
-          <p className="forgot_title">Change Password</p>
+          <p className="forgot_title">{t('Change Password')}</p>
           <p className="forgot_p">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
           <div className="input_feild" style={{ textAlign: 'left' }}>
             <label htmlFor="a" className="input_label">
-              Old Password
+              {t('Old Password')}
               <input
                 id="a"
                 type={passwordShown ? 'text' : 'password'}
                 className="form_input"
-                placeholder="Enter your password"
+                placeholder={t('Enter your password')}
                 value={changePassword.oldPassword}
                 name="oldPassword"
                 onChange={handleChange}
@@ -100,12 +102,12 @@ function ChangePassword({ open, setOpen }) {
           </div>
           <div className="input_feild" style={{ textAlign: 'left' }}>
             <label htmlFor="b" className="input_label">
-              New Password
+              {t('New Password')}
               <input
                 id="b"
                 type={passwordShown2 ? 'text' : 'password'}
                 className="form_input"
-                placeholder="Enter your password"
+                placeholder={t('Enter your password')}
                 value={changePassword.newPassword}
                 name="newPassword"
                 onChange={handleChange}
@@ -121,12 +123,12 @@ function ChangePassword({ open, setOpen }) {
           </div>
           <div className="input_feild" style={{ textAlign: 'left' }}>
             <label htmlFor="c" className="input_label">
-              Confirm Password
+              {t('Confirm Password')}
               <input
                 id="c"
                 type={passwordShown3 ? 'text' : 'password'}
                 className="form_input"
-                placeholder="Enter your password"
+                placeholder={t('Enter your password')}
                 value={changePassword.confirmPassword}
                 name="confirmPassword"
                 onChange={handleChange}
@@ -141,7 +143,7 @@ function ChangePassword({ open, setOpen }) {
             </label>
           </div>
           <button className="forgotBtn" type="button" onClick={handleChangePassword}>
-            Change Password
+            {t('Change Password')}
           </button>
         </div>
       </Dialog>

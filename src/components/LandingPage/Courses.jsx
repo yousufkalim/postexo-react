@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import API from '../../api';
 import CoursesComponent from '../Courses/CoursesComponent';
 
 function Courses() {
+  const { t } = useTranslation();
   const [sessions, setSessions] = useState([]);
 
   const getSessions = async () => {
@@ -23,7 +25,7 @@ function Courses() {
     <div className="course">
       <section className="section-need-a-teacher-courses">
         <div className="courses-div">
-          <h4 className="courses_h4">Courses</h4>
+          <h4 className="courses_h4">{t('Courses')}</h4>
         </div>
       </section>
       <section className="section-need-a-teacher-courses2">

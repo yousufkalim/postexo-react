@@ -20,6 +20,31 @@ a {
   align-items: center;
   justify-content: space-between;
 }
+.trans_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 20px;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 19px;
+  border-radius: 1000px;
+  color: var(--white);
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+  background-color: #2b2926;
+  border: 1.5px solid var(--white);
+  margin-left: 10px;
+}
+.trans_btn img {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  border-radius: 20px;
+}
 .navbar-spacing {
   padding: 0.8% 0%;
 }
