@@ -407,9 +407,15 @@
 .more_image_container {
   width: 100%;
   height: 100%;
+  background-color: #2b2926;
 }
 .more_image_container img {
   width: 300px;
+  max-width: 100%;
   height: 300px;
   border-radius: 20px;
+}
+.more_carousel .slick-list .slick-slide.slick-active {
+  display: flex;
+  justify-content: center;
 }

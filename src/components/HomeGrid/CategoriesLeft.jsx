@@ -133,7 +133,7 @@ function CategoriesLeft({ filters, setFilters }) {
         <p className="CategoriesLeft_title">{t('Categories')}</p>
         <div className="border_line" />
         <div className="Categories_favourit_fields" role="presentation" onClick={handleFavourites}>
-          <p className="MyFav_list">{t('My favourites')}</p>
+          <p className="MyFav_list">{t('My Favourites')}</p>
           <p className="favourites_counts">{userInfo?.favorites?.length}</p>
         </div>
         <div
@@ -141,7 +141,7 @@ function CategoriesLeft({ filters, setFilters }) {
           onClick={() => navigate('/sessions/watch-later')}
           className="Categories_favourit_fields"
         >
-          <p className="MyFav_list">{t('See later')}</p>
+          <p className="MyFav_list">{t('See Later')}</p>
           <p className="favourites_counts">{userInfo?.watch_later?.length}</p>
         </div>
         {userInfo?.play_list?.length > 0 &&

@@ -31,7 +31,7 @@ function Navbar2({ openNavMenu, setSearchText }) {
 
   const navigate = useNavigate();
   const SearchEvent = () => {
-    navigate('/sessions');
+    // navigate('/sessions');
   };
 
   const handleOpen = () => {
@@ -63,7 +63,11 @@ function Navbar2({ openNavMenu, setSearchText }) {
         </div>
         <div className="navBar_2_container">
           <div className="input_search_div">
-            <SearchInput className="nav_search_bar" onChange={(value) => setSearchText(value)} />
+            <SearchInput
+              throttle={500}
+              className="nav_search_bar"
+              onChange={(value) => setSearchText(value)}
+            />
             {/* <input className="nav_search_bar" type="text" placeholder="UI/UX Design" /> */}
             <img
               src={SearchIcon}
@@ -107,7 +111,11 @@ function Navbar2({ openNavMenu, setSearchText }) {
       </nav>
       {!isSessionUrl && (
         <div className="input_search_div_mobile">
-          <SearchInput className="nav_search_bar" onChange={(value) => setSearchText(value)} />
+          <SearchInput
+            throttle={500}
+            className="nav_search_bar"
+            onChange={(value) => setSearchText(value)}
+          />
           {/* <input className="nav_search_bar" type="text" placeholder="UI/UX Design" /> */}
           <img
             src={SearchIcon}
