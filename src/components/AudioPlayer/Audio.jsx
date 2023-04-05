@@ -227,6 +227,9 @@ const Audio = React.memo(({ session }) => {
     const startPaths = newArr.filter(
       (item) => item?.date < currentPlayedTime && item.date >= startTime,
     );
+
+    console.log('Start paths ', startPaths);
+    console.log('Start time ', startTime);
     for (let i = 0; i <= startPaths?.length; i++) {
       drawLine(
         {
@@ -385,6 +388,7 @@ const Audio = React.memo(({ session }) => {
                   height: `${handle.active ? '93vh' : '65vh'}`,
                   width: '100%',
                   border: '1px solid #333',
+                  borderRadius: '20px',
                   background: 'white',
                 }}
                 ref={canvasRef}

@@ -110,7 +110,7 @@ function CoursesComponent({ sessions }) {
             <div className="d-flex space-between course_duration">
               {window.location.pathname === '/' ? null : (
                 <p className="cours_time">
-                  {item?.duration ? convertMsToTime(Number(item.duration) * 60 * 1000) : '0'}
+                  {item?.duration ? convertMsToTime(Number(item.duration) * 1000) : '0'}
                 </p>
               )}
               <span className="time-pill" />

@@ -7,6 +7,7 @@ import moment from 'moment';
 import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
 import Star from '../../assets/Star.svg';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
+import convertMsToTime from '../../utils/common';
 
 function CoursesComponent2({ sessions }) {
   const { t } = useTranslation();
@@ -21,8 +22,17 @@ function CoursesComponent2({ sessions }) {
     <>
       {sessions?.map((_) => (
         <div key={_._id} className="image-container_row image-container_row_full">
-          <img src={_?.resolution_file} className="image_container_banner" alt="video-icon" />
-          <p className="cours_time">{`${_?.duration}:00`}</p>
+          <img
+            src={_?.resolution_file}
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+            className="image_container_banner"
+            alt="video-icon"
+          />
+          <p className="cours_time">
+            {_?.duration ? convertMsToTime(Number(_.duration) * 1000) : '0'}
+          </p>
           <div className="Avatarcontent">
             {_.photos?.length > 0 && (
               <Carousel autoplay dots={false} className="custom_carousel_full">

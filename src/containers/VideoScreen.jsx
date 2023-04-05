@@ -33,7 +33,6 @@ function VideoScreen() {
         const resp = await fetch(fbData);
         // const response = resp;
         const response = await resp?.json();
-        console.log('Response data ', response);
         data.fb_data = response;
         // data.fb_data = response?.exo?.fb_data;
       } catch (err) {

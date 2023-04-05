@@ -155,7 +155,10 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
             {moment(session?.created_at).format('hh:mm A dddd DD, MMM YYYY')}
           </p>
           {/* <p className="time-date">7:30 PM Thursday 21, Apr 2022</p> */}
-          <h1 className="title">{session?.subject}</h1>
+          <div className="video_name">
+            <h1 className="title">{session?.subject}</h1>
+            {session?.student_level && <div className="video_level">{session?.student_level}</div>}
+          </div>
         </div>
         <div className="social">
           <NavLink
@@ -186,7 +189,7 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
                 className={`${isDisliked && 'thumbDown-div_active'} thumbDown-div`}
               >
                 <img src={ThumbsDown} alt="dislike" className="dislike" />
-                <div className="likes_views">{session?.dislikes?.length}</div>
+                {/* <div className="likes_views">{session?.dislikes?.length}</div> */}
               </div>
             </div>
             <div ref={menuRef} className="playlist-opt">
@@ -319,7 +322,7 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
           </div>
         </div>
         <div className="description-box">
-          <h4 className="description">{t('Description')}</h4>
+          <div className="description">{t('Description')}</div>
           <div className="description-para">
             <ShowMoreText
               lines={3}

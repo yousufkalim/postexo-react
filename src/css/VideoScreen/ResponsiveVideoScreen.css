@@ -71,10 +71,12 @@
   }
   .videoScreen_container {
     width: 100%;
+    padding-right: 0;
   }
   .component-set {
     width: 60%;
     margin: auto;
+    padding-left: 0;
   }
   .video_canvas {
     height: 35vh !important;

@@ -46,7 +46,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  width: 23%;
+  width: 25%;
+  padding-left: 20px;
 }
 .component-2 {
   display: none;
@@ -74,8 +75,23 @@
   margin-top: 8px;
   /* height: 709px; */
 }
+.video_name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.video_level {
+  font-size: 12px;
+  background: #fff;
+  color: #2b2926;
+  padding: 6px 20px;
+  border-radius: 100px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
 .videoScreen_container {
-  width: 73%;
+  width: 75%;
+  padding-right: 20px;
 }
 .social {
   display: flex;
@@ -87,7 +103,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 15px 0 30px 0;
+  margin: 15px 0 20px 0;
   font-weight: 500;
 }
 .time-date {
@@ -112,11 +128,15 @@
   width: fit-content;
   display: flex;
   align-items: center;
-  padding: 0 10px;
+  /* padding: 0 10px; */
   cursor: pointer;
+  padding: 0 20px;
 }
 .like-box_active {
   background: rgba(110, 194, 177, 0.1);
+  color: #6ec2b1;
+}
+.like-box_active .likes_views {
   color: #6ec2b1;
 }
 .thumbDown-div {
@@ -125,12 +145,12 @@
   justify-content: center;
   margin-inline: 10px 50px;
   cursor: pointer;
-  padding: 10px;
 }
 .thumbDown-div_active {
-  background: rgba(110, 194, 177, 0.1);
-  color: #6ec2b1;
+  background: rgba(255, 255, 255, 0.1);
+  color: #2b2926;
   border-radius: 10px;
+  padding: 0 15px;
 }
 .dislike {
   cursor: pointer;
@@ -188,8 +208,6 @@
   margin-bottom: 5%;
   color: #fdfcfc;
 }
-.time-desc-content {
-}
 .options-div {
   display: flex;
   padding: 0 5px;
@@ -216,8 +234,10 @@
 }
 .description {
   font-size: 18px;
+  font-weight: 500;
 }
 .description-para {
+  margin-top: 5px;
   font-size: 0.875rem;
 }
 .time {
@@ -265,8 +285,8 @@
   background: #3f3e3b;
   border-radius: 15px;
   padding: 10px 0px;
-  left: 0;
-  top: 36px;
+  right: 0;
+  top: 31px;
   min-width: 220px;
 }
 .dropdown-playlist {
