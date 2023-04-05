@@ -97,6 +97,7 @@
     font-size: 2rem !important;
     display: block !important;
     color: #fff;
+    top: 9px;
     cursor: pointer;
   }
   .closeIcon {

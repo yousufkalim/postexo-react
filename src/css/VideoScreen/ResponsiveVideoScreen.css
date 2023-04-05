@@ -12,6 +12,9 @@
   .image_container_videos {
     height: 216px;
   }
+  .dropdown-playlist {
+    width: 220px;
+  }
 
   .card_image_content_video {
     font-size: 14px;
