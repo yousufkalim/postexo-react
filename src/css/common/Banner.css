@@ -22,9 +22,8 @@
   z-index: 2;
   background-color: #408ecc;
   color: #ffffff;
-  top: 50%;
-  left: 88%;
-  transform: translate(-50%, -50%);
+  top: 42%;
+  right: 5%;
   font-size: 16px;
   font-weight: 500;
   border: none;
@@ -39,20 +38,8 @@
   }
 }
 @media screen and (max-width: 900px) {
-  .banner_btn {
-    padding: 12px 40px;
-    left: 83%;
-  }
   .banner {
     width: 100%;
     height: 200px;
-  }
-}
-
-@media screen and (max-width: 676px) {
-  .banner_btn {
-    padding: 7px 21px;
-    top: 50%;
-    left: 77%;
   }
 }
