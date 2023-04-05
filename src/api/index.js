@@ -1,6 +1,7 @@
 // Init
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import i18next from 'i18next';
 import { baseUrl } from '../config';
 
 const api = async (method, uri, body) => {
@@ -24,7 +25,10 @@ const api = async (method, uri, body) => {
         } else {
           // eslint-disable-next-line no-console
           console.log('API Error --------> ', err?.response?.status);
-          toast.error(err?.response?.data ? err.response.data.message : err?.message);
+
+          toast.error(
+            err?.response?.data ? i18next.t(err.response.data.message) : i18next.t(err?.message),
+          );
           reject(err);
         }
       });

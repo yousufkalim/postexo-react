@@ -61,10 +61,10 @@ const Audio = React.memo(({ session }) => {
   let interval;
 
   const getStartTime = () => {
-    const additionalTime = 1 * 60 * 60 * 1000;
+    // const additionalTime = 1 * 60 * 60 * 1000;
     const sTime = new Date(session?.created_at_from_twilio);
-    let time = sTime.getTime();
-    time += additionalTime;
+    const time = sTime.getTime();
+    // time += additionalTime;
     return time;
   };
 
@@ -77,7 +77,7 @@ const Audio = React.memo(({ session }) => {
   };
 
   const handleCurrentTime = () => {
-    const sTime = getStartTime() + 14418769;
+    const sTime = getStartTime();
     setCurrTime(sTime);
     setStartTime(sTime);
     currentStartTime = sTime;
@@ -105,8 +105,8 @@ const Audio = React.memo(({ session }) => {
     canvasRef.current.height = CANVAS_HEIGHT;
     if (session?.fb_data) {
       try {
-        const paths = JSON?.parse(session?.fb_data);
-        const keys = Object.entries(paths.paths).map((item) => ({ ...item[1], key: item[0] }));
+        const fbData = session?.fb_data;
+        const keys = Object.entries(fbData.paths).map((item) => ({ ...item[1], key: item[0] }));
 
         const dates = [];
         keys.forEach((obj) => {
@@ -132,6 +132,7 @@ const Audio = React.memo(({ session }) => {
         console.log('Response Error ', err);
       }
     }
+    setLoading(false);
   };
 
   const setInitialData = () => {
@@ -223,7 +224,9 @@ const Audio = React.memo(({ session }) => {
 
   const displayContentAfterJump = (currentPlayedTime) => {
     const newArr = [...allPaths];
-    const startPaths = newArr.filter((item) => item.date < currentPlayedTime);
+    const startPaths = newArr.filter(
+      (item) => item?.date < currentPlayedTime && item.date >= startTime,
+    );
     for (let i = 0; i <= startPaths?.length; i++) {
       drawLine(
         {
@@ -253,7 +256,7 @@ const Audio = React.memo(({ session }) => {
     const ctx = canvasRef?.current?.getContext('2d');
     const actualPlayedTime = playedTime * 1000;
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    const currentPlayedTime = startTime + actualPlayedTime;
+    const currentPlayedTime = parseInt(startTime + actualPlayedTime, 10);
     displayContentAfterJump(currentPlayedTime);
   };
 
@@ -272,23 +275,29 @@ const Audio = React.memo(({ session }) => {
         currentStartTime = parseInt(currentStartTime, 10);
         currentStartTime += FPS;
         const to = currentStartTime + FPS;
-        let index;
         for (let i = currentStartTime; i <= to; i++) {
-          index = allDates.indexOf(i);
-          if (index !== -1) {
-            drawLine(
-              {
-                x: allPaths[index]?.x,
-                y: allPaths[index]?.y,
-                x1: allPaths[index + 1]?.x,
-                y1: allPaths[index + 1]?.y,
-                date: allPaths[index]?.date,
-                date1: allPaths[index + 1]?.date,
-                key: allPaths[index]?.key,
-                key1: allPaths[index + 1]?.key,
-              },
-              { color: allPaths[index]?.color, width: allPaths[index]?.width },
-            );
+          const matchedIndexes = [];
+          allDates.forEach((item, ind) => {
+            if (item === i) {
+              matchedIndexes.push(ind);
+            }
+          });
+          if (matchedIndexes?.length > 0) {
+            matchedIndexes.forEach((item) => {
+              drawLine(
+                {
+                  x: allPaths[item]?.x,
+                  y: allPaths[item]?.y,
+                  x1: allPaths[item + 1]?.x,
+                  y1: allPaths[item + 1]?.y,
+                  date: allPaths[item]?.date,
+                  date1: allPaths[item + 1]?.date,
+                  key: allPaths[item]?.key,
+                  key1: allPaths[item + 1]?.key,
+                },
+                { color: allPaths[item]?.color, width: allPaths[item]?.width },
+              );
+            });
           }
           if (currentStartTime <= endTime) {
             clearInterval(int);

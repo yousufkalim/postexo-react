@@ -59,6 +59,16 @@
   .adjustScreen {
     flex-direction: column;
   }
+  .social {
+    flex-wrap: inherit !important;
+    flex-direction: column;
+  }
+  .spinner_container {
+    width: 100% !important;
+  }
+  .spinner {
+    top: 27% !important;
+  }
   .videoScreen_container {
     width: 100%;
   }
@@ -114,6 +124,9 @@
     font-size: 12px;
     line-height: 20px;
   }
+  .social-playlist {
+    margin-top: 15px;
+  }
   .video_spinner {
     top: 18vh !important;
     left: 50% !important;
@@ -139,10 +152,6 @@
   .playlist_p {
     font-size: 12px;
     line-height: 12px;
-  }
-  .social {
-    flex-wrap: inherit !important;
-    flex-direction: column;
   }
   .Profile_mail {
     font-size: 10px;
@@ -177,9 +186,6 @@
   }
   .video_title {
     margin: 10px 0 15px 0;
-  }
-  .social-playlist {
-    margin-top: 15px;
   }
   .options-div {
     padding: 0 0px;

@@ -45,14 +45,21 @@ function CoursesComponent({ sessions }) {
             window.location.pathname === '/sessions' ? 'image-container2' : 'image-container'
           }
         >
-          <img className="course-card-image" src={item?.resolution_file} alt="thumbnail" />
+          <img
+            className="course-card-image"
+            src={item?.resolution_file}
+            alt=" "
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+          />
           <div className="Avatarcontent">
             {item.photos?.length > 0 && (
               <Carousel autoplay dots={false} className="custom_carousel">
                 {item?.photos?.map((pic) => (
                   <div className="carousel_image_container">
                     {/* <h1>Test</h1> */}
-                    <img src={pic} alt="test" />
+                    <img src={pic} alt=" " />
                   </div>
                 ))}
               </Carousel>

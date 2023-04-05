@@ -108,6 +108,7 @@ i18n
           Short: 'Short',
           Long: 'Long',
           '': '',
+          'User not found': 'User not found',
         },
       },
       fr: {

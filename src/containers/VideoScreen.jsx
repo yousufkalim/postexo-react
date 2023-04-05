@@ -8,7 +8,7 @@ import Navbar2 from '../components/HomeGrid/Navbar2';
 import Screen from '../components/VideoScreen/VideoScreen';
 import API from '../api';
 // import Spinner from '../common/Spinner';
-import { mediaUrl } from '../config';
+// import { mediaUrl } from '../config';
 import CategoriesLeft from '../components/HomeGrid/CategoriesLeft';
 
 function VideoScreen() {
@@ -27,11 +27,15 @@ function VideoScreen() {
     try {
       const res = await API('get', `/sessions/${params?.id}`);
       const data = res?.data?.session;
-      const fbData = `${mediaUrl}/${data?.fb_data}`;
+      const fbData = data?.fb_data;
+      // const fbData = `${mediaUrl}/${data?.fb_data}`;
       try {
         const resp = await fetch(fbData);
+        // const response = resp;
         const response = await resp?.json();
-        data.fb_data = response?.exo?.fb_data;
+        console.log('Response data ', response);
+        data.fb_data = response;
+        // data.fb_data = response?.exo?.fb_data;
       } catch (err) {
         data.fb_data = '';
       }
