@@ -161,6 +161,7 @@
   align-items: center;
   color: #f0f9f7;
   margin-right: 35px;
+  /* position: relative; */
 }
 .likes_img {
   margin-right: 5px;

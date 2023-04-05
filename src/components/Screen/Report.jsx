@@ -66,7 +66,13 @@ function Report({ open, setOpen, sessionId, userId }) {
   return (
     <>
       <div className="popup">
-        <Dialog maxWidth="xl" open={open} onClose={handleClose} className="popDialog">
+        <Dialog
+          sx={{ '& .MuiPaper-root': { bgcolor: 'transparent' } }}
+          maxWidth="md"
+          open={open}
+          onClose={handleClose}
+          className="popDialog"
+        >
           <div className="forgotPopup">
             {
               // eslint-disable-next-line

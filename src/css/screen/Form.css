@@ -249,9 +249,8 @@ input:-webkit-autofill:focus {
   color: #fdfcfc;
 }
 .forgotPopup {
-  width: 40vw;
   background-color: #33312e;
-  padding: 80px;
+  padding: 60px;
   border-radius: 15px;
   text-align: center;
   position: relative;
@@ -349,8 +348,7 @@ input:-webkit-autofill:focus {
     width: 83%;
   }
   .forgotPopup {
-    width: 63vw;
-    padding: 65px;
+    padding: 50px;
   }
 }
 @media screen and (min-width: 800px) and (max-width: 1200px) {
@@ -379,8 +377,7 @@ input:-webkit-autofill:focus {
     line-height: 20px;
   }
   .forgotPopup {
-    width: 75vw !important;
-    padding: 79px;
+    padding: 60px;
   }
   .forgot_title {
     font-size: 25px;
@@ -447,7 +444,6 @@ input:-webkit-autofill:focus {
     font-size: 14px;
   }
   .forgotPopup {
-    width: 80vw;
     background-color: #33312e;
     padding: 30px;
     border-radius: 15px;
