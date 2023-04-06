@@ -249,7 +249,7 @@ input:-webkit-autofill:focus {
   color: #fdfcfc;
 }
 .forgotPopup {
-  background-color: #33312e;
+  background-color: #33312e !important;
   padding: 60px;
   border-radius: 15px;
   text-align: center;
@@ -267,6 +267,7 @@ input:-webkit-autofill:focus {
   right: 5%;
   top: 6%;
   cursor: pointer;
+  width: 1rem;
 }
 .forgot_title {
   font-family: 'Poppins';
@@ -349,6 +350,12 @@ input:-webkit-autofill:focus {
   }
   .forgotPopup {
     padding: 50px;
+  }
+  .forgot_title {
+    font-size: 26px;
+  }
+  .forgot_p {
+    font-size: 16px;
   }
 }
 @media screen and (min-width: 800px) and (max-width: 1200px) {

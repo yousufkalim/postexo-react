@@ -275,11 +275,4 @@
     font-size: 12px;
     line-height: 2px;
   }
-  .croseIcon {
-    position: absolute;
-    right: 5%;
-    top: 3%;
-    cursor: pointer;
-    width: 16px;
-  }
 }
