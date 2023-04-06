@@ -74,9 +74,9 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
     await API('patch', `/playlist/${id}`, { sessionId: session?._id })
       .then((res) => {
         getUserInfo();
-        toast.success(res?.data?.message);
+        toast.success(t(res?.data?.message));
       })
-      .catch((err) => toast.error(err?.message));
+      .catch((err) => toast.error(t(err?.message)));
   };
 
   const handleOpenOption = () => {
@@ -100,25 +100,25 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
         setPlaylistName('');
         setOpenNewPlaylist(true);
       })
-      .catch((err) => toast.error(err?.message));
+      .catch((err) => toast.error(t(err?.message)));
   };
 
   const handleFavorite = async () => {
     await API('patch', `/sessions/favourites/${session?._id}`, { userId: userData?._id })
       .then((res) => {
-        toast.success(res?.data?.data?.message);
+        toast.success(t(res?.data?.data?.message));
         getUserInfo();
       })
-      .catch((err) => toast.error(err?.message));
+      .catch((err) => toast.error(t(err?.message)));
   };
 
   const handleWatchLater = async () => {
     await API('patch', `/sessions/watchlater/${session?._id}`, { userId: userData?._id })
       .then((res) => {
-        toast.success(res?.data?.data?.message);
+        toast.success(t(res?.data?.data?.message));
         getUserInfo();
       })
-      .catch((err) => toast.error(err?.message));
+      .catch((err) => toast.error(t(err?.message)));
   };
 
   const handleReport = () => {

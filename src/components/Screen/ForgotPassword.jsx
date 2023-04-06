@@ -34,8 +34,11 @@ function ForgotPassword({ open, setOpen }) {
   return (
     <div className="popup">
       <Dialog maxWidth="xl" open={open} onClose={handleClose} className="popDialog">
-        <div className="forgotPopup">
-          <img src={ForgetBg} alt="" className="forgetBg" />
+        <div
+          className="forgotPopup"
+          style={{ background: ` url(${ForgetBg}) no-repeat top right/130px` }}
+        >
+          {/* <img src={ForgetBg} alt="" className="forgetBg" /> */}
           <img
             src={CroseIcon}
             alt=""
@@ -60,7 +63,7 @@ function ForgotPassword({ open, setOpen }) {
               />
             </label>
           </div>
-          <button className="forgotBtn" type="button" onClick={handleForget}>
+          <button disabled={!email} className="forgotBtn" type="button" onClick={handleForget}>
             {t('Send Reset Instructions')}
           </button>
         </div>

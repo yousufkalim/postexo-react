@@ -67,8 +67,11 @@ function ChangePassword({ open, setOpen }) {
   return (
     <div className="popup">
       <Dialog maxWidth="xl" open={open} onClose={handleClose} className="popDialog">
-        <div className="forgotPopup">
-          <img src={ForgetBg} alt="" className="forgetBg" />
+        <div
+          style={{ background: ` url(${ForgetBg}) no-repeat top right/130px` }}
+          className="forgotPopup"
+        >
+          {/* <img src={ForgetBg} alt="" className="forgetBg" /> */}
           <img
             src={CroseIcon}
             alt=""
