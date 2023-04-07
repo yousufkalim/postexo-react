@@ -33,7 +33,7 @@ function VideoScreen({ session, currentSession, getCurrentVideo }) {
       />
       <div className="videoScreen_container">
         <div className="video_player">
-          <Audio session={currentSession} />
+          <Audio isLogin session={currentSession} />
         </div>
         <VideoScreenContent
           getCurrentVideo={getCurrentVideo}

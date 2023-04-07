@@ -4,22 +4,57 @@ import Dialog from '@mui/material/Dialog';
 import { Carousel } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
+import { toast } from 'react-toastify';
 import PLAYVIDEOICONSVG from '../../assets/PLAYVIDEOICONSVG.svg';
 import LIKEICONSVG from '../../assets/LIKEICONSVG.svg';
-import Player from '../Player/Player';
+// import Player from '../Player/Player';
 import convertMsToTime from '../../utils/common';
+import Audio from '../AudioPlayer/Audio';
+import api from '../../api';
+import Popup from '../Dialog/Popup';
 
 function CoursesComponent({ sessions }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  const [currentSession, setCurrentSession] = useState(null);
+  const [openPopup, setOpenPopup] = useState(false);
   const navigate = useNavigate();
   const isLogin = localStorage.getItem('token');
+
+  const getCurrentSession = async (sessionId) => {
+    try {
+      const res = await api('get', `/sessions/${sessionId}`);
+      const data = res?.data?.session;
+      const fbData = data?.fb_data;
+      // const fbData = `${mediaUrl}/${data?.fb_data}`;
+      try {
+        const resp = await fetch(fbData);
+        // const response = resp;
+        const response = await resp?.json();
+        data.fb_data = response;
+        // data.fb_data = response?.exo?.fb_data;
+      } catch (err) {
+        data.fb_data = '';
+      }
+      // let sortedData = data;
+      // if (data.chapters?.length > 0) {
+      //   sortedData = {
+      //     ...data,
+      //     chapters: { ...data.chapters.sort((a, b) => a.startTime - b.startTime) },
+      //   };
+      // }
+      setCurrentSession(data);
+      setOpen(true);
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
 
   const handleOpen = (item) => {
     if (isLogin) {
       navigate(`/sessions/${item?._id}`);
     } else {
-      setOpen(true);
+      getCurrentSession(item._id);
     }
   };
 
@@ -30,13 +65,35 @@ function CoursesComponent({ sessions }) {
 
   return (
     <>
-      {open && (
-        <Dialog maxWidth="xl" open={open} onClose={handleClose}>
+      {open && currentSession && (
+        <Dialog
+          className="audio_modal"
+          sx={{
+            '& .MuiPaper-root': {
+              boxShadow: 'none',
+              background: '#2f2f2f',
+              maxHeight: { xs: '45vh', md: '68vh' },
+              height: { xs: '43.5vh', md: '67vh' },
+            },
+          }}
+          maxWidth="xl"
+          open={open}
+          onClose={handleClose}
+        >
           <div className="homePlayer">
-            <Player setOpenVideo={setOpen} />
+            <Audio
+              setOpen={setOpen}
+              setOpenPopup={setOpenPopup}
+              isLogin={false}
+              session={currentSession}
+            />
+
+            {/* <Player setOpenVideo={setOpen} /> */}
           </div>
         </Dialog>
       )}
+
+      {openPopup && <Popup open={openPopup} />}
 
       {sessions?.map((item) => (
         <div

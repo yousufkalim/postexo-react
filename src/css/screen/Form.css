@@ -478,7 +478,6 @@ input:-webkit-autofill:focus {
   }
   .homePlayer {
     width: 94vw !important;
-    height: 54vw !important;
     overflow: hidden;
   }
   .plyr__time {

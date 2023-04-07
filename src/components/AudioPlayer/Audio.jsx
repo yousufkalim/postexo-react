@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useRef, useEffect, useState } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
@@ -38,7 +39,7 @@ const FPS = 1_00;
 const CANVAS_HEIGHT = 2800;
 const CANVAS_WIDTH = 5050;
 
-const Audio = React.memo(({ session }) => {
+const Audio = React.memo(({ session, isLogin, setOpen, setOpenPopup }) => {
   const audioRef = useRef();
   const canvasRef = useRef(null);
   const [allPaths, setAllPaths] = useState([]);
@@ -136,7 +137,7 @@ const Audio = React.memo(({ session }) => {
   };
 
   const setInitialData = () => {
-    const audioSrc = session.session_recording.replace('.mp3', '.wav');
+    const audioSrc = session?.session_recording?.replace('.mp3', '.wav');
     setAudio(audioSrc);
     handleCurrentTime();
     setFormattedData();
@@ -227,9 +228,6 @@ const Audio = React.memo(({ session }) => {
     const startPaths = newArr.filter(
       (item) => item?.date < currentPlayedTime && item.date >= startTime,
     );
-
-    console.log('Start paths ', startPaths);
-    console.log('Start time ', startTime);
     for (let i = 0; i <= startPaths?.length; i++) {
       drawLine(
         {
@@ -327,9 +325,15 @@ const Audio = React.memo(({ session }) => {
     clearInterval(int);
   };
 
-  const handleListen = () => {
+  const handleListen = (e) => {
     if (loading) {
       setLoading(false);
+    }
+    const timeEnd = e.target.currentTime >= 5;
+    if (!isLogin && timeEnd) {
+      audioRef.current.audio.current.pause();
+      setOpen(false);
+      setOpenPopup(true);
     }
   };
 
@@ -348,9 +352,11 @@ const Audio = React.memo(({ session }) => {
   const handleLoadStart = () => {
     setLoading(false);
     audioRef.current.audio.current.play();
-    setTimeout(() => {
-      handleViewSession();
-    }, 5000);
+    if (isLogin) {
+      setTimeout(() => {
+        handleViewSession();
+      }, 5000);
+    }
   };
 
   return (
@@ -373,19 +379,19 @@ const Audio = React.memo(({ session }) => {
         <TransformWrapper zoomAnimation={zoomAnimation} wheel={wheel} doubleClick={doubleClick}>
           <TransformComponent>
             <div
-              className="video_canvas"
+              className={`video_canvas ${!isLogin && 'video_canvas_auth'} `}
               style={{
                 cursor: 'zoom-in',
-                height: `${handle.active ? '93vh' : '65vh'}`,
+                height: `${!isLogin ? '57vh' : handle.active ? '93vh' : '65vh'}`,
                 width: '100%',
                 position: 'relative',
                 marginBottom: '10px',
               }}
             >
               <canvas
-                className="video_canvas"
+                className={`video_canvas ${!isLogin && 'video_canvas_auth'} `}
                 style={{
-                  height: `${handle.active ? '93vh' : '65vh'}`,
+                  height: `${!isLogin ? '57vh' : handle.active ? '93vh' : '65vh'}`,
                   width: '100%',
                   border: '1px solid #333',
                   borderRadius: '20px',
