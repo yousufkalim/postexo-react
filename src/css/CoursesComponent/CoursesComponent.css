@@ -335,3 +335,16 @@
   font-size: 14px;
   line-height: 21px;
 }
+
+.has_more_btn {
+  margin-top: 30px;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #6ec2b1;
+  color: #fff;
+  border: none;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
