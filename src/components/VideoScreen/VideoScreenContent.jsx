@@ -48,7 +48,7 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
     }
   };
 
-  const language = localStorage.getItem('language');
+  const language = localStorage.getItem('i18nextLng');
   if (language === 'fr') {
     moment.locale('fr');
   } else {
