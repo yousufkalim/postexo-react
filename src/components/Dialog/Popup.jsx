@@ -5,16 +5,12 @@ import { Link } from 'react-router-dom';
 import CheckCircle from '../../assets/CheckCircle.svg';
 import PopupArrow from '../../assets/PopupArrow.svg';
 
-function Popup({ open, setOpen, setOpenVideo }) {
+function Popup({ open }) {
   const { t } = useTranslation();
-  const handleClose = () => {
-    setOpen(false);
-    setOpenVideo(false);
-  };
 
   return (
     <div className="popup">
-      <Dialog maxWidth="lg" open={open} onClose={handleClose} className="popDialog">
+      <Dialog maxWidth="lg" open={open} className="popDialog">
         <div className="main_popup">
           <div className="popup_container">
             <p className="popup_title_p">{t('For individuals')}</p>
