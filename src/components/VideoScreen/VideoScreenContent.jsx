@@ -7,6 +7,7 @@ import { Modal, Rate } from 'antd';
 import ShowMoreText from 'react-show-more-text';
 import Avatar from '@mui/material/Avatar';
 import Checkbox from '@mui/material/Checkbox';
+import 'moment/locale/fr';
 import API from '../../api';
 import ThumbsUp from '../../assets/ThumbsUp.svg';
 import Like from '../../assets/like.png';
@@ -47,6 +48,12 @@ function VideoScreenContent({ session, getUserInfo, getCurrentVideo, userInfo, s
     }
   };
 
+  const language = localStorage.getItem('language');
+  if (language === 'fr') {
+    moment.locale('fr');
+  } else {
+    moment.locale('en');
+  }
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true);
     document.addEventListener('click', handleClickOutsideFav, true);

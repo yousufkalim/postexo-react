@@ -304,7 +304,9 @@
   left: 60% !important;
 }
 .no_data_found {
-  margin-top: 70px;
+  margin-block: 30px;
+  text-align: center;
+  font-size: 1rem;
 }
 /*      No Data Found  Edn    */
 

@@ -62,6 +62,9 @@
   .adjustScreen {
     flex-direction: column;
   }
+  .chapter-div {
+    width: 48% !important;
+  }
   .social {
     flex-wrap: inherit !important;
     flex-direction: column;
@@ -137,7 +140,7 @@
     left: 50% !important;
   }
   .rhap_progress-container {
-    width: 43% !important;
+    width: 48% !important;
   }
   .dropdown {
     left: -200px;
