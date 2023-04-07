@@ -131,13 +131,19 @@ i18n
           'New password is required.': 'New password is required.',
           'Confirm password is required.': 'Confirm password is required.',
           'Current Password is required.': 'Current Password is required.',
+          'No video found': 'No video found',
           'New password and confirm password are not matched':
             'New password and confirm password are not matched',
+          'Welcome to PostExo! Explore our courses and take the first step towards enhancing your knowledge and skills.':
+            'Welcome to PostExo! Explore our courses and take the first step towards enhancing your knowledge and skills.',
         },
       },
       fr: {
         translations: {
           // header
+          'No video found': 'Aucune vidéo',
+          'Welcome to PostExo! Explore our courses and take the first step towards enhancing your knowledge and skills.':
+            'Bienvenue sur PostExo ! Explorez les cours vidéos et accédez à une nouvelle panoplie de savoir et de capacités !',
           Login: 'Connexion',
           'Invalid password': 'Mot de passe invalide',
           'New password is required.': 'Un nouveau mot de passe est nécessaire.',
@@ -228,7 +234,7 @@ i18n
           Report: 'Rapport',
           Submit: 'Soumettre',
           //Common
-          'Learn More': 'Apprendre encore plus',
+          'Learn More': 'En savoir plus',
           Hello: 'Bonjour',
           'first marker': 'premier marqueur',
           'second marker': 'deuxième marqueur',

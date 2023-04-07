@@ -18,7 +18,7 @@ function PlaylistSessions({ filters, sessions, setSessions, loading, setLoading 
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
       const res = await API(
         'get',
-        `/sessions/getByPlaylist/${id}?levels=${levels}&durations=${durations}`,
+        `/sessions/getByPlaylist/${id}?pageSize=100&page=1&levels=${levels}&durations=${durations}`,
       );
       const playlistSessions = res?.data?.playlist;
       setPlaylist(playlistSessions);

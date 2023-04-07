@@ -17,7 +17,7 @@ function FavouriteSessions({ filters, sessions, setSessions, loading, setLoading
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
       const res = await API(
         'get',
-        `/sessions/getFavouriteSessions/${userData?._id}?levels=${levels}&durations=${durations}`,
+        `/sessions/getFavouriteSessions/${userData?._id}?pageSize=1000&page=1&levels=${levels}&durations=${durations}`,
       );
       setSessions(res?.data?.user?.favorites);
       setLoading(false);

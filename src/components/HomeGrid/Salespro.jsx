@@ -12,8 +12,9 @@ function Salespro() {
           {t('Hello')} {user?.name}
         </p>
         <p className="Salespro_p">
-          Welcome to PostExo! Explore our courses and take the first step towards enhancing your
-          knowledge and skills.
+          {t(
+            'Welcome to PostExo! Explore our courses and take the first step towards enhancing your knowledge and skills.',
+          )}
         </p>
       </div>
     </div>

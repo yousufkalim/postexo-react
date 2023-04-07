@@ -9,6 +9,7 @@ import CoursesComponent from '../Courses/CoursesComponent';
 import CoursesComponent2 from '../Courses/CoursesComponentFullWidth';
 import API from '../../api';
 import Spinner from '../../common/Spinner';
+import NoDataFound from '../../common/NoDataFound';
 
 const sortOptions = ['Sort By', 'Date', 'Most liked', 'Most viewed', 'Top rated'];
 
@@ -20,17 +21,19 @@ function CategoriesRight({ filters, sessions, setSessions }) {
   const [viewedSessions, setViewedSessions] = useState([]);
   const [sortType, setSortType] = useState('');
   const [viewedSortType, setViewedSortType] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState([]);
 
   const getSessions = async () => {
-    console.log('GEt sessions called');
     try {
       setLoading(true);
       const allLevels = [...filters.levels];
       const allDurations = [...filters.durations];
       const levels = filters?.levels?.length ? allLevels.toString() : filters?.levels;
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
-      await API('get', `/sessions?levels=${levels}&durations=${durations}`).then((res) => {
+      await API(
+        'get',
+        `/sessions?pageSize=1000&page=2&levels=${levels}&durations=${durations}`,
+      ).then((res) => {
         setSessions(res.data.sessions);
       });
       setLoading(false);
@@ -155,15 +158,17 @@ function CategoriesRight({ filters, sessions, setSessions }) {
           </div>
         </div>
       </div>
-      {showCours ? (
-        <div className="topCoursesAll">
-          <CoursesComponent sessions={topSessions} />
-        </div>
-      ) : (
-        <div className="topCoursesAll">
-          <CoursesComponent2 sessions={topSessions} />
-        </div>
-      )}
+      <NoDataFound loading={loading} data={topSessions}>
+        {showCours ? (
+          <div className="topCoursesAll">
+            <CoursesComponent sessions={topSessions} />
+          </div>
+        ) : (
+          <div className="topCoursesAll">
+            <CoursesComponent2 sessions={topSessions} />
+          </div>
+        )}
+      </NoDataFound>
 
       {/* Courses 2  */}
       <div className="TopCourses">
@@ -202,15 +207,17 @@ function CategoriesRight({ filters, sessions, setSessions }) {
           />
         </div>
       </div>
-      {showCours2 ? (
-        <div className="topCoursesAll">
-          <CoursesComponent sessions={viewedSessions} />
-        </div>
-      ) : (
-        <div className="topCoursesAll">
-          <CoursesComponent2 sessions={viewedSessions} />
-        </div>
-      )}
+      <NoDataFound loading={loading} data={viewedSessions}>
+        {showCours ? (
+          <div className="topCoursesAll">
+            <CoursesComponent sessions={viewedSessions} />
+          </div>
+        ) : (
+          <div className="topCoursesAll">
+            <CoursesComponent2 sessions={viewedSessions} />
+          </div>
+        )}
+      </NoDataFound>
     </div>
   );
 }
