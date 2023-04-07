@@ -16,6 +16,7 @@ i18n
         translations: {
           // header
           Login: 'Login',
+          Search: 'Search',
           'Invalid password': 'Invalid password',
           Register: 'Register',
           'Hello ! Need a teacher ?': 'Hello ! Need a teacher ?',
@@ -141,6 +142,7 @@ i18n
       fr: {
         translations: {
           // header
+          Search: 'Rechercher',
           'No video found': 'Aucune vidéo',
           'Welcome to PostExo! Explore our courses and take the first step towards enhancing your knowledge and skills.':
             'Bienvenue sur PostExo ! Explorez les cours vidéos et accédez à une nouvelle panoplie de savoir et de capacités !',

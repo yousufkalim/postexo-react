@@ -64,6 +64,7 @@ function Navbar2({ openNavMenu, setSearchText }) {
         <div className="navBar_2_container">
           <div className="input_search_div">
             <SearchInput
+              placeholder={t('Search')}
               throttle={500}
               className="nav_search_bar"
               onChange={(value) => setSearchText(value)}
