@@ -32,7 +32,7 @@ function CategoriesRight({ filters, sessions, setSessions }) {
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
       await API(
         'get',
-        `/sessions?pageSize=1000&page=2&levels=${levels}&durations=${durations}`,
+        `/sessions?pageSize=1000&page=1&levels=${levels}&durations=${durations}`,
       ).then((res) => {
         setSessions(res.data.sessions);
       });
