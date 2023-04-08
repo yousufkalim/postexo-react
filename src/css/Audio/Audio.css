@@ -212,7 +212,7 @@
   .rhap_container {
     padding: 0px 20px !important;
     border-radius: 10000px;
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: #4c4c4b !important;
     border-radius: 10px !important;
   }
 }

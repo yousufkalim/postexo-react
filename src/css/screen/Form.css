@@ -477,8 +477,10 @@ input:-webkit-autofill:focus {
     margin: 0 !important;
   }
   .homePlayer {
-    width: 94vw !important;
+    width: 95% !important;
     overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
   }
   .plyr__time {
     font-size: var(--plyr-font-size-time, var(--plyr-font-size-small, 9px)) !important;
@@ -493,6 +495,11 @@ input:-webkit-autofill:focus {
   .text-area::placeholder {
     font-size: 14px;
   }
+
+  .css-2rbg70-MuiPaper-root-MuiDialog-paper,
+  .css-1fu2e3p-MuiPaper-root-MuiDialog-paper {
+    width: 99% !important;
+  }
 }
 @media screen and (max-width: 500px) {
   .forgot_p {
@@ -506,5 +513,8 @@ input:-webkit-autofill:focus {
   }
   .text-area::placeholder {
     font-size: 12px;
+  }
+  .nav-container {
+    padding: 3% 3%;
   }
 }
