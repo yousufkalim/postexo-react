@@ -118,6 +118,8 @@
   overflow: hidden;
   background: #2f2f2f;
   padding: 7px;
+  display: flex;
+  align-items: center;
 }
 @media screen and (max-width: 1667px) {
   .main_popup {
