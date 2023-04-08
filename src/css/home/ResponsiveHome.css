@@ -32,8 +32,13 @@
     width: 90%;
   }
   .navbar-btn {
-    padding: 3px 10px;
+    padding: 0px 7px;
     font-size: 10px;
+    margin-left: 5px;
+  }
+  .navbar-btn > img {
+    margin-right: 5px;
+    width: 12px;
   }
   .Need_teacher_title {
     font-size: 20px;

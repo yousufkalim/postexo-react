@@ -109,11 +109,7 @@
 .css-2rbg70-MuiPaper-root-MuiDialog-paper,
 .css-1fu2e3p-MuiPaper-root-MuiDialog-paper {
   background: none !important;
-  border-radius: 20px !important;
-}
-.audio_modal .ss-2rbg70-MuiPaper-root-MuiDialog-paper,
-.audio_modal .css-1fu2e3p-MuiPaper-root-MuiDialog-paper {
-  border-radius: 5px !important;
+  border-radius: 30px !important;
 }
 .homePlayer {
   width: 70vw;

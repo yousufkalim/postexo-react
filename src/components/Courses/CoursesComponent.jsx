@@ -73,7 +73,7 @@ function CoursesComponent({ sessions }) {
               boxShadow: 'none',
               background: '#2f2f2f',
               maxHeight: { xs: '45vh', md: '68vh' },
-              height: { xs: '43.5vh', md: '67vh' },
+              height: { xs: '44vh', md: '67vh' },
             },
           }}
           maxWidth="xl"
