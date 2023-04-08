@@ -10,7 +10,18 @@ import NoDataFound from '../../common/NoDataFound';
 
 const sortOptions = ['Sort By', 'Date', 'Most liked', 'Most viewed', 'Top rated'];
 
-function SessionsContent({ title, sessions, getSessions, filters, mutator, setSessions, loading }) {
+function SessionsContent({
+  title,
+  sessions,
+  getSessions,
+  filters,
+  mutator,
+  setSessions,
+  loading,
+  setPage,
+  page,
+  hasMore,
+}) {
   const { t } = useTranslation();
   const [showCours, setShowCoours] = useState(true);
   const [allSessions, setAllSessions] = useState([]);
@@ -58,7 +69,7 @@ function SessionsContent({ title, sessions, getSessions, filters, mutator, setSe
   useEffect(() => {
     getSessions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters.levels.length, filters.durations.length, mutator]);
+  }, [filters.levels.length, filters.durations.length, mutator, page]);
 
   return (
     <>
@@ -103,9 +114,7 @@ function SessionsContent({ title, sessions, getSessions, filters, mutator, setSe
       </div>
       <NoDataFound loading={loading} data={sessions}>
         {showCours ? (
-          <div className="topCoursesAll">
-            <CoursesComponent sessions={allSessions} />
-          </div>
+          <CoursesComponent hasMore={hasMore} setPage={setPage} sessions={allSessions} />
         ) : (
           <div className="topCoursesAll">
             <CoursesComponent2 sessions={allSessions} />

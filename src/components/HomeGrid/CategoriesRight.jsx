@@ -22,8 +22,10 @@ function CategoriesRight({ filters, sessions, setSessions }) {
   const [sortType, setSortType] = useState('');
   const [viewedSortType, setViewedSortType] = useState('');
   const [loading, setLoading] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
 
-  const getSessions = async () => {
+  const getSessions = async (isFiltersChanged) => {
     try {
       setLoading(true);
       const allLevels = [...filters.levels];
@@ -32,9 +34,16 @@ function CategoriesRight({ filters, sessions, setSessions }) {
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
       await API(
         'get',
-        `/sessions?pageSize=1000&page=1&levels=${levels}&durations=${durations}`,
+        `/sessions?pageSize=5&page=${page}&levels=${levels}&durations=${durations}`,
       ).then((res) => {
-        setSessions(res.data.sessions);
+        setSessions((prev) => {
+          if (prev?.length > 0 && !isFiltersChanged) {
+            return [...prev, ...res.data.sessions];
+          }
+          return res.data.sessions;
+        });
+        // setSessions(res.data.sessions);
+        setHasMore(res?.data?.hasMore);
       });
       setLoading(false);
     } catch (err) {
@@ -60,9 +69,16 @@ function CategoriesRight({ filters, sessions, setSessions }) {
   }, [sessions]);
 
   useEffect(() => {
-    getSessions();
+    getSessions(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters.levels.length, filters.durations.length]);
+
+  useEffect(() => {
+    if (page > 1) {
+      getSessions(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page]);
 
   const handleSelectSort = (e) => {
     const { value } = e.target;
@@ -161,7 +177,7 @@ function CategoriesRight({ filters, sessions, setSessions }) {
       <NoDataFound loading={loading} data={topSessions}>
         {showCours ? (
           <div className="topCoursesAll">
-            <CoursesComponent sessions={topSessions} />
+            <CoursesComponent hasMore={hasMore} setPage={setPage} sessions={topSessions} />
           </div>
         ) : (
           <div className="topCoursesAll">
@@ -210,7 +226,7 @@ function CategoriesRight({ filters, sessions, setSessions }) {
       <NoDataFound loading={loading} data={viewedSessions}>
         {showCours ? (
           <div className="topCoursesAll">
-            <CoursesComponent sessions={viewedSessions} />
+            <CoursesComponent hasMore={hasMore} setPage={setPage} sessions={viewedSessions} />
           </div>
         ) : (
           <div className="topCoursesAll">
