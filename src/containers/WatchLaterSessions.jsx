@@ -1,14 +1,17 @@
-import React from 'react';
-import { toast } from 'react-toastify';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import API from '../api';
 import SessionsContent from '../components/SessionsContent/SessionsContent';
 
 function WatchLaterSessions({ filters, sessions, setSessions, loading, setLoading }) {
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
+
   const { t } = useTranslation();
+
   const userData = JSON.parse(localStorage.getItem('userData'));
 
-  const getSessions = async () => {
+  const getSessions = async (isFiltersChanged) => {
     setLoading(true);
     try {
       const allLevels = [...filters.levels];
@@ -17,13 +20,20 @@ function WatchLaterSessions({ filters, sessions, setSessions, loading, setLoadin
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
       const res = await API(
         'get',
-        `/sessions/getWatchLaterSessions/${userData?._id}?levels=${levels}&durations=${durations}`,
+        `/sessions/getWatchLaterSessions/${userData?._id}?pageSize=20&page=${page}&levels=${levels}&durations=${durations}`,
       );
       const currentUser = res?.data?.user;
-      setSessions(currentUser?.watch_later);
+
+      setSessions((prev) => {
+        if (prev?.length > 0 && !isFiltersChanged) {
+          return [...prev, ...currentUser.watch_later];
+        }
+        return currentUser?.watch_later;
+      });
+      setHasMore(res?.data?.hasMore);
+      // setSessions(currentUser?.watch_later);
       setLoading(false);
     } catch (err) {
-      toast.error(err.message);
       setLoading(false);
     }
   };
@@ -36,6 +46,9 @@ function WatchLaterSessions({ filters, sessions, setSessions, loading, setLoadin
       title={t('See Later')}
       sessions={sessions}
       loading={loading}
+      page={page}
+      setPage={setPage}
+      hasMore={hasMore}
     />
   );
 }

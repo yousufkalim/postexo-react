@@ -1,5 +1,5 @@
-let baseUrl = 'http://localhost:5000/api';
-let mediaUrl = 'http://localhost:5000';
+let baseUrl = 'https://postexo-api-dev.falconweb.app/api';
+let mediaUrl = 'https://postexo-api-dev.falconweb.app';
 
 if (window.location.host === 'postexo-dev.falconweb.app') {
   baseUrl = 'https://postexo-api-dev.falconweb.app/api';
