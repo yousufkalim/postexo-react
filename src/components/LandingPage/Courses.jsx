@@ -7,11 +7,21 @@ import CoursesComponent from '../Courses/CoursesComponent';
 function Courses() {
   const { t } = useTranslation();
   const [sessions, setSessions] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
 
   const getSessions = async () => {
     try {
-      const res = await API('get', '/sessions');
-      setSessions(res?.data?.sessions);
+      const res = await API('get', `/sessions?pageSize=4&page=${page}`);
+      setSessions((prev) => {
+        if (prev?.length > 0) {
+          return [...prev, ...res.data.sessions];
+        }
+        return res.data.sessions;
+      });
+      // setSessions(res.data.sessions);
+      setHasMore(res?.data?.hasMore);
+      // setSessions(res?.data?.sessions);
     } catch (err) {
       toast.error(err?.message);
     }
@@ -19,7 +29,8 @@ function Courses() {
 
   useEffect(() => {
     getSessions();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page]);
 
   return (
     <div className="course">
@@ -30,7 +41,7 @@ function Courses() {
       </section>
       <section className="section-need-a-teacher-courses2">
         <div className="courseComp-div">
-          <CoursesComponent sessions={sessions} />
+          <CoursesComponent hasMore={hasMore} setPage={setPage} sessions={sessions} />
         </div>
       </section>
     </div>

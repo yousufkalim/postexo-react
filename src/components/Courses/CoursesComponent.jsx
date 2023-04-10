@@ -63,6 +63,8 @@ function CoursesComponent({ sessions, setPage, hasMore }) {
   };
   const handleClose = () => setOpen(false);
 
+  console.log('Sessions ', sessions);
+
   return (
     <>
       {open && currentSession && (
@@ -200,9 +202,15 @@ function CoursesComponent({ sessions, setPage, hasMore }) {
       </div>
 
       {hasMore && (
-        <button type="button" className="has_more_btn" onClick={() => setPage((prev) => prev + 1)}>
-          Load More
-        </button>
+        <div className="has_more_container">
+          <button
+            type="button"
+            className="has_more_btn"
+            onClick={() => setPage((prev) => prev + 1)}
+          >
+            Load More
+          </button>
+        </div>
       )}
     </>
   );

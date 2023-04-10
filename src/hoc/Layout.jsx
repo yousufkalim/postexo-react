@@ -29,7 +29,9 @@ function Layout({ children }) {
   //   return filters;
   // }, [filters]);
 
-  const filteredSessions = sessions.filter(createFilter(searchText, KEYS_TO_FILTERS));
+  console.log('Filter sessions ', sessions);
+
+  const filteredSessions = sessions?.filter(createFilter(searchText, KEYS_TO_FILTERS));
 
   return (
     <div>

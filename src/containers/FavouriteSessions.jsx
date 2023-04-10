@@ -6,6 +6,7 @@ import SessionsContent from '../components/SessionsContent/SessionsContent';
 
 function FavouriteSessions({ filters, sessions, setSessions, loading, setLoading }) {
   const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
 
   const { t } = useTranslation();
   const userData = JSON.parse(localStorage.getItem('userData'));
@@ -31,14 +32,13 @@ function FavouriteSessions({ filters, sessions, setSessions, loading, setLoading
         }
         return res?.data?.user?.favorites;
       });
+      setHasMore(res?.data?.hasMore);
       setLoading(false);
     } catch (err) {
       toast.error(err.message);
       setLoading(false);
     }
   };
-
-  console.log('Sessoins ', sessions);
 
   return (
     <SessionsContent
@@ -50,6 +50,7 @@ function FavouriteSessions({ filters, sessions, setSessions, loading, setLoading
       loading={loading}
       page={page}
       setPage={setPage}
+      hasMore={hasMore}
     />
   );
 }

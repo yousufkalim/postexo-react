@@ -5,11 +5,13 @@ import API from '../api';
 import SessionsContent from '../components/SessionsContent/SessionsContent';
 
 function PlaylistSessions({ filters, sessions, setSessions, loading, setLoading }) {
-  const [playlist, setPlaylist] = useState(null);
+  const [playlistTitle, setPlaylistTitle] = useState('');
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
 
   const { id } = useParams();
 
-  const getSessions = async () => {
+  const getSessions = async (isFiltersChanged) => {
     setLoading(true);
     try {
       const allLevels = [...filters.levels];
@@ -18,11 +20,17 @@ function PlaylistSessions({ filters, sessions, setSessions, loading, setLoading 
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
       const res = await API(
         'get',
-        `/sessions/getByPlaylist/${id}?pageSize=100&page=1&levels=${levels}&durations=${durations}`,
+        `/sessions/getByPlaylist/${id}?pageSize=20&page=${page}&levels=${levels}&durations=${durations}`,
       );
       const playlistSessions = res?.data?.playlist;
-      setPlaylist(playlistSessions);
-      setSessions(playlistSessions?.sessions);
+      setPlaylistTitle(playlistSessions?.title);
+      setSessions((prev) => {
+        if (prev?.length > 0 && !isFiltersChanged) {
+          return [...prev, ...playlistSessions.sessions];
+        }
+        return playlistSessions?.sessions;
+      });
+      setHasMore(res?.data?.hasMore);
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -35,10 +43,13 @@ function PlaylistSessions({ filters, sessions, setSessions, loading, setLoading 
       filters={filters}
       getSessions={getSessions}
       setSessions={setSessions}
-      title={playlist?.title}
+      title={playlistTitle}
       mutator={id}
       loading={loading}
       sessions={sessions}
+      page={page}
+      setPage={setPage}
+      hasMore={hasMore}
     />
   );
 }
