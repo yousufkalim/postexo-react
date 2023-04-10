@@ -28,13 +28,14 @@ function CategoriesRight({ filters, sessions, setSessions }) {
   const getSessions = async (isFiltersChanged) => {
     try {
       setLoading(true);
+      const currentPage = isFiltersChanged ? 1 : page;
       const allLevels = [...filters.levels];
       const allDurations = [...filters.durations];
       const levels = filters?.levels?.length ? allLevels.toString() : filters?.levels;
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
       await API(
         'get',
-        `/sessions?pageSize=4&page=${page}&levels=${levels}&durations=${durations}`,
+        `/sessions?pageSize=4&page=${currentPage}&levels=${levels}&durations=${durations}`,
       ).then((res) => {
         setSessions((prev) => {
           if (prev?.length > 0 && !isFiltersChanged) {

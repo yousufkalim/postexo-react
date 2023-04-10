@@ -430,8 +430,6 @@ const Audio = React.memo(({ session, isLogin, setOpen, setOpenPopup }) => {
           autoPlayAfterSrcChange={false}
           autoPlay={false}
           onLoadedData={handleLoadStart}
-          muted
-          volume={0}
           onPause={handlePause}
           onSeeking={handleJump}
           layout="horizontal-reverse"
