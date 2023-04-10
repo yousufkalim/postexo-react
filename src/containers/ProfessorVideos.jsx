@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import API from '../api';
 import SessionsContent from '../components/SessionsContent/SessionsContent';
 
 function ProfessorVideos({ filters, sessions, setSessions }) {
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
+
   const { name } = useParams();
 
   const getSessions = async () => {
@@ -14,9 +17,15 @@ function ProfessorVideos({ filters, sessions, setSessions }) {
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
       await API(
         'get',
-        `/sessions/getByProfessor?professorName=${name}&levels=${levels}&durations=${durations}`,
+        `/sessions/getByProfessor?professorName=${name}&pageSize=2&page=${page}&&levels=${levels}&durations=${durations}`,
       ).then((res) => {
-        setSessions(res?.data?.sessions);
+        setSessions((prev) => {
+          if (prev?.length > 0) {
+            return [...prev, ...res.data.sessions];
+          }
+          return res.data.sessions;
+        });
+        setHasMore(res?.data?.hasMore);
       });
     } catch (err) {
       console.log(err);
@@ -30,6 +39,9 @@ function ProfessorVideos({ filters, sessions, setSessions }) {
       getSessions={getSessions}
       title={name}
       sessions={sessions}
+      page={page}
+      setPage={setPage}
+      hasMore={hasMore}
     />
   );
 }
