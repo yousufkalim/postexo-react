@@ -53,6 +53,9 @@
   .video_canvas {
     height: 50vh !important;
   }
+  .video_canvas_auth {
+    height: 57vh !important;
+  }
   .video_spinner {
     top: 26vh !important;
     left: 36% !important;
@@ -85,6 +88,9 @@
     padding-left: 0;
   }
   .video_canvas {
+    height: 35vh !important;
+  }
+  .video_canvas_auth {
     height: 35vh !important;
   }
   .social {
