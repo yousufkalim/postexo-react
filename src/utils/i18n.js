@@ -15,6 +15,7 @@ i18n
       en: {
         translations: {
           // header
+          'Something went wrong': 'Something went wrong',
           Login: 'Login',
           Search: 'Search',
           'Invalid password': 'Invalid password',
@@ -143,6 +144,7 @@ i18n
         translations: {
           // header
           Search: 'Rechercher',
+          'Something went wrong': "Quelque chose n'a pas fonctionné",
           'No video found': 'Aucune vidéo',
           'Welcome to PostExo! Explore our courses and take the first step towards enhancing your knowledge and skills.':
             'Bienvenue sur PostExo ! Explorez les cours vidéos et accédez à une nouvelle panoplie de savoir et de capacités !',

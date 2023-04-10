@@ -35,7 +35,7 @@ function CategoriesRight({ filters, sessions, setSessions }) {
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
       await API(
         'get',
-        `/sessions?pageSize=4&page=${currentPage}&levels=${levels}&durations=${durations}`,
+        `/sessions?pageSize=20&page=${currentPage}&levels=${levels}&durations=${durations}`,
       ).then((res) => {
         setSessions((prev) => {
           if (prev?.length > 0 && !isFiltersChanged) {

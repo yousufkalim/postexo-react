@@ -14,13 +14,14 @@ function PlaylistSessions({ filters, sessions, setSessions, loading, setLoading 
   const getSessions = async (isFiltersChanged) => {
     setLoading(true);
     try {
+      const currentPage = isFiltersChanged ? 1 : page;
       const allLevels = [...filters.levels];
       const allDurations = [...filters.durations];
       const levels = filters?.levels?.length ? allLevels.toString() : filters?.levels;
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
       const res = await API(
         'get',
-        `/sessions/getByPlaylist/${id}?pageSize=20&page=${page}&levels=${levels}&durations=${durations}`,
+        `/sessions/getByPlaylist/${id}?pageSize=20&page=${currentPage}&levels=${levels}&durations=${durations}`,
       );
       const playlistSessions = res?.data?.playlist;
       setPlaylistTitle(playlistSessions?.title);
