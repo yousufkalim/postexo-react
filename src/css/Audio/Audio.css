@@ -15,7 +15,7 @@
 .rhap_container {
   padding: 5px 20px !important;
   border-radius: 10000px;
-  background: rgba(255, 255, 255, 0.15) !important;
+  background: #424241 !important;
 }
 .rhap_progress-bar {
   border-radius: 20px !important;

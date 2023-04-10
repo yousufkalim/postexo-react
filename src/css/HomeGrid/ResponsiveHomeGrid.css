@@ -145,6 +145,7 @@
   .navbar-logo-svg2 {
     width: 90px;
     margin-left: 5px;
+    margin-top: 10px;
   }
   .navbar-logo-svg3 {
     width: 90px;
@@ -274,5 +275,15 @@
     padding: 15px 10px;
     font-size: 12px;
     line-height: 2px;
+  }
+
+  .image-container_row_full .carousel_image_container_full img {
+    height: 230px;
+  }
+  .image-container2 .carousel_image_container img {
+    height: 230px;
+  }
+  .image-container .carousel_image_container img {
+    height: 260px;
   }
 }

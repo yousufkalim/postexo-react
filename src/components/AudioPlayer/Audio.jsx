@@ -351,6 +351,8 @@ const Audio = React.memo(({ session, isLogin, setOpen, setOpenPopup }) => {
 
   const handleLoadStart = () => {
     setLoading(false);
+    // console.log('Current ', audioRef.current.audio);
+    // audioRef.current.audio.current.playsInline = true;
     audioRef.current.audio.current.play();
     if (isLogin) {
       setTimeout(() => {
@@ -428,6 +430,8 @@ const Audio = React.memo(({ session, isLogin, setOpen, setOpenPopup }) => {
           autoPlayAfterSrcChange={false}
           autoPlay={false}
           onLoadedData={handleLoadStart}
+          muted
+          volume={0}
           onPause={handlePause}
           onSeeking={handleJump}
           layout="horizontal-reverse"

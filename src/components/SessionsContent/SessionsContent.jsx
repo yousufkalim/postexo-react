@@ -67,9 +67,16 @@ function SessionsContent({
   }, [sessions]);
 
   useEffect(() => {
-    getSessions();
+    getSessions(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters.levels.length, filters.durations.length, mutator, page]);
+  }, [filters.levels.length, filters.durations.length, mutator]);
+
+  useEffect(() => {
+    if (page > 1) {
+      getSessions(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page]);
 
   return (
     <>
@@ -117,7 +124,7 @@ function SessionsContent({
           <CoursesComponent hasMore={hasMore} setPage={setPage} sessions={allSessions} />
         ) : (
           <div className="topCoursesAll">
-            <CoursesComponent2 sessions={allSessions} />
+            <CoursesComponent2 hasMore={hasMore} setPage={setPage} sessions={allSessions} />
           </div>
         )}
       </NoDataFound>

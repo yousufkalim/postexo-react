@@ -34,7 +34,7 @@ function CategoriesRight({ filters, sessions, setSessions }) {
       const durations = filters?.durations?.length ? allDurations.toString() : filters?.durations;
       await API(
         'get',
-        `/sessions?pageSize=5&page=${page}&levels=${levels}&durations=${durations}`,
+        `/sessions?pageSize=4&page=${page}&levels=${levels}&durations=${durations}`,
       ).then((res) => {
         setSessions((prev) => {
           if (prev?.length > 0 && !isFiltersChanged) {
@@ -176,12 +176,10 @@ function CategoriesRight({ filters, sessions, setSessions }) {
       </div>
       <NoDataFound loading={loading} data={topSessions}>
         {showCours ? (
-          <div className="topCoursesAll">
-            <CoursesComponent hasMore={hasMore} setPage={setPage} sessions={topSessions} />
-          </div>
+          <CoursesComponent hasMore={hasMore} setPage={setPage} sessions={topSessions} />
         ) : (
           <div className="topCoursesAll">
-            <CoursesComponent2 sessions={topSessions} />
+            <CoursesComponent2 hasMore={hasMore} setPage={setPage} sessions={topSessions} />
           </div>
         )}
       </NoDataFound>
@@ -225,13 +223,9 @@ function CategoriesRight({ filters, sessions, setSessions }) {
       </div>
       <NoDataFound loading={loading} data={viewedSessions}>
         {showCours ? (
-          <div className="topCoursesAll">
-            <CoursesComponent hasMore={hasMore} setPage={setPage} sessions={viewedSessions} />
-          </div>
+          <CoursesComponent hasMore={hasMore} setPage={setPage} sessions={viewedSessions} />
         ) : (
-          <div className="topCoursesAll">
-            <CoursesComponent2 sessions={viewedSessions} />
-          </div>
+          <CoursesComponent2 hasMore={hasMore} setPage={setPage} sessions={viewedSessions} />
         )}
       </NoDataFound>
     </div>
